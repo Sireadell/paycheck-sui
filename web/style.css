@@ -136,3 +136,18 @@ button { font: inherit; cursor: pointer; }
   .big { font-size: 44px; }
   .try { padding: 56px 0 64px; margin-top: 16px; }
 }
+
+/* Proof page */
+.proof-page main { padding: 32px 0 56px; }
+.proof-page .wrap > p { margin-top: 10px; color: var(--muted); }
+.proof-block { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--line); display: grid; gap: 10px; }
+.proof-block .big span { font-size: 16px; font-weight: 500; color: var(--muted); letter-spacing: 0; }
+.proof-block ul { padding-left: 20px; display: grid; gap: 8px; }
+.proof-table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 14px; font-variant-numeric: tabular-nums; }
+.proof-table th, .proof-table td { text-align: left; padding: 8px 10px 8px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.later dt { font-weight: 650; margin-top: 12px; }
+.later dd { margin: 2px 0 0; }
+.not-run { color: var(--warn); background: var(--warn-bg); padding: 2px 8px; border-radius: 4px; display: inline-block; }
+.proof-page footer { padding-bottom: 32px; color: var(--muted); font-size: 14px; }
+.top-link { font-size: 14px; color: var(--accent); }

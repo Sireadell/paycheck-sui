@@ -8,6 +8,7 @@ import { createMemory } from './src/memory/index.js';
 import { getTatum, getAnkr, callLog } from './src/providers/index.js';
 import { loadConfig } from './src/config.js';
 import { loadBenchmark, loadCrossAgent } from './src/api/benchmark.js';
+import { loadProof, renderProof } from './src/proof.js';
 
 const ROOT = fileURLToPath(new URL('./', import.meta.url));
 const PROBE_EVERY_MS = 30000;
@@ -36,7 +37,7 @@ const sameToken = (given, wanted) => {
   return timingSafeEqual(a, b);
 };
 
-export function createApp({ checker, memory, probe = null, outcomeToken = process.env.OUTCOME_TOKEN, checkLimit = CHECK_LIMIT, outcomeLimit = OUTCOME_LIMIT, now = () => Date.now(), webDir = `${ROOT}web`, dataDir = `${ROOT}data`, benchDir = `${ROOT}bench` } = {}) {
+export function createApp({ checker, memory, probe = null, outcomeToken = process.env.OUTCOME_TOKEN, checkLimit = CHECK_LIMIT, outcomeLimit = OUTCOME_LIMIT, now = () => Date.now(), webDir = `${ROOT}web`, dataDir = `${ROOT}data`, benchDir = `${ROOT}bench`, docsDir = `${ROOT}docs` } = {}) {
   const checkHit = ipLimiter(checkLimit, now);
   const outcomeHit = ipLimiter(outcomeLimit, now);
   const tooMany = (res, wait, what) => res.set('retry-after', String(wait)).status(429).json({ error: `Too many ${what} from your address. Try again in ${wait} seconds.`, retryable: true });
@@ -120,6 +121,20 @@ export function createApp({ checker, memory, probe = null, outcomeToken = proces
   app.get('/api/cross-agent', async (_req, res) => {
     const run = await loadCrossAgent(dataDir);
     return run ? res.json(run) : res.status(404).json({ available: false });
+  });
+  // The proof page: server-rendered from the saved result files, so it works without scripts.
+  app.get('/proof', async (_req, res) => {
+    try {
+      const copy = JSON.parse(await readFile(`${webDir}/copy.json`, 'utf8'));
+      const proof = await loadProof({ dataDir, benchDir });
+      res.type('html').send(renderProof(proof, copy).replace('<body>', '<body class="proof-page">'));
+    } catch { res.status(500).type('text').send('The proof page could not be built.'); }
+  });
+  app.get('/api/proof', async (_req, res) => res.json(await loadProof({ dataDir, benchDir })));
+  // Plain-text copies of the method notes for the links on the proof page.
+  app.get('/docs/:name', async (req, res) => {
+    if (!['METHOD.md', 'VERDICT_RULES.md', 'REPRODUCE.md'].includes(req.params.name)) return res.status(404).type('text').send('Not found');
+    try { res.type('text/plain; charset=utf-8').send(await readFile(`${docsDir}/${req.params.name}`, 'utf8')); } catch { res.status(404).type('text').send('Not found'); }
   });
   app.use(express.static(webDir));
   return app;
