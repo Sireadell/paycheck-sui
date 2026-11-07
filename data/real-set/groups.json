@@ -1,0 +1,2709 @@
+{
+  "label": "real set: real mainnet facts we hand-checked",
+  "meta": {
+    "builtAt": "2026-11-07T18:19:22.673Z",
+    "rule": {
+      "startCheckpoint": 342700000,
+      "step": 600,
+      "maxSamples": 60000,
+      "takePerCheckpoint": 50,
+      "block": 12,
+      "pages": 4,
+      "sponsorPages": 30,
+      "maxFunderRecipients": 12,
+      "maxMembers": 6,
+      "windowMs": 86400000,
+      "groupTarget": 20,
+      "perTypeCap": 12,
+      "controlTarget": 20
+    },
+    "sampledCheckpoints": 57631,
+    "stopReason": "targets reached",
+    "skipped": {
+      "sponsorTooBusy": 15,
+      "sponsorSingle": 26,
+      "funderTooBusy": 4,
+      "funderFewRecipients": 0,
+      "funderNoVerifiedPair": 20,
+      "controlRejected": {
+        "first thing in history is not the funding": 133,
+        "history longer than 50": 587,
+        "funder history longer than 200": 70,
+        "funder already used": 116,
+        "involved in sponsored gas": 8
+      }
+    },
+    "droppedGroupsFailedRecheck": 0,
+    "dataFloorCheckpoint": 237661232
+  },
+  "groups": [
+    {
+      "type": "shared_funder",
+      "linkAddress": "0x2500020428c933ae7610362753bad2a85eaf4bd8e93a160ab18c7821c5ccf0e7",
+      "members": [
+        {
+          "address": "0x36684098e89e315e57b8be53513a56e595452c7106de0f5c468262ba571a2964",
+          "proofDigest": "6ZQcHDJ3bBMdPZCJWY1mhzH65nSXYn7pvMZHR8cDgJSm",
+          "timestamp": "2026-11-03T12:20:33.857Z",
+          "checkpoint": 341200600,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/6ZQcHDJ3bBMdPZCJWY1mhzH65nSXYn7pvMZHR8cDgJSm",
+          "verified": true
+        },
+        {
+          "address": "0x5bd845a51b45a554e0a77c9f0c002fbf1b4f9b752a6e45e42ea7f0594e91639e",
+          "proofDigest": "EyXho2SfQ7i7YaEtWXEf264VTYKBbUGodFPMgJk7KDr8",
+          "timestamp": "2026-11-03T12:24:27.572Z",
+          "checkpoint": 341201562,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/EyXho2SfQ7i7YaEtWXEf264VTYKBbUGodFPMgJk7KDr8",
+          "verified": true
+        }
+      ],
+      "memberCount": 2,
+      "burst": false,
+      "observed": {
+        "wallets": 4,
+        "spanHours": 3949.9,
+        "historyComplete": true,
+        "engineHubRule": "few_wallets",
+        "firstFundingsWithin24h": 2,
+        "firstFundingSpanHours": 0.1
+      },
+      "reason": "The same wallet (0x250002...f0e7) sent the first SUI to 2 new wallets within 1 hour(s). Each listed payment is the earliest thing in that wallet's history.",
+      "discovered": {
+        "checkpoint": 341200600,
+        "sampleIndex": 2499,
+        "digest": "6ZQcHDJ3bBMdPZCJWY1mhzH65nSXYn7pvMZHR8cDgJSm"
+      },
+      "linkExplorer": "https://suiscan.xyz/mainnet/account/0x2500020428c933ae7610362753bad2a85eaf4bd8e93a160ab18c7821c5ccf0e7",
+      "verifiedAll": true,
+      "id": "rs-01",
+      "probe": "0x36684098e89e315e57b8be53513a56e595452c7106de0f5c468262ba571a2964",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "type": "shared_funder",
+      "linkAddress": "0x749b5fa18ffa6376bec07fa5ede8df90d8937285086e76fc7f5aa64449e22619",
+      "members": [
+        {
+          "address": "0x61f2a6c029cba9c11617c1dd6c9fbe970e34e1009b5a3e11a9d5aea84b5bcd08",
+          "proofDigest": "4Vk4AzQwGLPT1Xw4seQ3aP9h89y6SiqA1YGizGj2istE",
+          "timestamp": "2026-10-30T17:20:16.406Z",
+          "checkpoint": 339848620,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/4Vk4AzQwGLPT1Xw4seQ3aP9h89y6SiqA1YGizGj2istE",
+          "verified": true
+        },
+        {
+          "address": "0x8d6a92f0e479a4ece6c714f2086a219a9383067d6c44864f903a6ae459a1adf0",
+          "proofDigest": "EXXX9CvtLjEbKCfEjuMUn9YJdNvmLNiSMzkQ2ZUYg9fK",
+          "timestamp": "2026-10-30T18:29:20.388Z",
+          "checkpoint": 339865950,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/EXXX9CvtLjEbKCfEjuMUn9YJdNvmLNiSMzkQ2ZUYg9fK",
+          "verified": true
+        },
+        {
+          "address": "0xa2ab4e95e5dc916e11464d1c4ff3d7f002914cbe6edb7c2f8e3a1c126447d229",
+          "proofDigest": "6sMR9Xcbu9zjvwgSgZUsjgP97oMWLfaGmsYiMcj2CwNv",
+          "timestamp": "2026-10-31T09:05:35.020Z",
+          "checkpoint": 340082655,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/6sMR9Xcbu9zjvwgSgZUsjgP97oMWLfaGmsYiMcj2CwNv",
+          "verified": true
+        }
+      ],
+      "memberCount": 3,
+      "burst": false,
+      "observed": {
+        "wallets": 8,
+        "spanHours": 121.2,
+        "historyComplete": true,
+        "engineHubRule": "few_wallets",
+        "firstFundingsWithin24h": 3,
+        "firstFundingSpanHours": 15.8
+      },
+      "reason": "The same wallet (0x749b5f...2619) sent the first SUI to 3 new wallets within 16 hour(s). Each listed payment is the earliest thing in that wallet's history.",
+      "discovered": {
+        "checkpoint": 340928200,
+        "sampleIndex": 2953,
+        "digest": "Db84tDGVvhFckpCYAqjyfR8uySJWH6ytKfmT6B9nAa2t"
+      },
+      "linkExplorer": "https://suiscan.xyz/mainnet/account/0x749b5fa18ffa6376bec07fa5ede8df90d8937285086e76fc7f5aa64449e22619",
+      "verifiedAll": true,
+      "id": "rs-02",
+      "probe": "0x61f2a6c029cba9c11617c1dd6c9fbe970e34e1009b5a3e11a9d5aea84b5bcd08",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "type": "gas_sponsor",
+      "linkAddress": "0xd9179e689a530294f6cd0d65b4f243ffdba402dcf04eb3ad722c9f88af18c9a3",
+      "members": [
+        {
+          "address": "0x1c56e4c6a5af92d514a9967c35ffeb6f5f204a03527de71ebf062ae2445efc79",
+          "proofDigest": "H6ojSBLunuqnAaNKyCRvvGSpUASD77LXnH7sJV3YtsaD",
+          "timestamp": "2026-10-28T10:50:25.711Z",
+          "checkpoint": 339027379,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/H6ojSBLunuqnAaNKyCRvvGSpUASD77LXnH7sJV3YtsaD",
+          "verified": true
+        },
+        {
+          "address": "0xf50c2c67dd2255803066f61137395a07a14d0a9a02a52cf275ce8635845d68a0",
+          "proofDigest": "FuF6uxTC84dtJRS8Rp1Qtrk5M74Si5aS41eEQWJcezvi",
+          "timestamp": "2026-10-28T10:50:42.618Z",
+          "checkpoint": 339027454,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/FuF6uxTC84dtJRS8Rp1Qtrk5M74Si5aS41eEQWJcezvi",
+          "verified": true
+        }
+      ],
+      "memberCount": 2,
+      "burst": false,
+      "observed": {
+        "wallets": 2,
+        "spanHours": 0,
+        "historyComplete": true,
+        "engineHubRule": "few_wallets"
+      },
+      "reason": "The same wallet (0xd9179e...c9a3) paid the network fee for 2 different wallets, so they share a gas sponsor. The first 2 are listed with the fee-paid transaction for each.",
+      "discovered": {
+        "checkpoint": 339027400,
+        "sampleIndex": 6121,
+        "digest": "8jZxwQPCaSVMdDfr2PWbKPK8inpzqTr5VKKAYxeWJJWw"
+      },
+      "linkExplorer": "https://suiscan.xyz/mainnet/account/0xd9179e689a530294f6cd0d65b4f243ffdba402dcf04eb3ad722c9f88af18c9a3",
+      "verifiedAll": true,
+      "id": "rs-03",
+      "probe": "0x1c56e4c6a5af92d514a9967c35ffeb6f5f204a03527de71ebf062ae2445efc79",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "type": "gas_sponsor",
+      "linkAddress": "0x6415ec433b2ba10fd605a89101d631eb29246f8f6c23db9003a3e92572b4b2f8",
+      "members": [
+        {
+          "address": "0x4a8230ac89abca3ebc41b7792f62dfedb59b2bc8ee0164b9890a4e50a8e15165",
+          "proofDigest": "DuWKJ1bHGceYPSLg92kU9tSgHPr6kD5YoWSXxH8roxpy",
+          "timestamp": "2026-08-03T11:04:20.650Z",
+          "checkpoint": 306286634,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/DuWKJ1bHGceYPSLg92kU9tSgHPr6kD5YoWSXxH8roxpy",
+          "verified": true
+        },
+        {
+          "address": "0x53376ae44cab6954251ffed887db358555e9ecf8a1eede1eb0f6e7f4aa7fb728",
+          "proofDigest": "4Uudfp95zMwRwxjTupF4gvy9AhLQ6cBf6d5THBG4ozLE",
+          "timestamp": "2026-10-21T14:05:16.813Z",
+          "checkpoint": 336503694,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/4Uudfp95zMwRwxjTupF4gvy9AhLQ6cBf6d5THBG4ozLE",
+          "verified": true
+        }
+      ],
+      "memberCount": 2,
+      "burst": false,
+      "observed": {
+        "wallets": 2,
+        "spanHours": 1899.1,
+        "historyComplete": true,
+        "engineHubRule": "few_wallets"
+      },
+      "reason": "The same wallet (0x6415ec...b2f8) paid the network fee for 2 different wallets, so they share a gas sponsor. The first 2 are listed with the fee-paid transaction for each.",
+      "discovered": {
+        "checkpoint": 336505000,
+        "sampleIndex": 10325,
+        "digest": "5qenjcreLakT99PphEkucRNWNxbFGgNe3eiKSSz1pTV4"
+      },
+      "linkExplorer": "https://suiscan.xyz/mainnet/account/0x6415ec433b2ba10fd605a89101d631eb29246f8f6c23db9003a3e92572b4b2f8",
+      "verifiedAll": true,
+      "id": "rs-04",
+      "probe": "0x4a8230ac89abca3ebc41b7792f62dfedb59b2bc8ee0164b9890a4e50a8e15165",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "type": "gas_sponsor",
+      "linkAddress": "0x3b87194850cb9d665f0ea94e97a0eb0cff3e4a564961d30704b8da5e3157397a",
+      "members": [
+        {
+          "address": "0x2c17c0636cf91fa404a23d9a14ec9a7eac7f645e2249e834b0ccc7c80a0f0a26",
+          "proofDigest": "2dXCRm9pbqVaCtr22iZ8Douvy3LENXhbjLCDYFiUuQi8",
+          "timestamp": "2026-01-24T00:20:38.885Z",
+          "checkpoint": 237687957,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/2dXCRm9pbqVaCtr22iZ8Douvy3LENXhbjLCDYFiUuQi8",
+          "verified": true
+        },
+        {
+          "address": "0xedff7181951f4006db32c415c15ff4e07bba6506a5881d0d0fc3d7e38abbafb5",
+          "proofDigest": "6UNNRhn5kujgtvk68ac98SfXQ9sK8LedpigLz9BigzvK",
+          "timestamp": "2026-01-30T11:56:55.107Z",
+          "checkpoint": 239893770,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/6UNNRhn5kujgtvk68ac98SfXQ9sK8LedpigLz9BigzvK",
+          "verified": true
+        },
+        {
+          "address": "0xb4d801680ccd3d7e8bf730603bad0c527fc2696603a39b7e87c71d9bf70d4273",
+          "proofDigest": "G6BYMNpNZUKMXzvD2ogFVPPM3UtQMm24dmyNh7yfWgn1",
+          "timestamp": "2026-02-27T10:57:59.391Z",
+          "checkpoint": 249287507,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/G6BYMNpNZUKMXzvD2ogFVPPM3UtQMm24dmyNh7yfWgn1",
+          "verified": true
+        },
+        {
+          "address": "0x991c766e9bf29f4e367d97aa0a7041b19cd216d02caae412492e5e8d6cb526f7",
+          "proofDigest": "5qX1AENRvkeZc2PVrG1PKvB7Bpebg3rgZfZ7Jc7YqXTu",
+          "timestamp": "2026-05-12T14:59:10.304Z",
+          "checkpoint": 274876041,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/5qX1AENRvkeZc2PVrG1PKvB7Bpebg3rgZfZ7Jc7YqXTu",
+          "verified": true
+        },
+        {
+          "address": "0x9c0f30e2353523ecac133cff426a9345b71e5164da053b25946f389a92f978a0",
+          "proofDigest": "7ng75GnMx6b4XKmawkWnBZDEhCnuNSodL34YqGkfGz6U",
+          "timestamp": "2026-05-13T12:34:20.635Z",
+          "checkpoint": 275168730,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/7ng75GnMx6b4XKmawkWnBZDEhCnuNSodL34YqGkfGz6U",
+          "verified": true
+        },
+        {
+          "address": "0x167c3ab31f1bee7ce8a7e0e04b659fc023bd0206019827bd8d373dd11501165b",
+          "proofDigest": "2JLs12NVsUPwXANXz4MNXtiwTsD1cSGXBABRpFNySp3t",
+          "timestamp": "2026-05-13T12:34:24.900Z",
+          "checkpoint": 275168746,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/2JLs12NVsUPwXANXz4MNXtiwTsD1cSGXBABRpFNySp3t",
+          "verified": true
+        }
+      ],
+      "memberCount": 9,
+      "burst": false,
+      "observed": {
+        "wallets": 9,
+        "spanHours": 6514.6,
+        "historyComplete": true,
+        "engineHubRule": "few_wallets"
+      },
+      "reason": "The same wallet (0x3b8719...397a) paid the network fee for 9 different wallets, so they share a gas sponsor. The first 6 are listed with the fee-paid transaction for each.",
+      "discovered": {
+        "checkpoint": 336224200,
+        "sampleIndex": 10793,
+        "digest": "2YKftTtWiujJxGMwWabjJYWREUaRzY1z3HUZ2tHUstUt"
+      },
+      "linkExplorer": "https://suiscan.xyz/mainnet/account/0x3b87194850cb9d665f0ea94e97a0eb0cff3e4a564961d30704b8da5e3157397a",
+      "verifiedAll": true,
+      "id": "rs-05",
+      "probe": "0x2c17c0636cf91fa404a23d9a14ec9a7eac7f645e2249e834b0ccc7c80a0f0a26",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "type": "shared_funder",
+      "linkAddress": "0x2328712dc3e12f492cfeaafafc391ed4c61210b4454c164167446383d0e6febe",
+      "members": [
+        {
+          "address": "0xa53f5d723990461c700b340c96ce91cba55b6808fb519b4c2f4017ae6f5613fb",
+          "proofDigest": "6L6qSdaG8VPge9zQxZNkqeZjRRAQ724AAh9Jy8URRbUc",
+          "timestamp": "2026-09-28T04:04:47.567Z",
+          "checkpoint": 327758347,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/6L6qSdaG8VPge9zQxZNkqeZjRRAQ724AAh9Jy8URRbUc",
+          "verified": true
+        },
+        {
+          "address": "0x5d0743c6d20f9b5d7798e46b5e83bd1c2ab09108d3152b646a120f8f047d0cea",
+          "proofDigest": "2ENPChFi5svxtoBhv23Ve9cPyziriu2JE9MKXjAHhEhm",
+          "timestamp": "2026-09-28T04:18:08.569Z",
+          "checkpoint": 327761824,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/2ENPChFi5svxtoBhv23Ve9cPyziriu2JE9MKXjAHhEhm",
+          "verified": true
+        }
+      ],
+      "memberCount": 2,
+      "burst": false,
+      "observed": {
+        "wallets": 5,
+        "spanHours": 157.3,
+        "historyComplete": true,
+        "engineHubRule": "few_wallets",
+        "firstFundingsWithin24h": 2,
+        "firstFundingSpanHours": 0.2
+      },
+      "reason": "The same wallet (0x232871...febe) sent the first SUI to 2 new wallets within 1 hour(s). Each listed payment is the earliest thing in that wallet's history.",
+      "discovered": {
+        "checkpoint": 335767600,
+        "sampleIndex": 11554,
+        "digest": "Ghwtqp7i4QAHGL7EXNkoEtHYiLDtQhB7jb3iFfWTsVrx"
+      },
+      "linkExplorer": "https://suiscan.xyz/mainnet/account/0x2328712dc3e12f492cfeaafafc391ed4c61210b4454c164167446383d0e6febe",
+      "verifiedAll": true,
+      "id": "rs-06",
+      "probe": "0xa53f5d723990461c700b340c96ce91cba55b6808fb519b4c2f4017ae6f5613fb",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "type": "shared_funder",
+      "linkAddress": "0xd9a080ec4fffd0c9d362c275be2620e85aa2b44cd6a690c23d46f125952c7382",
+      "members": [
+        {
+          "address": "0x1f3689e26e8261f878894b3d79ec664d4d267ae9f674a303f3f06c36427c5c34",
+          "proofDigest": "GzZpadPRw67KeMFKBzdgZyLB8oCneXo14hTx1psFZbnH",
+          "timestamp": "2026-10-10T05:33:55.954Z",
+          "checkpoint": 332320676,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/GzZpadPRw67KeMFKBzdgZyLB8oCneXo14hTx1psFZbnH",
+          "verified": true
+        },
+        {
+          "address": "0xbd39abb7260439f498daa70c3c9000c6cd0b0a2f338494469a7d413f2c218277",
+          "proofDigest": "AXB7L9FkZNHrCv94YGLMePX1Pzqt9mYuF8rJEnz8UqQy",
+          "timestamp": "2026-10-10T06:00:44.789Z",
+          "checkpoint": 332327593,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/AXB7L9FkZNHrCv94YGLMePX1Pzqt9mYuF8rJEnz8UqQy",
+          "verified": true
+        }
+      ],
+      "memberCount": 2,
+      "burst": false,
+      "observed": {
+        "wallets": 7,
+        "spanHours": 130.4,
+        "historyComplete": true,
+        "engineHubRule": "few_wallets",
+        "firstFundingsWithin24h": 2,
+        "firstFundingSpanHours": 0.4
+      },
+      "reason": "The same wallet (0xd9a080...7382) sent the first SUI to 2 new wallets within 1 hour(s). Each listed payment is the earliest thing in that wallet's history.",
+      "discovered": {
+        "checkpoint": 332674000,
+        "sampleIndex": 16710,
+        "digest": "CCfivydvVqFuJ1axqZSfboMC1bgUEmhTtwhyB5g3d6qB"
+      },
+      "linkExplorer": "https://suiscan.xyz/mainnet/account/0xd9a080ec4fffd0c9d362c275be2620e85aa2b44cd6a690c23d46f125952c7382",
+      "verifiedAll": true,
+      "id": "rs-07",
+      "probe": "0x1f3689e26e8261f878894b3d79ec664d4d267ae9f674a303f3f06c36427c5c34",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "type": "shared_funder",
+      "linkAddress": "0xbac27160e8cd0829807f8fb6762df9e30801f18e0ddd3c41b16b63af6a5d7d77",
+      "members": [
+        {
+          "address": "0x7d4749c0d28b7665168da6be446878fc4d918b066e1b5bf7cf7f90b962024f71",
+          "proofDigest": "eEuTwUFBF34ZaQMy9P7jqzimoRHwRHk2X9WKG6ZZCDQ",
+          "timestamp": "2026-09-25T12:43:34.989Z",
+          "checkpoint": 326742400,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/eEuTwUFBF34ZaQMy9P7jqzimoRHwRHk2X9WKG6ZZCDQ",
+          "verified": true
+        },
+        {
+          "address": "0x5bb54f8b08c8fae84ece08a9562b73c6e9f5c2a9043370e8471d4d0b2e96cef3",
+          "proofDigest": "FevBxXLLmii9bBHceQsMfHPSHG8QLMud9pYbSCKs7Y7q",
+          "timestamp": "2026-09-26T07:54:16.500Z",
+          "checkpoint": 327048403,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/FevBxXLLmii9bBHceQsMfHPSHG8QLMud9pYbSCKs7Y7q",
+          "verified": true
+        }
+      ],
+      "memberCount": 2,
+      "burst": false,
+      "observed": {
+        "wallets": 3,
+        "spanHours": 140.8,
+        "historyComplete": true,
+        "engineHubRule": "few_wallets",
+        "firstFundingsWithin24h": 2,
+        "firstFundingSpanHours": 19.2
+      },
+      "reason": "The same wallet (0xbac271...7d77) sent the first SUI to 2 new wallets within 20 hour(s). Each listed payment is the earliest thing in that wallet's history.",
+      "discovered": {
+        "checkpoint": 326742400,
+        "sampleIndex": 26596,
+        "digest": "eEuTwUFBF34ZaQMy9P7jqzimoRHwRHk2X9WKG6ZZCDQ"
+      },
+      "linkExplorer": "https://suiscan.xyz/mainnet/account/0xbac27160e8cd0829807f8fb6762df9e30801f18e0ddd3c41b16b63af6a5d7d77",
+      "verifiedAll": true,
+      "id": "rs-08",
+      "probe": "0x7d4749c0d28b7665168da6be446878fc4d918b066e1b5bf7cf7f90b962024f71",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "type": "gas_sponsor",
+      "linkAddress": "0x9ee9d7d4de4e0e3b01b2a4e69679fd674d62843f1e6bc056498f569e8b12e3f5",
+      "members": [
+        {
+          "address": "0x335401cc7d665c25bc7b15a3cc5caea1a8de8c53f5a294eac7f06b78d72abc99",
+          "proofDigest": "FyV2CasvFssVuWRCqDKTpYuhma19ZTskKjempcrX5L9w",
+          "timestamp": "2026-09-24T16:01:16.097Z",
+          "checkpoint": 326409423,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/FyV2CasvFssVuWRCqDKTpYuhma19ZTskKjempcrX5L9w",
+          "verified": true
+        },
+        {
+          "address": "0xfc69b005af9152cd881ba6eacd899fe0c1b920cf87b51ccbb267b183da946c0a",
+          "proofDigest": "H7qQXxkB99vwBoYjrjV1swWma4VXsBByVHUUdDyv5Pea",
+          "timestamp": "2026-09-24T17:48:50.056Z",
+          "checkpoint": 326437765,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/H7qQXxkB99vwBoYjrjV1swWma4VXsBByVHUUdDyv5Pea",
+          "verified": true
+        },
+        {
+          "address": "0x141b7182aa323b60d78d4a2cda3b546facb3047f70ed8dc3928b097da0fa5177",
+          "proofDigest": "HDqG5WkYfntRNrBc12huaMrDxuxNC5BoiZbERriRyiaK",
+          "timestamp": "2026-09-24T18:06:26.451Z",
+          "checkpoint": 326442462,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/HDqG5WkYfntRNrBc12huaMrDxuxNC5BoiZbERriRyiaK",
+          "verified": true
+        },
+        {
+          "address": "0xce51f5d7396a85659d8850f55c701e0b6682024f8e10beccbde64785e52d434e",
+          "proofDigest": "6srPUtQbCGGgpFecrXsTVTJRPk1XiSwAKxUka8mV9Vhi",
+          "timestamp": "2026-09-24T18:16:39.821Z",
+          "checkpoint": 326445203,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/6srPUtQbCGGgpFecrXsTVTJRPk1XiSwAKxUka8mV9Vhi",
+          "verified": true
+        },
+        {
+          "address": "0x18f3b1000b28307b633a88bfdbbf97edb4dfa578d118568ac1ac34e4220011ee",
+          "proofDigest": "F6KQpDzoNsYoUorabKRq62xpbtALF6BxL3DYhbjVkyzR",
+          "timestamp": "2026-09-24T18:25:31.306Z",
+          "checkpoint": 326447595,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/F6KQpDzoNsYoUorabKRq62xpbtALF6BxL3DYhbjVkyzR",
+          "verified": true
+        }
+      ],
+      "memberCount": 5,
+      "burst": false,
+      "observed": {
+        "wallets": 5,
+        "spanHours": 2.7,
+        "historyComplete": true,
+        "engineHubRule": "few_wallets"
+      },
+      "reason": "The same wallet (0x9ee9d7...e3f5) paid the network fee for 5 different wallets, so they share a gas sponsor. The first 5 are listed with the fee-paid transaction for each.",
+      "discovered": {
+        "checkpoint": 326416000,
+        "sampleIndex": 27140,
+        "digest": "ENCeHYVbxxTYu9GXB3gysZwStEmwJxRM4M6XKEZVweKP"
+      },
+      "linkExplorer": "https://suiscan.xyz/mainnet/account/0x9ee9d7d4de4e0e3b01b2a4e69679fd674d62843f1e6bc056498f569e8b12e3f5",
+      "verifiedAll": true,
+      "id": "rs-09",
+      "probe": "0x335401cc7d665c25bc7b15a3cc5caea1a8de8c53f5a294eac7f06b78d72abc99",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "type": "shared_funder",
+      "linkAddress": "0xf069396c46e017d321e6f50f9a0502ed65084b465e126a7245b50a1bce358811",
+      "members": [
+        {
+          "address": "0x68ae71654976c566c039a2212d24a580067b5c23cab786c1d54e60df53e80c6d",
+          "proofDigest": "AxrEJ79JynpJNed9cj5Rf8itWeZwdVqaxdBNHUCTMxjx",
+          "timestamp": "2026-09-21T14:21:32.952Z",
+          "checkpoint": 325248734,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/AxrEJ79JynpJNed9cj5Rf8itWeZwdVqaxdBNHUCTMxjx",
+          "verified": true
+        },
+        {
+          "address": "0x0f5bcbd58c302ef4695b79dc35d2c319e18e55fcdc5e19f5ba6c3febc9c10c6c",
+          "proofDigest": "5ttdA3v9Vkqvcs6o4RfyeK6fv3zD1CzC7H2uxTXiErtN",
+          "timestamp": "2026-09-21T14:49:40.402Z",
+          "checkpoint": 325255828,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/5ttdA3v9Vkqvcs6o4RfyeK6fv3zD1CzC7H2uxTXiErtN",
+          "verified": true
+        },
+        {
+          "address": "0x27d3f6bb8c9b8421548cc49dbba1e7af978842f96ecc98bae78205020a9496ed",
+          "proofDigest": "5m8wesPN3hWKpNBqhATTgjrmPFLtXP8VfwFvqqm9bapm",
+          "timestamp": "2026-09-22T09:40:36.413Z",
+          "checkpoint": 325555000,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/5m8wesPN3hWKpNBqhATTgjrmPFLtXP8VfwFvqqm9bapm",
+          "verified": true
+        }
+      ],
+      "memberCount": 3,
+      "burst": false,
+      "observed": {
+        "wallets": 8,
+        "spanHours": 286.2,
+        "historyComplete": true,
+        "engineHubRule": "few_wallets",
+        "firstFundingsWithin24h": 3,
+        "firstFundingSpanHours": 19.3
+      },
+      "reason": "The same wallet (0xf06939...8811) sent the first SUI to 3 new wallets within 20 hour(s). Each listed payment is the earliest thing in that wallet's history.",
+      "discovered": {
+        "checkpoint": 325555000,
+        "sampleIndex": 28575,
+        "digest": "5m8wesPN3hWKpNBqhATTgjrmPFLtXP8VfwFvqqm9bapm"
+      },
+      "linkExplorer": "https://suiscan.xyz/mainnet/account/0xf069396c46e017d321e6f50f9a0502ed65084b465e126a7245b50a1bce358811",
+      "verifiedAll": true,
+      "id": "rs-10",
+      "probe": "0x68ae71654976c566c039a2212d24a580067b5c23cab786c1d54e60df53e80c6d",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "type": "gas_sponsor",
+      "linkAddress": "0x61b1b7f667c06d1ccfe5e404a1e705d4d0da457040c279e7c2a23bb39b9d1e05",
+      "members": [
+        {
+          "address": "0xcb2d094b980ae95fa06db5bfabd638bd59006d20ff7f3662eb9b9e41bf20d8e0",
+          "proofDigest": "52aHZxaFB3xYPEewY7nr9MAe1kqa4tPC39qPhWcUD7zs",
+          "timestamp": "2026-09-20T22:50:38.770Z",
+          "checkpoint": 325004230,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/52aHZxaFB3xYPEewY7nr9MAe1kqa4tPC39qPhWcUD7zs",
+          "verified": true
+        },
+        {
+          "address": "0x3f032b3392f5e264c69b0092dcd70e28bcf80002e294ca7dd2fe9c8f5d0980ed",
+          "proofDigest": "FBX1jPTacmV7mCg5bsr95oxggwzHhzJoFW1Axp2dqs1t",
+          "timestamp": "2026-09-21T03:05:10.895Z",
+          "checkpoint": 325071699,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/FBX1jPTacmV7mCg5bsr95oxggwzHhzJoFW1Axp2dqs1t",
+          "verified": true
+        },
+        {
+          "address": "0x14fd2b20b89b8da21a731afc959e4fd2d4ccaf79f024e2557122134c8d62b12d",
+          "proofDigest": "6LETkznkPHBNdBfr1kVWkUHDvKKM4ju59BBnud5J3HCK",
+          "timestamp": "2026-09-21T03:20:45.368Z",
+          "checkpoint": 325075871,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/6LETkznkPHBNdBfr1kVWkUHDvKKM4ju59BBnud5J3HCK",
+          "verified": true
+        },
+        {
+          "address": "0xb5a70a50789c785f3f553c32a7170eb501363b25c3e5eebab84a16e7c871a6a0",
+          "proofDigest": "6TS2LEMQcanZAWPmrjWbmq8YyvvuJPzdyv9kvNUPnK8u",
+          "timestamp": "2026-09-21T18:29:21.037Z",
+          "checkpoint": 325312993,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/6TS2LEMQcanZAWPmrjWbmq8YyvvuJPzdyv9kvNUPnK8u",
+          "verified": true
+        },
+        {
+          "address": "0xb38d5ca5f85948c916d7f5157f5c7c5043962ad76c79cf297d6aaf1274dd4cfb",
+          "proofDigest": "J74E7i983fkbo8YGss79LRzbmnJGvXwx1fHtPCb7wHQn",
+          "timestamp": "2026-09-21T23:44:01.657Z",
+          "checkpoint": 325396725,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/J74E7i983fkbo8YGss79LRzbmnJGvXwx1fHtPCb7wHQn",
+          "verified": true
+        },
+        {
+          "address": "0x4911f90dfadc8aed27558e92cf95206d39775a744504c8df87108da67772eb33",
+          "proofDigest": "7fKjWH2N4tXFbbhyfwDeED86gm3wtGEWdH7cFh8Nzn5j",
+          "timestamp": "2026-09-21T23:44:34.594Z",
+          "checkpoint": 325396875,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/7fKjWH2N4tXFbbhyfwDeED86gm3wtGEWdH7cFh8Nzn5j",
+          "verified": true
+        }
+      ],
+      "memberCount": 7,
+      "burst": false,
+      "observed": {
+        "wallets": 7,
+        "spanHours": 846.2,
+        "historyComplete": true,
+        "engineHubRule": "few_wallets"
+      },
+      "reason": "The same wallet (0x61b1b7...1e05) paid the network fee for 7 different wallets, so they share a gas sponsor. The first 6 are listed with the fee-paid transaction for each.",
+      "discovered": {
+        "checkpoint": 325307800,
+        "sampleIndex": 28987,
+        "digest": "91CHsNLT7erFURaDdbe83XMrNnz1xr8UvGE8DEXAojEA"
+      },
+      "linkExplorer": "https://suiscan.xyz/mainnet/account/0x61b1b7f667c06d1ccfe5e404a1e705d4d0da457040c279e7c2a23bb39b9d1e05",
+      "verifiedAll": true,
+      "id": "rs-11",
+      "probe": "0xcb2d094b980ae95fa06db5bfabd638bd59006d20ff7f3662eb9b9e41bf20d8e0",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "type": "shared_funder",
+      "linkAddress": "0xb5efe55a53b225a9f92e77169c8e411f0935874e0c519a6560d8cf45d4640f27",
+      "members": [
+        {
+          "address": "0x307931549ef581adc40c0660caa253e2951259609d4ceb151df4ce799f9de5aa",
+          "proofDigest": "Ep1qm85CZYzx2NczhG2SEqcnpbiaPKgiSbFNpQnknZvk",
+          "timestamp": "2026-09-14T11:00:40.936Z",
+          "checkpoint": 322510600,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/Ep1qm85CZYzx2NczhG2SEqcnpbiaPKgiSbFNpQnknZvk",
+          "verified": true
+        },
+        {
+          "address": "0xf29b3fe80886959f9e03a906c02d2c25b6d27499f728ed45b5b258d91e102a99",
+          "proofDigest": "HRPnV2hDH8syJJhAYF2cCFKDdMD8Lk4VUSbEqGdt51Kk",
+          "timestamp": "2026-09-14T11:27:08.691Z",
+          "checkpoint": 322517752,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/HRPnV2hDH8syJJhAYF2cCFKDdMD8Lk4VUSbEqGdt51Kk",
+          "verified": true
+        },
+        {
+          "address": "0xbd6bc470ce3bd9dbff715cab4dd516afa23fe80a7ccc44eae7096e3d807d3507",
+          "proofDigest": "AaC7qo3g5nB9r8aPYdRZxUGUGwfAkWthTdnZoUBtZpHH",
+          "timestamp": "2026-09-14T11:39:31.641Z",
+          "checkpoint": 322521134,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/AaC7qo3g5nB9r8aPYdRZxUGUGwfAkWthTdnZoUBtZpHH",
+          "verified": true
+        }
+      ],
+      "memberCount": 3,
+      "burst": false,
+      "observed": {
+        "wallets": 14,
+        "spanHours": 4020.4,
+        "historyComplete": true,
+        "engineHubRule": "few_wallets",
+        "firstFundingsWithin24h": 3,
+        "firstFundingSpanHours": 0.6
+      },
+      "reason": "The same wallet (0xb5efe5...0f27) sent the first SUI to 3 new wallets within 1 hour(s). Each listed payment is the earliest thing in that wallet's history.",
+      "discovered": {
+        "checkpoint": 322510600,
+        "sampleIndex": 33649,
+        "digest": "Ep1qm85CZYzx2NczhG2SEqcnpbiaPKgiSbFNpQnknZvk"
+      },
+      "linkExplorer": "https://suiscan.xyz/mainnet/account/0xb5efe55a53b225a9f92e77169c8e411f0935874e0c519a6560d8cf45d4640f27",
+      "verifiedAll": true,
+      "id": "rs-12",
+      "probe": "0x307931549ef581adc40c0660caa253e2951259609d4ceb151df4ce799f9de5aa",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "type": "shared_funder",
+      "linkAddress": "0x00a410baa4d96f50fdd42f9b4e7300add4def4dae3da77f21e333fc17400101b",
+      "members": [
+        {
+          "address": "0xe216d509c0227ccadde8e178116dec830704119934e341c25343a92863a40a76",
+          "proofDigest": "816Wx6wayr7pfDpt1vUHYJMbmNgvFfoSPG27ReGzqyAG",
+          "timestamp": "2026-07-07T03:35:32.176Z",
+          "checkpoint": 295584101,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/816Wx6wayr7pfDpt1vUHYJMbmNgvFfoSPG27ReGzqyAG",
+          "verified": true
+        },
+        {
+          "address": "0x0adb4c5202adfe7d0eae2cc07329f460f9262eacd1ccb0e26bfcd40bd4e59b2a",
+          "proofDigest": "A5H6NBRjNTQK6zQ13rTQEQU6YUm7LyrnBX8bMvu1oHb8",
+          "timestamp": "2026-07-07T06:41:36.197Z",
+          "checkpoint": 295634988,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/A5H6NBRjNTQK6zQ13rTQEQU6YUm7LyrnBX8bMvu1oHb8",
+          "verified": true
+        },
+        {
+          "address": "0x58eeb31cda40bf7ecd2fbf90516728d276414a89f2cd9758fa8a3ed8d945e3a7",
+          "proofDigest": "J7nMcCRyzzHhTAcCP9GGKwP2ZDLbhUntqrUAtWGiu5wZ",
+          "timestamp": "2026-07-07T09:40:53.651Z",
+          "checkpoint": 295684071,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/J7nMcCRyzzHhTAcCP9GGKwP2ZDLbhUntqrUAtWGiu5wZ",
+          "verified": true
+        }
+      ],
+      "memberCount": 3,
+      "burst": false,
+      "observed": {
+        "wallets": 9,
+        "spanHours": 2909.4,
+        "historyComplete": true,
+        "engineHubRule": "few_wallets",
+        "firstFundingsWithin24h": 3,
+        "firstFundingSpanHours": 6.1
+      },
+      "reason": "The same wallet (0x00a410...101b) sent the first SUI to 3 new wallets within 7 hour(s). Each listed payment is the earliest thing in that wallet's history.",
+      "discovered": {
+        "checkpoint": 319774600,
+        "sampleIndex": 38209,
+        "digest": "8m8uPdBNTadJv1MzJdoBC3aoDPSZJFto5ojxSv666JM4"
+      },
+      "linkExplorer": "https://suiscan.xyz/mainnet/account/0x00a410baa4d96f50fdd42f9b4e7300add4def4dae3da77f21e333fc17400101b",
+      "verifiedAll": true,
+      "id": "rs-13",
+      "probe": "0xe216d509c0227ccadde8e178116dec830704119934e341c25343a92863a40a76",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "type": "shared_funder",
+      "linkAddress": "0x9c844a4711235e778f59fc5845eefa55a65d46cefbde3d55c471d388c005b233",
+      "members": [
+        {
+          "address": "0x8bbe81c8efaf4b4e700c99ea5e37343b6cd428b453fc72b02a139a6aba07f67e",
+          "proofDigest": "8SVuDrkSFuA8CTgsWJc838XXBYCZrzNejG1bgJNX6k2C",
+          "timestamp": "2026-08-30T11:55:38.150Z",
+          "checkpoint": 316709568,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/8SVuDrkSFuA8CTgsWJc838XXBYCZrzNejG1bgJNX6k2C",
+          "verified": true
+        },
+        {
+          "address": "0x46a6726e0422911f0f9e453b33de0a2f5d69bf9d86a08d0d8e89091996f1a912",
+          "proofDigest": "ASJp4QDdmxq8mPM6AxHmsfRAAsp4YBY3PcAbESHrtQ1T",
+          "timestamp": "2026-08-31T08:04:11.031Z",
+          "checkpoint": 317030206,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/ASJp4QDdmxq8mPM6AxHmsfRAAsp4YBY3PcAbESHrtQ1T",
+          "verified": true
+        },
+        {
+          "address": "0x3701daaa4d79e19b694a49ada9189a3d531bd64d5bd0c65d1497ac4d8a8d80e1",
+          "proofDigest": "5dJr49QJ7AFkbqkecpDy9htDQKS33S9dUsJtaSYufxb4",
+          "timestamp": "2026-08-31T08:30:35.904Z",
+          "checkpoint": 317037247,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/5dJr49QJ7AFkbqkecpDy9htDQKS33S9dUsJtaSYufxb4",
+          "verified": true
+        },
+        {
+          "address": "0xc8e156a936b6289f296b7f53840066b58a719303739217e4f153f658663856e8",
+          "proofDigest": "856pKoxQ2jCL6F5eJXhn5etVcb32D8BJMPWZHGAYy69n",
+          "timestamp": "2026-08-31T08:30:47.031Z",
+          "checkpoint": 317037295,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/856pKoxQ2jCL6F5eJXhn5etVcb32D8BJMPWZHGAYy69n",
+          "verified": true
+        },
+        {
+          "address": "0x24754721e5bf28157204905784f797cd86820e5eb2ea4a39919f62b1ef91210c",
+          "proofDigest": "GC11errYohZzuG4H3JsjPDxb9qPWmtuphoRqTe6BRkvZ",
+          "timestamp": "2026-08-31T08:30:59.529Z",
+          "checkpoint": 317037349,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/GC11errYohZzuG4H3JsjPDxb9qPWmtuphoRqTe6BRkvZ",
+          "verified": true
+        },
+        {
+          "address": "0x746229b34976ed532985f26b4c6fd9aa56ed72af9dc60cfa90c80cbda701d848",
+          "proofDigest": "3qCKvkjRwk1ZdDGJWhYk8evMeT9xjyC4Qt21AHMAz5Ca",
+          "timestamp": "2026-08-31T08:31:11.093Z",
+          "checkpoint": 317037400,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/3qCKvkjRwk1ZdDGJWhYk8evMeT9xjyC4Qt21AHMAz5Ca",
+          "verified": true
+        }
+      ],
+      "memberCount": 8,
+      "burst": false,
+      "observed": {
+        "wallets": 8,
+        "spanHours": 26,
+        "historyComplete": true,
+        "engineHubRule": "few_wallets",
+        "firstFundingsWithin24h": 8,
+        "firstFundingSpanHours": 21.7
+      },
+      "reason": "The same wallet (0x9c844a...b233) sent the first SUI to 8 new wallets within 22 hour(s). Each listed payment is the earliest thing in that wallet's history.",
+      "discovered": {
+        "checkpoint": 317037400,
+        "sampleIndex": 42771,
+        "digest": "3qCKvkjRwk1ZdDGJWhYk8evMeT9xjyC4Qt21AHMAz5Ca"
+      },
+      "linkExplorer": "https://suiscan.xyz/mainnet/account/0x9c844a4711235e778f59fc5845eefa55a65d46cefbde3d55c471d388c005b233",
+      "verifiedAll": true,
+      "id": "rs-14",
+      "probe": "0x8bbe81c8efaf4b4e700c99ea5e37343b6cd428b453fc72b02a139a6aba07f67e",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "type": "gas_sponsor",
+      "linkAddress": "0x3431d6bc503f416a4b3d9e474e6ac34bb70b8d1dc5f8e23aa8e96ca5a2687fdb",
+      "members": [
+        {
+          "address": "0xc96a0eeb20448fc94eacfc87183b40b2e0a480b14c77d09ce9887b74871e0515",
+          "proofDigest": "4XeGikDDq3rR2hrcPvKc1jrYTh5nz2FWffr6Y2cKamno",
+          "timestamp": "2026-03-11T05:22:33.883Z",
+          "checkpoint": 253217995,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/4XeGikDDq3rR2hrcPvKc1jrYTh5nz2FWffr6Y2cKamno",
+          "verified": true
+        },
+        {
+          "address": "0x59540034ef34dede361f050fdfa207a662e7877fea122e44b0fdf45d0ed9f418",
+          "proofDigest": "AQbmSpXCHxvHHdmycKLw3PUQAyYxV2Ya83D4dhvTNZ4e",
+          "timestamp": "2026-03-23T14:32:00.231Z",
+          "checkpoint": 257399705,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/AQbmSpXCHxvHHdmycKLw3PUQAyYxV2Ya83D4dhvTNZ4e",
+          "verified": true
+        },
+        {
+          "address": "0x2bd863720c03caf23eab07ff615aac380f6a0f614273f5dbbc7f3a8641c05c96",
+          "proofDigest": "CoWzJo4FKxUAPgMpQVfNEJ7AQWkvgy81h77J9z8kyoxQ",
+          "timestamp": "2026-03-23T14:32:00.231Z",
+          "checkpoint": 257399705,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/CoWzJo4FKxUAPgMpQVfNEJ7AQWkvgy81h77J9z8kyoxQ",
+          "verified": true
+        },
+        {
+          "address": "0x9d5e5d6f421b08724351fba012492bd5146f055102f61468fa2a7df6a3878ea4",
+          "proofDigest": "Bj3S3x6K5DiAmqtEegyYGEVev5Z1iv9zj2X4zTeMnqeX",
+          "timestamp": "2026-03-23T14:32:00.978Z",
+          "checkpoint": 257399708,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/Bj3S3x6K5DiAmqtEegyYGEVev5Z1iv9zj2X4zTeMnqeX",
+          "verified": true
+        },
+        {
+          "address": "0x9e03dc183bbf63368e9d2be39115d58127971b7ea7af9d4d2dec4b6bfe4a13b3",
+          "proofDigest": "9N2Uffbbeh9VBe3LmRag9e2uhTH5i3jdLRW8eVkPPKn7",
+          "timestamp": "2026-03-28T02:10:58.940Z",
+          "checkpoint": 258912548,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/9N2Uffbbeh9VBe3LmRag9e2uhTH5i3jdLRW8eVkPPKn7",
+          "verified": true
+        },
+        {
+          "address": "0x943c8af2332f7933adf5c92af33849301ec4834611e915d084ad801e1ce1d83c",
+          "proofDigest": "DfzN1nAvNyqeJM7KAUXBDBwkPzVYmJeDCGXPSxCr1Gpr",
+          "timestamp": "2026-03-31T05:45:39.230Z",
+          "checkpoint": 259966100,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/DfzN1nAvNyqeJM7KAUXBDBwkPzVYmJeDCGXPSxCr1Gpr",
+          "verified": true
+        }
+      ],
+      "memberCount": 8,
+      "burst": false,
+      "observed": {
+        "wallets": 8,
+        "spanHours": 5759.9,
+        "historyComplete": true,
+        "engineHubRule": "few_wallets"
+      },
+      "reason": "The same wallet (0x3431d6...7fdb) paid the network fee for 8 different wallets, so they share a gas sponsor. The first 6 are listed with the fee-paid transaction for each.",
+      "discovered": {
+        "checkpoint": 316997800,
+        "sampleIndex": 42837,
+        "digest": "HXTM48m6x6WcdZieU4YWNN9MhhuUjM9Yg3jfe5zSz67c"
+      },
+      "linkExplorer": "https://suiscan.xyz/mainnet/account/0x3431d6bc503f416a4b3d9e474e6ac34bb70b8d1dc5f8e23aa8e96ca5a2687fdb",
+      "verifiedAll": true,
+      "id": "rs-15",
+      "probe": "0xc96a0eeb20448fc94eacfc87183b40b2e0a480b14c77d09ce9887b74871e0515",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "type": "shared_funder",
+      "linkAddress": "0x4665c46504d47e38d5e80b491ca86bc027caeae8de3964e2cc2777daa1c3e87b",
+      "members": [
+        {
+          "address": "0x7e833ef3adf7a8a39ceb46d517e5b1083a614a3f14cecaa70be1512e1864904e",
+          "proofDigest": "HEnpfTBnu89CokZE5LLtRRjZfMbKKMrxwzguzvZbwGFp",
+          "timestamp": "2026-08-28T16:02:47.495Z",
+          "checkpoint": 316006098,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/HEnpfTBnu89CokZE5LLtRRjZfMbKKMrxwzguzvZbwGFp",
+          "verified": true
+        },
+        {
+          "address": "0x77fbb9e2e7db1c9540afdf9a979152082aae776b3fce82d7bb6245103059ed6f",
+          "proofDigest": "ANc5kKiCqzP4Enhr9DJKiBTikyxRMEYB2WRxuGvo15N9",
+          "timestamp": "2026-08-28T16:05:05.244Z",
+          "checkpoint": 316006687,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/ANc5kKiCqzP4Enhr9DJKiBTikyxRMEYB2WRxuGvo15N9",
+          "verified": true
+        }
+      ],
+      "memberCount": 2,
+      "burst": false,
+      "observed": {
+        "wallets": 2,
+        "spanHours": 6.4,
+        "historyComplete": true,
+        "engineHubRule": "few_wallets",
+        "firstFundingsWithin24h": 2,
+        "firstFundingSpanHours": 0
+      },
+      "reason": "The same wallet (0x4665c4...e87b) sent the first SUI to 2 new wallets within 1 hour(s). Each listed payment is the earliest thing in that wallet's history.",
+      "discovered": {
+        "checkpoint": 316109800,
+        "sampleIndex": 44317,
+        "digest": "Gc94pkoibjavj5SJ6uhXE9xRAb6ow8MsiWfZkawESCaa"
+      },
+      "linkExplorer": "https://suiscan.xyz/mainnet/account/0x4665c46504d47e38d5e80b491ca86bc027caeae8de3964e2cc2777daa1c3e87b",
+      "verifiedAll": true,
+      "id": "rs-16",
+      "probe": "0x7e833ef3adf7a8a39ceb46d517e5b1083a614a3f14cecaa70be1512e1864904e",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "type": "gas_sponsor",
+      "linkAddress": "0xf597c6aaeddcbeeefe7e7883479373a89e08c34e9541477502c6b33d64851675",
+      "members": [
+        {
+          "address": "0x5f63e174cf7777781df837a450773c308d5b1d02b6e27a95bbfa70be62cfe20f",
+          "proofDigest": "9agXViywmD6anjqrFwrDZ46HQ3WgqigXJEcjYChGx6YS",
+          "timestamp": "2026-03-09T19:15:46.279Z",
+          "checkpoint": 252740200,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/9agXViywmD6anjqrFwrDZ46HQ3WgqigXJEcjYChGx6YS",
+          "verified": true
+        },
+        {
+          "address": "0x544081d155db42693324a80b991fd553626375301b5b08a35234d1b6673584c5",
+          "proofDigest": "Fbha4oVyosZngewRx19Kq36phVrxcAbjS1HLZ5Fs6zMF",
+          "timestamp": "2026-03-09T19:15:53.716Z",
+          "checkpoint": 252740230,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/Fbha4oVyosZngewRx19Kq36phVrxcAbjS1HLZ5Fs6zMF",
+          "verified": true
+        },
+        {
+          "address": "0x85f8a2894dc4e974b4e7bb1ad42f717a3d5d2a01e3e366cdb8f3e75403481a09",
+          "proofDigest": "CBjefeJqcuR2ixse1qX1CDi3YFrtf3Bsy6K5eoEQ3zm",
+          "timestamp": "2026-04-12T06:28:24.785Z",
+          "checkpoint": 264075714,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/CBjefeJqcuR2ixse1qX1CDi3YFrtf3Bsy6K5eoEQ3zm",
+          "verified": true
+        },
+        {
+          "address": "0x78bda58d6f978b7088ff98f7f2ad533c885d123e6be847a1617ebdafb21b22a1",
+          "proofDigest": "EF59dungABN5sQeYhvY6NUUJUfYgGTwytJpJ6YW6tH5P",
+          "timestamp": "2026-07-22T06:16:47.536Z",
+          "checkpoint": 301515730,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/EF59dungABN5sQeYhvY6NUUJUfYgGTwytJpJ6YW6tH5P",
+          "verified": true
+        }
+      ],
+      "memberCount": 4,
+      "burst": false,
+      "observed": {
+        "wallets": 4,
+        "spanHours": 3936.3,
+        "historyComplete": true,
+        "engineHubRule": "few_wallets"
+      },
+      "reason": "The same wallet (0xf597c6...1675) paid the network fee for 4 different wallets, so they share a gas sponsor. The first 4 are listed with the fee-paid transaction for each.",
+      "discovered": {
+        "checkpoint": 310184800,
+        "sampleIndex": 54192,
+        "digest": "F4zTgnTXvbyhaVRwpNQGqSBJ73G8Kt7PgwgEqp3cJdsi"
+      },
+      "linkExplorer": "https://suiscan.xyz/mainnet/account/0xf597c6aaeddcbeeefe7e7883479373a89e08c34e9541477502c6b33d64851675",
+      "verifiedAll": true,
+      "id": "rs-17",
+      "probe": "0x5f63e174cf7777781df837a450773c308d5b1d02b6e27a95bbfa70be62cfe20f",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "type": "shared_funder",
+      "linkAddress": "0xe3ae7a719266c7d686cef7f8cb6bd19911872c467379b58173ebe4c2880ce5be",
+      "members": [
+        {
+          "address": "0xb61db63f9c6a6e2a81b8345ffe0c7eb63d6bec6564e29304159b3fcd31743f4a",
+          "proofDigest": "Bm3R7droXB2yfZh9RtzVRXeb1Doxxzd6HFkpEjevTnMV",
+          "timestamp": "2026-08-11T08:45:38.161Z",
+          "checkpoint": 309386222,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/Bm3R7droXB2yfZh9RtzVRXeb1Doxxzd6HFkpEjevTnMV",
+          "verified": true
+        },
+        {
+          "address": "0x569f6d7d9f3e474423d85439e26a50348ae46ec8fa926833b2d0f36afd23db8d",
+          "proofDigest": "2uoptEXzsh2ux4vMSGGxcarrbRPCR98LXTVX1G6xsfSo",
+          "timestamp": "2026-08-11T08:50:16.281Z",
+          "checkpoint": 309387497,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/2uoptEXzsh2ux4vMSGGxcarrbRPCR98LXTVX1G6xsfSo",
+          "verified": true
+        }
+      ],
+      "memberCount": 2,
+      "burst": false,
+      "observed": {
+        "wallets": 8,
+        "spanHours": 4372.8,
+        "historyComplete": true,
+        "engineHubRule": "few_wallets",
+        "firstFundingsWithin24h": 2,
+        "firstFundingSpanHours": 0.1
+      },
+      "reason": "The same wallet (0xe3ae7a...e5be) sent the first SUI to 2 new wallets within 1 hour(s). Each listed payment is the earliest thing in that wallet's history.",
+      "discovered": {
+        "checkpoint": 310131400,
+        "sampleIndex": 54281,
+        "digest": "n5EBycr6nv9BKk8JSWseUAf8uWt8KJbzjsbdTgygWBQ"
+      },
+      "linkExplorer": "https://suiscan.xyz/mainnet/account/0xe3ae7a719266c7d686cef7f8cb6bd19911872c467379b58173ebe4c2880ce5be",
+      "verifiedAll": true,
+      "id": "rs-18",
+      "probe": "0xb61db63f9c6a6e2a81b8345ffe0c7eb63d6bec6564e29304159b3fcd31743f4a",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "type": "shared_funder",
+      "linkAddress": "0x13ff52dfd326839dcad2c0f7c699224206df6c45a6e7784f34a60f10c0892bd5",
+      "members": [
+        {
+          "address": "0x17660b79ab313a1e69a55b5a98e3a978e4bfe3c385ed95a22d8d6056d58f9855",
+          "proofDigest": "8mFryQN6qHDoJFbg1AZGZSMfTBnJ7Z7pCRbzeroCJvyU",
+          "timestamp": "2026-08-11T03:41:11.888Z",
+          "checkpoint": 309302352,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/8mFryQN6qHDoJFbg1AZGZSMfTBnJ7Z7pCRbzeroCJvyU",
+          "verified": true
+        },
+        {
+          "address": "0x77574d4c975aa3bf3cf9571834bd3ee798707a3c7ddf9e3dfc82f34c50bb8fbf",
+          "proofDigest": "ExDAuYrC6KDm2NiueekQg2rRASB67wQD2X4NaPA2xCHx",
+          "timestamp": "2026-08-11T03:54:26.657Z",
+          "checkpoint": 309306011,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/ExDAuYrC6KDm2NiueekQg2rRASB67wQD2X4NaPA2xCHx",
+          "verified": true
+        },
+        {
+          "address": "0x4aa0c0fbbfb4065f7856c2986eccc81f59a4620046662fe0e31fec87f204bc48",
+          "proofDigest": "8pRb6ptEdrH7EMsds97ULkgWzVs7nNVwjagBBnXvZ2rf",
+          "timestamp": "2026-08-11T04:22:02.968Z",
+          "checkpoint": 309313600,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/8pRb6ptEdrH7EMsds97ULkgWzVs7nNVwjagBBnXvZ2rf",
+          "verified": true
+        }
+      ],
+      "memberCount": 3,
+      "burst": false,
+      "observed": {
+        "wallets": 8,
+        "spanHours": 1028.3,
+        "historyComplete": true,
+        "engineHubRule": "few_wallets",
+        "firstFundingsWithin24h": 3,
+        "firstFundingSpanHours": 0.7
+      },
+      "reason": "The same wallet (0x13ff52...2bd5) sent the first SUI to 3 new wallets within 1 hour(s). Each listed payment is the earliest thing in that wallet's history.",
+      "discovered": {
+        "checkpoint": 309313600,
+        "sampleIndex": 55644,
+        "digest": "8pRb6ptEdrH7EMsds97ULkgWzVs7nNVwjagBBnXvZ2rf"
+      },
+      "linkExplorer": "https://suiscan.xyz/mainnet/account/0x13ff52dfd326839dcad2c0f7c699224206df6c45a6e7784f34a60f10c0892bd5",
+      "verifiedAll": true,
+      "id": "rs-19",
+      "probe": "0x17660b79ab313a1e69a55b5a98e3a978e4bfe3c385ed95a22d8d6056d58f9855",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "type": "gas_sponsor",
+      "linkAddress": "0x9218e4c21e10f8c3e9dbceeebe9bb6fecf799d12179f6810b2991da4ac38a22f",
+      "members": [
+        {
+          "address": "0x921d5fbaa5e0c2975b57b504373f1c70af0e22c44c6d48cd29a87fd96cf0a22f",
+          "proofDigest": "J8hHa1PXny2vkxLFfkwFA1rUgnZQWzkPPE7vrb5mPJPM",
+          "timestamp": "2026-07-27T09:34:24.320Z",
+          "checkpoint": 303526790,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/J8hHa1PXny2vkxLFfkwFA1rUgnZQWzkPPE7vrb5mPJPM",
+          "verified": true
+        },
+        {
+          "address": "0x84cc1915c8206dafd410117bb1e6eff448c15cd5d64a76a9280b973b601941f7",
+          "proofDigest": "61xwrsjgoeg4czhGthtRCQPAFb997tZzvspJmyM6qnXM",
+          "timestamp": "2026-07-28T17:12:17.760Z",
+          "checkpoint": 304032840,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/61xwrsjgoeg4czhGthtRCQPAFb997tZzvspJmyM6qnXM",
+          "verified": true
+        },
+        {
+          "address": "0xd8c7699de466cacc82dcda6dc3873db88cc513234ba8a9f2c88a7ca5659eb008",
+          "proofDigest": "4BW5ghbBZcqjnNGnjQ3H4sBy6TpHvFzDrYkvvRKWUAgA",
+          "timestamp": "2026-08-08T03:45:27.421Z",
+          "checkpoint": 308120509,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/4BW5ghbBZcqjnNGnjQ3H4sBy6TpHvFzDrYkvvRKWUAgA",
+          "verified": true
+        },
+        {
+          "address": "0x188a837a70c79ceb0332c5286a79a7e75a77e84f7be154ee2ad626d2ca2c8abb",
+          "proofDigest": "J67xzU17sHqPj7x1UH6Fq1p62U9RAo5tftmg9DuVBZtX",
+          "timestamp": "2026-08-08T03:50:54.945Z",
+          "checkpoint": 308122000,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/J67xzU17sHqPj7x1UH6Fq1p62U9RAo5tftmg9DuVBZtX",
+          "verified": true
+        },
+        {
+          "address": "0x4ef2bdde5c2724e5056447c4f0c2de383a112aeaa7f19d1cf1a62e631212e3de",
+          "proofDigest": "CtdGVPcJxMTNWjWBg1kDXRu7eCnskbXf1qcjMDVABkcL",
+          "timestamp": "2026-08-08T03:53:33.098Z",
+          "checkpoint": 308122721,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/CtdGVPcJxMTNWjWBg1kDXRu7eCnskbXf1qcjMDVABkcL",
+          "verified": true
+        },
+        {
+          "address": "0x5b0e1eef8fda237730e270721ee3d6818a3a558a75eea8e610db7b339e6b3703",
+          "proofDigest": "HHTyiogmJ5zqd24DwV1wAYgKD4ncf5MhoD3so5uQcPFa",
+          "timestamp": "2026-08-08T03:56:10.740Z",
+          "checkpoint": 308123435,
+          "ankrAgrees": true,
+          "explorer": "https://suiscan.xyz/mainnet/tx/HHTyiogmJ5zqd24DwV1wAYgKD4ncf5MhoD3so5uQcPFa",
+          "verified": true
+        }
+      ],
+      "memberCount": 7,
+      "burst": false,
+      "observed": {
+        "wallets": 7,
+        "spanHours": 283.6,
+        "historyComplete": true,
+        "engineHubRule": "few_wallets"
+      },
+      "reason": "The same wallet (0x9218e4...a22f) paid the network fee for 7 different wallets, so they share a gas sponsor. The first 6 are listed with the fee-paid transaction for each.",
+      "discovered": {
+        "checkpoint": 308122000,
+        "sampleIndex": 57630,
+        "digest": "J67xzU17sHqPj7x1UH6Fq1p62U9RAo5tftmg9DuVBZtX"
+      },
+      "linkExplorer": "https://suiscan.xyz/mainnet/account/0x9218e4c21e10f8c3e9dbceeebe9bb6fecf799d12179f6810b2991da4ac38a22f",
+      "verifiedAll": true,
+      "id": "rs-20",
+      "probe": "0x921d5fbaa5e0c2975b57b504373f1c70af0e22c44c6d48cd29a87fd96cf0a22f",
+      "label": "real set: real mainnet facts we hand-checked"
+    }
+  ],
+  "sharedServices": [
+    {
+      "type": "gas_sponsor",
+      "address": "0x5376168336f40c7cf64f113fe837e7f2600f700ce21d2f09f645e722489f5ad7",
+      "wallets": 787,
+      "atLeast": true,
+      "spanHours": 297.6,
+      "hubHours": 297,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0xbbdeb42b37ebb9bb2e964c13f95a1b5e61cf1813a9091b53e7b938d56ba6a509",
+      "probeDigest": "AznFtXELSSC4sKM9J2rnzuSdx58zNPUP43EzvHt7peBH",
+      "discovered": {
+        "checkpoint": 342698200,
+        "sampleIndex": 3,
+        "digest": "HssxQgMiuKZU9RWcXb9aUfKKuc5PyK3jsurXpNmJcLiy"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x63c33461485b467f699f94f18daaf04a3f727e3a0184a5c09f2b6648f7fc4c58",
+      "wallets": 40,
+      "atLeast": false,
+      "spanHours": 38.1,
+      "hubHours": 38,
+      "historyComplete": true,
+      "engineRule": "shared service, weak link",
+      "probe": "0x4bc54ac47e18260090170f9ab89b84b4cd8a2fc7a537513297709702e7f9fbea",
+      "probeDigest": "8wSJByWTvEuyG36CcPtkkXmM9eNx2WaWTXDF7CQLe7zj",
+      "discovered": {
+        "checkpoint": 342683800,
+        "sampleIndex": 27,
+        "digest": "C8h6kj2f62du7NWWaamQrTGNUHPkrHWQEu11eRtC7sgg"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xae4ba5f592e695a46d58a0579aa5d4f6ebead46be0f2d5bd229d5c292290548c",
+      "wallets": 50,
+      "atLeast": true,
+      "spanHours": 1913.7,
+      "hubHours": 1913,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x9c88f942c3e1ca368a81e4de1115db1ea371d61bba4528dadb1a1126d54c3c01",
+      "probeDigest": "449rG1B7yKsgQd3NwpKm33n3ZU9ksAYw4sRi2HFiNeHG",
+      "discovered": {
+        "checkpoint": 342659800,
+        "sampleIndex": 67,
+        "digest": "Fz1Zz44xiTka1hnH633gSAKe8hUb89g5wt1NSeC4wVsK"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "shared_funder",
+      "address": "0x425f6f2e85578f39dd1479cff287543f9bef22e4d5d8a5c200a906792a53bc29",
+      "wallets": 62,
+      "atLeast": false,
+      "spanHours": 375.4,
+      "hubHours": 375,
+      "historyComplete": true,
+      "engineRule": "shared service, weak link",
+      "probe": "0x3496a7f63af6a81bf4abf6dcd1db9a8aeed4be3da3e78b901f4c4d84c47c848b",
+      "probeDigest": "cUgkGu7erjw84mAK4Bw5vq7kotn8kfHF4XthpKtGfwf",
+      "discovered": {
+        "checkpoint": 342558400,
+        "sampleIndex": 236,
+        "digest": "8jgJfkuqoKi6USuqpkuumaL7hb1beLUkCwj5AWeAueiY"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xe289b7c5edb29846abb12d2ee4bfb4139d216a47fab0269f9687be903feaf33e",
+      "wallets": 738,
+      "atLeast": true,
+      "spanHours": 532.3,
+      "hubHours": 532,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x3f38e9da8bf2b256c0605a35a99ba270d20e672a91db64ab6c1badbecd315857",
+      "probeDigest": "Fhp6c6xUbHSRJPnLmvxjVbcVuGdsNTpEcyXMx7XDqC4D",
+      "discovered": {
+        "checkpoint": 342466000,
+        "sampleIndex": 390,
+        "digest": "HKGGybuUZAYxR6xYxzZ3Q51xzEUFbnfUUWvqxgqAubom"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xa42b628b70da0bb0b5e52d3209cf461395b46b478905022bc15b9235384cb307",
+      "wallets": 233,
+      "atLeast": true,
+      "spanHours": 342.9,
+      "hubHours": 342,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0xd5c233d7c059f52894f17f369086c0e6db76db3e7162e7a41301ba7631d77c3c",
+      "probeDigest": "5FzGWLCyMEThvY2PThpSviTfDwzw6M9Zrxirwp4az2T2",
+      "discovered": {
+        "checkpoint": 342169000,
+        "sampleIndex": 885,
+        "digest": "4HyMm81KufFpnmMNXRQFPHFbU3n9NLKXsZsvoZvo2R9x"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x398c9ddc30f51daa51a26be17366adaec31da0624ba2728a4530daa18af8e70b",
+      "wallets": 294,
+      "atLeast": true,
+      "spanHours": 34.5,
+      "hubHours": 34,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x629ddd227649cfffc432af3afe4441846319a581b52a5b69e94ba306508e529b",
+      "probeDigest": "49tEmd3agGtM1urre8WU1or3dZu2vWrYGYtbzu3n37EJ",
+      "discovered": {
+        "checkpoint": 342020800,
+        "sampleIndex": 1132,
+        "digest": "HiL7UG9LsF2NKD8suGGBd55o3mo2aYMdUh4fLHJwY2Bw"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xd56948cebf0a3309e13980126bcc8ef4d7733305cd7b412fa00167d57741984e",
+      "wallets": 304,
+      "atLeast": true,
+      "spanHours": 33.4,
+      "hubHours": 33,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0xa2f7b78cfd2c197e687629f9b63bac6392d67c32d8de816f51bd2ec1f1f49ecf",
+      "probeDigest": "4tumSD7eESgvsn6bxHEdMKRLu5sA4wwnYSzCvnEKuJFn",
+      "discovered": {
+        "checkpoint": 342017200,
+        "sampleIndex": 1138,
+        "digest": "BR1sH82reXWod4nrR3uaVYvhQsDn7Qk7hK4mc5Y8dSbJ"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x7c8e2ceb0839680a3b1f7aa1021d45670405d92f3c88e79aa1d3aa8a600bbdbf",
+      "wallets": 522,
+      "atLeast": true,
+      "spanHours": 95.1,
+      "hubHours": 95,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0xcdc0055eff080978173a8ec07d96a3d6b9976281554a919675a56ad3c23df32f",
+      "probeDigest": "DGL5B5UF1aABN6ebkDXFWpNKTaXyFg4bHWndzp8JuTmG",
+      "discovered": {
+        "checkpoint": 341919400,
+        "sampleIndex": 1301,
+        "digest": "7LpSzFUUQJDAm57ScpTGdThz11iqQyHGWZf8QArUy6kx"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xa94684adde36bff5c8db09863ea67963a63e107b4d5193e0a262314ee9867516",
+      "wallets": 289,
+      "atLeast": true,
+      "spanHours": 618.9,
+      "hubHours": 618,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0xd90690c6683a41c6422c58a1fed2cc3e7b2943f4912f4ac413969e87ad9d98f6",
+      "probeDigest": "7teCFzPAoNwKBnS3LUTh3fKMdmqpmVESXbcXbbsYJcbg",
+      "discovered": {
+        "checkpoint": 341809600,
+        "sampleIndex": 1484,
+        "digest": "6jr5UrKZYakTju48CEMeevSKvc9gG5wm9zAg77cwWdd2"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xfebf57a5d4fbe7bcf68974c0d5856032146303c87b614da0a37f59a4e6c4223b",
+      "wallets": 157,
+      "atLeast": true,
+      "spanHours": 173.1,
+      "hubHours": 173,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x4011d4b610798b78b43d3f5074ba6b49e99226cbaaf8c91032213ad9fa79d5e2",
+      "probeDigest": "7BCiCyNCUkkXHnyhEGsExFzjV9bYi9BADtHb31vGoXNh",
+      "discovered": {
+        "checkpoint": 341775400,
+        "sampleIndex": 1541,
+        "digest": "CsEt6cDdSyW8dDQ8K4uxieS6to82MCcsXPPPXJELuVQH"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x8da852ff69789bdbdb81b1c26d4d3d568f8ebedcd966940efdc3a4beddee8765",
+      "wallets": 15,
+      "atLeast": false,
+      "spanHours": 378.9,
+      "hubHours": 378,
+      "historyComplete": true,
+      "engineRule": "shared service, weak link",
+      "probe": "0xa2092f55e4ca8482d068f654904cb04f4522edbf308735dca51337cebdacad47",
+      "probeDigest": "FZ5iLsaP8c7W1DiicAGom1aPnMHjKFEeXhfVL3vb8hiA",
+      "discovered": {
+        "checkpoint": 341718400,
+        "sampleIndex": 1636,
+        "digest": "HjQ9c3rMmEoRr8aomHz5k5NARdR4VefJphjesmaCoadR"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x1f6cd55584e6d0c19ae34bfc48b1bd9b1b8a166987e34052cfea7f3c795c6d76",
+      "wallets": 709,
+      "atLeast": true,
+      "spanHours": 493.6,
+      "hubHours": 493,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x00ea18889868519abd2f238966cab9875750bb2859ed3a34debec37781520138",
+      "probeDigest": "8Jhve3UbyUZfUdmf9MD9RpVy6NKTDqq9bTQrQbBkqX3c",
+      "discovered": {
+        "checkpoint": 341668600,
+        "sampleIndex": 1719,
+        "digest": "A9GGrKv6yS3DRYgrQD4gNwUZEqZ3Y3Q3osk1X2ScrYEL"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x85c81a4f616f87a303ba2ae34eed758a2cc1938f80c186526cd3122375b87a95",
+      "wallets": 1025,
+      "atLeast": true,
+      "spanHours": 151.2,
+      "hubHours": 151,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x2b39c4cfdc055390172f7bf9e26b10b476bf3fc523a2700baaae7f3c8a24928d",
+      "probeDigest": "GLUHAPjBCzi7bZ6KbAtniQrPaDpjT1snF6KqaXLdNTDj",
+      "discovered": {
+        "checkpoint": 341482000,
+        "sampleIndex": 2030,
+        "digest": "8WxuRQTUdNRYKV1B7YkEynnjn81xw7MQCmfevQYAx2Rv"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x84ad9420e16a9448e8563428ff8256ffbe5b3b6b95991fa3680e8138b56ee1ff",
+      "wallets": 261,
+      "atLeast": true,
+      "spanHours": 3341.9,
+      "hubHours": 3341,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x3da2cb67c887c9a03d1052d486733a77105824f7413fc3cbbe3641d4b67af102",
+      "probeDigest": "4BH9yP5LghH8HnfPG4c4oEWJUjyUNdxryDdoakM9Zz5s",
+      "discovered": {
+        "checkpoint": 341288200,
+        "sampleIndex": 2353,
+        "digest": "39n4nL5HrRkDbUte9Hro2nod8rgwmm6M58CBmW3spNEj"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x52ecee5e58e2f3a7461cc604f4efcc3b68031e4715456d821e3a2719b0593600",
+      "wallets": 22,
+      "atLeast": false,
+      "spanHours": 401.1,
+      "hubHours": 401,
+      "historyComplete": true,
+      "engineRule": "shared service, weak link",
+      "probe": "0x612fa27ba229021c5a1c32022fd6341ffbd58a87ac928a0dc32d8d6d1dba9fed",
+      "probeDigest": "4DrE8WynARq8FiybrvqaBWWN1dUSRK8vGpYDDWNiB4MK",
+      "discovered": {
+        "checkpoint": 341194000,
+        "sampleIndex": 2510,
+        "digest": "389t4FR2oGwSk3FGXqZpcD8BNf9VDezMi88DmmygoZfC"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xaef05f072949c1ffca2c302e98e36a336ce1fb16d375d6cb8412eec33162dd8d",
+      "wallets": 32,
+      "atLeast": false,
+      "spanHours": 553.8,
+      "hubHours": 553,
+      "historyComplete": true,
+      "engineRule": "shared service, weak link",
+      "probe": "0xb72b7c30279eff1c99cbf74fc0fd06b9ef50b012d9468dbf87b6e3d605787cd9",
+      "probeDigest": "3UCEv13msw9e14TBUhazpFdtoMz93XcevoT3e4AmmJxt",
+      "discovered": {
+        "checkpoint": 341068600,
+        "sampleIndex": 2719,
+        "digest": "2yRg6m1awGFc2BMMhkDULEmz8QiwEDMMT3w31QwQdnmq"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "shared_funder",
+      "address": "0x8122f63fb72371f4bbdeceaa674394331a229ba9902ecc81d527dda8630b8d31",
+      "wallets": 18,
+      "atLeast": false,
+      "spanHours": 145.4,
+      "hubHours": 145,
+      "historyComplete": true,
+      "engineRule": "shared service, weak link",
+      "probe": "0x52ab1fa9e4ab4d254dec9f3d42b9b9eb481c6adeda75f3d2d021c2f0fb8f6a07",
+      "probeDigest": "DvsBVauHE9CVvFePaVGFMHmuwa7kQWfqUBzyzUJo33Eo",
+      "discovered": {
+        "checkpoint": 341003200,
+        "sampleIndex": 2828,
+        "digest": "JDtXsfNATsPdz28BT5Nv4u2r22TEhDEuvXVAEWYTm1SJ"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x35cdcf079a479961f9ec992815e9d06869a9a18ba49e314b48dc75f88e423538",
+      "wallets": 101,
+      "atLeast": true,
+      "spanHours": 233.7,
+      "hubHours": 233,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0xc2f45aa0ee89058023c1bbfd64a710d43ec5f6b16e52590bbad92d6a09a235e6",
+      "probeDigest": "9ZuodhxGD5oHGY4N9zHxrVYvdvNg2xc7a9rJVPooFYrP",
+      "discovered": {
+        "checkpoint": 340871200,
+        "sampleIndex": 3048,
+        "digest": "DwpJRkkviyNnRSeLPVuXgFgkAH7HAgDcVubQsLC6z6H2"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "shared_funder",
+      "address": "0x6bbae3eeacaf1fc3f98db3b08c7a065a7e7b5ab12b2f881f81cf8c5a872038b8",
+      "wallets": 16,
+      "atLeast": false,
+      "spanHours": 541.5,
+      "hubHours": 541,
+      "historyComplete": true,
+      "engineRule": "shared service, weak link",
+      "probe": "0x12a0f4f810fbbfa2012d1c2f385ab99a9f706874c53e9fc4d4126fd502ea40c4",
+      "probeDigest": "E7PTVK1aEdVPDeAVwoo6rXFz11a7xTTwAEK5fqgaDFdN",
+      "discovered": {
+        "checkpoint": 340805200,
+        "sampleIndex": 3158,
+        "digest": "4svnYcdCGRsqQLDYKKHnNME2oKZNGoikMC5AbTnrqNiJ"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xf53b0ad4461e64a3fb7fc62ec585bc238982b7e60038fa93766e999f91a4d919",
+      "wallets": 678,
+      "atLeast": true,
+      "spanHours": 605.8,
+      "hubHours": 605,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x0b979b9e9fdadfcff63d6b8260a5389a7eeac5a12c39f0a65262dfb68c3c5cf3",
+      "probeDigest": "AhXkhViW6uZso78GZTrQT5pCL1QQMaDpvQVnqz92sBU3",
+      "discovered": {
+        "checkpoint": 340673200,
+        "sampleIndex": 3378,
+        "digest": "4SomqrQbX5xamwY5Q8JjugwEqoUQVgFXnQgDZYFgxqgE"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xb56c5e84c8ac961a93b4cc7c8558e6cfbaae483332779c2947241ee32ab4ceb4",
+      "wallets": 106,
+      "atLeast": false,
+      "spanHours": 71.7,
+      "hubHours": 71,
+      "historyComplete": true,
+      "engineRule": "shared service, weak link",
+      "probe": "0x6fec34012ea08b80d7410c7940b92df6867dadb964d6a8cd18ff58eea22de2af",
+      "probeDigest": "3zm3q1PcQ7eKeMkUKfBS5jAq1jKNBjG5ki2LFFdMdLTE",
+      "discovered": {
+        "checkpoint": 340587400,
+        "sampleIndex": 3521,
+        "digest": "BENvTsYYRGGkPjJ6cp4WQcVQmPHgwzterFzftbDCjtMi"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x52996d52829409f450a62fe9c1068d76bbfd932c1bd3ce14610b329c8884384b",
+      "wallets": 41,
+      "atLeast": false,
+      "spanHours": 216.4,
+      "hubHours": 216,
+      "historyComplete": true,
+      "engineRule": "shared service, weak link",
+      "probe": "0x08df1bf195652e36680c731e873f5eed250289faa352745f9099d44738fab991",
+      "probeDigest": "6TrHNwHCZVkKY2YpUV2eUQv18PfeqaZ4bd3vrJgEXbkP",
+      "discovered": {
+        "checkpoint": 340426600,
+        "sampleIndex": 3789,
+        "digest": "HwSotxmNJHSHRyFhnn38JtboDgsBssz8Pnt6UCn6uXR5"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "shared_funder",
+      "address": "0xcd06320f2fc82277270f5347776845fb24a558abd34eba97794e27b4eb3d224e",
+      "wallets": 67,
+      "atLeast": true,
+      "spanHours": 1562.5,
+      "hubHours": 1562,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x1fb0c0a6790860fc83c8f26f6fa089868ad94de9468348f98dfb4cdf89a53777",
+      "probeDigest": "DrqebpT4yv3mF1Nh4D1u1ps2ZS57ULczv8BjXPVSopM1",
+      "discovered": {
+        "checkpoint": 340369000,
+        "sampleIndex": 3885,
+        "digest": "EvKcWRLGKRpaKjLESbQrq2ZhppvnVDjDh5NPxyGuZmF6"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xf17016de72d7c1ec0a260a4d29304dbd07c0eea72fe9fc8d2105953c7623d878",
+      "wallets": 15,
+      "atLeast": false,
+      "spanHours": 5468.9,
+      "hubHours": 5468,
+      "historyComplete": true,
+      "engineRule": "shared service, weak link",
+      "probe": "0xc3e5d4f5695ebf9ab139959edf688be24759fbd6a50b0f687b67aa8575aa77d4",
+      "probeDigest": "Azst6PyyWY4pQnGZex73FtGbz8buub5Fp5EV1uX6aPjb",
+      "discovered": {
+        "checkpoint": 340343800,
+        "sampleIndex": 3927,
+        "digest": "CtY9hWxkzMcvqP9kDJvTVsMCBuBgQXPLtogQAzdSsGqN"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "shared_funder",
+      "address": "0x50b62b2295601bcf50dc354757bcc39b6ce97e2dbaa5aaf25dfd735f173ee6af",
+      "wallets": 125,
+      "atLeast": true,
+      "spanHours": 407.4,
+      "hubHours": 407,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0xa79047b8e05919f639fed69994c0e0f72a3dd04bb7088af57c2088080b4505d9",
+      "probeDigest": "2orntDAHc1rJbviQFbuz1nJFCmzndyC9Estrzsmg5oYf",
+      "discovered": {
+        "checkpoint": 340199200,
+        "sampleIndex": 4168,
+        "digest": "AuZvJFuTd9SBqbkKcVyC8BE5Z7X5QSHCxz9ACMD7khQr"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "shared_funder",
+      "address": "0xf69f9e6ff47d1bac0acb72dba44ac11e6f24f3e2933616a44afde9b8a082d9da",
+      "wallets": 112,
+      "atLeast": false,
+      "spanHours": 392.8,
+      "hubHours": 392,
+      "historyComplete": true,
+      "engineRule": "shared service, weak link",
+      "probe": "0x425f6f2e85578f39dd1479cff287543f9bef22e4d5d8a5c200a906792a53bc29",
+      "probeDigest": "8z3k1UuiaKGFaYFEu5nbCwsdSgbygYNQcpwzTsDoxAPG",
+      "discovered": {
+        "checkpoint": 339890800,
+        "sampleIndex": 4682,
+        "digest": "2sbuF14PuFjmf1JL9tpARQUJXaQkfKwS3tXqL5cbvW1M"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x3902e21c4138a4fdf8d8a15ddb713bc4816e476cfcb36369c4d4be7ec0ad8cef",
+      "wallets": 108,
+      "atLeast": true,
+      "spanHours": 784,
+      "hubHours": 783,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x28a09741d6a68bab0922262d206946e027a2a550ccbb8013d6d42d802f50573a",
+      "probeDigest": "3r35LJnUyrRecJLfrv8xCnLNBC8tj7MvbR2cS8TMHZys",
+      "discovered": {
+        "checkpoint": 339652600,
+        "sampleIndex": 5079,
+        "digest": "E5xmnxtpHZSwKEyck3CdmC41LCNdtztp6SHRFtvtrwrW"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x8b0e3a43caef1776f782a2b9f5b099fca763decc70aaabb8d90cf42e9021ee9b",
+      "wallets": 288,
+      "atLeast": false,
+      "spanHours": 1808,
+      "hubHours": 1807,
+      "historyComplete": true,
+      "engineRule": "shared service, weak link",
+      "probe": "0x64e8f45a0fb0f3fec5b105d81dc698354409579d1611f8ef4712ad4b4b5d3e25",
+      "probeDigest": "EVhT6G4Mif9NzC2MmcGn7Cp32UdQi8RvpuHry4kooiH1",
+      "discovered": {
+        "checkpoint": 339514000,
+        "sampleIndex": 5310,
+        "digest": "62dJfosxBcudWmWwCdjkpgEapoUKBnnqCYKaDHuw2bKR"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xedb85e45129581e5b5006f27cdaa6b5987bf246f2265b59f86372a25c0887e3f",
+      "wallets": 266,
+      "atLeast": true,
+      "spanHours": 776.2,
+      "hubHours": 776,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x1d20a0d382f5124912017c4bdca041b5ed0f84d0de3f08708b2418f556fc090a",
+      "probeDigest": "GTTAfnuHt3J7FgoQvR9i4fcs5cPwcujszuCGn5F7mHDc",
+      "discovered": {
+        "checkpoint": 338496400,
+        "sampleIndex": 7006,
+        "digest": "DpQrsKJSxYmZfPqDmtL3PctMfVpNgdn7FWqRxqU6MFqs"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "shared_funder",
+      "address": "0x84fe10fcc1c48075a9a6d9a5433213e90d5181ff425fd609332db35aa4c597a6",
+      "wallets": 46,
+      "atLeast": true,
+      "spanHours": 33,
+      "hubHours": 33,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x15a6742276201ae20afd0227cb4f98653217e3e8753cee7db91b927fe4c40fa8",
+      "probeDigest": "E6VcxDg8ALbNjBdQrzuVNbTKgR4V57WHmQ8fkGCCWk3N",
+      "discovered": {
+        "checkpoint": 337838800,
+        "sampleIndex": 8102,
+        "digest": "HiFTCJhndijeKFbNWa8rJfJ1hgKLCmtiY4Bewt6Rfagh"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xa4c143d0a8e2bb30df27ef2d7f217a72806b7c7ec3a255cfa2e62c70d55f880a",
+      "wallets": 308,
+      "atLeast": true,
+      "spanHours": 3970,
+      "hubHours": 3969,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0xe0221db10e34ff1d53fc6123a99061e4b167602207567ea746d6d7a5df14177f",
+      "probeDigest": "9oxtsgXDHepCyZv1eSKmLmPHkmZueQPLdh4cNXuoZSZH",
+      "discovered": {
+        "checkpoint": 337324600,
+        "sampleIndex": 8959,
+        "digest": "88NcHBSicaqk3duUFUAaMWCWG4HhZLoqXiXtQjJ2bQ98"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "shared_funder",
+      "address": "0xa138a2bf9545a442d936dcdb44d4184f7bfb4e7f9f40e99851d1c351d44ccd5a",
+      "wallets": 172,
+      "atLeast": true,
+      "spanHours": 106.8,
+      "hubHours": 106,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x415e739a2b635c612f62f98f46ddf7da962e827da6217895f9de6e61e9d8b2a6",
+      "probeDigest": "5He27UvUgR2neErWWKW7ZjqGKzF4Jq6RPPe9cyW9iimT",
+      "discovered": {
+        "checkpoint": 337099000,
+        "sampleIndex": 9335,
+        "digest": "8b8x3LwT54CfA6dDtmRRVCJ5KyzwqkLefWxPZmbR61TZ"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xda892dd33876a418d8b2140f4b995d86435e32751e20099ab4b88f9f9c41c5a2",
+      "wallets": 16,
+      "atLeast": true,
+      "spanHours": 95,
+      "hubHours": 94,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x1fa09cc2c99371f78fd809c113d4c24e3e60c712ea4c74e200e7cfc44ac1cff5",
+      "probeDigest": "Bo33rtzP4Pi8N13HjAAN1kgdVPd7nPkh6sXXVPo2MnnM",
+      "discovered": {
+        "checkpoint": 336982000,
+        "sampleIndex": 9530,
+        "digest": "ChnztCd8Wds8i44QFGRCzVBF654itVb6cWt6dZCfsXDQ"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x24f5d05a0662a3f81a0f9e49e9b73378537e5903a92bd9352a0f3d4bc318e411",
+      "wallets": 16,
+      "atLeast": true,
+      "spanHours": 96.3,
+      "hubHours": 96,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x32d22fa8d7bc0f4ad279a0aa809088eeb71b36ff3a9f89ed813959bd70b0dad4",
+      "probeDigest": "Fv4maYhbspo66XU2ZK8tsfrNqg9zhM14QSdutKvFvpoy",
+      "discovered": {
+        "checkpoint": 336944200,
+        "sampleIndex": 9593,
+        "digest": "DPoqJt3LU9QoRGonp6tWWDGqpVKbQ9VZwXFH3wkDsWNk"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x445eea1ab10d5563b9ffa72551f2470ca30f8aa48ec4b7c930431e88603648ad",
+      "wallets": 16,
+      "atLeast": true,
+      "spanHours": 96.2,
+      "hubHours": 96,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x21274e5469bfdb6b18e530a1eb799e680145af6cb266d3ea068a084d697c66f7",
+      "probeDigest": "5EunY9TnGnrwxkQuUjxEj2QqUg1Yo96ndZxkDnPGr3xw",
+      "discovered": {
+        "checkpoint": 336936400,
+        "sampleIndex": 9606,
+        "digest": "G6jWZz4YnQeY7oduvT3VMcuVYYmxTfmKhfx1uHdZ3jkB"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x77188224ba0eca5ddac62cbd320c1674dab4bd3dc6fdf297207687c99b9ee091",
+      "wallets": 16,
+      "atLeast": true,
+      "spanHours": 67.2,
+      "hubHours": 67,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x07de9e0932c50626e8a6fa4524e4fc08238a390681be3c49de5ba4acb24c3067",
+      "probeDigest": "CUwXLqo5Nmu5TY6LbBu8HjYs3mwCrdZFdP6y9LNJcFgd",
+      "discovered": {
+        "checkpoint": 336914800,
+        "sampleIndex": 9642,
+        "digest": "Cg7t8wV2QpCpxLg8EyG4RE7XGEqC7REuvFugL4HQPxsg"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x3b2f273541002d0247a7c8d5c2c0ac228971c6ef9da437b370179269105a8ebb",
+      "wallets": 16,
+      "atLeast": true,
+      "spanHours": 91.1,
+      "hubHours": 91,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x32d22fa8d7bc0f4ad279a0aa809088eeb71b36ff3a9f89ed813959bd70b0dad4",
+      "probeDigest": "CHuzzGrG2U426Lutkx2d1Kvq8PVEoEofXkeZcKw37JgD",
+      "discovered": {
+        "checkpoint": 336913000,
+        "sampleIndex": 9645,
+        "digest": "78mCGkLzy4aVLvFkvpKSAEjtFith25S5xXf58BLig8nn"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x2d19f75e60044a3678a79e9501a553871ea32dbed6c52cdf2aa98adea68b69f5",
+      "wallets": 16,
+      "atLeast": true,
+      "spanHours": 92.3,
+      "hubHours": 92,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x21274e5469bfdb6b18e530a1eb799e680145af6cb266d3ea068a084d697c66f7",
+      "probeDigest": "6L9iFtqPXDrp9jEbZo1AVJLoUdwy5mYZirwJCLw6Bgjb",
+      "discovered": {
+        "checkpoint": 336847600,
+        "sampleIndex": 9754,
+        "digest": "G5A7HqkmfVkzu8bL439a2bvT4kDbxv2A8en2YDK2F4PS"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x0bd88bd2f7c2a71cb4cb1c313c277c4d18a64460bc6d4723b703d58948a55c3e",
+      "wallets": 16,
+      "atLeast": true,
+      "spanHours": 75.7,
+      "hubHours": 75,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x32d22fa8d7bc0f4ad279a0aa809088eeb71b36ff3a9f89ed813959bd70b0dad4",
+      "probeDigest": "2V9N1YNvnQLZPV58t2SXLE6eYfiskg6ghqBwiTdgUSV3",
+      "discovered": {
+        "checkpoint": 336814000,
+        "sampleIndex": 9810,
+        "digest": "2xBNwWVBs15QAjchY7cgqMFLYVXfx7fuKSNLWYomx5zH"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x1f79d281fb9d8194e03ea84f843dfc880ab44fc835e9a7a2a7a305d0367370e8",
+      "wallets": 16,
+      "atLeast": true,
+      "spanHours": 86.7,
+      "hubHours": 86,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x21274e5469bfdb6b18e530a1eb799e680145af6cb266d3ea068a084d697c66f7",
+      "probeDigest": "4qsJCizTfnW4KyYYFd1pL8D9r2q7FarLFupPiS8rXku8",
+      "discovered": {
+        "checkpoint": 336789400,
+        "sampleIndex": 9851,
+        "digest": "2N3XUhHV2XzaaKKU5a1jPGAWaECxH2z3BdHpbqyZUgV2"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "shared_funder",
+      "address": "0x9fd61888ae0f25b0b85eddb57a402efa64d9f43ecdabb4e5f8112202040d1984",
+      "wallets": 63,
+      "atLeast": false,
+      "spanHours": 5038.9,
+      "hubHours": 5038,
+      "historyComplete": true,
+      "engineRule": "shared service, weak link",
+      "probe": "0xe7d64f7a71c044848d3980e53f75c7a592f208573625f8504b5ab9c0a9510661",
+      "probeDigest": "CNBMZ3wqJ1mBcJcJX3sKyFeHaM5NGFLHXA9c3aEaEfKH",
+      "discovered": {
+        "checkpoint": 336782800,
+        "sampleIndex": 9862,
+        "digest": "Rro32MjXiJ3FgDAHdShaFWMaVPub3CT5m5t29UofaXg"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x085e4deba54c35dd1a6d5bb973223b3d6cb44e994e350c1b2d18d6aa85ca1e3d",
+      "wallets": 16,
+      "atLeast": true,
+      "spanHours": 82.6,
+      "hubHours": 82,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x21274e5469bfdb6b18e530a1eb799e680145af6cb266d3ea068a084d697c66f7",
+      "probeDigest": "FBXhukZ34w9j7gWpgJxEMvfrjk67Paev3NdZDL4YDMTh",
+      "discovered": {
+        "checkpoint": 336666400,
+        "sampleIndex": 10056,
+        "digest": "8Cnii4uQtyNjc9A8oqARy2SB3Q4GfAvVyj1az4RuYRwd"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x01013a6ed915aa33477c6c06ef5c4161142361d3215ba193d4141ddfd604ab1b",
+      "wallets": 16,
+      "atLeast": true,
+      "spanHours": 82.4,
+      "hubHours": 82,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x21274e5469bfdb6b18e530a1eb799e680145af6cb266d3ea068a084d697c66f7",
+      "probeDigest": "7rRmaENcedP4EzjzYkCNX7v2EDyJsYvA5xoA8L1SwNbY",
+      "discovered": {
+        "checkpoint": 336651400,
+        "sampleIndex": 10081,
+        "digest": "3HtJvJZQRUeEZ8qjg29DpJxTYqpgMJNzBK5PpQsXBdMg"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xccf707238af83b9210d1ec2ed0336e5aaa98e167c7af0fd7b9da529e2fd4d346",
+      "wallets": 16,
+      "atLeast": true,
+      "spanHours": 75.2,
+      "hubHours": 75,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x32d22fa8d7bc0f4ad279a0aa809088eeb71b36ff3a9f89ed813959bd70b0dad4",
+      "probeDigest": "GQKSaadQL3ay8seitPuuNGSihDHBfskuPprjZhexpdF",
+      "discovered": {
+        "checkpoint": 336646600,
+        "sampleIndex": 10089,
+        "digest": "Fxoan2cgupDqETPtpW2WYscycLSHThWgsj867bpXXYDb"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xbdce23023507c4a85871ac72e1c045900b2c84ef4f85af45873abc3db3fe0a08",
+      "wallets": 16,
+      "atLeast": true,
+      "spanHours": 61.6,
+      "hubHours": 61,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x32d22fa8d7bc0f4ad279a0aa809088eeb71b36ff3a9f89ed813959bd70b0dad4",
+      "probeDigest": "7ehPGJtyt1KTkHBzgj8EX4M4UsBmc5auYuM3iokYuDEA",
+      "discovered": {
+        "checkpoint": 336427600,
+        "sampleIndex": 10454,
+        "digest": "GDas7iqordwjNRr6js6A847ed7xbbUePSmFShqDf1RBx"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xb2d0b49654858ec122ff5c98d29ef65986e28d1b11d9e7f7039c48482bfbd9a3",
+      "wallets": 16,
+      "atLeast": true,
+      "spanHours": 90.6,
+      "hubHours": 90,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x21274e5469bfdb6b18e530a1eb799e680145af6cb266d3ea068a084d697c66f7",
+      "probeDigest": "7qk3jCsYgCyxyAVzvp4ZJQWAUHRQVD1TkJWXhXK2FwBk",
+      "discovered": {
+        "checkpoint": 336424600,
+        "sampleIndex": 10459,
+        "digest": "55xNF3bS42uYthAx2V16YuG49pVzytJ3cstDN4CAmotY"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x5df089b452f1fc8bbafc691c58c01be223a19114e278056e221c884f5d9951c3",
+      "wallets": 16,
+      "atLeast": true,
+      "spanHours": 81.2,
+      "hubHours": 81,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x32d22fa8d7bc0f4ad279a0aa809088eeb71b36ff3a9f89ed813959bd70b0dad4",
+      "probeDigest": "8tFUL6GXD4EDPBaScGepSN5AoMp71HnvuJFLe1BEgLUV",
+      "discovered": {
+        "checkpoint": 336352600,
+        "sampleIndex": 10579,
+        "digest": "J1xwqLX1tmLyhXnAct1uU7xi3J7e1g7ofWiyKoiqnjxf"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x79fdf7992c85761fa28942865ec4b3befef7772b6730053100684c342b158fa6",
+      "wallets": 77,
+      "atLeast": false,
+      "spanHours": 601,
+      "hubHours": 600,
+      "historyComplete": true,
+      "engineRule": "shared service, weak link",
+      "probe": "0x2e3c0279edc93ee54e89dcf7f34f84be18742edd4e4668d4bfd532aa2c6134d0",
+      "probeDigest": "97xBt3UGGJDmCF1S6Q9VQU2cpQy4UhKp6P8KT1hShqQ8",
+      "discovered": {
+        "checkpoint": 336245800,
+        "sampleIndex": 10757,
+        "digest": "EKBNSDCaYFhGshC85TeVsBfLWtCxpkEz5zWhGL3pRPAY"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x047529dfa912fbff72a695da615229d092bf3e6a7a429c84f56e6d884695a8f3",
+      "wallets": 16,
+      "atLeast": true,
+      "spanHours": 97,
+      "hubHours": 96,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x662b2f9f67e5330a61f54df985ee43b05aba5d6140e928907b391f8b1b41888a",
+      "probeDigest": "8n41LvddXVxjeoSM1b711CtakYYQJHgnvq93Mv4HGGvs",
+      "discovered": {
+        "checkpoint": 336202600,
+        "sampleIndex": 10829,
+        "digest": "wgJkPD3vheQn3tmnXjobbPagGRFohJqvkxBXDLHj3qG"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x414bfbdad34e25cde72b06bd348d473556d57eba5c344bae68f69fea84c274ee",
+      "wallets": 1485,
+      "atLeast": true,
+      "spanHours": 4762.5,
+      "hubHours": 4762,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x49577e3992ca5d04960c3fb4f400e8a7bcfd101790a20aa3f861f79879a13e61",
+      "probeDigest": "3SmVEoicqC6buVGPfmaJ7ypk9GTPageBdyJZPLcAq6J9",
+      "discovered": {
+        "checkpoint": 336188200,
+        "sampleIndex": 10853,
+        "digest": "5Ytg71G5ZMv7z37pvs4oTpDV4LDpHrzmmKDvPuP2HcWY"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x1d69dcc0c110b5d50dd3bf306019f7f9f0fb1027f3a99c505e184b37d4728a0b",
+      "wallets": 16,
+      "atLeast": true,
+      "spanHours": 92.1,
+      "hubHours": 92,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x21274e5469bfdb6b18e530a1eb799e680145af6cb266d3ea068a084d697c66f7",
+      "probeDigest": "89JyQaV7gRhZ4XfRC8sSLv8mX5FdtpDrwsPPnvVdYvF7",
+      "discovered": {
+        "checkpoint": 336118000,
+        "sampleIndex": 10970,
+        "digest": "9xEkrGTFzBrRxwckXRSYi5547nkyivEnUcBJ4RghwYBP"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x99e8b3652704e0331137fe09d5e8d71f39f2022d89a439526296da4df4a45ffb",
+      "wallets": 16,
+      "atLeast": true,
+      "spanHours": 94.7,
+      "hubHours": 94,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x32d22fa8d7bc0f4ad279a0aa809088eeb71b36ff3a9f89ed813959bd70b0dad4",
+      "probeDigest": "9ZftfsQtoVaSK2HBt8sGjxetGpRYqmRDQGk5eAuJKA8z",
+      "discovered": {
+        "checkpoint": 335981800,
+        "sampleIndex": 11197,
+        "digest": "GqBtizEkPHab2YoHeGaVyo1GGFmTopAYhS19Y6LD1rKK"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x231d1807a3a98717e6c318c9e15c47cf7202047e5c7408d779644f548e210ca8",
+      "wallets": 16,
+      "atLeast": true,
+      "spanHours": 92.3,
+      "hubHours": 92,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x32d22fa8d7bc0f4ad279a0aa809088eeb71b36ff3a9f89ed813959bd70b0dad4",
+      "probeDigest": "9bVEMK1q9krWuJS783U7wzzKrYiTykj6PgCHSdkien2Q",
+      "discovered": {
+        "checkpoint": 335939200,
+        "sampleIndex": 11268,
+        "digest": "9cC6JxyRUod1GSJUys76u8i1nMoeyHAqnGHtbkHnRBo2"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x6e012c4ec3896e8c9c8bb9dfe359eabdfdcc62d490190ce4810880af9fb920bc",
+      "wallets": 16,
+      "atLeast": true,
+      "spanHours": 88.6,
+      "hubHours": 88,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x32d22fa8d7bc0f4ad279a0aa809088eeb71b36ff3a9f89ed813959bd70b0dad4",
+      "probeDigest": "Bn7uurhPnrexFYUt2yAcpZ2ATWHJDmkQgeDtP9YJJjmT",
+      "discovered": {
+        "checkpoint": 335641600,
+        "sampleIndex": 11764,
+        "digest": "8p6uzhsRVzDCmDxP8BFpGLQcQTLEfxbviVXhhswLdvRU"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xc75fd1b942d0cb4ad848723eeefd8fa2e9fe1b399875bcb491f7dc9753683b52",
+      "wallets": 16,
+      "atLeast": true,
+      "spanHours": 87.9,
+      "hubHours": 87,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x32d22fa8d7bc0f4ad279a0aa809088eeb71b36ff3a9f89ed813959bd70b0dad4",
+      "probeDigest": "3SWYHn6rWEXmrkRvRWT2gEpY5TdZ6xgqQ4uw92UE1W1R",
+      "discovered": {
+        "checkpoint": 335326000,
+        "sampleIndex": 12290,
+        "digest": "FgBTBoAHGvZPs5c8k75eaNsgBZvHMHrNL1HhniiSsyjD"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xbf00e92bcb4ac1a6c945ee5e67d4cba50c62e28296bc29dea714d7f768089752",
+      "wallets": 69,
+      "atLeast": true,
+      "spanHours": 309.8,
+      "hubHours": 309,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x18ded35366686b0c269fdb8c0bc06a7531f4461fb060fcb53c3a73ee91284059",
+      "probeDigest": "EQjvht9pCQJwD1SV82up7tzQv4e5KSAk1PGL11LEHawF",
+      "discovered": {
+        "checkpoint": 335226400,
+        "sampleIndex": 12456,
+        "digest": "AbiSJjw3pypYvsDBA1rJSt6JHt98L2ohq6P2xAPoEC2"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xaf9567bb3d4396ba4a3119da92108632ff8ebf145cf54e8ebeaa49aeef655fa4",
+      "wallets": 74,
+      "atLeast": true,
+      "spanHours": 66.6,
+      "hubHours": 66,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0xdd449bd4257eea27a8915e97c0afead2a04d633723dc189a1196de45256d3171",
+      "probeDigest": "GoUNT3NqtFHZZpehooG55nw8aK3ZStSWLGLV3nj22xbP",
+      "discovered": {
+        "checkpoint": 334806400,
+        "sampleIndex": 13156,
+        "digest": "5dqqDYQM6YZTwF1csxNMz5qSVGhqtd8wER4RMv1fcbrd"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "shared_funder",
+      "address": "0x3b3514f5a446343e0c7ff15154c6fe053983afca138fbd4ee8544ccd112f4310",
+      "wallets": 85,
+      "atLeast": false,
+      "spanHours": 753.3,
+      "hubHours": 753,
+      "historyComplete": true,
+      "engineRule": "shared service, weak link",
+      "probe": "0x5bfeeae226036b0f452ee20b6e784c99bc1225ce785850afbd228037fc0bccda",
+      "probeDigest": "HnEnjEfB2Q1uJUdKyHj5d5fKR9SNCiHyixMCaeqEDGwQ",
+      "discovered": {
+        "checkpoint": 334381600,
+        "sampleIndex": 13864,
+        "digest": "7PipGUoheoFNRwrGujEZD7SktbFri1odCTdXXAxkntvw"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x000dd25906d42f3775373f72d635bd748c8d5051bb7b4e268ed75a8218069db4",
+      "wallets": 1217,
+      "atLeast": true,
+      "spanHours": 60.9,
+      "hubHours": 60,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x03912418d4f0d378e07b2fcea955ab658d1c6726c3b75090e11657d32ea38a9f",
+      "probeDigest": "BDz744KeP7f8aHhxuWHVAfRY5T7eXF62SPUvYhtdnd5Q",
+      "discovered": {
+        "checkpoint": 334282000,
+        "sampleIndex": 14030,
+        "digest": "9vUDwJyTaSM2JCHTDT222yiXRSgaFjjEJGX22dZaUuaa"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "shared_funder",
+      "address": "0xab8b4bf05386e0078c57412409288722f2262d0aa6230a45803c64e6377cc58a",
+      "wallets": 15,
+      "atLeast": false,
+      "spanHours": 37,
+      "hubHours": 37,
+      "historyComplete": true,
+      "engineRule": "shared service, weak link",
+      "probe": "0xa29b341e9f4cf464346b99a22058e7f70d79015b73dbcc60dd8ab0a7f45f15f5",
+      "probeDigest": "9tpeJsvC3FJoPbjBA9yGpQEF8RB9GYMzHywtKSf8cLvR",
+      "discovered": {
+        "checkpoint": 334045600,
+        "sampleIndex": 14424,
+        "digest": "Ec8jhHtXmRSNS9u9uCiLJ1E4SXS6y8XfWN4hbQxjR1wm"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x8a319488de2a8043a7b503d4a906ce5feedb793787bdb9a63bc6327d46310cdb",
+      "wallets": 56,
+      "atLeast": true,
+      "spanHours": 3729.6,
+      "hubHours": 3729,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x64878781d44a087a44cfc8a24c40326873ec8c97ff13d3aced794920e894c8a8",
+      "probeDigest": "E9iKBVTvoTwvTAqtSANFEGm17BM42Ci4YSfVct3qxHdd",
+      "discovered": {
+        "checkpoint": 333134800,
+        "sampleIndex": 15942,
+        "digest": "2h82CUAfwrM7pFs7yZFXehNsWB8pPkTLxPvnsD7GvvhF"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "shared_funder",
+      "address": "0x5ffad2b91d0ede4fdaaf427a326ff876a82015c5316a7e0a4510ef7bfa9b2ffe",
+      "wallets": 22,
+      "atLeast": true,
+      "spanHours": 3431.9,
+      "hubHours": 3431,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x9f63425709069336fec108bd4ba69a8f3d23e8ab237311f3ce58ae2bb0ed4d7f",
+      "probeDigest": "EboJ4SKxudnVqvx5PnF4ZhUpsqHDLEnCTt7Qrmm81gsg",
+      "discovered": {
+        "checkpoint": 333026200,
+        "sampleIndex": 16123,
+        "digest": "GQY8FAKsHz5Ha1UaBpfgWxox14quKaHcAEeauaNhDPLy"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x71e0d70d697c1c9d8511a62cdf7cd6b091c9caa793ca770b46180dfcaacd6c4e",
+      "wallets": 21,
+      "atLeast": true,
+      "spanHours": 2801.1,
+      "hubHours": 2801,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0xedb986f7e49d8b9c86f710d20c59ed1d235e650da9eb718a115e0bc6adc7f3bf",
+      "probeDigest": "E7hb7PStbwxESjdNGhEihXgTV2QDm5fMWZ4PkKNgP5eh",
+      "discovered": {
+        "checkpoint": 331653400,
+        "sampleIndex": 18411,
+        "digest": "vU3quRuk5Y1s4B9hc8g7cgCfgfftBdhN2GNYbw7aJzL"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x6988a92d5695909b7baa4d996324a873fbbeec94eec445eab99cc08ed30e4532",
+      "wallets": 188,
+      "atLeast": true,
+      "spanHours": 1130.6,
+      "hubHours": 1130,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x4529c9134627ada1e8bc8c4e6273573a312235a36135290be9c0a682cdfa6ecf",
+      "probeDigest": "A3t2te3dZ48fv893kmPq4rYoonpGqDEnoDxSbv8Dx1u5",
+      "discovered": {
+        "checkpoint": 331311400,
+        "sampleIndex": 18981,
+        "digest": "8Rmzk1yJnhFetsWgo3KjwoRkuJNfYWJvDgvDczBPb9pj"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "shared_funder",
+      "address": "0x7a8bd2a9077c4faad5de8f529d2713e5e7a505ae16bc6a28f842b7d9f23997b6",
+      "wallets": 58,
+      "atLeast": false,
+      "spanHours": 6499.9,
+      "hubHours": 6499,
+      "historyComplete": true,
+      "engineRule": "shared service, weak link",
+      "probe": "0xa7c65d2def051fbb2e0e96b8145e99d0a6a4f492525ceaa9f8a54dfb362baf7f",
+      "probeDigest": "ETkCXRbx3eLVAhGWGGQuVZpfixcs7v8sAc4pX4oyrQPv",
+      "discovered": {
+        "checkpoint": 330973000,
+        "sampleIndex": 19545,
+        "digest": "5E15oZiUcNK3mDjrgPqohZ3Ko5hgP1ttHWJDfskajqNF"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xb88a173fcf967d2097215394b0b3a7ad5a1c5ea786ebfe1aedb9e09484485a36",
+      "wallets": 107,
+      "atLeast": true,
+      "spanHours": 5651.4,
+      "hubHours": 5651,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x8766c59e208a28fa2bd3d537716cf2c0571212c43cce15f14a2b9170da5f7e6b",
+      "probeDigest": "J36S7JLDZmWfR6gz6iCbT3A5Dy7sWmLnV3jNdMiMDn61",
+      "discovered": {
+        "checkpoint": 329770000,
+        "sampleIndex": 21550,
+        "digest": "3usvV8XqZU8LCoC6LVjGRZoHzP24epTkNxodBqdti5h1"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xf243e24fa8e7567ef09e4dc92a29333d1f6451ba421e7441f469c55b4d253d1c",
+      "wallets": 70,
+      "atLeast": false,
+      "spanHours": 5301.7,
+      "hubHours": 5301,
+      "historyComplete": true,
+      "engineRule": "shared service, weak link",
+      "probe": "0x344380c6724755503ccb5c79bf70e6b5f94246931ce77bb1b9f1cbb1558127c6",
+      "probeDigest": "EDjPXjC9d9aLQfGSXSjc85UMVAi9ATdVQ4zpM195CS1d",
+      "discovered": {
+        "checkpoint": 328198600,
+        "sampleIndex": 24169,
+        "digest": "3F4YQYZCkBM7wVTqvWQH8Sd1i5VordgBmg2ervavJPz8"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "shared_funder",
+      "address": "0x9576b235a334689bf763d5978b8339ea5504929bf2e4da3c9f89da7db6629404",
+      "wallets": 25,
+      "atLeast": false,
+      "spanHours": 73.2,
+      "hubHours": 73,
+      "historyComplete": true,
+      "engineRule": "shared service, weak link",
+      "probe": "0x615ba04333b0818a0d412519847025d2a5f31dd5eeddaeac1f1c362daa18f331",
+      "probeDigest": "8m5LDFctKQ2BLxhUDnXZNL7mYGQJMfhK6WDagGVGy7GK",
+      "discovered": {
+        "checkpoint": 327955600,
+        "sampleIndex": 24574,
+        "digest": "HBiRW31tFnTfeFDEhMfHTALwLfPJ5Nop6zAP6F5dSpHn"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "shared_funder",
+      "address": "0x45814776a0eaf324d7bc89d22f7af0b5e429b2ab0f59cea0a7f6ea69466b76b6",
+      "wallets": 15,
+      "atLeast": true,
+      "spanHours": 4717.9,
+      "hubHours": 4717,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0xacdb7040ba50d8a7f0d981c6227f240f9bef1fdddb5a5cf510791a5b9081e9d1",
+      "probeDigest": "2NGxxN83j4JScM9h1zyXNFm11TepkNH2pLFLfHuyVhco",
+      "discovered": {
+        "checkpoint": 326045800,
+        "sampleIndex": 27757,
+        "digest": "CMYUEGG5SnGG6PtpWSed9MRnh91pNEtkBDnqugGA87qQ"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "shared_funder",
+      "address": "0x04c4cc8077b6717b3fd0b40bcd254c958119ed02474ac59d2f9a6b331617f4cb",
+      "wallets": 62,
+      "atLeast": true,
+      "spanHours": 62.3,
+      "hubHours": 62,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x49a13490350dc7ca0611185752e799fc2b201eb1df4f319fee727f651775acba",
+      "probeDigest": "HhTZTy7yXJgsgfvX1GYgnvPaQqJvbt9hPGv82vrHkZmP",
+      "discovered": {
+        "checkpoint": 324194200,
+        "sampleIndex": 30843,
+        "digest": "4vj1taD2X2PEy4ezRFvjNTwusr46fyMwjpEuTBywckjR"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x7e06b5f3579f7a336e9bf9c9a6715bae29a76f1936a053b835a6521d92405b30",
+      "wallets": 1052,
+      "atLeast": false,
+      "spanHours": 3123.8,
+      "hubHours": 3123,
+      "historyComplete": true,
+      "engineRule": "shared service, weak link",
+      "probe": "0xb012cdbde79f0fe5c83b4352b70ae41190c5314f3070e74ee40ca6bf6db47395",
+      "probeDigest": "EhqtSpAaHvNsfm9FESh9zvqgkrrMwjQZs8DFEuvkeiAj",
+      "discovered": {
+        "checkpoint": 323984200,
+        "sampleIndex": 31193,
+        "digest": "J14wBKz6P7HuWbbmqr168zxgexVjQ3aCG5EFfCGEbHwB"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x45621106320b3eed3e06ad2de710165212888fb59ea0f1d28f25d36c38291aff",
+      "wallets": 22,
+      "atLeast": false,
+      "spanHours": 4316.2,
+      "hubHours": 4316,
+      "historyComplete": true,
+      "engineRule": "shared service, weak link",
+      "probe": "0xc3e5d4f5695ebf9ab139959edf688be24759fbd6a50b0f687b67aa8575aa77d4",
+      "probeDigest": "73qkcgMXNpDu312dwya9TvTTDra9zwjrF7PYYSvAiohi",
+      "discovered": {
+        "checkpoint": 322385200,
+        "sampleIndex": 33858,
+        "digest": "3xEw5Zv2pFQFfW2BS4z2vfG3XuerP3SDkVbP4R7DYbfg"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xd044a89d8a37f71740de4e7d21fa668a04b048f00e21613fe1ec87615b874700",
+      "wallets": 487,
+      "atLeast": false,
+      "spanHours": 6870.5,
+      "hubHours": 6870,
+      "historyComplete": true,
+      "engineRule": "shared service, weak link",
+      "probe": "0x114827510bd46c42f6a3b29cea20a11f9686d4e9e7ac0f482ce02461140c8b2d",
+      "probeDigest": "6qSmUFUhP3KtatX6tU8oxWzk2XWzKE7YPEAaNB1eDYBD",
+      "discovered": {
+        "checkpoint": 320214400,
+        "sampleIndex": 37476,
+        "digest": "Hn6V1MDdJCA8kBWcKQ4nppzfRG15Srax3RVWaePFZsmp"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x14387b4b7191a0c26b01ba14c9c9a743a5d765aa76b8c741d5a023887b770a0f",
+      "wallets": 1096,
+      "atLeast": true,
+      "spanHours": 155.7,
+      "hubHours": 155,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0xf613a4ed0743b1d25607ba7f9360b67df6f5e66c997a4e919e36e9359fe3311d",
+      "probeDigest": "G15oJmw4AJpsCnw562ojFWwk3P6LB4jfnQtP3FdzNueU",
+      "discovered": {
+        "checkpoint": 318833200,
+        "sampleIndex": 39778,
+        "digest": "JDESP1FCnyWxQp86cbcT1cSyRiea2XkMS69BGg3sdVHf"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x419defd5e782dbaa4bbb0cc7eb41c109d075429dd970d805f3ec76a68f0e3c81",
+      "wallets": 105,
+      "atLeast": false,
+      "spanHours": 6028.1,
+      "hubHours": 6028,
+      "historyComplete": true,
+      "engineRule": "shared service, weak link",
+      "probe": "0x33e1c466878ff391c6aabb40459a161f2cf663e5ce01aa784b24d0f9591d7b56",
+      "probeDigest": "3hUceQqansrpaho2WdXZYPM4hQ9fJSQBVJWUdpqgE91a",
+      "discovered": {
+        "checkpoint": 317590600,
+        "sampleIndex": 41849,
+        "digest": "CpEjqFwnaPyxeWyg3NtiLK3x5KTmfCdJkBuVuwHbEWWw"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x938a86f6565cb6ee4093613adb38f1c7e56d5c6c2f43475c8c1c0a8768fccdce",
+      "wallets": 32,
+      "atLeast": false,
+      "spanHours": 1370.8,
+      "hubHours": 1370,
+      "historyComplete": true,
+      "engineRule": "shared service, weak link",
+      "probe": "0xe3f659c68f28f1f18a96a5db132ab5a76963d2fb2672d9ca14e9fbfee540878a",
+      "probeDigest": "AgGKTmYSZsxt3WwXuypGXjrd6Rft9PqcW1Y18R7CaFc3",
+      "discovered": {
+        "checkpoint": 316718800,
+        "sampleIndex": 43302,
+        "digest": "BzMo4FhikwBnsnbnCDQXbod7ahx7RK7h8Tt7w99ha28s"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xe2fc0848acdced1daf3ded23153fc07d0a6e776942814dcc171c0d342a68b0fc",
+      "wallets": 29,
+      "atLeast": true,
+      "spanHours": 1052.9,
+      "hubHours": 1052,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x163fd42a5da0024584572b4f260b67212cec93c9093e3c434461f1998600a291",
+      "probeDigest": "8nYskwkTQeQR89zhLPCs42S3Y3sZhZYUUtfZwTCKRe5U",
+      "discovered": {
+        "checkpoint": 314478400,
+        "sampleIndex": 47036,
+        "digest": "J8AoMvJobUQwamT6Yi15qGoAURWdPH9vgUMjNiCrYYt9"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "shared_funder",
+      "address": "0x3d0691455e6d1b50c1630126d7bbae2b71af9051bad067c2462fa54cbfa3de43",
+      "wallets": 89,
+      "atLeast": true,
+      "spanHours": 1428.1,
+      "hubHours": 1428,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0xd4fa078c3033d725618135dfd48a5e7d4c5fb89cbb655f218961f8ea638d96f7",
+      "probeDigest": "2X1npbWEXC1YBJd8XtKG1AnAcHbv9r17jd1SYWj9sXw8",
+      "discovered": {
+        "checkpoint": 314207200,
+        "sampleIndex": 47488,
+        "digest": "H182mA36jfgcMDA3KZ5ja8dXgh6pXfXd2Z4QSp6qcKt3"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xaa5690e934853630dff89c163810d7928b51d6d82da185bac8f2057b789c8653",
+      "wallets": 1325,
+      "atLeast": true,
+      "spanHours": 2558.3,
+      "hubHours": 2558,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x97457e246d96a25e857f2666b43d7b23c980cc7672bff078df5e937df275c9ab",
+      "probeDigest": "6agpXRfyK8HrKBAz5TG5G9671pVUL4TU4qx4LkB6ZsmQ",
+      "discovered": {
+        "checkpoint": 313874800,
+        "sampleIndex": 48042,
+        "digest": "6TZm7gZHnaooFetpyojSs68jrserzhVNqp8L5jcPTukE"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "shared_funder",
+      "address": "0x7796f69627a783dad3ef3e83c027a8508d7a0439281af771723c3575b0234049",
+      "wallets": 19,
+      "atLeast": false,
+      "spanHours": 5729.2,
+      "hubHours": 5729,
+      "historyComplete": true,
+      "engineRule": "shared service, weak link",
+      "probe": "0xdde9031f4dab9f01e4d5fc5f52a0faafa77ef0d48f971a2460fbaffa81efd04a",
+      "probeDigest": "H6uSRmywfo7Zm8iPrzpbL71oYwegFUvHTKHsGdr8HGH3",
+      "discovered": {
+        "checkpoint": 311026600,
+        "sampleIndex": 52789,
+        "digest": "E6PMSzcZJjpNtAUq2z5ZULg7xa2MhtcgutnD8ZXcxvd1"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x47e507b904839b9f02b020dd911ecae254a1eeb20bc994eab2b2b4621f1a5ae8",
+      "wallets": 650,
+      "atLeast": true,
+      "spanHours": 1430,
+      "hubHours": 1430,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x4c8d88927c444cddbd27e6bda84357174c5588d5ad6237e1beb778f0341940b9",
+      "probeDigest": "ixJkxePg66vDE4sRgkT5JSt1Q5RYouZ4fnKPWZykXiG",
+      "discovered": {
+        "checkpoint": 310818400,
+        "sampleIndex": 53136,
+        "digest": "9eZgsFkD7UVb7uafaVDfhPjp1d6vTtbZSnGV9bDS14hA"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "shared_funder",
+      "address": "0xa75c6f5786de1c566edd5ae29420f688856acb9cb6b81b2c3e3d9b00f0503a2c",
+      "wallets": 78,
+      "atLeast": true,
+      "spanHours": 43.7,
+      "hubHours": 43,
+      "historyComplete": false,
+      "engineRule": "shared service, weak link",
+      "probe": "0x3d43a0cf6e908f33218fc83080d1188344b248909e2dc9fa17be297238361e39",
+      "probeDigest": "D9PHEgp4nbiqjaQHHU8gbHkCShe16gJFToqeyEhLXPDW",
+      "discovered": {
+        "checkpoint": 310531000,
+        "sampleIndex": 53615,
+        "digest": "CfC8mFUE63znrJa9oPo1mVrrLShef5XJgb6ncBCbBkJ"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x26571b1f99862a4976c319bf03120cf82cf47a711f17cc49e649ac0e3a92730f",
+      "wallets": 112,
+      "atLeast": false,
+      "spanHours": 3738.7,
+      "hubHours": 3738,
+      "historyComplete": true,
+      "engineRule": "shared service, weak link",
+      "probe": "0x8cc185026d33dba376a16b38d48682e8ae5de511077a6f41d9201ad6522423da",
+      "probeDigest": "2v21SZnua5q2Uv6Mamwo6AgiadzkQxc6jPUghthifA82",
+      "discovered": {
+        "checkpoint": 309446800,
+        "sampleIndex": 55422,
+        "digest": "DB4iRPFxUsFsfSt56qB8y2DR5j2sA7rTdgBYvakm8wZW"
+      },
+      "note": "Shared service by the engine rule (15 or more wallets over 25 hours or more). Not counted as a group."
+    }
+  ]
+}

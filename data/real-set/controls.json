@@ -1,0 +1,441 @@
+{
+  "label": "real set: real mainnet facts we hand-checked",
+  "meta": {
+    "builtAt": "2026-11-07T18:19:22.673Z",
+    "rule": {
+      "startCheckpoint": 342700000,
+      "step": 600,
+      "maxSamples": 60000,
+      "takePerCheckpoint": 50,
+      "block": 12,
+      "pages": 4,
+      "sponsorPages": 30,
+      "maxFunderRecipients": 12,
+      "maxMembers": 6,
+      "windowMs": 86400000,
+      "groupTarget": 20,
+      "perTypeCap": 12,
+      "controlTarget": 20
+    },
+    "sampledCheckpoints": 57631,
+    "stopReason": "targets reached",
+    "skipped": {
+      "sponsorTooBusy": 15,
+      "sponsorSingle": 26,
+      "funderTooBusy": 4,
+      "funderFewRecipients": 0,
+      "funderNoVerifiedPair": 20,
+      "controlRejected": {
+        "first thing in history is not the funding": 133,
+        "history longer than 50": 587,
+        "funder history longer than 200": 70,
+        "funder already used": 116,
+        "involved in sponsored gas": 8
+      }
+    },
+    "droppedGroupsFailedRecheck": 0,
+    "dataFloorCheckpoint": 237661232
+  },
+  "controls": [
+    {
+      "address": "0xe1b6e64f397d6120e4a9350209b2b835052c7aee51e78f860931ab6891133029",
+      "funder": "0x1c899ecacde278c25f141b198ac6cd1eee03fa0e1645a24ff3e0b8e8dd7bdeaa",
+      "fundingDigest": "2AxMPKtGtMGkrkHRtbTjCrXvLMXQfydQc6RmFDxFf9Fw",
+      "fundingTimestamp": "2026-11-07T09:08:14.111Z",
+      "fundingCheckpoint": 342588400,
+      "historyTransactions": 5,
+      "funderDistinctRecipients": 2,
+      "reason": "Whole history is 5 transactions, first SUI came from 0x1c899e...deaa, which paid no other wallet within 24 hours of that payment, and nobody sponsored its gas.",
+      "discovered": {
+        "checkpoint": 342588400,
+        "sampleIndex": 186,
+        "digest": "2AxMPKtGtMGkrkHRtbTjCrXvLMXQfydQc6RmFDxFf9Fw"
+      },
+      "ankrAgrees": true,
+      "explorer": "https://suiscan.xyz/mainnet/tx/2AxMPKtGtMGkrkHRtbTjCrXvLMXQfydQc6RmFDxFf9Fw",
+      "verified": true,
+      "id": "rc-01",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "address": "0x8be2602f6812200e291f0c99b149986bee43b28a896deb12dae7c12eec5855a0",
+      "funder": "0xf1d05fbd89be96f7ba83c79e27aa9d17c2f5875c72fa0f20df8a2d0db6e0c6ba",
+      "fundingDigest": "9WH7yXJpu6d9mByop14meS8ETjPNa9sU31XgcfCBfY9",
+      "fundingTimestamp": "2026-11-06T16:47:19.958Z",
+      "fundingCheckpoint": 342338800,
+      "historyTransactions": 1,
+      "funderDistinctRecipients": 1,
+      "reason": "Whole history is 1 transactions, first SUI came from 0xf1d05f...c6ba, which paid no other wallet within 24 hours of that payment, and nobody sponsored its gas.",
+      "discovered": {
+        "checkpoint": 342338800,
+        "sampleIndex": 602,
+        "digest": "9WH7yXJpu6d9mByop14meS8ETjPNa9sU31XgcfCBfY9"
+      },
+      "ankrAgrees": true,
+      "explorer": "https://suiscan.xyz/mainnet/tx/9WH7yXJpu6d9mByop14meS8ETjPNa9sU31XgcfCBfY9",
+      "verified": true,
+      "id": "rc-02",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "address": "0x87dcac02511da1fa2b17017f9a06469892de2dd2f6d2c9a8c6e508dc2a9f5f8e",
+      "funder": "0xd20d95c804677b891acf027fd788c09dbbbe608b2bf9b6f15efbab894eba439b",
+      "fundingDigest": "82g566sYMTAX2VH9XsRGhcMxQaGZ5kRZtdmuFGmUrJKR",
+      "fundingTimestamp": "2026-11-06T12:43:34.296Z",
+      "fundingCheckpoint": 342277665,
+      "historyTransactions": 3,
+      "funderDistinctRecipients": 5,
+      "reason": "Whole history is 3 transactions, first SUI came from 0xd20d95...439b, which paid no other wallet within 24 hours of that payment, and nobody sponsored its gas.",
+      "discovered": {
+        "checkpoint": 342278800,
+        "sampleIndex": 702,
+        "digest": "5VemHep2MWKE6kTFfkCbkc67QHvqUzU3zxUBEjAXWuSR"
+      },
+      "ankrAgrees": true,
+      "explorer": "https://suiscan.xyz/mainnet/tx/82g566sYMTAX2VH9XsRGhcMxQaGZ5kRZtdmuFGmUrJKR",
+      "verified": true,
+      "id": "rc-03",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "address": "0x16ca1ea5b359125499cfa0cfd9147dec6f43beda41572b829f7383d508398329",
+      "funder": "0x07ba269852a94270c1a2817fab522f1d2206fe425beb99b85e5a9ed97d98d61d",
+      "fundingDigest": "8A5S7GJmpohqEB4tVLnboS5MwRQrcwn7UDyE7o7FN8hE",
+      "fundingTimestamp": "2026-10-30T11:07:42.355Z",
+      "fundingCheckpoint": 339755108,
+      "historyTransactions": 34,
+      "funderDistinctRecipients": 1,
+      "reason": "Whole history is 34 transactions, first SUI came from 0x07ba26...d61d, which paid no other wallet within 24 hours of that payment, and nobody sponsored its gas.",
+      "discovered": {
+        "checkpoint": 342192400,
+        "sampleIndex": 846,
+        "digest": "SK36ENrstjVmd76b3FMXu1pjnGJQ2GX1S1XXhvdC72m"
+      },
+      "ankrAgrees": true,
+      "explorer": "https://suiscan.xyz/mainnet/tx/8A5S7GJmpohqEB4tVLnboS5MwRQrcwn7UDyE7o7FN8hE",
+      "verified": true,
+      "id": "rc-04",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "address": "0x48c29778f72c8b31aa1024d0a61c0f9273b91efe9c83f7af6b825095d497bf7a",
+      "funder": "0x7b42da06a1b98742396e8261c40cb4378b95fee6c3bcf88631a8e8258b8cd482",
+      "fundingDigest": "Ao64hDcZqxCMabxPGtubk5as1qQ7nhem74Fbu6mmo6H5",
+      "fundingTimestamp": "2026-11-05T10:26:07.531Z",
+      "fundingCheckpoint": 341882800,
+      "historyTransactions": 2,
+      "funderDistinctRecipients": 1,
+      "reason": "Whole history is 2 transactions, first SUI came from 0x7b42da...d482, which paid no other wallet within 24 hours of that payment, and nobody sponsored its gas.",
+      "discovered": {
+        "checkpoint": 341882800,
+        "sampleIndex": 1362,
+        "digest": "Ao64hDcZqxCMabxPGtubk5as1qQ7nhem74Fbu6mmo6H5"
+      },
+      "ankrAgrees": true,
+      "explorer": "https://suiscan.xyz/mainnet/tx/Ao64hDcZqxCMabxPGtubk5as1qQ7nhem74Fbu6mmo6H5",
+      "verified": true,
+      "id": "rc-05",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "address": "0xb33216d61725c776092a9abe4b515dcc27786836f6c0737c24b43306e81cb1a8",
+      "funder": "0x90f40c718d36b48106a837ee979b58986643d9a2ff22683283805f75ef52ee0b",
+      "fundingDigest": "41KdsyfoXEbooqEnswJ6RT8FvAQk5HfhQTXukjaPHQnt",
+      "fundingTimestamp": "2026-11-04T13:18:03.237Z",
+      "fundingCheckpoint": 341569600,
+      "historyTransactions": 2,
+      "funderDistinctRecipients": 1,
+      "reason": "Whole history is 2 transactions, first SUI came from 0x90f40c...ee0b, which paid no other wallet within 24 hours of that payment, and nobody sponsored its gas.",
+      "discovered": {
+        "checkpoint": 341569600,
+        "sampleIndex": 1884,
+        "digest": "41KdsyfoXEbooqEnswJ6RT8FvAQk5HfhQTXukjaPHQnt"
+      },
+      "ankrAgrees": true,
+      "explorer": "https://suiscan.xyz/mainnet/tx/41KdsyfoXEbooqEnswJ6RT8FvAQk5HfhQTXukjaPHQnt",
+      "verified": true,
+      "id": "rc-06",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "address": "0x8b5abeb7ccd1b88823b519d6e5c13f0c43ce570863015a0b8b6a42d9d90e41fd",
+      "funder": "0x4d16f4cbd7e29ce8d9eabdf761d1723589748417c0b84effc6d40c56904dacfe",
+      "fundingDigest": "HpePDasqPxGKBdzZKQPYU4bbThSxeDNDHs99RrrDDFao",
+      "fundingTimestamp": "2026-11-04T10:27:23.349Z",
+      "fundingCheckpoint": 341527600,
+      "historyTransactions": 2,
+      "funderDistinctRecipients": 1,
+      "reason": "Whole history is 2 transactions, first SUI came from 0x4d16f4...acfe, which paid no other wallet within 24 hours of that payment, and nobody sponsored its gas.",
+      "discovered": {
+        "checkpoint": 341527600,
+        "sampleIndex": 1954,
+        "digest": "HpePDasqPxGKBdzZKQPYU4bbThSxeDNDHs99RrrDDFao"
+      },
+      "ankrAgrees": true,
+      "explorer": "https://suiscan.xyz/mainnet/tx/HpePDasqPxGKBdzZKQPYU4bbThSxeDNDHs99RrrDDFao",
+      "verified": true,
+      "id": "rc-07",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "address": "0x7e437688cddb52e21de25cb0086b561cf1a3c32e86978470ae89e40afa603467",
+      "funder": "0xaa19d6c6fc73ad17d65529077fdc0c303018e7846e31f0bdff8ef587673f3112",
+      "fundingDigest": "F9pzPt2soiJPJ9kGHRAwuTB6nN5EyJxUgACEjzwPCZaH",
+      "fundingTimestamp": "2026-11-02T10:02:27.336Z",
+      "fundingCheckpoint": 340811200,
+      "historyTransactions": 3,
+      "funderDistinctRecipients": 1,
+      "reason": "Whole history is 3 transactions, first SUI came from 0xaa19d6...3112, which paid no other wallet within 24 hours of that payment, and nobody sponsored its gas.",
+      "discovered": {
+        "checkpoint": 340811200,
+        "sampleIndex": 3148,
+        "digest": "F9pzPt2soiJPJ9kGHRAwuTB6nN5EyJxUgACEjzwPCZaH"
+      },
+      "ankrAgrees": true,
+      "explorer": "https://suiscan.xyz/mainnet/tx/F9pzPt2soiJPJ9kGHRAwuTB6nN5EyJxUgACEjzwPCZaH",
+      "verified": true,
+      "id": "rc-08",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "address": "0x13528d2507282eb66aea5aab02575b33fbae28258db031c3cd8f9964648195d9",
+      "funder": "0xe3af5822aa0026bac82707fee255fba10a8b024b3a6f990f25d04f4d442eb75d",
+      "fundingDigest": "7uyC6LRGVpcgV8BFsXx4MJt2KfaH2mUs1wxQLVcnLb2y",
+      "fundingTimestamp": "2026-01-24T14:39:13.670Z",
+      "fundingCheckpoint": 237887911,
+      "historyTransactions": 9,
+      "funderDistinctRecipients": 5,
+      "reason": "Whole history is 9 transactions, first SUI came from 0xe3af58...b75d, which paid no other wallet within 24 hours of that payment, and nobody sponsored its gas.",
+      "discovered": {
+        "checkpoint": 340423000,
+        "sampleIndex": 3795,
+        "digest": "Hs7UWAin4VJGemceagCmcu3FLB67w8L9KmH9k2Z64kAX"
+      },
+      "ankrAgrees": true,
+      "explorer": "https://suiscan.xyz/mainnet/tx/7uyC6LRGVpcgV8BFsXx4MJt2KfaH2mUs1wxQLVcnLb2y",
+      "verified": true,
+      "id": "rc-09",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "address": "0x5d8982bf03a1fe46cb8517469f721685ea9dfacbc4c840f681beabbf9cfab507",
+      "funder": "0x835d92f668542f8ebe698634e15e3b90249ac7b0bcf3e416f97d4b365f038b8e",
+      "fundingDigest": "7FJxYwPToqFD4PHFB5StHZMobhLW9tdVmEyz9GsRh5or",
+      "fundingTimestamp": "2026-11-01T04:04:06.330Z",
+      "fundingCheckpoint": 340366198,
+      "historyTransactions": 43,
+      "funderDistinctRecipients": 1,
+      "reason": "Whole history is 43 transactions, first SUI came from 0x835d92...8b8e, which paid no other wallet within 24 hours of that payment, and nobody sponsored its gas.",
+      "discovered": {
+        "checkpoint": 340366600,
+        "sampleIndex": 3889,
+        "digest": "67g9rDqw3nMEBxUUzwdbetZsb94YSstmN2EXZ1rRn2ku"
+      },
+      "ankrAgrees": true,
+      "explorer": "https://suiscan.xyz/mainnet/tx/7FJxYwPToqFD4PHFB5StHZMobhLW9tdVmEyz9GsRh5or",
+      "verified": true,
+      "id": "rc-10",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "address": "0xeb575b54e4ff3884040acd9ec02bb7e71019fcf9319890059d55f8568f4d1d59",
+      "funder": "0x3a18968c8a6fb12e0644cef01cb0964b7c683b581a59214108e69762efa3808c",
+      "fundingDigest": "HRtHZffcsNK3qDkcBYgUdNdSTWYu9ckHqUjQ6Rd9sz1i",
+      "fundingTimestamp": "2026-11-01T03:55:58.894Z",
+      "fundingCheckpoint": 340364200,
+      "historyTransactions": 1,
+      "funderDistinctRecipients": 3,
+      "reason": "Whole history is 1 transactions, first SUI came from 0x3a1896...808c, which paid no other wallet within 24 hours of that payment, and nobody sponsored its gas.",
+      "discovered": {
+        "checkpoint": 340364200,
+        "sampleIndex": 3893,
+        "digest": "HRtHZffcsNK3qDkcBYgUdNdSTWYu9ckHqUjQ6Rd9sz1i"
+      },
+      "ankrAgrees": true,
+      "explorer": "https://suiscan.xyz/mainnet/tx/HRtHZffcsNK3qDkcBYgUdNdSTWYu9ckHqUjQ6Rd9sz1i",
+      "verified": true,
+      "id": "rc-11",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "address": "0x200f860efdb1b703b2367066278d21b7bf9bf9a48c3ddad563e38db8849e00fe",
+      "funder": "0x9bd23463cd99c1c73bfe953a03b814d7799b8e0d2fadc1928b0fe5cfea160b85",
+      "fundingDigest": "39Ymaf6h1sf6AqNBt28p1ngEyrv6MCRKjoYxATK61xKQ",
+      "fundingTimestamp": "2026-10-31T12:34:12.797Z",
+      "fundingCheckpoint": 340134501,
+      "historyTransactions": 7,
+      "funderDistinctRecipients": 2,
+      "reason": "Whole history is 7 transactions, first SUI came from 0x9bd234...0b85, which paid no other wallet within 24 hours of that payment, and nobody sponsored its gas.",
+      "discovered": {
+        "checkpoint": 340260400,
+        "sampleIndex": 4066,
+        "digest": "4PvSCQioebBR77x1AUKsxs47dow9Enc7cuG6X8Vu6HsM"
+      },
+      "ankrAgrees": true,
+      "explorer": "https://suiscan.xyz/mainnet/tx/39Ymaf6h1sf6AqNBt28p1ngEyrv6MCRKjoYxATK61xKQ",
+      "verified": true,
+      "id": "rc-12",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "address": "0x2e435c932755e02366a589894a89d89b9362d00790ceea038acfe351af4e9390",
+      "funder": "0xb882ccc38dcb879e7c7a0156ccd3ea26c58343141dc5c5834c8512780a53622f",
+      "fundingDigest": "AimeDjWkWrojaNKm8hkZvQ7Mud3MSWLvmuFkRJm8WA7j",
+      "fundingTimestamp": "2026-06-05T16:05:55.368Z",
+      "fundingCheckpoint": 283486983,
+      "historyTransactions": 46,
+      "funderDistinctRecipients": 6,
+      "reason": "Whole history is 46 transactions, first SUI came from 0xb882cc...622f, which paid no other wallet within 24 hours of that payment, and nobody sponsored its gas.",
+      "discovered": {
+        "checkpoint": 339062200,
+        "sampleIndex": 6063,
+        "digest": "HQvSeqVUYuyeBvgq8sBXCuWfCB9oFr76vDVHPqjf1ASR"
+      },
+      "ankrAgrees": true,
+      "explorer": "https://suiscan.xyz/mainnet/tx/AimeDjWkWrojaNKm8hkZvQ7Mud3MSWLvmuFkRJm8WA7j",
+      "verified": true,
+      "id": "rc-13",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "address": "0x43f2f96650557e904c274e98fc35988aad27c7b42a401c83b8df8ed7ec2e611f",
+      "funder": "0x47a4a1626977bd1c7fd68a0fcf47cb2cd863398d3c772cea7c5e21108b558e17",
+      "fundingDigest": "BgUTAWu6pPfAxKqWbcSqi9P7HxLW3veeW5Wy8uY5EijT",
+      "fundingTimestamp": "2026-10-26T09:50:27.174Z",
+      "fundingCheckpoint": 338283400,
+      "historyTransactions": 2,
+      "funderDistinctRecipients": 2,
+      "reason": "Whole history is 2 transactions, first SUI came from 0x47a4a1...8e17, which paid no other wallet within 24 hours of that payment, and nobody sponsored its gas.",
+      "discovered": {
+        "checkpoint": 338283400,
+        "sampleIndex": 7361,
+        "digest": "BgUTAWu6pPfAxKqWbcSqi9P7HxLW3veeW5Wy8uY5EijT"
+      },
+      "ankrAgrees": true,
+      "explorer": "https://suiscan.xyz/mainnet/tx/BgUTAWu6pPfAxKqWbcSqi9P7HxLW3veeW5Wy8uY5EijT",
+      "verified": true,
+      "id": "rc-14",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "address": "0x803c1fda130fb738adf9e78b43e5f542a3a1a5105f3373753502c7830c43fb94",
+      "funder": "0xc1e523a74870e48b24ab0b75d5c53f1a118c679a9d6d590934462ef20a1feb98",
+      "fundingDigest": "4uBwFhF353MZ95KjmrLgK67VGjW7jHpCzA82usmfy1wR",
+      "fundingTimestamp": "2026-03-13T19:07:48.944Z",
+      "fundingCheckpoint": 254066267,
+      "historyTransactions": 18,
+      "funderDistinctRecipients": 7,
+      "reason": "Whole history is 18 transactions, first SUI came from 0xc1e523...eb98, which paid no other wallet within 24 hours of that payment, and nobody sponsored its gas.",
+      "discovered": {
+        "checkpoint": 337910800,
+        "sampleIndex": 7982,
+        "digest": "984t9HdRWef1Xhk44CASGheeJU8Ns3xRAmAxFztuVeQ"
+      },
+      "ankrAgrees": true,
+      "explorer": "https://suiscan.xyz/mainnet/tx/4uBwFhF353MZ95KjmrLgK67VGjW7jHpCzA82usmfy1wR",
+      "verified": true,
+      "id": "rc-15",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "address": "0xb0799e8a22419df5f5763347047c0cf698a7b9815795ab5e39b380a8a69266d1",
+      "funder": "0x113615161a8ebb9c1b64e5d16b48c0ef2b5c01da4eaf0ac4a1e3181d27bd6967",
+      "fundingDigest": "HWNz5rth9sjpLY5T2EpodevcytcsGi7BsdmHwW3NLfVp",
+      "fundingTimestamp": "2026-10-22T21:50:04.098Z",
+      "fundingCheckpoint": 336984014,
+      "historyTransactions": 5,
+      "funderDistinctRecipients": 1,
+      "reason": "Whole history is 5 transactions, first SUI came from 0x113615...6967, which paid no other wallet within 24 hours of that payment, and nobody sponsored its gas.",
+      "discovered": {
+        "checkpoint": 336984400,
+        "sampleIndex": 9526,
+        "digest": "G69c8K7LFqNtBAvja2ckRm8YVEyzuG9vhUQ1HVn7qAbT"
+      },
+      "ankrAgrees": true,
+      "explorer": "https://suiscan.xyz/mainnet/tx/HWNz5rth9sjpLY5T2EpodevcytcsGi7BsdmHwW3NLfVp",
+      "verified": true,
+      "id": "rc-16",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "address": "0x8ca8ea0f797f340e66789096fa26d79f9bc018201fb7247b2fec07f4a0f4d980",
+      "funder": "0x9b4849dd82a23069cd514e2425306ea770f324c381266bdc2bb56ef3d113f897",
+      "fundingDigest": "9QRMwGWif7yNj7AwwBu5UJ5edwgLLMDuRuh3FHSm9U5j",
+      "fundingTimestamp": "2026-10-22T14:36:00.277Z",
+      "fundingCheckpoint": 336874000,
+      "historyTransactions": 2,
+      "funderDistinctRecipients": 1,
+      "reason": "Whole history is 2 transactions, first SUI came from 0x9b4849...f897, which paid no other wallet within 24 hours of that payment, and nobody sponsored its gas.",
+      "discovered": {
+        "checkpoint": 336874000,
+        "sampleIndex": 9710,
+        "digest": "9QRMwGWif7yNj7AwwBu5UJ5edwgLLMDuRuh3FHSm9U5j"
+      },
+      "ankrAgrees": true,
+      "explorer": "https://suiscan.xyz/mainnet/tx/9QRMwGWif7yNj7AwwBu5UJ5edwgLLMDuRuh3FHSm9U5j",
+      "verified": true,
+      "id": "rc-17",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "address": "0xed751ddfc39ecdabaebf83a86a0699aa185abba4a3f1ca560c2b906ca9c64423",
+      "funder": "0x9be6b5d4d6c5191bbdba16f5cbb016e84282a19531c01d7ec0c31ff8365a38f2",
+      "fundingDigest": "AHEDQMbqGUgPo4dafqjD7PwPf2fE3SRGr2qjpgPWbEAz",
+      "fundingTimestamp": "2026-10-21T12:57:53.658Z",
+      "fundingCheckpoint": 336486400,
+      "historyTransactions": 2,
+      "funderDistinctRecipients": 1,
+      "reason": "Whole history is 2 transactions, first SUI came from 0x9be6b5...38f2, which paid no other wallet within 24 hours of that payment, and nobody sponsored its gas.",
+      "discovered": {
+        "checkpoint": 336486400,
+        "sampleIndex": 10356,
+        "digest": "AHEDQMbqGUgPo4dafqjD7PwPf2fE3SRGr2qjpgPWbEAz"
+      },
+      "ankrAgrees": true,
+      "explorer": "https://suiscan.xyz/mainnet/tx/AHEDQMbqGUgPo4dafqjD7PwPf2fE3SRGr2qjpgPWbEAz",
+      "verified": true,
+      "id": "rc-18",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "address": "0xa3c288acfb8abc2b7a8740e581428dfea7846e1f60327aef0cf576be53fb0ff2",
+      "funder": "0x56bc798612556538d74f1d311b5bdb48faab8b7d2f32d88262d68f78a216b427",
+      "fundingDigest": "8UfuYv2zvJpnd5ABjPirPJvFYXguNn1xmvEWxPgzZ3Hi",
+      "fundingTimestamp": "2026-08-19T01:07:56.080Z",
+      "fundingCheckpoint": 312280903,
+      "historyTransactions": 4,
+      "funderDistinctRecipients": 1,
+      "reason": "Whole history is 4 transactions, first SUI came from 0x56bc79...b427, which paid no other wallet within 24 hours of that payment, and nobody sponsored its gas.",
+      "discovered": {
+        "checkpoint": 333997000,
+        "sampleIndex": 14505,
+        "digest": "65PinjG6VdMGa5XbGHpsR2dirMhHYwbB4HTrNAnYTEV"
+      },
+      "ankrAgrees": true,
+      "explorer": "https://suiscan.xyz/mainnet/tx/8UfuYv2zvJpnd5ABjPirPJvFYXguNn1xmvEWxPgzZ3Hi",
+      "verified": true,
+      "id": "rc-19",
+      "label": "real set: real mainnet facts we hand-checked"
+    },
+    {
+      "address": "0x764c3c2163abd07d4df3cbe1d4b67178d88ebcd1b3ddbbf5f76cba298f7da672",
+      "funder": "0x6c0b48a0fe0723f2726d385a47c2ac8486ea69819c40d199dfaa9683bda71d47",
+      "fundingDigest": "GmSxS2LPsSGkGcjUr3eP6umpbNgENVxnjeYFiyQNFgqi",
+      "fundingTimestamp": "2026-10-14T07:44:24.791Z",
+      "fundingCheckpoint": 333847000,
+      "historyTransactions": 2,
+      "funderDistinctRecipients": 1,
+      "reason": "Whole history is 2 transactions, first SUI came from 0x6c0b48...1d47, which paid no other wallet within 24 hours of that payment, and nobody sponsored its gas.",
+      "discovered": {
+        "checkpoint": 333847000,
+        "sampleIndex": 14755,
+        "digest": "GmSxS2LPsSGkGcjUr3eP6umpbNgENVxnjeYFiyQNFgqi"
+      },
+      "ankrAgrees": true,
+      "explorer": "https://suiscan.xyz/mainnet/tx/GmSxS2LPsSGkGcjUr3eP6umpbNgENVxnjeYFiyQNFgqi",
+      "verified": true,
+      "id": "rc-20",
+      "label": "real set: real mainnet facts we hand-checked"
+    }
+  ]
+}

@@ -1,0 +1,212 @@
+{
+  "digest": "856pKoxQ2jCL6F5eJXhn5etVcb32D8BJMPWZHGAYy69n",
+  "savedFor": "0xc8e156a936b6289f296b7f53840066b58a719303739217e4f153f658663856e8",
+  "tatum": {
+    "transaction": {
+      "digest": "856pKoxQ2jCL6F5eJXhn5etVcb32D8BJMPWZHGAYy69n",
+      "sender": {
+        "address": "0x9c844a4711235e778f59fc5845eefa55a65d46cefbde3d55c471d388c005b233"
+      },
+      "gasInput": {
+        "gasSponsor": {
+          "address": "0x9c844a4711235e778f59fc5845eefa55a65d46cefbde3d55c471d388c005b233"
+        }
+      },
+      "effects": {
+        "status": "SUCCESS",
+        "timestamp": "2026-08-31T08:30:47.031Z",
+        "checkpoint": {
+          "sequenceNumber": 317037295
+        },
+        "balanceChanges": {
+          "nodes": [
+            {
+              "amount": "-50100000",
+              "coinType": {
+                "repr": "0x0000000000000000000000000000000000000000000000000000000000000002::sui::SUI"
+              },
+              "owner": {
+                "address": "0x9c844a4711235e778f59fc5845eefa55a65d46cefbde3d55c471d388c005b233"
+              }
+            },
+            {
+              "amount": "50000000",
+              "coinType": {
+                "repr": "0x0000000000000000000000000000000000000000000000000000000000000002::sui::SUI"
+              },
+              "owner": {
+                "address": "0xc8e156a936b6289f296b7f53840066b58a719303739217e4f153f658663856e8"
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "ankr": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "digest": "856pKoxQ2jCL6F5eJXhn5etVcb32D8BJMPWZHGAYy69n",
+      "transaction": {
+        "data": {
+          "messageVersion": "v1",
+          "transaction": {
+            "kind": "ProgrammableTransaction",
+            "inputs": [
+              {
+                "type": "fundsWithdrawal",
+                "reservation": {
+                  "maxAmountU64": "50000000"
+                },
+                "typeArg": {
+                  "balance": "0x2::sui::SUI"
+                },
+                "withdrawFrom": "sender"
+              },
+              {
+                "type": "pure",
+                "valueType": "u256",
+                "value": "50000000"
+              },
+              {
+                "type": "pure",
+                "valueType": "address",
+                "value": "0xc8e156a936b6289f296b7f53840066b58a719303739217e4f153f658663856e8"
+              }
+            ],
+            "transactions": [
+              {
+                "MoveCall": {
+                  "package": "0x0000000000000000000000000000000000000000000000000000000000000002",
+                  "module": "funds_accumulator",
+                  "function": "withdrawal_split",
+                  "type_arguments": [
+                    "0x2::balance::Balance<0x2::sui::SUI>"
+                  ],
+                  "arguments": [
+                    {
+                      "Input": 0
+                    },
+                    {
+                      "Input": 1
+                    }
+                  ]
+                }
+              },
+              {
+                "MoveCall": {
+                  "package": "0x0000000000000000000000000000000000000000000000000000000000000002",
+                  "module": "balance",
+                  "function": "redeem_funds",
+                  "type_arguments": [
+                    "0x2::sui::SUI"
+                  ],
+                  "arguments": [
+                    {
+                      "Result": 0
+                    }
+                  ]
+                }
+              },
+              {
+                "MoveCall": {
+                  "package": "0x0000000000000000000000000000000000000000000000000000000000000002",
+                  "module": "balance",
+                  "function": "send_funds",
+                  "type_arguments": [
+                    "0x2::sui::SUI"
+                  ],
+                  "arguments": [
+                    {
+                      "Result": 1
+                    },
+                    {
+                      "Input": 2
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "sender": "0x9c844a4711235e778f59fc5845eefa55a65d46cefbde3d55c471d388c005b233",
+          "gasData": {
+            "payment": [],
+            "owner": "0x9c844a4711235e778f59fc5845eefa55a65d46cefbde3d55c471d388c005b233",
+            "price": "100",
+            "budget": "1088000"
+          }
+        },
+        "txSignatures": [
+          "ADoEpIfVIIVemWU/+p6pkryzmJeV3v/pbFD0KTR/r8nzwvO2jcBV+kDnzEREfr8oAtL1x0ERXoWLwho1+gxS3wjG19nf0VlUDGFEIazvXCiwWacVTzEPkDYBTAgJTOLavw=="
+        ]
+      },
+      "effects": {
+        "messageVersion": "v1",
+        "status": {
+          "status": "success"
+        },
+        "executedEpoch": "1236",
+        "gasUsed": {
+          "computationCost": "100000",
+          "storageCost": "0",
+          "storageRebate": "0",
+          "nonRefundableStorageFee": "0"
+        },
+        "transactionDigest": "856pKoxQ2jCL6F5eJXhn5etVcb32D8BJMPWZHGAYy69n",
+        "accumulatorEvents": [
+          {
+            "accumulatorObj": "0x00c56e50e781a6d97d95f54d6dedabbd1341b818f2eea9c8b0d6a71ba031de63",
+            "address": "0x9c844a4711235e778f59fc5845eefa55a65d46cefbde3d55c471d388c005b233",
+            "ty": "0x2::balance::Balance<0x2::sui::SUI>",
+            "operation": "split",
+            "value": {
+              "integer": 50100000
+            }
+          },
+          {
+            "accumulatorObj": "0x0177809159f97a7bdda50ef520ced889cebcb4c5653f162672ad918f42772243",
+            "address": "0xc8e156a936b6289f296b7f53840066b58a719303739217e4f153f658663856e8",
+            "ty": "0x2::balance::Balance<0x2::sui::SUI>",
+            "operation": "merge",
+            "value": {
+              "integer": 50000000
+            }
+          }
+        ],
+        "gasObject": {
+          "owner": {
+            "AddressOwner": "0x0000000000000000000000000000000000000000000000000000000000000000"
+          },
+          "reference": {
+            "objectId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+            "version": 0,
+            "digest": "11111111111111111111111111111111"
+          }
+        },
+        "dependencies": [
+          "67LPZppkWnB3dYZwjJ9vS6n7jb5rG8HvXtXXZCUaRVLy"
+        ]
+      },
+      "balanceChanges": [
+        {
+          "owner": {
+            "AddressOwner": "0x9c844a4711235e778f59fc5845eefa55a65d46cefbde3d55c471d388c005b233"
+          },
+          "coinType": "0x2::sui::SUI",
+          "amount": "-50100000"
+        },
+        {
+          "owner": {
+            "AddressOwner": "0xc8e156a936b6289f296b7f53840066b58a719303739217e4f153f658663856e8"
+          },
+          "coinType": "0x2::sui::SUI",
+          "amount": "50000000"
+        }
+      ],
+      "timestampMs": "1788165047031",
+      "checkpoint": "317037295"
+    }
+  },
+  "ankrAgrees": true
+}

@@ -1,0 +1,205 @@
+{
+  "digest": "Ep1qm85CZYzx2NczhG2SEqcnpbiaPKgiSbFNpQnknZvk",
+  "savedFor": "0x307931549ef581adc40c0660caa253e2951259609d4ceb151df4ce799f9de5aa",
+  "tatum": {
+    "transaction": {
+      "digest": "Ep1qm85CZYzx2NczhG2SEqcnpbiaPKgiSbFNpQnknZvk",
+      "sender": {
+        "address": "0xb5efe55a53b225a9f92e77169c8e411f0935874e0c519a6560d8cf45d4640f27"
+      },
+      "gasInput": {
+        "gasSponsor": {
+          "address": "0xb5efe55a53b225a9f92e77169c8e411f0935874e0c519a6560d8cf45d4640f27"
+        }
+      },
+      "effects": {
+        "status": "SUCCESS",
+        "timestamp": "2026-09-14T11:00:40.936Z",
+        "checkpoint": {
+          "sequenceNumber": 322510600
+        },
+        "balanceChanges": {
+          "nodes": [
+            {
+              "amount": "1000000000000",
+              "coinType": {
+                "repr": "0x0000000000000000000000000000000000000000000000000000000000000002::sui::SUI"
+              },
+              "owner": {
+                "address": "0x307931549ef581adc40c0660caa253e2951259609d4ceb151df4ce799f9de5aa"
+              }
+            },
+            {
+              "amount": "-1000001097880",
+              "coinType": {
+                "repr": "0x0000000000000000000000000000000000000000000000000000000000000002::sui::SUI"
+              },
+              "owner": {
+                "address": "0xb5efe55a53b225a9f92e77169c8e411f0935874e0c519a6560d8cf45d4640f27"
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "ankr": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "digest": "Ep1qm85CZYzx2NczhG2SEqcnpbiaPKgiSbFNpQnknZvk",
+      "transaction": {
+        "data": {
+          "messageVersion": "v1",
+          "transaction": {
+            "kind": "ProgrammableTransaction",
+            "inputs": [
+              {
+                "type": "pure",
+                "valueType": "u64",
+                "value": "1000000000000"
+              },
+              {
+                "type": "pure",
+                "valueType": "address",
+                "value": "0x307931549ef581adc40c0660caa253e2951259609d4ceb151df4ce799f9de5aa"
+              }
+            ],
+            "transactions": [
+              {
+                "SplitCoins": [
+                  "GasCoin",
+                  [
+                    {
+                      "Input": 0
+                    }
+                  ]
+                ]
+              },
+              {
+                "TransferObjects": [
+                  [
+                    {
+                      "Result": 0
+                    }
+                  ],
+                  {
+                    "Input": 1
+                  }
+                ]
+              }
+            ]
+          },
+          "sender": "0xb5efe55a53b225a9f92e77169c8e411f0935874e0c519a6560d8cf45d4640f27",
+          "gasData": {
+            "payment": [
+              {
+                "objectId": "0xe3baf1e78b5113754725c18e1544dfeb1f8e49d0a91882f1341bb36a4313bcf9",
+                "version": 800336530,
+                "digest": "8Foc3peXLnk3KhG5h6uqx6QF4Wbv6MyCRWo2aKts8TDo"
+              },
+              {
+                "objectId": "0xf339fface5a8928c74c4759be94bf19e9d232e2601e2a18877e460f138ea8d69",
+                "version": 823382832,
+                "digest": "GcgEsKTsAiLy3ZZ1JP5ZkexpiY9hUhC4RDwPzXputH4f"
+              }
+            ],
+            "owner": "0xb5efe55a53b225a9f92e77169c8e411f0935874e0c519a6560d8cf45d4640f27",
+            "price": "100",
+            "budget": "2176000"
+          }
+        },
+        "txSignatures": [
+          "AFdpLYM4MHa54kPK1c6DEoBwMoMV+pe8fO3BHEhEtHf56/crpONTyXPm/+1lwyxhQhhBC49NstGRYG6tzi4hhAdMVOgv2E7bfxckfkfsqGAhmn3TjMtPvWzhZD7OEIPG5Q=="
+        ]
+      },
+      "effects": {
+        "messageVersion": "v1",
+        "status": {
+          "status": "success"
+        },
+        "executedEpoch": "1250",
+        "gasUsed": {
+          "computationCost": "100000",
+          "storageCost": "1976000",
+          "storageRebate": "978120",
+          "nonRefundableStorageFee": "9880"
+        },
+        "modifiedAtVersions": [
+          {
+            "objectId": "0xe3baf1e78b5113754725c18e1544dfeb1f8e49d0a91882f1341bb36a4313bcf9",
+            "sequenceNumber": "800336530"
+          }
+        ],
+        "transactionDigest": "Ep1qm85CZYzx2NczhG2SEqcnpbiaPKgiSbFNpQnknZvk",
+        "created": [
+          {
+            "owner": {
+              "AddressOwner": "0x307931549ef581adc40c0660caa253e2951259609d4ceb151df4ce799f9de5aa"
+            },
+            "reference": {
+              "objectId": "0x41c4d3d69b963f20c329a73eae480853da1102fc2f6a2fef607abb819c7d0dfb",
+              "version": 800336531,
+              "digest": "FnkQiprX4PQyiiD256R1q5ess9RLJgHqFNSWEZmKtFcP"
+            }
+          }
+        ],
+        "mutated": [
+          {
+            "owner": {
+              "AddressOwner": "0xb5efe55a53b225a9f92e77169c8e411f0935874e0c519a6560d8cf45d4640f27"
+            },
+            "reference": {
+              "objectId": "0xe3baf1e78b5113754725c18e1544dfeb1f8e49d0a91882f1341bb36a4313bcf9",
+              "version": 800336531,
+              "digest": "FysRXzNPDN1AFSLBMjSkWg9mK134PNhAtYZVBqhvQMoh"
+            }
+          }
+        ],
+        "accumulatorEvents": [
+          {
+            "accumulatorObj": "0xc6bab52624d43603c58ebd62755c3819daca73f673760fc9d38f58d37e4ec4f2",
+            "address": "0xb5efe55a53b225a9f92e77169c8e411f0935874e0c519a6560d8cf45d4640f27",
+            "ty": "0x2::balance::Balance<0x2::sui::SUI>",
+            "operation": "split",
+            "value": {
+              "integer": 1000
+            }
+          }
+        ],
+        "gasObject": {
+          "owner": {
+            "AddressOwner": "0xb5efe55a53b225a9f92e77169c8e411f0935874e0c519a6560d8cf45d4640f27"
+          },
+          "reference": {
+            "objectId": "0xe3baf1e78b5113754725c18e1544dfeb1f8e49d0a91882f1341bb36a4313bcf9",
+            "version": 800336531,
+            "digest": "FysRXzNPDN1AFSLBMjSkWg9mK134PNhAtYZVBqhvQMoh"
+          }
+        },
+        "dependencies": [
+          "56NVEME1dRD5DgoXYLdUXU5TxVy7kcNtEZqEB2DDbpyr"
+        ]
+      },
+      "balanceChanges": [
+        {
+          "owner": {
+            "AddressOwner": "0x307931549ef581adc40c0660caa253e2951259609d4ceb151df4ce799f9de5aa"
+          },
+          "coinType": "0x2::sui::SUI",
+          "amount": "1000000000000"
+        },
+        {
+          "owner": {
+            "AddressOwner": "0xb5efe55a53b225a9f92e77169c8e411f0935874e0c519a6560d8cf45d4640f27"
+          },
+          "coinType": "0x2::sui::SUI",
+          "amount": "-1000001097880"
+        }
+      ],
+      "timestampMs": "1789383640936",
+      "checkpoint": "322510600"
+    }
+  },
+  "ankrAgrees": true
+}
