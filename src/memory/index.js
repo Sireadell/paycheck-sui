@@ -18,7 +18,7 @@ export function sdkFactoryFromConfig(cfg = loadConfig()) {
 }
 
 // sdkFactory(namespace) returns an object with rememberAndWait, recall, listMemories, restore, destroy.
-export function createMemory({ sdkFactory, retries = 2, retryWaitMs = 2000, writeTimeoutMs = 90000, recallLimit = 20, recallConcurrency = 2, recallRetries = 3, recallRetryWaitMs = 1500 } = {}) {
+export function createMemory({ sdkFactory, retries = 2, retryWaitMs = 2000, writeTimeoutMs = 90000, recallLimit = 100, recallConcurrency = 2, recallRetries = 3, recallRetryWaitMs = 1500 } = {}) {
   const factory = sdkFactory || sdkFactoryFromConfig();
   const clients = new Map();
   const clientFor = (ns) => {

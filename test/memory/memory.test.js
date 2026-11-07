@@ -175,3 +175,16 @@ test('recall: gives up after 3 retries on timeouts, and does not retry other err
   await assert.rejects(mk('relayer 500').recall({ namespace: 'live', address: A }), /500/);
   assert.equal(calls, 1);
 });
+
+test('recall asks for up to 100 memories by default and finds a wallet stored beyond the first 20', async () => {
+  const f = fakeSdk();
+  const asked = [];
+  const inner = f.factory;
+  const factory = (ns) => { const c = inner(ns); const r = c.recall; c.recall = (a) => { asked.push(a.limit); return r(a); }; return c; };
+  const m = createMemory({ sdkFactory: factory });
+  for (let i = 0; i < 30; i++) await m.write({ ...base, address: '0x' + i.toString(16).padStart(64, '0'), body: { i } });
+  const last = '0x' + (29).toString(16).padStart(64, '0');
+  const found = await m.recall({ namespace: 'live', address: last });
+  assert.equal(found.length, 1);
+  assert.equal(asked[0], 100);
+});
