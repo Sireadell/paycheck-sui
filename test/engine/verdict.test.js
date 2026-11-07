@@ -61,10 +61,64 @@ test('a bad group memory does not transfer through a hub-only link', () => {
   assert.equal(v.verdict, 'pay');
 });
 
-test('a hub with its own bad memory still turns red', () => {
-  const v = buildVerdict({ ...base(hubFunder), hubs: { funder: hubInfo }, memories: [badOutcome({ address: F, group: null })] });
+test('a hub with its own bad memory is red for itself, only caution for the wallets it served', () => {
+  const hubBad = badOutcome({ address: F, group: null });
+  const self = buildVerdict({ ...base(), wallet: F, memories: [hubBad] });
+  assert.equal(self.verdict, 'do not pay');
+  assert.equal(self.code, 'OUTCOME_BAD_SELF');
+  const v = buildVerdict({ ...base(hubFunder), hubs: { funder: hubInfo }, memories: [hubBad] });
+  assert.equal(v.verdict, 'caution');
+  assert.equal(v.code, 'HUB_BAD_OUTCOME');
+  assert.deepEqual(v.changedByIds, ['blob-bad-1']);
+  // classifyHub given the bad memory id still counts as a hub here (long span)
+  const v2 = buildVerdict({ ...base(hubFunder), hubs: { funder: { ...hubInfo, verdict: 'link', reason: 'bad_outcome_memory', spanMs: 30 * 3_600_000 } }, memories: [hubBad] });
+  assert.equal(v2.code, 'HUB_BAD_OUTCOME');
+});
+
+test('funder itself reported bad, no siblings found: do not pay (direct fact link)', () => {
+  const a = { firstFunder: { funder: F, isExchange: false, digest: 'dF' }, sharedFunder: { funder: F, groupSize: 0, siblings: [], excluded: null } };
+  const few = { verdict: 'link', reason: 'few_wallets', wallets: 1 };
+  const v = buildVerdict({ ...base(a), hubs: { funder: few }, memories: [badOutcome({ address: F, group: null })] });
   assert.equal(v.verdict, 'do not pay');
-  assert.equal(v.code, 'GROUP_BAD_OUTCOME');
+  assert.equal(v.warnedBy[0].via.type, 'funder_reported');
+  // hub check not run on that funder: warning only
+  const u = buildVerdict({ ...base(a), memories: [badOutcome({ address: F, group: null })] });
+  assert.equal(u.code, 'LINK_NOT_CHECKED');
+});
+
+test('cross-agent: other wallet with same gas sponsor reported bad gives do not pay, cites the report', () => {
+  const a = { gasSponsor: { sponsor: SP, digest: 'dGas', isExchange: false } };
+  const few = { verdict: 'link', reason: 'few_wallets', wallets: 3 };
+  const report = badOutcome({ address: SIB, group: null, body: { outcome: 'went bad', gasSponsor: SP, reporter: 'agent-a' } });
+  const v = buildVerdict({ ...base(a), hubs: { sponsor: few }, memories: [report] });
+  assert.equal(v.verdict, 'do not pay');
+  assert.deepEqual(v.memoryIds, ['blob-bad-1']);
+  assert.equal(v.warnedBy[0].reporter, 'agent-a');
+  assert.equal(v.warnedBy[0].crossAddress, true);
+  assert.equal(v.warnedBy[0].via.type, 'gas_sponsor');
+  assert.equal(v.withoutMemory.verdict, 'pay');
+  assert.equal(v.withoutMemory.label, 'linked, no bad history');
+  assert.ok(v.evidence.find((e) => e.kind === 'link').basis === 'fact');
+  assert.ok(v.evidence.find((e) => e.kind === 'memory').basis === 'report');
+  // same report, sponsor not yet hub-checked: warning only
+  assert.equal(buildVerdict({ ...base(a), memories: [report] }).code, 'LINK_NOT_CHECKED');
+  // a platform sponsor (hub) passes nothing on to its other users
+  const hub = buildVerdict({ ...base(a), hubs: { sponsor: hubInfo }, memories: [report] });
+  assert.equal(hub.verdict, 'pay');
+  assert.equal(hub.evidence.find((e) => e.kind === 'weak_link').basis, 'guess');
+});
+
+test('bad report on this address still stops a payment when on-chain data is missing', () => {
+  const v = buildVerdict({ wallet: W, analysis: null, memories: [badOutcome({ address: W, group: null })] });
+  assert.equal(v.verdict, 'do not pay');
+  assert.match(v.reason, /only memory was used/);
+});
+
+test('round trip to the funder of the funder is shown but not counted', () => {
+  const G = '0x' + 'd4'.repeat(32);
+  const v = buildVerdict({ ...base({ firstFunder: { funder: F, isExchange: false }, roundTrip: { circular: true, matchedFunder: G, digest: 'd' } }), memories: [] });
+  assert.equal(v.verdict, 'pay');
+  assert.equal(v.evidence.find((e) => e.kind === 'round_trip').counted, false);
 });
 
 test('shared gas sponsor alone is a link; a bad memory in its group gives do not pay', () => {
