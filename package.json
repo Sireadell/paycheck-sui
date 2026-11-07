@@ -11,14 +11,19 @@
     "start": "node --env-file-if-exists=.env server.js",
     "test": "node --test \"test/**/*.test.js\"",
     "check": "node --env-file=.env scripts/check.js",
-    "outcome": "node --env-file=.env scripts/outcome.js"
+    "outcome": "node --env-file=.env scripts/outcome.js",
+    "mcp": "node --env-file-if-exists=.env mcp/server.js"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
     "@mysten-incubation/memwal": "^0.1.13",
     "@mysten/seal": "^1.5.4",
     "@mysten/sui": "^2.39.1",
     "@mysten/walrus": "^1.2.39",
     "express": "^5.3.0",
     "zod": "^4.6.7"
+  },
+  "bin": {
+    "paycheck-sui-mcp": "mcp/server.js"
   }
 }
