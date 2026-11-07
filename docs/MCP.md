@@ -38,5 +38,5 @@ The server talks over stdio. It prints nothing else to standard output, so it is
 
 ## Notes
 
-- A check reads the wallet, its first funder and its gas sponsor from Tatum, so a single call makes several Tatum requests. The client limits itself to 3 per second.
-- The verdict is also saved as a memory in the background (15 to 25 seconds), as with the website.
+- A check reads the wallet, its first funder and its gas sponsor from Tatum, so a single call makes several Tatum requests. The client limits itself to 2.5 requests per second (the free Tatum plan allows 3).
+- The verdict is also saved as a memory in the background (a single save took 15 to 25 seconds when we measured it), as with the website.
