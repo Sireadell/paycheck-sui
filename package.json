@@ -1,0 +1,22 @@
+{
+  "name": "paycheck-sui",
+  "version": "0.1.0",
+  "description": "Checks a Sui address before an agent pays it, using shared Walrus Memory and Tatum Sui data.",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node --env-file-if-exists=.env server.js",
+    "test": "node --test \"test/**/*.test.js\""
+  },
+  "dependencies": {
+    "@mysten-incubation/memwal": "^0.1.13",
+    "@mysten/seal": "^1.5.4",
+    "@mysten/sui": "^2.39.1",
+    "@mysten/walrus": "^1.2.39",
+    "express": "^5.3.0",
+    "zod": "^4.6.7"
+  }
+}
