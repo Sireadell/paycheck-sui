@@ -238,7 +238,7 @@ const droppedGroups = groups.length - goodGroups.length;
 const goodControls = cleanControls.filter((c) => c.verified);
 
 const stamp = new Date().toISOString();
-const label = 'real set: real mainnet facts we hand-checked';
+const label = 'real set: real mainnet facts we verified by script against two providers (Tatum and Ankr)';
 goodGroups.forEach((g, i) => { g.id = `rs-${String(i + 1).padStart(2, '0')}`; g.probe = [...g.members].sort((a, b) => Date.parse(a.timestamp) - Date.parse(b.timestamp))[0].address; g.label = label; });
 goodControls.forEach((c, i) => { c.id = `rc-${String(i + 1).padStart(2, '0')}`; c.label = label; });
 

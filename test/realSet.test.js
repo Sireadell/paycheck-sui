@@ -18,7 +18,7 @@ const raw = (digest) => {
 };
 
 test('groups.json: label, 2 or more members each, proof digests, timestamps and a reason', () => {
-  assert.match(groupsFile.label, /real mainnet facts we hand-checked/);
+  assert.match(groupsFile.label, /real mainnet facts we verified by script against two providers/);
   assert.ok(groupsFile.groups.length >= 1);
   const ids = new Set();
   for (const g of groupsFile.groups) {
@@ -41,7 +41,7 @@ test('groups.json: label, 2 or more members each, proof digests, timestamps and 
 });
 
 test('controls.json: label, funder, funding digest and a reason', () => {
-  assert.match(controlsFile.label, /real mainnet facts we hand-checked/);
+  assert.match(controlsFile.label, /real mainnet facts we verified by script against two providers/);
   const seen = new Set();
   for (const c of controlsFile.controls) {
     assert.match(c.address, HEX);

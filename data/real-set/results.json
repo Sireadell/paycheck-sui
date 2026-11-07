@@ -1,7 +1,7 @@
 {
   "ranAt": "2026-11-07T18:19:36.128Z",
   "memory": "off",
-  "label": "real set: real mainnet facts we hand-checked",
+  "label": "real set: real mainnet facts we verified by script against two providers (Tatum and Ankr)",
   "groups": [
     {
       "id": "rs-01",

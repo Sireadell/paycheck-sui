@@ -1,5 +1,5 @@
 {
-  "label": "real set: real mainnet facts we hand-checked",
+  "label": "real set: real mainnet facts we verified by script against two providers (Tatum and Ankr)",
   "meta": {
     "builtAt": "2026-11-07T18:19:22.673Z",
     "rule": {
@@ -80,7 +80,7 @@
       "verifiedAll": true,
       "id": "rs-01",
       "probe": "0x36684098e89e315e57b8be53513a56e595452c7106de0f5c468262ba571a2964",
-      "label": "real set: real mainnet facts we hand-checked"
+      "label": "real set: real mainnet facts we verified by script against two providers (Tatum and Ankr)"
     },
     {
       "type": "shared_funder",
@@ -134,7 +134,7 @@
       "verifiedAll": true,
       "id": "rs-02",
       "probe": "0x61f2a6c029cba9c11617c1dd6c9fbe970e34e1009b5a3e11a9d5aea84b5bcd08",
-      "label": "real set: real mainnet facts we hand-checked"
+      "label": "real set: real mainnet facts we verified by script against two providers (Tatum and Ankr)"
     },
     {
       "type": "gas_sponsor",
@@ -177,7 +177,7 @@
       "verifiedAll": true,
       "id": "rs-03",
       "probe": "0x1c56e4c6a5af92d514a9967c35ffeb6f5f204a03527de71ebf062ae2445efc79",
-      "label": "real set: real mainnet facts we hand-checked"
+      "label": "real set: real mainnet facts we verified by script against two providers (Tatum and Ankr)"
     },
     {
       "type": "gas_sponsor",
@@ -220,7 +220,7 @@
       "verifiedAll": true,
       "id": "rs-04",
       "probe": "0x4a8230ac89abca3ebc41b7792f62dfedb59b2bc8ee0164b9890a4e50a8e15165",
-      "label": "real set: real mainnet facts we hand-checked"
+      "label": "real set: real mainnet facts we verified by script against two providers (Tatum and Ankr)"
     },
     {
       "type": "gas_sponsor",
@@ -299,7 +299,7 @@
       "verifiedAll": true,
       "id": "rs-05",
       "probe": "0x2c17c0636cf91fa404a23d9a14ec9a7eac7f645e2249e834b0ccc7c80a0f0a26",
-      "label": "real set: real mainnet facts we hand-checked"
+      "label": "real set: real mainnet facts we verified by script against two providers (Tatum and Ankr)"
     },
     {
       "type": "shared_funder",
@@ -344,7 +344,7 @@
       "verifiedAll": true,
       "id": "rs-06",
       "probe": "0xa53f5d723990461c700b340c96ce91cba55b6808fb519b4c2f4017ae6f5613fb",
-      "label": "real set: real mainnet facts we hand-checked"
+      "label": "real set: real mainnet facts we verified by script against two providers (Tatum and Ankr)"
     },
     {
       "type": "shared_funder",
@@ -389,7 +389,7 @@
       "verifiedAll": true,
       "id": "rs-07",
       "probe": "0x1f3689e26e8261f878894b3d79ec664d4d267ae9f674a303f3f06c36427c5c34",
-      "label": "real set: real mainnet facts we hand-checked"
+      "label": "real set: real mainnet facts we verified by script against two providers (Tatum and Ankr)"
     },
     {
       "type": "shared_funder",
@@ -434,7 +434,7 @@
       "verifiedAll": true,
       "id": "rs-08",
       "probe": "0x7d4749c0d28b7665168da6be446878fc4d918b066e1b5bf7cf7f90b962024f71",
-      "label": "real set: real mainnet facts we hand-checked"
+      "label": "real set: real mainnet facts we verified by script against two providers (Tatum and Ankr)"
     },
     {
       "type": "gas_sponsor",
@@ -504,7 +504,7 @@
       "verifiedAll": true,
       "id": "rs-09",
       "probe": "0x335401cc7d665c25bc7b15a3cc5caea1a8de8c53f5a294eac7f06b78d72abc99",
-      "label": "real set: real mainnet facts we hand-checked"
+      "label": "real set: real mainnet facts we verified by script against two providers (Tatum and Ankr)"
     },
     {
       "type": "shared_funder",
@@ -558,7 +558,7 @@
       "verifiedAll": true,
       "id": "rs-10",
       "probe": "0x68ae71654976c566c039a2212d24a580067b5c23cab786c1d54e60df53e80c6d",
-      "label": "real set: real mainnet facts we hand-checked"
+      "label": "real set: real mainnet facts we verified by script against two providers (Tatum and Ankr)"
     },
     {
       "type": "gas_sponsor",
@@ -637,7 +637,7 @@
       "verifiedAll": true,
       "id": "rs-11",
       "probe": "0xcb2d094b980ae95fa06db5bfabd638bd59006d20ff7f3662eb9b9e41bf20d8e0",
-      "label": "real set: real mainnet facts we hand-checked"
+      "label": "real set: real mainnet facts we verified by script against two providers (Tatum and Ankr)"
     },
     {
       "type": "shared_funder",
@@ -691,7 +691,7 @@
       "verifiedAll": true,
       "id": "rs-12",
       "probe": "0x307931549ef581adc40c0660caa253e2951259609d4ceb151df4ce799f9de5aa",
-      "label": "real set: real mainnet facts we hand-checked"
+      "label": "real set: real mainnet facts we verified by script against two providers (Tatum and Ankr)"
     },
     {
       "type": "shared_funder",
@@ -745,7 +745,7 @@
       "verifiedAll": true,
       "id": "rs-13",
       "probe": "0xe216d509c0227ccadde8e178116dec830704119934e341c25343a92863a40a76",
-      "label": "real set: real mainnet facts we hand-checked"
+      "label": "real set: real mainnet facts we verified by script against two providers (Tatum and Ankr)"
     },
     {
       "type": "shared_funder",
@@ -826,7 +826,7 @@
       "verifiedAll": true,
       "id": "rs-14",
       "probe": "0x8bbe81c8efaf4b4e700c99ea5e37343b6cd428b453fc72b02a139a6aba07f67e",
-      "label": "real set: real mainnet facts we hand-checked"
+      "label": "real set: real mainnet facts we verified by script against two providers (Tatum and Ankr)"
     },
     {
       "type": "gas_sponsor",
@@ -905,7 +905,7 @@
       "verifiedAll": true,
       "id": "rs-15",
       "probe": "0xc96a0eeb20448fc94eacfc87183b40b2e0a480b14c77d09ce9887b74871e0515",
-      "label": "real set: real mainnet facts we hand-checked"
+      "label": "real set: real mainnet facts we verified by script against two providers (Tatum and Ankr)"
     },
     {
       "type": "shared_funder",
@@ -950,7 +950,7 @@
       "verifiedAll": true,
       "id": "rs-16",
       "probe": "0x7e833ef3adf7a8a39ceb46d517e5b1083a614a3f14cecaa70be1512e1864904e",
-      "label": "real set: real mainnet facts we hand-checked"
+      "label": "real set: real mainnet facts we verified by script against two providers (Tatum and Ankr)"
     },
     {
       "type": "gas_sponsor",
@@ -1011,7 +1011,7 @@
       "verifiedAll": true,
       "id": "rs-17",
       "probe": "0x5f63e174cf7777781df837a450773c308d5b1d02b6e27a95bbfa70be62cfe20f",
-      "label": "real set: real mainnet facts we hand-checked"
+      "label": "real set: real mainnet facts we verified by script against two providers (Tatum and Ankr)"
     },
     {
       "type": "shared_funder",
@@ -1056,7 +1056,7 @@
       "verifiedAll": true,
       "id": "rs-18",
       "probe": "0xb61db63f9c6a6e2a81b8345ffe0c7eb63d6bec6564e29304159b3fcd31743f4a",
-      "label": "real set: real mainnet facts we hand-checked"
+      "label": "real set: real mainnet facts we verified by script against two providers (Tatum and Ankr)"
     },
     {
       "type": "shared_funder",
@@ -1110,7 +1110,7 @@
       "verifiedAll": true,
       "id": "rs-19",
       "probe": "0x17660b79ab313a1e69a55b5a98e3a978e4bfe3c385ed95a22d8d6056d58f9855",
-      "label": "real set: real mainnet facts we hand-checked"
+      "label": "real set: real mainnet facts we verified by script against two providers (Tatum and Ankr)"
     },
     {
       "type": "gas_sponsor",
@@ -1189,7 +1189,7 @@
       "verifiedAll": true,
       "id": "rs-20",
       "probe": "0x921d5fbaa5e0c2975b57b504373f1c70af0e22c44c6d48cd29a87fd96cf0a22f",
-      "label": "real set: real mainnet facts we hand-checked"
+      "label": "real set: real mainnet facts we verified by script against two providers (Tatum and Ankr)"
     }
   ],
   "sharedServices": [
