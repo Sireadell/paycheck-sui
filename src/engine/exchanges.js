@@ -44,3 +44,25 @@ export function analyzeFanOut(payouts) {
     looksLikeExchange: recipients.size >= FAN_OUT_THRESHOLD && spanMs >= MIN_FAN_OUT_SPAN_MS,
   };
 }
+
+/**
+ * Hub rule. A funder or gas sponsor that touched many distinct wallets over a
+ * long time is a shared service (weak link). A fast burst of the same size
+ * stays a link, and a hub with a bad-outcome memory stays a link.
+ * @param {{wallet: string, timestampMs: number}[]} touches wallets the funder paid or sponsored
+ * @param {{capped?: boolean, badMemoryId?: string}} [opts] capped: the list came from a capped page
+ */
+export function classifyHub(touches, opts = {}) {
+  const wallets = new Set((touches ?? []).map((t) => norm(t.wallet)).filter(Boolean));
+  const ts = (touches ?? []).map((t) => t.timestampMs).filter(Number.isFinite);
+  const spanMs = ts.length >= 2 ? Math.max(...ts) - Math.min(...ts) : 0;
+  const hours = Math.floor(spanMs / 3_600_000);
+  const atLeast = Boolean(opts.capped);
+  const count = wallets.size;
+  const countText = `${atLeast ? 'at least ' : ''}${count}`;
+  const base = { wallets: count, atLeast, spanMs, hours, countText };
+  if (count < FAN_OUT_THRESHOLD) return { ...base, verdict: 'link', reason: 'few_wallets' };
+  if (opts.badMemoryId) return { ...base, verdict: 'link', reason: 'bad_outcome_memory', memoryId: opts.badMemoryId };
+  if (spanMs < MIN_FAN_OUT_SPAN_MS) return { ...base, verdict: 'link', reason: 'burst' };
+  return { ...base, verdict: 'shared service, weak link', reason: 'hub' };
+}

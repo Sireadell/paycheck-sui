@@ -2,6 +2,10 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { analyze, groupByGasSponsor, firstFunder, sharedFunder } from '../../src/engine/index.js';
 import { amountsMatch } from '../../src/engine/timing.js';
+import { classifyHub } from '../../src/engine/exchanges.js';
+import { sponsoredSenders } from '../../src/engine/gasSponsor.js';
+import { funderTouches } from '../../src/engine/sharedFunder.js';
+import { readFileSync } from 'node:fs';
 
 // Offline fixtures: addresses and transfer lists are hand-built in the shape
 // the reader returns. Not real chain data; recorded answers can be swapped in
@@ -80,4 +84,39 @@ test('correlated funding by different funders within 10 minutes', () => {
   ];
   assert.equal(analyze(A, { incoming: incomingA, otherFundings: others }).timing.count, 1);
   assert.equal(amountsMatch(0, 5), true);
+});
+
+// Hub rule tests. The wallet lists below are hand-built, not real chain data.
+const HOUR = 3_600_000;
+const wallets = (n, spanMs) => Array.from({ length: n }, (_, i) => ({ wallet: '0x' + String(i + 1).padStart(64, '0'), timestampMs: T0 + (i * spanMs) / Math.max(n - 1, 1) }));
+
+test('hub: 16 hand-built wallets over 30 h is a shared service', () => {
+  const r = classifyHub(wallets(16, 30 * HOUR));
+  assert.equal(r.verdict, 'shared service, weak link');
+  console.log(`hub: ${r.verdict} (${r.wallets} wallets, ${r.hours} h)`);
+});
+
+test('burst: 16 hand-built wallets in 2 h stays a link; bad memory stays a link; capped says at least', () => {
+  assert.equal(classifyHub(wallets(16, 2 * HOUR)).verdict, 'link');
+  assert.equal(classifyHub(wallets(16, 30 * HOUR), { badMemoryId: 'mem-1' }).verdict, 'link');
+  assert.equal(classifyHub(wallets(16, 30 * HOUR), { capped: true }).countText, 'at least 16');
+});
+
+test('5 hand-built wallets over 40 h stays a link; gas sponsor counts distinct senders', () => {
+  assert.equal(classifyHub(wallets(5, 40 * HOUR)).verdict, 'link');
+  const txs = wallets(16, 30 * HOUR).flatMap((w) => [{ sender: w.wallet, gasSponsor: SP, timestampMs: w.timestampMs }, { sender: w.wallet, gasSponsor: SP, timestampMs: w.timestampMs + 1 }]);
+  const r = classifyHub(sponsoredSenders(SP, txs));
+  assert.equal(r.wallets, 16);
+  assert.equal(r.verdict, 'shared service, weak link');
+});
+
+test('recorded real funder 0x357b...14e3 (1 wallet) is a link', () => {
+  const F357 = '0x357b6591a9451944e6099fc669123e229e89a5a65a82c3f2fd4efdc56ae314e3';
+  const rec = JSON.parse(readFileSync(new URL('../recorded/listTransactions.json', import.meta.url), 'utf8'));
+  const payoutList = rec.response.data.transactions.nodes
+    .filter((n) => n.sender?.address === F357)
+    .flatMap((n) => n.effects.balanceChanges.nodes.filter((b) => b.owner?.address !== F357 && BigInt(b.amount) > 0n).map((b) => ({ recipient: b.owner.address, timestampMs: Date.parse(n.effects.timestamp) })));
+  const r = classifyHub(funderTouches(payoutList));
+  assert.ok(r.wallets <= 1, `wallets ${r.wallets}`);
+  assert.equal(r.verdict, 'link');
 });

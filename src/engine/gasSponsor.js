@@ -37,3 +37,14 @@ export function groupByGasSponsor(wallets, opts = {}) {
   }
   return [...map].filter(([, s]) => s.size >= 2).map(([sponsor, s]) => ({ sponsor, wallets: [...s] }));
 }
+
+/**
+ * Distinct senders a gas sponsor paid for, as touches for classifyHub.
+ * `sponsoredTxs` is {sender, gasSponsor, timestampMs}[]; own-paid gas is skipped.
+ */
+export function sponsoredSenders(sponsor, sponsoredTxs) {
+  const s = sponsor.toLowerCase();
+  return sponsoredTxs
+    .filter((t) => t.gasSponsor?.toLowerCase() === s && t.sender && t.sender.toLowerCase() !== s)
+    .map((t) => ({ wallet: t.sender, timestampMs: t.timestampMs }));
+}

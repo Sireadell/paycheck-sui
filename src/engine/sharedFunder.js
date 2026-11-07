@@ -28,3 +28,8 @@ export function sharedFunder(wallet, first, funderPayouts, opts = {}) {
     .map(([address, p]) => ({ address, digest: p.digest, timestampMs: p.timestampMs }));
   return { funder: first.funder, groupSize: siblings.length ? siblings.length + 1 : 0, siblings, excluded: null, fanOut };
 }
+
+/** A funder's payouts as touches for classifyHub (one entry per payout). */
+export function funderTouches(funderPayouts) {
+  return funderPayouts.map((p) => ({ wallet: p.recipient, timestampMs: p.timestampMs }));
+}
