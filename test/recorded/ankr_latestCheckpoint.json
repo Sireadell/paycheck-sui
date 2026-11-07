@@ -1,0 +1,17 @@
+{
+ "response": {
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": {
+   "data": [
+    {
+     "digest": "2uZ3nBDH8Jsrn8hWtAkHx89vBDHZEGcuzTYKUsWPo1Z1",
+     "timestampMs": "1794059359221",
+     "checkpoint": "342658743"
+    }
+   ],
+   "nextCursor": "NjUwMjkwOTkwOA==",
+   "hasNextPage": true
+  }
+ }
+}
