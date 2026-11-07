@@ -120,3 +120,40 @@ function normalize(t) {
     })),
   };
 }
+
+export const PAGE_SIZE = 50;
+export const MAX_TX_LIMIT = 200;
+
+/** Clamp a read depth to 50..200 (a whole number of pages of 50). Anything else falls back to 50. */
+export function clampMaxTx(n) {
+  const v = Number(n);
+  if (!Number.isFinite(v) || v < PAGE_SIZE) return PAGE_SIZE;
+  return Math.min(Math.ceil(v / PAGE_SIZE) * PAGE_SIZE, MAX_TX_LIMIT);
+}
+
+/**
+ * Oldest first, up to maxTx transactions (50 to 200), paged through client.listTransactions with the same
+ * afterCheckpoint every time. maxTx 50 is exactly one call, as before. At most ceil(maxTx / 50) calls, so one read
+ * can never run past 4 calls. hasNextPage stays true when more history exists beyond what was read.
+ */
+export async function listHistory(client, address, { maxTx = PAGE_SIZE, afterCheckpoint } = {}) {
+  const limit = clampMaxTx(maxTx);
+  const opt = afterCheckpoint === undefined ? {} : { afterCheckpoint };
+  let page = await client.listTransactions(address, { first: PAGE_SIZE, ...opt });
+  const transactions = [...page.transactions];
+  let calls = 1;
+  while (page.hasNextPage && page.cursor && transactions.length < limit && calls < limit / PAGE_SIZE) {
+    page = await client.listTransactions(address, { first: PAGE_SIZE, cursor: page.cursor, ...opt });
+    calls++;
+    transactions.push(...page.transactions);
+  }
+  const kept = transactions.slice(0, limit);
+  const more = page.hasNextPage || transactions.length > limit;
+  return {
+    ...page,
+    transactions: kept,
+    hasNextPage: more,
+    oldestCheckpoint: kept.length ? Math.min(...kept.map((t) => t.checkpoint)) : null,
+    pagesRead: calls,
+  };
+}

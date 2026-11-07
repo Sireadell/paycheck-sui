@@ -1,0 +1,3088 @@
+{
+  "ranAt": "2026-11-07T19:24:10.276Z",
+  "maxTx": 200,
+  "memory": "off",
+  "label": "real set: real mainnet facts we verified by script against two providers (Tatum and Ankr)",
+  "groups": [
+    {
+      "id": "rs-01",
+      "type": "shared_funder",
+      "linkAddress": "0x2500020428c933ae7610362753bad2a85eaf4bd8e93a160ab18c7821c5ccf0e7",
+      "probe": "0x36684098e89e315e57b8be53513a56e595452c7106de0f5c468262ba571a2964",
+      "caught": true,
+      "membersCaught": 2,
+      "members": 2,
+      "probeResult": {
+        "address": "0x36684098e89e315e57b8be53513a56e595452c7106de0f5c468262ba571a2964",
+        "verdict": "pay",
+        "code": "LINKED_NO_BAD_HISTORY",
+        "label": "linked, no bad history",
+        "links": [
+          {
+            "type": "shared_funder",
+            "address": "0x2500020428c933ae7610362753bad2a85eaf4bd8e93a160ab18c7821c5ccf0e7",
+            "wallets": 3
+          }
+        ],
+        "weakLinks": [
+          {
+            "type": "gas_sponsor",
+            "address": "0x1f6cd55584e6d0c19ae34bfc48b1bd9b1b8a166987e34052cfea7f3c795c6d76",
+            "note": "shared service, weak link (at least 114 wallets, 67 h)"
+          }
+        ],
+        "roundTrip": false,
+        "notes": [],
+        "tatumCalls": 7
+      },
+      "memberResults": [
+        {
+          "address": "0x36684098e89e315e57b8be53513a56e595452c7106de0f5c468262ba571a2964",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0x2500020428c933ae7610362753bad2a85eaf4bd8e93a160ab18c7821c5ccf0e7",
+              "wallets": 3
+            }
+          ],
+          "weakLinks": [
+            {
+              "type": "gas_sponsor",
+              "address": "0x1f6cd55584e6d0c19ae34bfc48b1bd9b1b8a166987e34052cfea7f3c795c6d76",
+              "note": "shared service, weak link (at least 114 wallets, 67 h)"
+            }
+          ],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 7
+        },
+        {
+          "address": "0x5bd845a51b45a554e0a77c9f0c002fbf1b4f9b752a6e45e42ea7f0594e91639e",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0x2500020428c933ae7610362753bad2a85eaf4bd8e93a160ab18c7821c5ccf0e7",
+              "wallets": 3
+            }
+          ],
+          "weakLinks": [
+            {
+              "type": "gas_sponsor",
+              "address": "0x1f6cd55584e6d0c19ae34bfc48b1bd9b1b8a166987e34052cfea7f3c795c6d76",
+              "note": "shared service, weak link (at least 114 wallets, 67 h)"
+            }
+          ],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 7
+        }
+      ]
+    },
+    {
+      "id": "rs-02",
+      "type": "shared_funder",
+      "linkAddress": "0x749b5fa18ffa6376bec07fa5ede8df90d8937285086e76fc7f5aa64449e22619",
+      "probe": "0x61f2a6c029cba9c11617c1dd6c9fbe970e34e1009b5a3e11a9d5aea84b5bcd08",
+      "caught": true,
+      "membersCaught": 3,
+      "members": 3,
+      "probeResult": {
+        "address": "0x61f2a6c029cba9c11617c1dd6c9fbe970e34e1009b5a3e11a9d5aea84b5bcd08",
+        "verdict": "pay",
+        "code": "LINKED_NO_BAD_HISTORY",
+        "label": "linked, no bad history",
+        "links": [
+          {
+            "type": "shared_funder",
+            "address": "0x749b5fa18ffa6376bec07fa5ede8df90d8937285086e76fc7f5aa64449e22619",
+            "wallets": 4
+          }
+        ],
+        "weakLinks": [],
+        "roundTrip": false,
+        "notes": [],
+        "tatumCalls": 3
+      },
+      "memberResults": [
+        {
+          "address": "0x61f2a6c029cba9c11617c1dd6c9fbe970e34e1009b5a3e11a9d5aea84b5bcd08",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0x749b5fa18ffa6376bec07fa5ede8df90d8937285086e76fc7f5aa64449e22619",
+              "wallets": 4
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 3
+        },
+        {
+          "address": "0x8d6a92f0e479a4ece6c714f2086a219a9383067d6c44864f903a6ae459a1adf0",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0x749b5fa18ffa6376bec07fa5ede8df90d8937285086e76fc7f5aa64449e22619",
+              "wallets": 4
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 3
+        },
+        {
+          "address": "0xa2ab4e95e5dc916e11464d1c4ff3d7f002914cbe6edb7c2f8e3a1c126447d229",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0x749b5fa18ffa6376bec07fa5ede8df90d8937285086e76fc7f5aa64449e22619",
+              "wallets": 4
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 3
+        }
+      ]
+    },
+    {
+      "id": "rs-03",
+      "type": "gas_sponsor",
+      "linkAddress": "0xd9179e689a530294f6cd0d65b4f243ffdba402dcf04eb3ad722c9f88af18c9a3",
+      "probe": "0x1c56e4c6a5af92d514a9967c35ffeb6f5f204a03527de71ebf062ae2445efc79",
+      "caught": true,
+      "membersCaught": 2,
+      "members": 2,
+      "probeResult": {
+        "address": "0x1c56e4c6a5af92d514a9967c35ffeb6f5f204a03527de71ebf062ae2445efc79",
+        "verdict": "pay",
+        "code": "LINKED_NO_BAD_HISTORY",
+        "label": "linked, no bad history",
+        "links": [
+          {
+            "type": "gas_sponsor",
+            "address": "0xd9179e689a530294f6cd0d65b4f243ffdba402dcf04eb3ad722c9f88af18c9a3",
+            "wallets": null
+          }
+        ],
+        "weakLinks": [],
+        "roundTrip": false,
+        "notes": [],
+        "tatumCalls": 3
+      },
+      "memberResults": [
+        {
+          "address": "0x1c56e4c6a5af92d514a9967c35ffeb6f5f204a03527de71ebf062ae2445efc79",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "gas_sponsor",
+              "address": "0xd9179e689a530294f6cd0d65b4f243ffdba402dcf04eb3ad722c9f88af18c9a3",
+              "wallets": null
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 3
+        },
+        {
+          "address": "0xf50c2c67dd2255803066f61137395a07a14d0a9a02a52cf275ce8635845d68a0",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "gas_sponsor",
+              "address": "0xd9179e689a530294f6cd0d65b4f243ffdba402dcf04eb3ad722c9f88af18c9a3",
+              "wallets": null
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 3
+        }
+      ]
+    },
+    {
+      "id": "rs-04",
+      "type": "gas_sponsor",
+      "linkAddress": "0x6415ec433b2ba10fd605a89101d631eb29246f8f6c23db9003a3e92572b4b2f8",
+      "probe": "0x4a8230ac89abca3ebc41b7792f62dfedb59b2bc8ee0164b9890a4e50a8e15165",
+      "caught": true,
+      "membersCaught": 2,
+      "members": 2,
+      "probeResult": {
+        "address": "0x4a8230ac89abca3ebc41b7792f62dfedb59b2bc8ee0164b9890a4e50a8e15165",
+        "verdict": "pay",
+        "code": "LINKED_NO_BAD_HISTORY",
+        "label": "linked, no bad history",
+        "links": [
+          {
+            "type": "gas_sponsor",
+            "address": "0x6415ec433b2ba10fd605a89101d631eb29246f8f6c23db9003a3e92572b4b2f8",
+            "wallets": null
+          }
+        ],
+        "weakLinks": [
+          {
+            "type": "funder",
+            "address": "0x3c13aed283cf598655f9ec9fe4d635fe0c388d421ef490766742f749616b9eac",
+            "note": "shared service, weak link (at least 59 wallets, 458 h)"
+          }
+        ],
+        "roundTrip": false,
+        "notes": [],
+        "tatumCalls": 7
+      },
+      "memberResults": [
+        {
+          "address": "0x4a8230ac89abca3ebc41b7792f62dfedb59b2bc8ee0164b9890a4e50a8e15165",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "gas_sponsor",
+              "address": "0x6415ec433b2ba10fd605a89101d631eb29246f8f6c23db9003a3e92572b4b2f8",
+              "wallets": null
+            }
+          ],
+          "weakLinks": [
+            {
+              "type": "funder",
+              "address": "0x3c13aed283cf598655f9ec9fe4d635fe0c388d421ef490766742f749616b9eac",
+              "note": "shared service, weak link (at least 59 wallets, 458 h)"
+            }
+          ],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 7
+        },
+        {
+          "address": "0x53376ae44cab6954251ffed887db358555e9ecf8a1eede1eb0f6e7f4aa7fb728",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "gas_sponsor",
+              "address": "0x6415ec433b2ba10fd605a89101d631eb29246f8f6c23db9003a3e92572b4b2f8",
+              "wallets": null
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 7
+        }
+      ]
+    },
+    {
+      "id": "rs-05",
+      "type": "gas_sponsor",
+      "linkAddress": "0x3b87194850cb9d665f0ea94e97a0eb0cff3e4a564961d30704b8da5e3157397a",
+      "probe": "0x2c17c0636cf91fa404a23d9a14ec9a7eac7f645e2249e834b0ccc7c80a0f0a26",
+      "caught": true,
+      "membersCaught": 5,
+      "members": 6,
+      "probeResult": {
+        "address": "0x2c17c0636cf91fa404a23d9a14ec9a7eac7f645e2249e834b0ccc7c80a0f0a26",
+        "verdict": "pay",
+        "code": "LINKED_NO_BAD_HISTORY",
+        "label": "linked, no bad history",
+        "links": [
+          {
+            "type": "gas_sponsor",
+            "address": "0x3b87194850cb9d665f0ea94e97a0eb0cff3e4a564961d30704b8da5e3157397a",
+            "wallets": null
+          }
+        ],
+        "weakLinks": [],
+        "roundTrip": false,
+        "notes": [],
+        "tatumCalls": 13
+      },
+      "memberResults": [
+        {
+          "address": "0x2c17c0636cf91fa404a23d9a14ec9a7eac7f645e2249e834b0ccc7c80a0f0a26",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "gas_sponsor",
+              "address": "0x3b87194850cb9d665f0ea94e97a0eb0cff3e4a564961d30704b8da5e3157397a",
+              "wallets": null
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 13
+        },
+        {
+          "address": "0xedff7181951f4006db32c415c15ff4e07bba6506a5881d0d0fc3d7e38abbafb5",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "gas_sponsor",
+              "address": "0x3b87194850cb9d665f0ea94e97a0eb0cff3e4a564961d30704b8da5e3157397a",
+              "wallets": null
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 6
+        },
+        {
+          "address": "0xb4d801680ccd3d7e8bf730603bad0c527fc2696603a39b7e87c71d9bf70d4273",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "gas_sponsor",
+              "address": "0x398c9ddc30f51daa51a26be17366adaec31da0624ba2728a4530daa18af8e70b",
+              "wallets": null
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 6
+        },
+        {
+          "address": "0x991c766e9bf29f4e367d97aa0a7041b19cd216d02caae412492e5e8d6cb526f7",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "gas_sponsor",
+              "address": "0x3b87194850cb9d665f0ea94e97a0eb0cff3e4a564961d30704b8da5e3157397a",
+              "wallets": null
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 6
+        },
+        {
+          "address": "0x9c0f30e2353523ecac133cff426a9345b71e5164da053b25946f389a92f978a0",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "gas_sponsor",
+              "address": "0x3b87194850cb9d665f0ea94e97a0eb0cff3e4a564961d30704b8da5e3157397a",
+              "wallets": null
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 6
+        },
+        {
+          "address": "0x167c3ab31f1bee7ce8a7e0e04b659fc023bd0206019827bd8d373dd11501165b",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "gas_sponsor",
+              "address": "0x3b87194850cb9d665f0ea94e97a0eb0cff3e4a564961d30704b8da5e3157397a",
+              "wallets": null
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 6
+        }
+      ]
+    },
+    {
+      "id": "rs-06",
+      "type": "shared_funder",
+      "linkAddress": "0x2328712dc3e12f492cfeaafafc391ed4c61210b4454c164167446383d0e6febe",
+      "probe": "0xa53f5d723990461c700b340c96ce91cba55b6808fb519b4c2f4017ae6f5613fb",
+      "caught": true,
+      "membersCaught": 2,
+      "members": 2,
+      "probeResult": {
+        "address": "0xa53f5d723990461c700b340c96ce91cba55b6808fb519b4c2f4017ae6f5613fb",
+        "verdict": "caution",
+        "code": "ROUND_TRIP_TO_FUNDER",
+        "label": "caution",
+        "links": [
+          {
+            "type": "shared_funder",
+            "address": "0x2328712dc3e12f492cfeaafafc391ed4c61210b4454c164167446383d0e6febe",
+            "wallets": 5
+          }
+        ],
+        "weakLinks": [],
+        "roundTrip": true,
+        "notes": [],
+        "tatumCalls": 3
+      },
+      "memberResults": [
+        {
+          "address": "0xa53f5d723990461c700b340c96ce91cba55b6808fb519b4c2f4017ae6f5613fb",
+          "verdict": "caution",
+          "code": "ROUND_TRIP_TO_FUNDER",
+          "label": "caution",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0x2328712dc3e12f492cfeaafafc391ed4c61210b4454c164167446383d0e6febe",
+              "wallets": 5
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": true,
+          "notes": [],
+          "tatumCalls": 3
+        },
+        {
+          "address": "0x5d0743c6d20f9b5d7798e46b5e83bd1c2ab09108d3152b646a120f8f047d0cea",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0x2328712dc3e12f492cfeaafafc391ed4c61210b4454c164167446383d0e6febe",
+              "wallets": 5
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 3
+        }
+      ]
+    },
+    {
+      "id": "rs-07",
+      "type": "shared_funder",
+      "linkAddress": "0xd9a080ec4fffd0c9d362c275be2620e85aa2b44cd6a690c23d46f125952c7382",
+      "probe": "0x1f3689e26e8261f878894b3d79ec664d4d267ae9f674a303f3f06c36427c5c34",
+      "caught": true,
+      "membersCaught": 2,
+      "members": 2,
+      "probeResult": {
+        "address": "0x1f3689e26e8261f878894b3d79ec664d4d267ae9f674a303f3f06c36427c5c34",
+        "verdict": "caution",
+        "code": "ROUND_TRIP_TO_FUNDER",
+        "label": "caution",
+        "links": [
+          {
+            "type": "shared_funder",
+            "address": "0xd9a080ec4fffd0c9d362c275be2620e85aa2b44cd6a690c23d46f125952c7382",
+            "wallets": 5
+          }
+        ],
+        "weakLinks": [],
+        "roundTrip": true,
+        "notes": [],
+        "tatumCalls": 4
+      },
+      "memberResults": [
+        {
+          "address": "0x1f3689e26e8261f878894b3d79ec664d4d267ae9f674a303f3f06c36427c5c34",
+          "verdict": "caution",
+          "code": "ROUND_TRIP_TO_FUNDER",
+          "label": "caution",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0xd9a080ec4fffd0c9d362c275be2620e85aa2b44cd6a690c23d46f125952c7382",
+              "wallets": 5
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": true,
+          "notes": [],
+          "tatumCalls": 4
+        },
+        {
+          "address": "0xbd39abb7260439f498daa70c3c9000c6cd0b0a2f338494469a7d413f2c218277",
+          "verdict": "caution",
+          "code": "ROUND_TRIP_TO_FUNDER",
+          "label": "caution",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0xd9a080ec4fffd0c9d362c275be2620e85aa2b44cd6a690c23d46f125952c7382",
+              "wallets": 5
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": true,
+          "notes": [],
+          "tatumCalls": 4
+        }
+      ]
+    },
+    {
+      "id": "rs-08",
+      "type": "shared_funder",
+      "linkAddress": "0xbac27160e8cd0829807f8fb6762df9e30801f18e0ddd3c41b16b63af6a5d7d77",
+      "probe": "0x7d4749c0d28b7665168da6be446878fc4d918b066e1b5bf7cf7f90b962024f71",
+      "caught": true,
+      "membersCaught": 2,
+      "members": 2,
+      "probeResult": {
+        "address": "0x7d4749c0d28b7665168da6be446878fc4d918b066e1b5bf7cf7f90b962024f71",
+        "verdict": "pay",
+        "code": "LINKED_NO_BAD_HISTORY",
+        "label": "linked, no bad history",
+        "links": [
+          {
+            "type": "shared_funder",
+            "address": "0xbac27160e8cd0829807f8fb6762df9e30801f18e0ddd3c41b16b63af6a5d7d77",
+            "wallets": 2
+          }
+        ],
+        "weakLinks": [],
+        "roundTrip": false,
+        "notes": [],
+        "tatumCalls": 3
+      },
+      "memberResults": [
+        {
+          "address": "0x7d4749c0d28b7665168da6be446878fc4d918b066e1b5bf7cf7f90b962024f71",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0xbac27160e8cd0829807f8fb6762df9e30801f18e0ddd3c41b16b63af6a5d7d77",
+              "wallets": 2
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 3
+        },
+        {
+          "address": "0x5bb54f8b08c8fae84ece08a9562b73c6e9f5c2a9043370e8471d4d0b2e96cef3",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0xbac27160e8cd0829807f8fb6762df9e30801f18e0ddd3c41b16b63af6a5d7d77",
+              "wallets": 2
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 3
+        }
+      ]
+    },
+    {
+      "id": "rs-09",
+      "type": "gas_sponsor",
+      "linkAddress": "0x9ee9d7d4de4e0e3b01b2a4e69679fd674d62843f1e6bc056498f569e8b12e3f5",
+      "probe": "0x335401cc7d665c25bc7b15a3cc5caea1a8de8c53f5a294eac7f06b78d72abc99",
+      "caught": true,
+      "membersCaught": 5,
+      "members": 5,
+      "probeResult": {
+        "address": "0x335401cc7d665c25bc7b15a3cc5caea1a8de8c53f5a294eac7f06b78d72abc99",
+        "verdict": "pay",
+        "code": "LINKED_NO_BAD_HISTORY",
+        "label": "linked, no bad history",
+        "links": [
+          {
+            "type": "gas_sponsor",
+            "address": "0x9ee9d7d4de4e0e3b01b2a4e69679fd674d62843f1e6bc056498f569e8b12e3f5",
+            "wallets": null
+          }
+        ],
+        "weakLinks": [],
+        "roundTrip": false,
+        "notes": [],
+        "tatumCalls": 4
+      },
+      "memberResults": [
+        {
+          "address": "0x335401cc7d665c25bc7b15a3cc5caea1a8de8c53f5a294eac7f06b78d72abc99",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "gas_sponsor",
+              "address": "0x9ee9d7d4de4e0e3b01b2a4e69679fd674d62843f1e6bc056498f569e8b12e3f5",
+              "wallets": null
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 4
+        },
+        {
+          "address": "0xfc69b005af9152cd881ba6eacd899fe0c1b920cf87b51ccbb267b183da946c0a",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "gas_sponsor",
+              "address": "0x9ee9d7d4de4e0e3b01b2a4e69679fd674d62843f1e6bc056498f569e8b12e3f5",
+              "wallets": null
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 4
+        },
+        {
+          "address": "0x141b7182aa323b60d78d4a2cda3b546facb3047f70ed8dc3928b097da0fa5177",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "gas_sponsor",
+              "address": "0x9ee9d7d4de4e0e3b01b2a4e69679fd674d62843f1e6bc056498f569e8b12e3f5",
+              "wallets": null
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 4
+        },
+        {
+          "address": "0xce51f5d7396a85659d8850f55c701e0b6682024f8e10beccbde64785e52d434e",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "gas_sponsor",
+              "address": "0x9ee9d7d4de4e0e3b01b2a4e69679fd674d62843f1e6bc056498f569e8b12e3f5",
+              "wallets": null
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 4
+        },
+        {
+          "address": "0x18f3b1000b28307b633a88bfdbbf97edb4dfa578d118568ac1ac34e4220011ee",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "gas_sponsor",
+              "address": "0x9ee9d7d4de4e0e3b01b2a4e69679fd674d62843f1e6bc056498f569e8b12e3f5",
+              "wallets": null
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 4
+        }
+      ]
+    },
+    {
+      "id": "rs-10",
+      "type": "shared_funder",
+      "linkAddress": "0xf069396c46e017d321e6f50f9a0502ed65084b465e126a7245b50a1bce358811",
+      "probe": "0x68ae71654976c566c039a2212d24a580067b5c23cab786c1d54e60df53e80c6d",
+      "caught": true,
+      "membersCaught": 3,
+      "members": 3,
+      "probeResult": {
+        "address": "0x68ae71654976c566c039a2212d24a580067b5c23cab786c1d54e60df53e80c6d",
+        "verdict": "caution",
+        "code": "ROUND_TRIP_TO_FUNDER",
+        "label": "caution",
+        "links": [
+          {
+            "type": "shared_funder",
+            "address": "0xf069396c46e017d321e6f50f9a0502ed65084b465e126a7245b50a1bce358811",
+            "wallets": 4
+          }
+        ],
+        "weakLinks": [],
+        "roundTrip": true,
+        "notes": [],
+        "tatumCalls": 3
+      },
+      "memberResults": [
+        {
+          "address": "0x68ae71654976c566c039a2212d24a580067b5c23cab786c1d54e60df53e80c6d",
+          "verdict": "caution",
+          "code": "ROUND_TRIP_TO_FUNDER",
+          "label": "caution",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0xf069396c46e017d321e6f50f9a0502ed65084b465e126a7245b50a1bce358811",
+              "wallets": 4
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": true,
+          "notes": [],
+          "tatumCalls": 3
+        },
+        {
+          "address": "0x0f5bcbd58c302ef4695b79dc35d2c319e18e55fcdc5e19f5ba6c3febc9c10c6c",
+          "verdict": "caution",
+          "code": "ROUND_TRIP_TO_FUNDER",
+          "label": "caution",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0xf069396c46e017d321e6f50f9a0502ed65084b465e126a7245b50a1bce358811",
+              "wallets": 4
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": true,
+          "notes": [],
+          "tatumCalls": 3
+        },
+        {
+          "address": "0x27d3f6bb8c9b8421548cc49dbba1e7af978842f96ecc98bae78205020a9496ed",
+          "verdict": "caution",
+          "code": "ROUND_TRIP_TO_FUNDER",
+          "label": "caution",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0xf069396c46e017d321e6f50f9a0502ed65084b465e126a7245b50a1bce358811",
+              "wallets": 4
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": true,
+          "notes": [],
+          "tatumCalls": 3
+        }
+      ]
+    },
+    {
+      "id": "rs-11",
+      "type": "gas_sponsor",
+      "linkAddress": "0x61b1b7f667c06d1ccfe5e404a1e705d4d0da457040c279e7c2a23bb39b9d1e05",
+      "probe": "0xcb2d094b980ae95fa06db5bfabd638bd59006d20ff7f3662eb9b9e41bf20d8e0",
+      "caught": true,
+      "membersCaught": 6,
+      "members": 6,
+      "probeResult": {
+        "address": "0xcb2d094b980ae95fa06db5bfabd638bd59006d20ff7f3662eb9b9e41bf20d8e0",
+        "verdict": "pay",
+        "code": "LINKED_NO_BAD_HISTORY",
+        "label": "linked, no bad history",
+        "links": [
+          {
+            "type": "gas_sponsor",
+            "address": "0x61b1b7f667c06d1ccfe5e404a1e705d4d0da457040c279e7c2a23bb39b9d1e05",
+            "wallets": null
+          }
+        ],
+        "weakLinks": [],
+        "roundTrip": false,
+        "notes": [],
+        "tatumCalls": 7
+      },
+      "memberResults": [
+        {
+          "address": "0xcb2d094b980ae95fa06db5bfabd638bd59006d20ff7f3662eb9b9e41bf20d8e0",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "gas_sponsor",
+              "address": "0x61b1b7f667c06d1ccfe5e404a1e705d4d0da457040c279e7c2a23bb39b9d1e05",
+              "wallets": null
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 7
+        },
+        {
+          "address": "0x3f032b3392f5e264c69b0092dcd70e28bcf80002e294ca7dd2fe9c8f5d0980ed",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "gas_sponsor",
+              "address": "0x61b1b7f667c06d1ccfe5e404a1e705d4d0da457040c279e7c2a23bb39b9d1e05",
+              "wallets": null
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 6
+        },
+        {
+          "address": "0x14fd2b20b89b8da21a731afc959e4fd2d4ccaf79f024e2557122134c8d62b12d",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "gas_sponsor",
+              "address": "0x61b1b7f667c06d1ccfe5e404a1e705d4d0da457040c279e7c2a23bb39b9d1e05",
+              "wallets": null
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 6
+        },
+        {
+          "address": "0xb5a70a50789c785f3f553c32a7170eb501363b25c3e5eebab84a16e7c871a6a0",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "gas_sponsor",
+              "address": "0x61b1b7f667c06d1ccfe5e404a1e705d4d0da457040c279e7c2a23bb39b9d1e05",
+              "wallets": null
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 6
+        },
+        {
+          "address": "0xb38d5ca5f85948c916d7f5157f5c7c5043962ad76c79cf297d6aaf1274dd4cfb",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "gas_sponsor",
+              "address": "0x61b1b7f667c06d1ccfe5e404a1e705d4d0da457040c279e7c2a23bb39b9d1e05",
+              "wallets": null
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 6
+        },
+        {
+          "address": "0x4911f90dfadc8aed27558e92cf95206d39775a744504c8df87108da67772eb33",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "gas_sponsor",
+              "address": "0x61b1b7f667c06d1ccfe5e404a1e705d4d0da457040c279e7c2a23bb39b9d1e05",
+              "wallets": null
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 6
+        }
+      ]
+    },
+    {
+      "id": "rs-12",
+      "type": "shared_funder",
+      "linkAddress": "0xb5efe55a53b225a9f92e77169c8e411f0935874e0c519a6560d8cf45d4640f27",
+      "probe": "0x307931549ef581adc40c0660caa253e2951259609d4ceb151df4ce799f9de5aa",
+      "caught": true,
+      "membersCaught": 3,
+      "members": 3,
+      "probeResult": {
+        "address": "0x307931549ef581adc40c0660caa253e2951259609d4ceb151df4ce799f9de5aa",
+        "verdict": "pay",
+        "code": "LINKED_NO_BAD_HISTORY",
+        "label": "linked, no bad history",
+        "links": [
+          {
+            "type": "shared_funder",
+            "address": "0xb5efe55a53b225a9f92e77169c8e411f0935874e0c519a6560d8cf45d4640f27",
+            "wallets": 4
+          }
+        ],
+        "weakLinks": [],
+        "roundTrip": false,
+        "notes": [],
+        "tatumCalls": 3
+      },
+      "memberResults": [
+        {
+          "address": "0x307931549ef581adc40c0660caa253e2951259609d4ceb151df4ce799f9de5aa",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0xb5efe55a53b225a9f92e77169c8e411f0935874e0c519a6560d8cf45d4640f27",
+              "wallets": 4
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 3
+        },
+        {
+          "address": "0xf29b3fe80886959f9e03a906c02d2c25b6d27499f728ed45b5b258d91e102a99",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0xb5efe55a53b225a9f92e77169c8e411f0935874e0c519a6560d8cf45d4640f27",
+              "wallets": 4
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 3
+        },
+        {
+          "address": "0xbd6bc470ce3bd9dbff715cab4dd516afa23fe80a7ccc44eae7096e3d807d3507",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0xb5efe55a53b225a9f92e77169c8e411f0935874e0c519a6560d8cf45d4640f27",
+              "wallets": 4
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 3
+        }
+      ]
+    },
+    {
+      "id": "rs-13",
+      "type": "shared_funder",
+      "linkAddress": "0x00a410baa4d96f50fdd42f9b4e7300add4def4dae3da77f21e333fc17400101b",
+      "probe": "0xe216d509c0227ccadde8e178116dec830704119934e341c25343a92863a40a76",
+      "caught": true,
+      "membersCaught": 3,
+      "members": 3,
+      "probeResult": {
+        "address": "0xe216d509c0227ccadde8e178116dec830704119934e341c25343a92863a40a76",
+        "verdict": "caution",
+        "code": "ROUND_TRIP_TO_FUNDER",
+        "label": "caution",
+        "links": [
+          {
+            "type": "shared_funder",
+            "address": "0x00a410baa4d96f50fdd42f9b4e7300add4def4dae3da77f21e333fc17400101b",
+            "wallets": 4
+          }
+        ],
+        "weakLinks": [],
+        "roundTrip": true,
+        "notes": [],
+        "tatumCalls": 4
+      },
+      "memberResults": [
+        {
+          "address": "0xe216d509c0227ccadde8e178116dec830704119934e341c25343a92863a40a76",
+          "verdict": "caution",
+          "code": "ROUND_TRIP_TO_FUNDER",
+          "label": "caution",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0x00a410baa4d96f50fdd42f9b4e7300add4def4dae3da77f21e333fc17400101b",
+              "wallets": 4
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": true,
+          "notes": [],
+          "tatumCalls": 4
+        },
+        {
+          "address": "0x0adb4c5202adfe7d0eae2cc07329f460f9262eacd1ccb0e26bfcd40bd4e59b2a",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0x00a410baa4d96f50fdd42f9b4e7300add4def4dae3da77f21e333fc17400101b",
+              "wallets": 4
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 4
+        },
+        {
+          "address": "0x58eeb31cda40bf7ecd2fbf90516728d276414a89f2cd9758fa8a3ed8d945e3a7",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0x00a410baa4d96f50fdd42f9b4e7300add4def4dae3da77f21e333fc17400101b",
+              "wallets": 4
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 4
+        }
+      ]
+    },
+    {
+      "id": "rs-14",
+      "type": "shared_funder",
+      "linkAddress": "0x9c844a4711235e778f59fc5845eefa55a65d46cefbde3d55c471d388c005b233",
+      "probe": "0x8bbe81c8efaf4b4e700c99ea5e37343b6cd428b453fc72b02a139a6aba07f67e",
+      "caught": true,
+      "membersCaught": 6,
+      "members": 6,
+      "probeResult": {
+        "address": "0x8bbe81c8efaf4b4e700c99ea5e37343b6cd428b453fc72b02a139a6aba07f67e",
+        "verdict": "pay",
+        "code": "LINKED_NO_BAD_HISTORY",
+        "label": "linked, no bad history",
+        "links": [
+          {
+            "type": "shared_funder",
+            "address": "0x9c844a4711235e778f59fc5845eefa55a65d46cefbde3d55c471d388c005b233",
+            "wallets": 8
+          }
+        ],
+        "weakLinks": [],
+        "roundTrip": false,
+        "notes": [],
+        "tatumCalls": 3
+      },
+      "memberResults": [
+        {
+          "address": "0x8bbe81c8efaf4b4e700c99ea5e37343b6cd428b453fc72b02a139a6aba07f67e",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0x9c844a4711235e778f59fc5845eefa55a65d46cefbde3d55c471d388c005b233",
+              "wallets": 8
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 3
+        },
+        {
+          "address": "0x46a6726e0422911f0f9e453b33de0a2f5d69bf9d86a08d0d8e89091996f1a912",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0x9c844a4711235e778f59fc5845eefa55a65d46cefbde3d55c471d388c005b233",
+              "wallets": 8
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 3
+        },
+        {
+          "address": "0x3701daaa4d79e19b694a49ada9189a3d531bd64d5bd0c65d1497ac4d8a8d80e1",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0x9c844a4711235e778f59fc5845eefa55a65d46cefbde3d55c471d388c005b233",
+              "wallets": 8
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 3
+        },
+        {
+          "address": "0xc8e156a936b6289f296b7f53840066b58a719303739217e4f153f658663856e8",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0x9c844a4711235e778f59fc5845eefa55a65d46cefbde3d55c471d388c005b233",
+              "wallets": 8
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 3
+        },
+        {
+          "address": "0x24754721e5bf28157204905784f797cd86820e5eb2ea4a39919f62b1ef91210c",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0x9c844a4711235e778f59fc5845eefa55a65d46cefbde3d55c471d388c005b233",
+              "wallets": 8
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 3
+        },
+        {
+          "address": "0x746229b34976ed532985f26b4c6fd9aa56ed72af9dc60cfa90c80cbda701d848",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0x9c844a4711235e778f59fc5845eefa55a65d46cefbde3d55c471d388c005b233",
+              "wallets": 8
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 3
+        }
+      ]
+    },
+    {
+      "id": "rs-15",
+      "type": "gas_sponsor",
+      "linkAddress": "0x3431d6bc503f416a4b3d9e474e6ac34bb70b8d1dc5f8e23aa8e96ca5a2687fdb",
+      "probe": "0xc96a0eeb20448fc94eacfc87183b40b2e0a480b14c77d09ce9887b74871e0515",
+      "caught": false,
+      "membersCaught": 2,
+      "members": 6,
+      "probeResult": {
+        "address": "0xc96a0eeb20448fc94eacfc87183b40b2e0a480b14c77d09ce9887b74871e0515",
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "links": [],
+        "weakLinks": [],
+        "roundTrip": false,
+        "notes": [
+          "Only the oldest 200 transactions of this wallet were read."
+        ],
+        "tatumCalls": 8
+      },
+      "memberResults": [
+        {
+          "address": "0xc96a0eeb20448fc94eacfc87183b40b2e0a480b14c77d09ce9887b74871e0515",
+          "verdict": "pay",
+          "code": "NO_LINKS_NO_BAD_HISTORY",
+          "label": "no links, no bad history",
+          "links": [],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [
+            "Only the oldest 200 transactions of this wallet were read."
+          ],
+          "tatumCalls": 8
+        },
+        {
+          "address": "0x59540034ef34dede361f050fdfa207a662e7877fea122e44b0fdf45d0ed9f418",
+          "verdict": "pay",
+          "code": "NO_LINKS_NO_BAD_HISTORY",
+          "label": "no links, no bad history",
+          "links": [],
+          "weakLinks": [
+            {
+              "type": "funder",
+              "address": "0x3da2cb67c887c9a03d1052d486733a77105824f7413fc3cbbe3641d4b67af102",
+              "note": "shared service, weak link (at least 27 wallets, 827 h)"
+            }
+          ],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 6
+        },
+        {
+          "address": "0x2bd863720c03caf23eab07ff615aac380f6a0f614273f5dbbc7f3a8641c05c96",
+          "verdict": "pay",
+          "code": "NO_LINKS_NO_BAD_HISTORY",
+          "label": "no links, no bad history",
+          "links": [],
+          "weakLinks": [
+            {
+              "type": "funder",
+              "address": "0x00d10bdf469d81f1cecf7d3c0c4cad980ff49912aa52127bd1c4cd24965b7f79",
+              "note": "shared service, weak link (at least 19 wallets, 921 h)"
+            }
+          ],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 8
+        },
+        {
+          "address": "0x9d5e5d6f421b08724351fba012492bd5146f055102f61468fa2a7df6a3878ea4",
+          "verdict": "pay",
+          "code": "NO_LINKS_NO_BAD_HISTORY",
+          "label": "no links, no bad history",
+          "links": [],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [
+            "Only the oldest 200 transactions of this wallet were read."
+          ],
+          "tatumCalls": 9
+        },
+        {
+          "address": "0x9e03dc183bbf63368e9d2be39115d58127971b7ea7af9d4d2dec4b6bfe4a13b3",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "gas_sponsor",
+              "address": "0x3431d6bc503f416a4b3d9e474e6ac34bb70b8d1dc5f8e23aa8e96ca5a2687fdb",
+              "wallets": null
+            }
+          ],
+          "weakLinks": [
+            {
+              "type": "funder",
+              "address": "0x3da2cb67c887c9a03d1052d486733a77105824f7413fc3cbbe3641d4b67af102",
+              "note": "shared service, weak link (at least 27 wallets, 827 h)"
+            }
+          ],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 12
+        },
+        {
+          "address": "0x943c8af2332f7933adf5c92af33849301ec4834611e915d084ad801e1ce1d83c",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "gas_sponsor",
+              "address": "0x3431d6bc503f416a4b3d9e474e6ac34bb70b8d1dc5f8e23aa8e96ca5a2687fdb",
+              "wallets": null
+            }
+          ],
+          "weakLinks": [
+            {
+              "type": "funder",
+              "address": "0x42db711d8c4becdb732729fbf8c3f34490d39f043eb4b5260d352b14113d16f4",
+              "note": "shared service, weak link (at least 20 wallets, 176 h)"
+            }
+          ],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 10
+        }
+      ],
+      "missReason": "engine showed no link to the recorded gas sponsor (Only the oldest 200 transactions of this wallet were read.)"
+    },
+    {
+      "id": "rs-16",
+      "type": "shared_funder",
+      "linkAddress": "0x4665c46504d47e38d5e80b491ca86bc027caeae8de3964e2cc2777daa1c3e87b",
+      "probe": "0x7e833ef3adf7a8a39ceb46d517e5b1083a614a3f14cecaa70be1512e1864904e",
+      "caught": true,
+      "membersCaught": 2,
+      "members": 2,
+      "probeResult": {
+        "address": "0x7e833ef3adf7a8a39ceb46d517e5b1083a614a3f14cecaa70be1512e1864904e",
+        "verdict": "pay",
+        "code": "LINKED_NO_BAD_HISTORY",
+        "label": "linked, no bad history",
+        "links": [
+          {
+            "type": "shared_funder",
+            "address": "0x4665c46504d47e38d5e80b491ca86bc027caeae8de3964e2cc2777daa1c3e87b",
+            "wallets": 2
+          }
+        ],
+        "weakLinks": [],
+        "roundTrip": false,
+        "notes": [],
+        "tatumCalls": 3
+      },
+      "memberResults": [
+        {
+          "address": "0x7e833ef3adf7a8a39ceb46d517e5b1083a614a3f14cecaa70be1512e1864904e",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0x4665c46504d47e38d5e80b491ca86bc027caeae8de3964e2cc2777daa1c3e87b",
+              "wallets": 2
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 3
+        },
+        {
+          "address": "0x77fbb9e2e7db1c9540afdf9a979152082aae776b3fce82d7bb6245103059ed6f",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0x4665c46504d47e38d5e80b491ca86bc027caeae8de3964e2cc2777daa1c3e87b",
+              "wallets": 2
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 3
+        }
+      ]
+    },
+    {
+      "id": "rs-17",
+      "type": "gas_sponsor",
+      "linkAddress": "0xf597c6aaeddcbeeefe7e7883479373a89e08c34e9541477502c6b33d64851675",
+      "probe": "0x5f63e174cf7777781df837a450773c308d5b1d02b6e27a95bbfa70be62cfe20f",
+      "caught": true,
+      "membersCaught": 4,
+      "members": 4,
+      "probeResult": {
+        "address": "0x5f63e174cf7777781df837a450773c308d5b1d02b6e27a95bbfa70be62cfe20f",
+        "verdict": "pay",
+        "code": "LINKED_NO_BAD_HISTORY",
+        "label": "linked, no bad history",
+        "links": [
+          {
+            "type": "gas_sponsor",
+            "address": "0xf597c6aaeddcbeeefe7e7883479373a89e08c34e9541477502c6b33d64851675",
+            "wallets": null
+          }
+        ],
+        "weakLinks": [],
+        "roundTrip": false,
+        "notes": [],
+        "tatumCalls": 6
+      },
+      "memberResults": [
+        {
+          "address": "0x5f63e174cf7777781df837a450773c308d5b1d02b6e27a95bbfa70be62cfe20f",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "gas_sponsor",
+              "address": "0xf597c6aaeddcbeeefe7e7883479373a89e08c34e9541477502c6b33d64851675",
+              "wallets": null
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 6
+        },
+        {
+          "address": "0x544081d155db42693324a80b991fd553626375301b5b08a35234d1b6673584c5",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "gas_sponsor",
+              "address": "0xf597c6aaeddcbeeefe7e7883479373a89e08c34e9541477502c6b33d64851675",
+              "wallets": null
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 6
+        },
+        {
+          "address": "0x85f8a2894dc4e974b4e7bb1ad42f717a3d5d2a01e3e366cdb8f3e75403481a09",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "gas_sponsor",
+              "address": "0xf597c6aaeddcbeeefe7e7883479373a89e08c34e9541477502c6b33d64851675",
+              "wallets": null
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 6
+        },
+        {
+          "address": "0x78bda58d6f978b7088ff98f7f2ad533c885d123e6be847a1617ebdafb21b22a1",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "gas_sponsor",
+              "address": "0xf597c6aaeddcbeeefe7e7883479373a89e08c34e9541477502c6b33d64851675",
+              "wallets": null
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [
+            "Only the oldest 200 transactions of this wallet were read."
+          ],
+          "tatumCalls": 9
+        }
+      ]
+    },
+    {
+      "id": "rs-18",
+      "type": "shared_funder",
+      "linkAddress": "0xe3ae7a719266c7d686cef7f8cb6bd19911872c467379b58173ebe4c2880ce5be",
+      "probe": "0xb61db63f9c6a6e2a81b8345ffe0c7eb63d6bec6564e29304159b3fcd31743f4a",
+      "caught": true,
+      "membersCaught": 2,
+      "members": 2,
+      "probeResult": {
+        "address": "0xb61db63f9c6a6e2a81b8345ffe0c7eb63d6bec6564e29304159b3fcd31743f4a",
+        "verdict": "caution",
+        "code": "ROUND_TRIP_TO_FUNDER",
+        "label": "caution",
+        "links": [
+          {
+            "type": "shared_funder",
+            "address": "0xe3ae7a719266c7d686cef7f8cb6bd19911872c467379b58173ebe4c2880ce5be",
+            "wallets": 2
+          }
+        ],
+        "weakLinks": [],
+        "roundTrip": true,
+        "notes": [],
+        "tatumCalls": 3
+      },
+      "memberResults": [
+        {
+          "address": "0xb61db63f9c6a6e2a81b8345ffe0c7eb63d6bec6564e29304159b3fcd31743f4a",
+          "verdict": "caution",
+          "code": "ROUND_TRIP_TO_FUNDER",
+          "label": "caution",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0xe3ae7a719266c7d686cef7f8cb6bd19911872c467379b58173ebe4c2880ce5be",
+              "wallets": 2
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": true,
+          "notes": [],
+          "tatumCalls": 3
+        },
+        {
+          "address": "0x569f6d7d9f3e474423d85439e26a50348ae46ec8fa926833b2d0f36afd23db8d",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0xe3ae7a719266c7d686cef7f8cb6bd19911872c467379b58173ebe4c2880ce5be",
+              "wallets": 2
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 3
+        }
+      ]
+    },
+    {
+      "id": "rs-19",
+      "type": "shared_funder",
+      "linkAddress": "0x13ff52dfd326839dcad2c0f7c699224206df6c45a6e7784f34a60f10c0892bd5",
+      "probe": "0x17660b79ab313a1e69a55b5a98e3a978e4bfe3c385ed95a22d8d6056d58f9855",
+      "caught": true,
+      "membersCaught": 3,
+      "members": 3,
+      "probeResult": {
+        "address": "0x17660b79ab313a1e69a55b5a98e3a978e4bfe3c385ed95a22d8d6056d58f9855",
+        "verdict": "pay",
+        "code": "LINKED_NO_BAD_HISTORY",
+        "label": "linked, no bad history",
+        "links": [
+          {
+            "type": "shared_funder",
+            "address": "0x13ff52dfd326839dcad2c0f7c699224206df6c45a6e7784f34a60f10c0892bd5",
+            "wallets": 3
+          }
+        ],
+        "weakLinks": [],
+        "roundTrip": false,
+        "notes": [],
+        "tatumCalls": 5
+      },
+      "memberResults": [
+        {
+          "address": "0x17660b79ab313a1e69a55b5a98e3a978e4bfe3c385ed95a22d8d6056d58f9855",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0x13ff52dfd326839dcad2c0f7c699224206df6c45a6e7784f34a60f10c0892bd5",
+              "wallets": 3
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 5
+        },
+        {
+          "address": "0x77574d4c975aa3bf3cf9571834bd3ee798707a3c7ddf9e3dfc82f34c50bb8fbf",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0x13ff52dfd326839dcad2c0f7c699224206df6c45a6e7784f34a60f10c0892bd5",
+              "wallets": 3
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 5
+        },
+        {
+          "address": "0x4aa0c0fbbfb4065f7856c2986eccc81f59a4620046662fe0e31fec87f204bc48",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0x13ff52dfd326839dcad2c0f7c699224206df6c45a6e7784f34a60f10c0892bd5",
+              "wallets": 3
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 5
+        }
+      ]
+    },
+    {
+      "id": "rs-20",
+      "type": "gas_sponsor",
+      "linkAddress": "0x9218e4c21e10f8c3e9dbceeebe9bb6fecf799d12179f6810b2991da4ac38a22f",
+      "probe": "0x921d5fbaa5e0c2975b57b504373f1c70af0e22c44c6d48cd29a87fd96cf0a22f",
+      "caught": true,
+      "membersCaught": 1,
+      "members": 6,
+      "probeResult": {
+        "address": "0x921d5fbaa5e0c2975b57b504373f1c70af0e22c44c6d48cd29a87fd96cf0a22f",
+        "verdict": "pay",
+        "code": "LINKED_NO_BAD_HISTORY",
+        "label": "linked, no bad history",
+        "links": [
+          {
+            "type": "shared_funder",
+            "address": "0x9218e4c21e10f8c3e9dbceeebe9bb6fecf799d12179f6810b2991da4ac38a22f",
+            "wallets": 2
+          },
+          {
+            "type": "gas_sponsor",
+            "address": "0x9218e4c21e10f8c3e9dbceeebe9bb6fecf799d12179f6810b2991da4ac38a22f",
+            "wallets": null
+          }
+        ],
+        "weakLinks": [],
+        "roundTrip": false,
+        "notes": [],
+        "tatumCalls": 6
+      },
+      "memberResults": [
+        {
+          "address": "0x921d5fbaa5e0c2975b57b504373f1c70af0e22c44c6d48cd29a87fd96cf0a22f",
+          "verdict": "pay",
+          "code": "LINKED_NO_BAD_HISTORY",
+          "label": "linked, no bad history",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0x9218e4c21e10f8c3e9dbceeebe9bb6fecf799d12179f6810b2991da4ac38a22f",
+              "wallets": 2
+            },
+            {
+              "type": "gas_sponsor",
+              "address": "0x9218e4c21e10f8c3e9dbceeebe9bb6fecf799d12179f6810b2991da4ac38a22f",
+              "wallets": null
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": false,
+          "notes": [],
+          "tatumCalls": 6
+        },
+        {
+          "address": "0x84cc1915c8206dafd410117bb1e6eff448c15cd5d64a76a9280b973b601941f7",
+          "verdict": "caution",
+          "code": "ROUND_TRIP_TO_FUNDER",
+          "label": "caution",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0x2b47e70eaa6465d035e812483cccbf4f2fef8b9c0ded69da064b03c448c05974",
+              "wallets": 42
+            },
+            {
+              "type": "gas_sponsor",
+              "address": "0x2b47e70eaa6465d035e812483cccbf4f2fef8b9c0ded69da064b03c448c05974",
+              "wallets": null
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": true,
+          "notes": [],
+          "tatumCalls": 6
+        },
+        {
+          "address": "0xd8c7699de466cacc82dcda6dc3873db88cc513234ba8a9f2c88a7ca5659eb008",
+          "verdict": "caution",
+          "code": "ROUND_TRIP_TO_FUNDER",
+          "label": "caution",
+          "links": [],
+          "weakLinks": [
+            {
+              "type": "gas_sponsor",
+              "address": "0x1153061fa264a10bf3f7f606ce249d9acdb6c2ab6566eb8030152dabe53c3a39",
+              "note": "shared service, weak link (at least 37 wallets, 151 h)"
+            }
+          ],
+          "roundTrip": true,
+          "notes": [],
+          "tatumCalls": 11
+        },
+        {
+          "address": "0x188a837a70c79ceb0332c5286a79a7e75a77e84f7be154ee2ad626d2ca2c8abb",
+          "verdict": "caution",
+          "code": "ROUND_TRIP_TO_FUNDER",
+          "label": "caution",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0x2b47e70eaa6465d035e812483cccbf4f2fef8b9c0ded69da064b03c448c05974",
+              "wallets": 42
+            },
+            {
+              "type": "gas_sponsor",
+              "address": "0x2eed9f28a80a21bc2743297c5a0aab0519aaa9d4c3b8c5199baa7497f0cd6433",
+              "wallets": null
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": true,
+          "notes": [
+            "Only the oldest 200 transactions of this wallet were read."
+          ],
+          "tatumCalls": 11
+        },
+        {
+          "address": "0x4ef2bdde5c2724e5056447c4f0c2de383a112aeaa7f19d1cf1a62e631212e3de",
+          "verdict": "caution",
+          "code": "ROUND_TRIP_TO_FUNDER",
+          "label": "caution",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0x2b47e70eaa6465d035e812483cccbf4f2fef8b9c0ded69da064b03c448c05974",
+              "wallets": 42
+            }
+          ],
+          "weakLinks": [],
+          "roundTrip": true,
+          "notes": [],
+          "tatumCalls": 6
+        },
+        {
+          "address": "0x5b0e1eef8fda237730e270721ee3d6818a3a558a75eea8e610db7b339e6b3703",
+          "verdict": "caution",
+          "code": "ROUND_TRIP_TO_FUNDER",
+          "label": "caution",
+          "links": [
+            {
+              "type": "shared_funder",
+              "address": "0x2b47e70eaa6465d035e812483cccbf4f2fef8b9c0ded69da064b03c448c05974",
+              "wallets": 41
+            }
+          ],
+          "weakLinks": [
+            {
+              "type": "gas_sponsor",
+              "address": "0x3d2de5626dd8019142ebde38672f63c0c42a24c800436ce3f67bd54a2d5970c3",
+              "note": "shared service, weak link (60 wallets, 177 h)"
+            }
+          ],
+          "roundTrip": true,
+          "notes": [],
+          "tatumCalls": 10
+        }
+      ]
+    }
+  ],
+  "controls": [
+    {
+      "id": "rc-01",
+      "address": "0xe1b6e64f397d6120e4a9350209b2b835052c7aee51e78f860931ab6891133029",
+      "falseAlarm": false,
+      "result": {
+        "address": "0xe1b6e64f397d6120e4a9350209b2b835052c7aee51e78f860931ab6891133029",
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "links": [],
+        "weakLinks": [],
+        "roundTrip": false,
+        "notes": [],
+        "tatumCalls": 5
+      }
+    },
+    {
+      "id": "rc-02",
+      "address": "0x8be2602f6812200e291f0c99b149986bee43b28a896deb12dae7c12eec5855a0",
+      "falseAlarm": false,
+      "result": {
+        "address": "0x8be2602f6812200e291f0c99b149986bee43b28a896deb12dae7c12eec5855a0",
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "links": [],
+        "weakLinks": [],
+        "roundTrip": false,
+        "notes": [],
+        "tatumCalls": 3
+      }
+    },
+    {
+      "id": "rc-03",
+      "address": "0x87dcac02511da1fa2b17017f9a06469892de2dd2f6d2c9a8c6e508dc2a9f5f8e",
+      "falseAlarm": true,
+      "result": {
+        "address": "0x87dcac02511da1fa2b17017f9a06469892de2dd2f6d2c9a8c6e508dc2a9f5f8e",
+        "verdict": "caution",
+        "code": "ROUND_TRIP_TO_FUNDER",
+        "label": "caution",
+        "links": [],
+        "weakLinks": [],
+        "roundTrip": true,
+        "notes": [],
+        "tatumCalls": 3
+      },
+      "alarmReason": "sent money back to its funder (caution)"
+    },
+    {
+      "id": "rc-04",
+      "address": "0x16ca1ea5b359125499cfa0cfd9147dec6f43beda41572b829f7383d508398329",
+      "falseAlarm": false,
+      "result": {
+        "address": "0x16ca1ea5b359125499cfa0cfd9147dec6f43beda41572b829f7383d508398329",
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "links": [],
+        "weakLinks": [],
+        "roundTrip": false,
+        "notes": [],
+        "tatumCalls": 3
+      }
+    },
+    {
+      "id": "rc-05",
+      "address": "0x48c29778f72c8b31aa1024d0a61c0f9273b91efe9c83f7af6b825095d497bf7a",
+      "falseAlarm": false,
+      "result": {
+        "address": "0x48c29778f72c8b31aa1024d0a61c0f9273b91efe9c83f7af6b825095d497bf7a",
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "links": [],
+        "weakLinks": [],
+        "roundTrip": false,
+        "notes": [],
+        "tatumCalls": 3
+      }
+    },
+    {
+      "id": "rc-06",
+      "address": "0xb33216d61725c776092a9abe4b515dcc27786836f6c0737c24b43306e81cb1a8",
+      "falseAlarm": false,
+      "result": {
+        "address": "0xb33216d61725c776092a9abe4b515dcc27786836f6c0737c24b43306e81cb1a8",
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "links": [],
+        "weakLinks": [],
+        "roundTrip": false,
+        "notes": [],
+        "tatumCalls": 3
+      }
+    },
+    {
+      "id": "rc-07",
+      "address": "0x8b5abeb7ccd1b88823b519d6e5c13f0c43ce570863015a0b8b6a42d9d90e41fd",
+      "falseAlarm": false,
+      "result": {
+        "address": "0x8b5abeb7ccd1b88823b519d6e5c13f0c43ce570863015a0b8b6a42d9d90e41fd",
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "links": [],
+        "weakLinks": [],
+        "roundTrip": false,
+        "notes": [],
+        "tatumCalls": 3
+      }
+    },
+    {
+      "id": "rc-08",
+      "address": "0x7e437688cddb52e21de25cb0086b561cf1a3c32e86978470ae89e40afa603467",
+      "falseAlarm": false,
+      "result": {
+        "address": "0x7e437688cddb52e21de25cb0086b561cf1a3c32e86978470ae89e40afa603467",
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "links": [],
+        "weakLinks": [],
+        "roundTrip": false,
+        "notes": [],
+        "tatumCalls": 3
+      }
+    },
+    {
+      "id": "rc-09",
+      "address": "0x13528d2507282eb66aea5aab02575b33fbae28258db031c3cd8f9964648195d9",
+      "falseAlarm": false,
+      "result": {
+        "address": "0x13528d2507282eb66aea5aab02575b33fbae28258db031c3cd8f9964648195d9",
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "links": [],
+        "weakLinks": [],
+        "roundTrip": false,
+        "notes": [],
+        "tatumCalls": 3
+      }
+    },
+    {
+      "id": "rc-10",
+      "address": "0x5d8982bf03a1fe46cb8517469f721685ea9dfacbc4c840f681beabbf9cfab507",
+      "falseAlarm": false,
+      "result": {
+        "address": "0x5d8982bf03a1fe46cb8517469f721685ea9dfacbc4c840f681beabbf9cfab507",
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "links": [],
+        "weakLinks": [],
+        "roundTrip": false,
+        "notes": [],
+        "tatumCalls": 3
+      }
+    },
+    {
+      "id": "rc-11",
+      "address": "0xeb575b54e4ff3884040acd9ec02bb7e71019fcf9319890059d55f8568f4d1d59",
+      "falseAlarm": false,
+      "result": {
+        "address": "0xeb575b54e4ff3884040acd9ec02bb7e71019fcf9319890059d55f8568f4d1d59",
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "links": [],
+        "weakLinks": [],
+        "roundTrip": false,
+        "notes": [],
+        "tatumCalls": 3
+      }
+    },
+    {
+      "id": "rc-12",
+      "address": "0x200f860efdb1b703b2367066278d21b7bf9bf9a48c3ddad563e38db8849e00fe",
+      "falseAlarm": true,
+      "result": {
+        "address": "0x200f860efdb1b703b2367066278d21b7bf9bf9a48c3ddad563e38db8849e00fe",
+        "verdict": "caution",
+        "code": "ROUND_TRIP_TO_FUNDER",
+        "label": "caution",
+        "links": [],
+        "weakLinks": [],
+        "roundTrip": true,
+        "notes": [],
+        "tatumCalls": 3
+      },
+      "alarmReason": "sent money back to its funder (caution)"
+    },
+    {
+      "id": "rc-13",
+      "address": "0x2e435c932755e02366a589894a89d89b9362d00790ceea038acfe351af4e9390",
+      "falseAlarm": false,
+      "result": {
+        "address": "0x2e435c932755e02366a589894a89d89b9362d00790ceea038acfe351af4e9390",
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "links": [],
+        "weakLinks": [],
+        "roundTrip": false,
+        "notes": [],
+        "tatumCalls": 3
+      }
+    },
+    {
+      "id": "rc-14",
+      "address": "0x43f2f96650557e904c274e98fc35988aad27c7b42a401c83b8df8ed7ec2e611f",
+      "falseAlarm": false,
+      "result": {
+        "address": "0x43f2f96650557e904c274e98fc35988aad27c7b42a401c83b8df8ed7ec2e611f",
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "links": [],
+        "weakLinks": [],
+        "roundTrip": false,
+        "notes": [],
+        "tatumCalls": 3
+      }
+    },
+    {
+      "id": "rc-15",
+      "address": "0x803c1fda130fb738adf9e78b43e5f542a3a1a5105f3373753502c7830c43fb94",
+      "falseAlarm": false,
+      "result": {
+        "address": "0x803c1fda130fb738adf9e78b43e5f542a3a1a5105f3373753502c7830c43fb94",
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "links": [],
+        "weakLinks": [],
+        "roundTrip": false,
+        "notes": [],
+        "tatumCalls": 4
+      }
+    },
+    {
+      "id": "rc-16",
+      "address": "0xb0799e8a22419df5f5763347047c0cf698a7b9815795ab5e39b380a8a69266d1",
+      "falseAlarm": false,
+      "result": {
+        "address": "0xb0799e8a22419df5f5763347047c0cf698a7b9815795ab5e39b380a8a69266d1",
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "links": [],
+        "weakLinks": [],
+        "roundTrip": false,
+        "notes": [],
+        "tatumCalls": 3
+      }
+    },
+    {
+      "id": "rc-17",
+      "address": "0x8ca8ea0f797f340e66789096fa26d79f9bc018201fb7247b2fec07f4a0f4d980",
+      "falseAlarm": true,
+      "result": {
+        "address": "0x8ca8ea0f797f340e66789096fa26d79f9bc018201fb7247b2fec07f4a0f4d980",
+        "verdict": "caution",
+        "code": "ROUND_TRIP_TO_FUNDER",
+        "label": "caution",
+        "links": [],
+        "weakLinks": [],
+        "roundTrip": true,
+        "notes": [],
+        "tatumCalls": 3
+      },
+      "alarmReason": "sent money back to its funder (caution)"
+    },
+    {
+      "id": "rc-18",
+      "address": "0xed751ddfc39ecdabaebf83a86a0699aa185abba4a3f1ca560c2b906ca9c64423",
+      "falseAlarm": false,
+      "result": {
+        "address": "0xed751ddfc39ecdabaebf83a86a0699aa185abba4a3f1ca560c2b906ca9c64423",
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "links": [],
+        "weakLinks": [],
+        "roundTrip": false,
+        "notes": [],
+        "tatumCalls": 3
+      }
+    },
+    {
+      "id": "rc-19",
+      "address": "0xa3c288acfb8abc2b7a8740e581428dfea7846e1f60327aef0cf576be53fb0ff2",
+      "falseAlarm": false,
+      "result": {
+        "address": "0xa3c288acfb8abc2b7a8740e581428dfea7846e1f60327aef0cf576be53fb0ff2",
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "links": [],
+        "weakLinks": [],
+        "roundTrip": false,
+        "notes": [],
+        "tatumCalls": 3
+      }
+    },
+    {
+      "id": "rc-20",
+      "address": "0x764c3c2163abd07d4df3cbe1d4b67178d88ebcd1b3ddbbf5f76cba298f7da672",
+      "falseAlarm": false,
+      "result": {
+        "address": "0x764c3c2163abd07d4df3cbe1d4b67178d88ebcd1b3ddbbf5f76cba298f7da672",
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "links": [],
+        "weakLinks": [],
+        "roundTrip": false,
+        "notes": [],
+        "tatumCalls": 3
+      }
+    }
+  ],
+  "sharedServices": [
+    {
+      "type": "gas_sponsor",
+      "address": "0x5376168336f40c7cf64f113fe837e7f2600f700ce21d2f09f645e722489f5ad7",
+      "observedWallets": 787,
+      "atLeast": true,
+      "observedSpanHours": 297.6,
+      "engineCalledSharedService": true,
+      "engineCountedAsLink": false,
+      "probe": "0xbbdeb42b37ebb9bb2e964c13f95a1b5e61cf1813a9091b53e7b938d56ba6a509",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x63c33461485b467f699f94f18daaf04a3f727e3a0184a5c09f2b6648f7fc4c58",
+      "observedWallets": 40,
+      "atLeast": false,
+      "observedSpanHours": 38.1,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": true,
+      "probe": "0x4bc54ac47e18260090170f9ab89b84b4cd8a2fc7a537513297709702e7f9fbea",
+      "code": "LINKED_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xae4ba5f592e695a46d58a0579aa5d4f6ebead46be0f2d5bd229d5c292290548c",
+      "observedWallets": 50,
+      "atLeast": true,
+      "observedSpanHours": 1913.7,
+      "engineCalledSharedService": true,
+      "engineCountedAsLink": false,
+      "probe": "0x9c88f942c3e1ca368a81e4de1115db1ea371d61bba4528dadb1a1126d54c3c01",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "shared_funder",
+      "address": "0x425f6f2e85578f39dd1479cff287543f9bef22e4d5d8a5c200a906792a53bc29",
+      "observedWallets": 62,
+      "atLeast": false,
+      "observedSpanHours": 375.4,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0x3496a7f63af6a81bf4abf6dcd1db9a8aeed4be3da3e78b901f4c4d84c47c848b",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xe289b7c5edb29846abb12d2ee4bfb4139d216a47fab0269f9687be903feaf33e",
+      "observedWallets": 738,
+      "atLeast": true,
+      "observedSpanHours": 532.3,
+      "engineCalledSharedService": true,
+      "engineCountedAsLink": false,
+      "probe": "0x3f38e9da8bf2b256c0605a35a99ba270d20e672a91db64ab6c1badbecd315857",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xa42b628b70da0bb0b5e52d3209cf461395b46b478905022bc15b9235384cb307",
+      "observedWallets": 233,
+      "atLeast": true,
+      "observedSpanHours": 342.9,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0xd5c233d7c059f52894f17f369086c0e6db76db3e7162e7a41301ba7631d77c3c",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x398c9ddc30f51daa51a26be17366adaec31da0624ba2728a4530daa18af8e70b",
+      "observedWallets": 294,
+      "atLeast": true,
+      "observedSpanHours": 34.5,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": true,
+      "probe": "0x629ddd227649cfffc432af3afe4441846319a581b52a5b69e94ba306508e529b",
+      "code": "LINKED_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xd56948cebf0a3309e13980126bcc8ef4d7733305cd7b412fa00167d57741984e",
+      "observedWallets": 304,
+      "atLeast": true,
+      "observedSpanHours": 33.4,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": true,
+      "probe": "0xa2f7b78cfd2c197e687629f9b63bac6392d67c32d8de816f51bd2ec1f1f49ecf",
+      "code": "LINKED_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x7c8e2ceb0839680a3b1f7aa1021d45670405d92f3c88e79aa1d3aa8a600bbdbf",
+      "observedWallets": 522,
+      "atLeast": true,
+      "observedSpanHours": 95.1,
+      "engineCalledSharedService": true,
+      "engineCountedAsLink": false,
+      "probe": "0xcdc0055eff080978173a8ec07d96a3d6b9976281554a919675a56ad3c23df32f",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xa94684adde36bff5c8db09863ea67963a63e107b4d5193e0a262314ee9867516",
+      "observedWallets": 289,
+      "atLeast": true,
+      "observedSpanHours": 618.9,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": true,
+      "probe": "0xd90690c6683a41c6422c58a1fed2cc3e7b2943f4912f4ac413969e87ad9d98f6",
+      "code": "LINKED_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xfebf57a5d4fbe7bcf68974c0d5856032146303c87b614da0a37f59a4e6c4223b",
+      "observedWallets": 157,
+      "atLeast": true,
+      "observedSpanHours": 173.1,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0x4011d4b610798b78b43d3f5074ba6b49e99226cbaaf8c91032213ad9fa79d5e2",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x8da852ff69789bdbdb81b1c26d4d3d568f8ebedcd966940efdc3a4beddee8765",
+      "observedWallets": 15,
+      "atLeast": false,
+      "observedSpanHours": 378.9,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": true,
+      "probe": "0xa2092f55e4ca8482d068f654904cb04f4522edbf308735dca51337cebdacad47",
+      "code": "LINKED_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x1f6cd55584e6d0c19ae34bfc48b1bd9b1b8a166987e34052cfea7f3c795c6d76",
+      "observedWallets": 709,
+      "atLeast": true,
+      "observedSpanHours": 493.6,
+      "engineCalledSharedService": true,
+      "engineCountedAsLink": false,
+      "probe": "0x00ea18889868519abd2f238966cab9875750bb2859ed3a34debec37781520138",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x85c81a4f616f87a303ba2ae34eed758a2cc1938f80c186526cd3122375b87a95",
+      "observedWallets": 1025,
+      "atLeast": true,
+      "observedSpanHours": 151.2,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": true,
+      "probe": "0x2b39c4cfdc055390172f7bf9e26b10b476bf3fc523a2700baaae7f3c8a24928d",
+      "code": "LINKED_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x84ad9420e16a9448e8563428ff8256ffbe5b3b6b95991fa3680e8138b56ee1ff",
+      "observedWallets": 261,
+      "atLeast": true,
+      "observedSpanHours": 3341.9,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0x3da2cb67c887c9a03d1052d486733a77105824f7413fc3cbbe3641d4b67af102",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x52ecee5e58e2f3a7461cc604f4efcc3b68031e4715456d821e3a2719b0593600",
+      "observedWallets": 22,
+      "atLeast": false,
+      "observedSpanHours": 401.1,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0x612fa27ba229021c5a1c32022fd6341ffbd58a87ac928a0dc32d8d6d1dba9fed",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xaef05f072949c1ffca2c302e98e36a336ce1fb16d375d6cb8412eec33162dd8d",
+      "observedWallets": 32,
+      "atLeast": false,
+      "observedSpanHours": 553.8,
+      "engineCalledSharedService": true,
+      "engineCountedAsLink": false,
+      "probe": "0xb72b7c30279eff1c99cbf74fc0fd06b9ef50b012d9468dbf87b6e3d605787cd9",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "shared_funder",
+      "address": "0x8122f63fb72371f4bbdeceaa674394331a229ba9902ecc81d527dda8630b8d31",
+      "observedWallets": 18,
+      "atLeast": false,
+      "observedSpanHours": 145.4,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0x52ab1fa9e4ab4d254dec9f3d42b9b9eb481c6adeda75f3d2d021c2f0fb8f6a07",
+      "code": "LINKED_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x35cdcf079a479961f9ec992815e9d06869a9a18ba49e314b48dc75f88e423538",
+      "observedWallets": 101,
+      "atLeast": true,
+      "observedSpanHours": 233.7,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0xc2f45aa0ee89058023c1bbfd64a710d43ec5f6b16e52590bbad92d6a09a235e6",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "shared_funder",
+      "address": "0x6bbae3eeacaf1fc3f98db3b08c7a065a7e7b5ab12b2f881f81cf8c5a872038b8",
+      "observedWallets": 16,
+      "atLeast": false,
+      "observedSpanHours": 541.5,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0x12a0f4f810fbbfa2012d1c2f385ab99a9f706874c53e9fc4d4126fd502ea40c4",
+      "code": "LINKED_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xf53b0ad4461e64a3fb7fc62ec585bc238982b7e60038fa93766e999f91a4d919",
+      "observedWallets": 678,
+      "atLeast": true,
+      "observedSpanHours": 605.8,
+      "engineCalledSharedService": true,
+      "engineCountedAsLink": false,
+      "probe": "0x0b979b9e9fdadfcff63d6b8260a5389a7eeac5a12c39f0a65262dfb68c3c5cf3",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xb56c5e84c8ac961a93b4cc7c8558e6cfbaae483332779c2947241ee32ab4ceb4",
+      "observedWallets": 106,
+      "atLeast": false,
+      "observedSpanHours": 71.7,
+      "engineCalledSharedService": true,
+      "engineCountedAsLink": false,
+      "probe": "0x6fec34012ea08b80d7410c7940b92df6867dadb964d6a8cd18ff58eea22de2af",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x52996d52829409f450a62fe9c1068d76bbfd932c1bd3ce14610b329c8884384b",
+      "observedWallets": 41,
+      "atLeast": false,
+      "observedSpanHours": 216.4,
+      "engineCalledSharedService": true,
+      "engineCountedAsLink": false,
+      "probe": "0x08df1bf195652e36680c731e873f5eed250289faa352745f9099d44738fab991",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "shared_funder",
+      "address": "0xcd06320f2fc82277270f5347776845fb24a558abd34eba97794e27b4eb3d224e",
+      "observedWallets": 67,
+      "atLeast": true,
+      "observedSpanHours": 1562.5,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0x1fb0c0a6790860fc83c8f26f6fa089868ad94de9468348f98dfb4cdf89a53777",
+      "code": "LINKED_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xf17016de72d7c1ec0a260a4d29304dbd07c0eea72fe9fc8d2105953c7623d878",
+      "observedWallets": 15,
+      "atLeast": false,
+      "observedSpanHours": 5468.9,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0xc3e5d4f5695ebf9ab139959edf688be24759fbd6a50b0f687b67aa8575aa77d4",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "shared_funder",
+      "address": "0x50b62b2295601bcf50dc354757bcc39b6ce97e2dbaa5aaf25dfd735f173ee6af",
+      "observedWallets": 125,
+      "atLeast": true,
+      "observedSpanHours": 407.4,
+      "engineCalledSharedService": true,
+      "engineCountedAsLink": false,
+      "probe": "0xa79047b8e05919f639fed69994c0e0f72a3dd04bb7088af57c2088080b4505d9",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "shared_funder",
+      "address": "0xf69f9e6ff47d1bac0acb72dba44ac11e6f24f3e2933616a44afde9b8a082d9da",
+      "observedWallets": 112,
+      "atLeast": false,
+      "observedSpanHours": 392.8,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0x425f6f2e85578f39dd1479cff287543f9bef22e4d5d8a5c200a906792a53bc29",
+      "code": "LINKED_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x3902e21c4138a4fdf8d8a15ddb713bc4816e476cfcb36369c4d4be7ec0ad8cef",
+      "observedWallets": 108,
+      "atLeast": true,
+      "observedSpanHours": 784,
+      "engineCalledSharedService": true,
+      "engineCountedAsLink": false,
+      "probe": "0x28a09741d6a68bab0922262d206946e027a2a550ccbb8013d6d42d802f50573a",
+      "code": "LINKED_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x8b0e3a43caef1776f782a2b9f5b099fca763decc70aaabb8d90cf42e9021ee9b",
+      "observedWallets": 288,
+      "atLeast": false,
+      "observedSpanHours": 1808,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0x64e8f45a0fb0f3fec5b105d81dc698354409579d1611f8ef4712ad4b4b5d3e25",
+      "code": "ROUND_TRIP_TO_FUNDER"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xedb85e45129581e5b5006f27cdaa6b5987bf246f2265b59f86372a25c0887e3f",
+      "observedWallets": 266,
+      "atLeast": true,
+      "observedSpanHours": 776.2,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0x1d20a0d382f5124912017c4bdca041b5ed0f84d0de3f08708b2418f556fc090a",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "shared_funder",
+      "address": "0x84fe10fcc1c48075a9a6d9a5433213e90d5181ff425fd609332db35aa4c597a6",
+      "observedWallets": 46,
+      "atLeast": true,
+      "observedSpanHours": 33,
+      "engineCalledSharedService": true,
+      "engineCountedAsLink": false,
+      "probe": "0x15a6742276201ae20afd0227cb4f98653217e3e8753cee7db91b927fe4c40fa8",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xa4c143d0a8e2bb30df27ef2d7f217a72806b7c7ec3a255cfa2e62c70d55f880a",
+      "observedWallets": 308,
+      "atLeast": true,
+      "observedSpanHours": 3970,
+      "engineCalledSharedService": true,
+      "engineCountedAsLink": false,
+      "probe": "0xe0221db10e34ff1d53fc6123a99061e4b167602207567ea746d6d7a5df14177f",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "shared_funder",
+      "address": "0xa138a2bf9545a442d936dcdb44d4184f7bfb4e7f9f40e99851d1c351d44ccd5a",
+      "observedWallets": 172,
+      "atLeast": true,
+      "observedSpanHours": 106.8,
+      "engineCalledSharedService": true,
+      "engineCountedAsLink": false,
+      "probe": "0x415e739a2b635c612f62f98f46ddf7da962e827da6217895f9de6e61e9d8b2a6",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xda892dd33876a418d8b2140f4b995d86435e32751e20099ab4b88f9f9c41c5a2",
+      "observedWallets": 16,
+      "atLeast": true,
+      "observedSpanHours": 95,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0x1fa09cc2c99371f78fd809c113d4c24e3e60c712ea4c74e200e7cfc44ac1cff5",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x24f5d05a0662a3f81a0f9e49e9b73378537e5903a92bd9352a0f3d4bc318e411",
+      "observedWallets": 16,
+      "atLeast": true,
+      "observedSpanHours": 96.3,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0x32d22fa8d7bc0f4ad279a0aa809088eeb71b36ff3a9f89ed813959bd70b0dad4",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x445eea1ab10d5563b9ffa72551f2470ca30f8aa48ec4b7c930431e88603648ad",
+      "observedWallets": 16,
+      "atLeast": true,
+      "observedSpanHours": 96.2,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0x21274e5469bfdb6b18e530a1eb799e680145af6cb266d3ea068a084d697c66f7",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x77188224ba0eca5ddac62cbd320c1674dab4bd3dc6fdf297207687c99b9ee091",
+      "observedWallets": 16,
+      "atLeast": true,
+      "observedSpanHours": 67.2,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0x07de9e0932c50626e8a6fa4524e4fc08238a390681be3c49de5ba4acb24c3067",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x3b2f273541002d0247a7c8d5c2c0ac228971c6ef9da437b370179269105a8ebb",
+      "observedWallets": 16,
+      "atLeast": true,
+      "observedSpanHours": 91.1,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0x32d22fa8d7bc0f4ad279a0aa809088eeb71b36ff3a9f89ed813959bd70b0dad4",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x2d19f75e60044a3678a79e9501a553871ea32dbed6c52cdf2aa98adea68b69f5",
+      "observedWallets": 16,
+      "atLeast": true,
+      "observedSpanHours": 92.3,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0x21274e5469bfdb6b18e530a1eb799e680145af6cb266d3ea068a084d697c66f7",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x0bd88bd2f7c2a71cb4cb1c313c277c4d18a64460bc6d4723b703d58948a55c3e",
+      "observedWallets": 16,
+      "atLeast": true,
+      "observedSpanHours": 75.7,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0x32d22fa8d7bc0f4ad279a0aa809088eeb71b36ff3a9f89ed813959bd70b0dad4",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x1f79d281fb9d8194e03ea84f843dfc880ab44fc835e9a7a2a7a305d0367370e8",
+      "observedWallets": 16,
+      "atLeast": true,
+      "observedSpanHours": 86.7,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0x21274e5469bfdb6b18e530a1eb799e680145af6cb266d3ea068a084d697c66f7",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "shared_funder",
+      "address": "0x9fd61888ae0f25b0b85eddb57a402efa64d9f43ecdabb4e5f8112202040d1984",
+      "observedWallets": 63,
+      "atLeast": false,
+      "observedSpanHours": 5038.9,
+      "engineCalledSharedService": true,
+      "engineCountedAsLink": false,
+      "probe": "0xe7d64f7a71c044848d3980e53f75c7a592f208573625f8504b5ab9c0a9510661",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x085e4deba54c35dd1a6d5bb973223b3d6cb44e994e350c1b2d18d6aa85ca1e3d",
+      "observedWallets": 16,
+      "atLeast": true,
+      "observedSpanHours": 82.6,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0x21274e5469bfdb6b18e530a1eb799e680145af6cb266d3ea068a084d697c66f7",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x01013a6ed915aa33477c6c06ef5c4161142361d3215ba193d4141ddfd604ab1b",
+      "observedWallets": 16,
+      "atLeast": true,
+      "observedSpanHours": 82.4,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0x21274e5469bfdb6b18e530a1eb799e680145af6cb266d3ea068a084d697c66f7",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xccf707238af83b9210d1ec2ed0336e5aaa98e167c7af0fd7b9da529e2fd4d346",
+      "observedWallets": 16,
+      "atLeast": true,
+      "observedSpanHours": 75.2,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0x32d22fa8d7bc0f4ad279a0aa809088eeb71b36ff3a9f89ed813959bd70b0dad4",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xbdce23023507c4a85871ac72e1c045900b2c84ef4f85af45873abc3db3fe0a08",
+      "observedWallets": 16,
+      "atLeast": true,
+      "observedSpanHours": 61.6,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0x32d22fa8d7bc0f4ad279a0aa809088eeb71b36ff3a9f89ed813959bd70b0dad4",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xb2d0b49654858ec122ff5c98d29ef65986e28d1b11d9e7f7039c48482bfbd9a3",
+      "observedWallets": 16,
+      "atLeast": true,
+      "observedSpanHours": 90.6,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0x21274e5469bfdb6b18e530a1eb799e680145af6cb266d3ea068a084d697c66f7",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x5df089b452f1fc8bbafc691c58c01be223a19114e278056e221c884f5d9951c3",
+      "observedWallets": 16,
+      "atLeast": true,
+      "observedSpanHours": 81.2,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0x32d22fa8d7bc0f4ad279a0aa809088eeb71b36ff3a9f89ed813959bd70b0dad4",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x79fdf7992c85761fa28942865ec4b3befef7772b6730053100684c342b158fa6",
+      "observedWallets": 77,
+      "atLeast": false,
+      "observedSpanHours": 601,
+      "engineCalledSharedService": true,
+      "engineCountedAsLink": false,
+      "probe": "0x2e3c0279edc93ee54e89dcf7f34f84be18742edd4e4668d4bfd532aa2c6134d0",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x047529dfa912fbff72a695da615229d092bf3e6a7a429c84f56e6d884695a8f3",
+      "observedWallets": 16,
+      "atLeast": true,
+      "observedSpanHours": 97,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0x662b2f9f67e5330a61f54df985ee43b05aba5d6140e928907b391f8b1b41888a",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x414bfbdad34e25cde72b06bd348d473556d57eba5c344bae68f69fea84c274ee",
+      "observedWallets": 1485,
+      "atLeast": true,
+      "observedSpanHours": 4762.5,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0x49577e3992ca5d04960c3fb4f400e8a7bcfd101790a20aa3f861f79879a13e61",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x1d69dcc0c110b5d50dd3bf306019f7f9f0fb1027f3a99c505e184b37d4728a0b",
+      "observedWallets": 16,
+      "atLeast": true,
+      "observedSpanHours": 92.1,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0x21274e5469bfdb6b18e530a1eb799e680145af6cb266d3ea068a084d697c66f7",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x99e8b3652704e0331137fe09d5e8d71f39f2022d89a439526296da4df4a45ffb",
+      "observedWallets": 16,
+      "atLeast": true,
+      "observedSpanHours": 94.7,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0x32d22fa8d7bc0f4ad279a0aa809088eeb71b36ff3a9f89ed813959bd70b0dad4",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x231d1807a3a98717e6c318c9e15c47cf7202047e5c7408d779644f548e210ca8",
+      "observedWallets": 16,
+      "atLeast": true,
+      "observedSpanHours": 92.3,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0x32d22fa8d7bc0f4ad279a0aa809088eeb71b36ff3a9f89ed813959bd70b0dad4",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x6e012c4ec3896e8c9c8bb9dfe359eabdfdcc62d490190ce4810880af9fb920bc",
+      "observedWallets": 16,
+      "atLeast": true,
+      "observedSpanHours": 88.6,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0x32d22fa8d7bc0f4ad279a0aa809088eeb71b36ff3a9f89ed813959bd70b0dad4",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xc75fd1b942d0cb4ad848723eeefd8fa2e9fe1b399875bcb491f7dc9753683b52",
+      "observedWallets": 16,
+      "atLeast": true,
+      "observedSpanHours": 87.9,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0x32d22fa8d7bc0f4ad279a0aa809088eeb71b36ff3a9f89ed813959bd70b0dad4",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xbf00e92bcb4ac1a6c945ee5e67d4cba50c62e28296bc29dea714d7f768089752",
+      "observedWallets": 69,
+      "atLeast": true,
+      "observedSpanHours": 309.8,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": true,
+      "probe": "0x18ded35366686b0c269fdb8c0bc06a7531f4461fb060fcb53c3a73ee91284059",
+      "code": "LINKED_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xaf9567bb3d4396ba4a3119da92108632ff8ebf145cf54e8ebeaa49aeef655fa4",
+      "observedWallets": 74,
+      "atLeast": true,
+      "observedSpanHours": 66.6,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": true,
+      "probe": "0xdd449bd4257eea27a8915e97c0afead2a04d633723dc189a1196de45256d3171",
+      "code": "ROUND_TRIP_TO_FUNDER"
+    },
+    {
+      "type": "shared_funder",
+      "address": "0x3b3514f5a446343e0c7ff15154c6fe053983afca138fbd4ee8544ccd112f4310",
+      "observedWallets": 85,
+      "atLeast": false,
+      "observedSpanHours": 753.3,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0x5bfeeae226036b0f452ee20b6e784c99bc1225ce785850afbd228037fc0bccda",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x000dd25906d42f3775373f72d635bd748c8d5051bb7b4e268ed75a8218069db4",
+      "observedWallets": 1217,
+      "atLeast": true,
+      "observedSpanHours": 60.9,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0x03912418d4f0d378e07b2fcea955ab658d1c6726c3b75090e11657d32ea38a9f",
+      "code": "LINKED_NO_BAD_HISTORY"
+    },
+    {
+      "type": "shared_funder",
+      "address": "0xab8b4bf05386e0078c57412409288722f2262d0aa6230a45803c64e6377cc58a",
+      "observedWallets": 15,
+      "atLeast": false,
+      "observedSpanHours": 37,
+      "engineCalledSharedService": true,
+      "engineCountedAsLink": false,
+      "probe": "0xa29b341e9f4cf464346b99a22058e7f70d79015b73dbcc60dd8ab0a7f45f15f5",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x8a319488de2a8043a7b503d4a906ce5feedb793787bdb9a63bc6327d46310cdb",
+      "observedWallets": 56,
+      "atLeast": true,
+      "observedSpanHours": 3729.6,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": true,
+      "probe": "0x64878781d44a087a44cfc8a24c40326873ec8c97ff13d3aced794920e894c8a8",
+      "code": "ROUND_TRIP_TO_FUNDER"
+    },
+    {
+      "type": "shared_funder",
+      "address": "0x5ffad2b91d0ede4fdaaf427a326ff876a82015c5316a7e0a4510ef7bfa9b2ffe",
+      "observedWallets": 22,
+      "atLeast": true,
+      "observedSpanHours": 3431.9,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0x9f63425709069336fec108bd4ba69a8f3d23e8ab237311f3ce58ae2bb0ed4d7f",
+      "code": "LINKED_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x71e0d70d697c1c9d8511a62cdf7cd6b091c9caa793ca770b46180dfcaacd6c4e",
+      "observedWallets": 21,
+      "atLeast": true,
+      "observedSpanHours": 2801.1,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": true,
+      "probe": "0xedb986f7e49d8b9c86f710d20c59ed1d235e650da9eb718a115e0bc6adc7f3bf",
+      "code": "LINKED_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x6988a92d5695909b7baa4d996324a873fbbeec94eec445eab99cc08ed30e4532",
+      "observedWallets": 188,
+      "atLeast": true,
+      "observedSpanHours": 1130.6,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0x4529c9134627ada1e8bc8c4e6273573a312235a36135290be9c0a682cdfa6ecf",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "shared_funder",
+      "address": "0x7a8bd2a9077c4faad5de8f529d2713e5e7a505ae16bc6a28f842b7d9f23997b6",
+      "observedWallets": 58,
+      "atLeast": false,
+      "observedSpanHours": 6499.9,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0xa7c65d2def051fbb2e0e96b8145e99d0a6a4f492525ceaa9f8a54dfb362baf7f",
+      "code": "ROUND_TRIP_TO_FUNDER"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xb88a173fcf967d2097215394b0b3a7ad5a1c5ea786ebfe1aedb9e09484485a36",
+      "observedWallets": 107,
+      "atLeast": true,
+      "observedSpanHours": 5651.4,
+      "engineCalledSharedService": true,
+      "engineCountedAsLink": false,
+      "probe": "0x8766c59e208a28fa2bd3d537716cf2c0571212c43cce15f14a2b9170da5f7e6b",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xf243e24fa8e7567ef09e4dc92a29333d1f6451ba421e7441f469c55b4d253d1c",
+      "observedWallets": 70,
+      "atLeast": false,
+      "observedSpanHours": 5301.7,
+      "engineCalledSharedService": true,
+      "engineCountedAsLink": false,
+      "probe": "0x344380c6724755503ccb5c79bf70e6b5f94246931ce77bb1b9f1cbb1558127c6",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "shared_funder",
+      "address": "0x9576b235a334689bf763d5978b8339ea5504929bf2e4da3c9f89da7db6629404",
+      "observedWallets": 25,
+      "atLeast": false,
+      "observedSpanHours": 73.2,
+      "engineCalledSharedService": true,
+      "engineCountedAsLink": false,
+      "probe": "0x615ba04333b0818a0d412519847025d2a5f31dd5eeddaeac1f1c362daa18f331",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "shared_funder",
+      "address": "0x45814776a0eaf324d7bc89d22f7af0b5e429b2ab0f59cea0a7f6ea69466b76b6",
+      "observedWallets": 15,
+      "atLeast": true,
+      "observedSpanHours": 4717.9,
+      "engineCalledSharedService": true,
+      "engineCountedAsLink": false,
+      "probe": "0xacdb7040ba50d8a7f0d981c6227f240f9bef1fdddb5a5cf510791a5b9081e9d1",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "shared_funder",
+      "address": "0x04c4cc8077b6717b3fd0b40bcd254c958119ed02474ac59d2f9a6b331617f4cb",
+      "observedWallets": 62,
+      "atLeast": true,
+      "observedSpanHours": 62.3,
+      "engineCalledSharedService": true,
+      "engineCountedAsLink": false,
+      "probe": "0x49a13490350dc7ca0611185752e799fc2b201eb1df4f319fee727f651775acba",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x7e06b5f3579f7a336e9bf9c9a6715bae29a76f1936a053b835a6521d92405b30",
+      "observedWallets": 1052,
+      "atLeast": false,
+      "observedSpanHours": 3123.8,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0xb012cdbde79f0fe5c83b4352b70ae41190c5314f3070e74ee40ca6bf6db47395",
+      "code": "ROUND_TRIP_TO_FUNDER"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x45621106320b3eed3e06ad2de710165212888fb59ea0f1d28f25d36c38291aff",
+      "observedWallets": 22,
+      "atLeast": false,
+      "observedSpanHours": 4316.2,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0xc3e5d4f5695ebf9ab139959edf688be24759fbd6a50b0f687b67aa8575aa77d4",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xd044a89d8a37f71740de4e7d21fa668a04b048f00e21613fe1ec87615b874700",
+      "observedWallets": 487,
+      "atLeast": false,
+      "observedSpanHours": 6870.5,
+      "engineCalledSharedService": true,
+      "engineCountedAsLink": false,
+      "probe": "0x114827510bd46c42f6a3b29cea20a11f9686d4e9e7ac0f482ce02461140c8b2d",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x14387b4b7191a0c26b01ba14c9c9a743a5d765aa76b8c741d5a023887b770a0f",
+      "observedWallets": 1096,
+      "atLeast": true,
+      "observedSpanHours": 155.7,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": true,
+      "probe": "0xf613a4ed0743b1d25607ba7f9360b67df6f5e66c997a4e919e36e9359fe3311d",
+      "code": "LINKED_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x419defd5e782dbaa4bbb0cc7eb41c109d075429dd970d805f3ec76a68f0e3c81",
+      "observedWallets": 105,
+      "atLeast": false,
+      "observedSpanHours": 6028.1,
+      "engineCalledSharedService": true,
+      "engineCountedAsLink": false,
+      "probe": "0x33e1c466878ff391c6aabb40459a161f2cf663e5ce01aa784b24d0f9591d7b56",
+      "code": "LINKED_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x938a86f6565cb6ee4093613adb38f1c7e56d5c6c2f43475c8c1c0a8768fccdce",
+      "observedWallets": 32,
+      "atLeast": false,
+      "observedSpanHours": 1370.8,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0xe3f659c68f28f1f18a96a5db132ab5a76963d2fb2672d9ca14e9fbfee540878a",
+      "code": "ROUND_TRIP_TO_FUNDER"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xe2fc0848acdced1daf3ded23153fc07d0a6e776942814dcc171c0d342a68b0fc",
+      "observedWallets": 29,
+      "atLeast": true,
+      "observedSpanHours": 1052.9,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": false,
+      "probe": "0x163fd42a5da0024584572b4f260b67212cec93c9093e3c434461f1998600a291",
+      "code": "LINKED_NO_BAD_HISTORY"
+    },
+    {
+      "type": "shared_funder",
+      "address": "0x3d0691455e6d1b50c1630126d7bbae2b71af9051bad067c2462fa54cbfa3de43",
+      "observedWallets": 89,
+      "atLeast": true,
+      "observedSpanHours": 1428.1,
+      "engineCalledSharedService": true,
+      "engineCountedAsLink": false,
+      "probe": "0xd4fa078c3033d725618135dfd48a5e7d4c5fb89cbb655f218961f8ea638d96f7",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xaa5690e934853630dff89c163810d7928b51d6d82da185bac8f2057b789c8653",
+      "observedWallets": 1325,
+      "atLeast": true,
+      "observedSpanHours": 2558.3,
+      "engineCalledSharedService": true,
+      "engineCountedAsLink": false,
+      "probe": "0x97457e246d96a25e857f2666b43d7b23c980cc7672bff078df5e937df275c9ab",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "shared_funder",
+      "address": "0x7796f69627a783dad3ef3e83c027a8508d7a0439281af771723c3575b0234049",
+      "observedWallets": 19,
+      "atLeast": false,
+      "observedSpanHours": 5729.2,
+      "engineCalledSharedService": true,
+      "engineCountedAsLink": false,
+      "probe": "0xdde9031f4dab9f01e4d5fc5f52a0faafa77ef0d48f971a2460fbaffa81efd04a",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x47e507b904839b9f02b020dd911ecae254a1eeb20bc994eab2b2b4621f1a5ae8",
+      "observedWallets": 650,
+      "atLeast": true,
+      "observedSpanHours": 1430,
+      "engineCalledSharedService": true,
+      "engineCountedAsLink": false,
+      "probe": "0x4c8d88927c444cddbd27e6bda84357174c5588d5ad6237e1beb778f0341940b9",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "shared_funder",
+      "address": "0xa75c6f5786de1c566edd5ae29420f688856acb9cb6b81b2c3e3d9b00f0503a2c",
+      "observedWallets": 78,
+      "atLeast": true,
+      "observedSpanHours": 43.7,
+      "engineCalledSharedService": true,
+      "engineCountedAsLink": false,
+      "probe": "0x3d43a0cf6e908f33218fc83080d1188344b248909e2dc9fa17be297238361e39",
+      "code": "NO_LINKS_NO_BAD_HISTORY"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0x26571b1f99862a4976c319bf03120cf82cf47a711f17cc49e649ac0e3a92730f",
+      "observedWallets": 112,
+      "atLeast": false,
+      "observedSpanHours": 3738.7,
+      "engineCalledSharedService": false,
+      "engineCountedAsLink": true,
+      "probe": "0x8cc185026d33dba376a16b38d48682e8ae5de511077a6f41d9201ad6522423da",
+      "code": "LINKED_NO_BAD_HISTORY"
+    }
+  ],
+  "summary": {
+    "realGroups": 20,
+    "groupsCaught": 19,
+    "memberWalletsChecked": 70,
+    "memberWalletsCaught": 60,
+    "caughtBySponsor": 7,
+    "sponsorGroups": 8,
+    "caughtByFunder": 12,
+    "funderGroups": 12,
+    "controls": 20,
+    "falseAlarms": 3,
+    "strictFalseAlarms": 0,
+    "sharedServicesSeen": 84,
+    "sharedServicesNamed": 29,
+    "checksRun": 90,
+    "tatumCallsPerCheckAvg": 4.79,
+    "tatumCallsPerCheckMax": 13
+  }
+}

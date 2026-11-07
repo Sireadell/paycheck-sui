@@ -137,3 +137,20 @@ Plain AI with the report matches checker plus memory at stopping group wallets (
 The baseline model is small (gemini-3.1-flash-lite). Stronger models were over quota on the key used, or limited to 20 calls a day, so they could not run 60 or 80 calls. A stronger model may beat us. The benchmark supports `--model=<name>`, and its answers are cached under that model's own folder.
 
 Where the checker with memory did not do well: rs-20, rc-12, rs-19 and rs-15. They are listed on the first screen.
+
+
+## Read depth (how many transactions of a wallet are read)
+
+The checker has a setting, `maxTx`: how many of a wallet's oldest transactions it reads, and the same for its first funder and its gas sponsor. The default is 50 (one call per wallet). It can be set up to 200 (up to 4 calls per history, each page asking for transactions after the same data floor). More than 200 is not allowed, so one check cannot use up the data provider quota: at most 12 history calls plus 2 small reads.
+
+| Published number | Read depth used |
+|---|---|
+| Real set, 18 of 20 groups caught, 3 of 20 controls with caution | 50 |
+| Real set, same run at depth 200 (`results-tx200.json`): 19 of 20 caught, 3 of 20 controls with caution, 0 of 20 strict false alarms | 200 |
+| Shared services named: 18 of 84 at depth 50, 29 of 84 at depth 200 | 50 and 200 |
+| Benchmark (plain AI, checker, checker with memory, plain AI with report) | 50 (saved raw answers, no new reads) |
+| Pre-scan (20 and 200 scanned addresses) | 50 |
+| First screen figures and live checks (default) | 50 |
+| Cross-agent proof run | 50 |
+
+Cost at depth 200 on the real set: 4.79 calls to Tatum per check on average (largest 13), against 3.10 (largest 4) at depth 50, so 1.69 more calls per check on average. Depth 200 left the strict false alarms at 0 of 20. rs-19 (funder) is now caught. rs-15 (gas sponsor) is still missed: its sponsored transactions lie beyond the oldest 200.

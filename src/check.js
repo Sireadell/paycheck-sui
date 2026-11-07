@@ -15,6 +15,7 @@ import { sponsoredSenders } from './engine/gasSponsor.js';
 import { buildVerdict } from './engine/verdict.js';
 import { compareTx } from './providers/crosscheck.js';
 import { callLog } from './providers/index.js';
+import { listHistory, clampMaxTx } from './providers/tatum.js';
 import { isSuiAddress, padAddress } from './address.js';
 
 const SUI_SUFFIX = '::sui::SUI';
@@ -63,7 +64,9 @@ function withTimeout(p, ms, label) {
   return Promise.race([p, timeout]).finally(() => clearTimeout(timer));
 }
 
-export function createChecker({ tatum, ankr = null, memory, mode = 'test', recallTimeoutMs = 25000, now = () => Date.now() } = {}) {
+export function createChecker({ tatum, ankr = null, memory, mode = 'test', recallTimeoutMs = 25000, now = () => Date.now(), maxTx = 50 } = {}) {
+  // How many transactions of a wallet, its funder and its gas sponsor are read (50 default, up to 200, 4 calls at most per list).
+  const depth = clampMaxTx(maxTx);
   const bench = mode === 'bench';
   const test = mode !== 'live' && !bench;
   const ns = bench
@@ -78,7 +81,7 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
 
   // Everything read from the chain for one wallet.
   async function gather(wallet) {
-    const page = await tatum.listTransactions(wallet, { first: 50 });
+    const page = await listHistory(tatum, wallet, { maxTx: depth });
     const inputs = engineInputs(wallet, page.transactions);
     const first = inputs.incoming.slice().sort((a, b) => a.timestampMs - b.timestampMs)[0];
     const funder = first?.sender ?? null;
@@ -86,7 +89,7 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
     const sponsor = sponsorTx?.gasSponsor ?? null;
     const lists = new Map();
     const listOf = async (a) => {
-      if (!lists.has(a)) lists.set(a, tatum.listTransactions(a, { first: 50 }).catch((e) => ({ error: e, transactions: [], hasNextPage: false })));
+      if (!lists.has(a)) lists.set(a, listHistory(tatum, a, { maxTx: depth }).catch((e) => ({ error: e, transactions: [], hasNextPage: false })));
       return lists.get(a);
     };
     const [fl, sl] = await Promise.all([funder ? listOf(funder) : null, sponsor ? listOf(sponsor) : null]);
@@ -104,7 +107,7 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
     const sf = analysis.sharedFunder;
     const groupId = sf?.groupSize > 0 && funder ? groupIdOf(funder) : (sponsor && !hubs.sponsor?.verdict?.startsWith('shared') ? groupIdOf(sponsor) : null);
     const notes = [];
-    if (page.hasNextPage) notes.push('Only the oldest 50 transactions of this wallet were read.');
+    if (page.hasNextPage) notes.push(`Only the oldest ${depth} transactions of this wallet were read.`);
     if (fl?.error) notes.push('The funder history could not be read, so the shared service check was skipped.');
     if (sl?.error) notes.push('The gas sponsor history could not be read.');
     return { page, analysis, hubs, selfHub, funder, sponsor, groupId, groupIds, notes, links: { firstDigest: first?.digest ?? null, sponsorDigest: sponsorTx?.digest ?? null } };

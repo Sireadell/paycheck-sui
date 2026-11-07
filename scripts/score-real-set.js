@@ -1,13 +1,19 @@
 // Runs the real engine with memory OFF on every case of the real set and prints the catch rate and false alarm rate.
-// Usage: node --env-file=.env scripts/score-real-set.js [--rerun]
+// Usage: node --env-file=.env scripts/score-real-set.js [--rerun] [--max-tx=200]
+// --max-tx=N (50 to 200) reads N transactions per wallet, funder and sponsor and prints that row beside the default 50 row.
+// The 50 row (results.json) is never overwritten by it: the deeper run is saved in results-tx<N>.json.
 // First run reads the chain (cached under data/real-set/raw/cache) and saves data/real-set/results.json.
 // Later runs print from the saved file. --rerun runs the engine again.
 import path from 'node:path';
 import { createChecker } from '../src/check.js';
+import { clampMaxTx } from '../src/providers/tatum.js';
 import { DIR, makeClients, readJson, writeJson } from './lib/realSetCommon.js';
 
 const NO_LINKS = 'NO_LINKS_NO_BAD_HISTORY';
+const argTx = process.argv.find((a) => a.startsWith('--max-tx='));
+const deepTx = argTx ? clampMaxTx(argTx.split('=')[1]) : 50;
 const resultsFile = path.join(DIR, 'results.json');
+const deepFile = path.join(DIR, `results-tx${deepTx}.json`);
 const groupsFile = readJson(path.join(DIR, 'groups.json'));
 const controlsFile = readJson(path.join(DIR, 'controls.json'));
 if (!groupsFile || !controlsFile) { console.error('Missing data/real-set/groups.json or controls.json. Run scripts/build-real-set.js first.'); process.exit(1); }
@@ -24,9 +30,9 @@ const slim = (r) => ({
   notes: r.notes ?? [], tatumCalls: r.callLog?.tatum?.calls ?? null,
 });
 
-async function run() {
+async function run(maxTx = 50) {
   const { tatum } = makeClients({ withAnkr: false });
-  const checker = createChecker({ tatum, ankr: null, memory: noMemory, mode: 'live' });
+  const checker = createChecker({ tatum, ankr: null, memory: noMemory, mode: 'live', maxTx });
   const check = async (address) => {
     for (let i = 0; i < 3; i++) {
       const r = await checker.check(address, { memoryOn: false });
@@ -35,7 +41,7 @@ async function run() {
     }
     return slim(await checker.check(address, { memoryOn: false }));
   };
-  const out = { ranAt: new Date().toISOString(), memory: 'off', label: groupsFile.label, groups: [], controls: [], sharedServices: [] };
+  const out = { ranAt: new Date().toISOString(), maxTx, memory: 'off', label: groupsFile.label, groups: [], controls: [], sharedServices: [] };
 
   for (const g of groupsFile.groups) {
     const members = [];
@@ -69,8 +75,14 @@ async function run() {
     console.error(`shared service ${h.address.slice(0, 10)}: engine says ${weak ? 'shared service' : counted ? 'counted link' : 'nothing'}`);
   }
   out.summary = summarize(out);
-  writeJson(resultsFile, out);
+  writeJson(maxTx === 50 ? resultsFile : path.join(DIR, `results-tx${maxTx}.json`), out);
   return out;
+}
+
+function callStats(out) {
+  const all = [...out.groups.flatMap((x) => x.memberResults), ...out.controls.map((x) => x.result)];
+  const calls = all.map((r) => r.tatumCalls).filter((n) => Number.isFinite(n));
+  return { checksRun: calls.length, tatumCallsPerCheckAvg: calls.length ? Math.round((calls.reduce((a, b) => a + b, 0) / calls.length) * 100) / 100 : null, tatumCallsPerCheckMax: calls.length ? Math.max(...calls) : null };
 }
 
 function summarize(out) {
@@ -82,30 +94,54 @@ function summarize(out) {
     caughtBySponsor: g.filter((x) => x.type === 'gas_sponsor' && x.caught).length, sponsorGroups: g.filter((x) => x.type === 'gas_sponsor').length,
     caughtByFunder: g.filter((x) => x.type === 'shared_funder' && x.caught).length, funderGroups: g.filter((x) => x.type === 'shared_funder').length,
     controls: c.length, falseAlarms: c.filter((x) => x.falseAlarm).length,
+    strictFalseAlarms: c.filter((x) => x.result.verdict === 'do not pay').length,
+    sharedServicesSeen: out.sharedServices.length, sharedServicesNamed: out.sharedServices.filter((x) => x.engineCalledSharedService).length,
+    ...callStats(out),
   };
 }
 
 let out = readJson(resultsFile);
-if (!out || process.argv.includes('--rerun')) out = await run();
-const s = out.summary;
+if (!out || process.argv.includes('--rerun')) out = await run(50);
+if (!out.summary.tatumCallsPerCheckAvg && out.summary.checksRun === undefined) out.summary = { ...out.summary, ...callStats(out), strictFalseAlarms: out.controls.filter((x) => x.result.verdict === 'do not pay').length, sharedServicesSeen: out.sharedServices.length, sharedServicesNamed: out.sharedServices.filter((x) => x.engineCalledSharedService).length };
+report(out, 50);
 
-console.log(`${out.label}; memory ${out.memory}; engine run ${out.ranAt}`);
-console.log(`real groups ${s.realGroups}, caught ${s.groupsCaught} of ${s.realGroups}, controls ${s.controls}, false alarms ${s.falseAlarms} of ${s.controls}`);
-console.log(`by link type: gas sponsor ${s.caughtBySponsor} of ${s.sponsorGroups}, shared funder ${s.caughtByFunder} of ${s.funderGroups}`);
-console.log(`every member wallet: caught ${s.memberWalletsCaught} of ${s.memberWalletsChecked}`);
-const misses = out.groups.filter((x) => !x.caught);
-console.log(`misses (${misses.length}):`);
-for (const m of misses) console.log(`  ${m.id} ${m.type} link ${m.linkAddress.slice(0, 12)}... probe ${m.probe.slice(0, 12)}...: ${m.missReason}`);
-const alarms = out.controls.filter((x) => x.falseAlarm);
-console.log(`false alarms (${alarms.length}):`);
-for (const a of alarms) console.log(`  ${a.id} ${a.address.slice(0, 12)}...: ${a.alarmReason}`);
-if (out.sharedServices.length) {
-  console.log(`shared services seen (${out.sharedServices.length}), engine called shared service on ${out.sharedServices.filter((x) => x.engineCalledSharedService).length}:`);
-  for (const h of out.sharedServices) console.log(`  ${h.type} ${h.address.slice(0, 12)}...: ${h.atLeast ? 'at least ' : ''}${h.observedWallets} wallets over ${h.observedSpanHours} h, engine: ${h.engineCalledSharedService ? 'shared service' : h.engineCountedAsLink ? 'counted as a link' : 'no link shown'}`);
+if (deepTx > 50) {
+  let deep = readJson(deepFile);
+  if (!deep || process.argv.includes('--rerun')) deep = await run(deepTx);
+  console.log('');
+  report(deep, deepTx);
+  const missOf = (o, id) => { const g = o.groups.find((x) => x.id === id); return g ? (g.caught ? 'caught' : `MISSED (${g.missReason})`) : 'n/a'; };
+  const a = out.summary;
+  const b = deep.summary;
+  console.log('');
+  console.log('two rows side by side (read depth: oldest N transactions of the wallet, its funder and its sponsor)');
+  console.log('depth | caught | controls strict false alarms | controls with caution | shared services named | tatum calls per check (avg / max)');
+  for (const [d, s2] of [[50, a], [deepTx, b]]) console.log(`${d} | ${s2.groupsCaught} of ${s2.realGroups} | ${s2.strictFalseAlarms} of ${s2.controls} | ${s2.falseAlarms} of ${s2.controls} | ${s2.sharedServicesNamed} of ${s2.sharedServicesSeen} | ${s2.tatumCallsPerCheckAvg} / ${s2.tatumCallsPerCheckMax}`);
+  console.log(`extra tatum calls per check at depth ${deepTx}: ${Math.round((b.tatumCallsPerCheckAvg - a.tatumCallsPerCheckAvg) * 100) / 100} on average`);
+  for (const id of ['rs-15', 'rs-19']) console.log(`${id}: depth 50 ${missOf(out, id)}; depth ${deepTx} ${missOf(deep, id)}`);
 }
-const sizes = out.groups.length ? groupsFile.groups.map((g) => g.observed) : [];
-if (sizes.length) {
-  const maxW = Math.max(...sizes.map((x) => x.wallets));
-  const maxH = Math.max(...sizes.map((x) => x.spanHours));
-  console.log(`hub rule check: largest real group saw ${maxW} wallets over up to ${maxH} h; rule is 15 wallets over 25 h`);
+
+function report(out, depth) {
+  const s = out.summary;
+  console.log(`== read depth ${depth} transactions per wallet ==`);
+  console.log(`${out.label}; memory ${out.memory}; engine run ${out.ranAt}`);
+  console.log(`real groups ${s.realGroups}, caught ${s.groupsCaught} of ${s.realGroups}, controls ${s.controls}, false alarms ${s.falseAlarms} of ${s.controls}`);
+  console.log(`by link type: gas sponsor ${s.caughtBySponsor} of ${s.sponsorGroups}, shared funder ${s.caughtByFunder} of ${s.funderGroups}`);
+  console.log(`every member wallet: caught ${s.memberWalletsCaught} of ${s.memberWalletsChecked}`);
+  const misses = out.groups.filter((x) => !x.caught);
+  console.log(`misses (${misses.length}):`);
+  for (const m of misses) console.log(`  ${m.id} ${m.type} link ${m.linkAddress.slice(0, 12)}... probe ${m.probe.slice(0, 12)}...: ${m.missReason}`);
+  const alarms = out.controls.filter((x) => x.falseAlarm);
+  console.log(`false alarms (${alarms.length}):`);
+  for (const a of alarms) console.log(`  ${a.id} ${a.address.slice(0, 12)}...: ${a.alarmReason}`);
+  if (out.sharedServices.length) {
+    console.log(`shared services seen (${out.sharedServices.length}), engine called shared service on ${out.sharedServices.filter((x) => x.engineCalledSharedService).length}:`);
+    for (const h of out.sharedServices) console.log(`  ${h.type} ${h.address.slice(0, 12)}...: ${h.atLeast ? 'at least ' : ''}${h.observedWallets} wallets over ${h.observedSpanHours} h, engine: ${h.engineCalledSharedService ? 'shared service' : h.engineCountedAsLink ? 'counted as a link' : 'no link shown'}`);
+  }
+  const sizes = out.groups.length ? groupsFile.groups.map((g) => g.observed) : [];
+  if (sizes.length) {
+    const maxW = Math.max(...sizes.map((x) => x.wallets));
+    const maxH = Math.max(...sizes.map((x) => x.spanHours));
+    console.log(`hub rule check: largest real group saw ${maxW} wallets over up to ${maxH} h; rule is 15 wallets over 25 h`);
+  }
 }
