@@ -2,6 +2,7 @@
 import express from 'express';
 import { pathToFileURL, fileURLToPath } from 'node:url';
 import { createHash, timingSafeEqual } from 'node:crypto';
+import { readFile } from 'node:fs/promises';
 import { createChecker } from './src/check.js';
 import { createMemory } from './src/memory/index.js';
 import { getTatum, getAnkr, callLog } from './src/providers/index.js';
@@ -92,9 +93,15 @@ export function createApp({ checker, memory, probe = null, outcomeToken = proces
     }
   });
 
-  app.get('/api/stats', (_req, res) => {
+  app.get('/api/stats', async (_req, res) => {
     const c = memory.counter();
+    let verified = null;
+    try {
+      const v = JSON.parse(await readFile(`${dataDir}/prescan/verified.json`, 'utf8'));
+      if (Array.isArray(v.verified)) verified = { recalledAndVerified: v.verified.length, of: v.of ?? null, checkedAt: v.checkedAt ?? null, label: 'recalled and verified' };
+    } catch { /* no verified file yet */ }
     res.json({
+      ...(verified ? { prescanVerified: verified } : {}),
       mode: checker.mode,
       memories: {
         live: c.stored - c.prescan,

@@ -18,7 +18,7 @@ export function sdkFactoryFromConfig(cfg = loadConfig()) {
 }
 
 // sdkFactory(namespace) returns an object with rememberAndWait, recall, listMemories, restore, destroy.
-export function createMemory({ sdkFactory, retries = 2, retryWaitMs = 2000, writeTimeoutMs = 90000, recallLimit = 20 } = {}) {
+export function createMemory({ sdkFactory, retries = 2, retryWaitMs = 2000, writeTimeoutMs = 90000, recallLimit = 20, recallConcurrency = 2, recallRetries = 3, recallRetryWaitMs = 1500 } = {}) {
   const factory = sdkFactory || sdkFactoryFromConfig();
   const clients = new Map();
   const clientFor = (ns) => {
@@ -26,6 +26,27 @@ export function createMemory({ sdkFactory, retries = 2, retryWaitMs = 2000, writ
     if (!clients.has(ns)) clients.set(ns, factory(ns));
     return clients.get(ns);
   };
+
+  // Recalls: at most recallConcurrency at once (many in parallel made the SDK preflight time out), the rest wait in line.
+  let recallActive = 0;
+  const recallWaiting = [];
+  const recallSlot = async () => {
+    if (recallActive >= recallConcurrency) await new Promise((r) => recallWaiting.push(r));
+    else recallActive++;
+  };
+  const recallDone = () => { const next = recallWaiting.shift(); if (next) next(); else recallActive--; };
+  const isTimeout = (err) => /timed out|timeout|preflight|fetch failed/i.test(String(err?.message || err));
+  async function limitedRecall(client, args) {
+    await recallSlot();
+    try {
+      for (let attempt = 0; ; attempt++) {
+        try { return await client.recall(args); } catch (err) {
+          if (attempt >= recallRetries || !isTimeout(err)) throw err;
+          await sleep(recallRetryWaitMs);
+        }
+      }
+    } finally { recallDone(); }
+  }
 
   // ledger: "namespace:idempotency key" -> entry. The counter is built from it.
   const ledger = new Map();
@@ -127,7 +148,7 @@ export function createMemory({ sdkFactory, retries = 2, retryWaitMs = 2000, writ
     async recall({ namespace, address, group, kind, query, limit = recallLimit }) {
       if (!address && !group) throw new Error('recall needs an address or a group');
       const client = clientFor(namespace);
-      const res = await client.recall({ query: query || address || group, limit, namespace });
+      const res = await limitedRecall(client, { query: query || address || group, limit, namespace });
       const out = [];
       for (const m of res.results || []) {
         const p = parseMemory(m.text);
@@ -158,7 +179,7 @@ export function createMemory({ sdkFactory, retries = 2, retryWaitMs = 2000, writ
     async restore(namespace, { limit = 500, probe = 'PAYCHECK v1' } = {}) {
       const client = clientFor(namespace);
       const r = await client.restore(namespace, limit);
-      const res = await client.recall({ query: probe, limit: Math.min(limit, 100), namespace });
+      const res = await limitedRecall(client, { query: probe, limit: Math.min(limit, 100), namespace });
       let rebuilt = 0;
       for (const m of res.results || []) {
         const p = parseMemory(m.text);

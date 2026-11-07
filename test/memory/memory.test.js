@@ -145,3 +145,33 @@ test('bulkWrite marks every item failed when the call throws, and a retry writes
   boom = false;
   assert.equal((await m.bulkWrite([it]))[0].state, 'stored');
 });
+
+test('recall: at most 2 at once, and a timed-out recall is retried', async () => {
+  let active = 0, peak = 0, calls = 0;
+  const flaky = new Set();
+  const factory = () => ({
+    async recall({ query }) {
+      calls++; active++; peak = Math.max(peak, active);
+      await new Promise((r) => setTimeout(r, 15));
+      active--;
+      if (query === A && !flaky.has(A)) { flaky.add(A); throw new Error('memory recall timed out after 5000 ms'); }
+      return { results: [], total: 0 };
+    },
+    destroy() {},
+  });
+  const mem = createMemory({ sdkFactory: factory, recallRetryWaitMs: 1 });
+  const addrs = [A, B, '0x' + 'c'.repeat(64), '0x' + 'd'.repeat(64), '0x' + 'e'.repeat(64), '0x' + 'f'.repeat(64)];
+  await Promise.all(addrs.map((address) => mem.recall({ namespace: 'live', address })));
+  assert.equal(peak, 2);
+  assert.equal(calls, 7);
+});
+
+test('recall: gives up after 3 retries on timeouts, and does not retry other errors', async () => {
+  let calls = 0;
+  const mk = (msg) => createMemory({ recallRetryWaitMs: 1, sdkFactory: () => ({ async recall() { calls++; throw new Error(msg); }, destroy() {} }) });
+  await assert.rejects(mk('recall timed out').recall({ namespace: 'live', address: A }), /timed out/);
+  assert.equal(calls, 4);
+  calls = 0;
+  await assert.rejects(mk('relayer 500').recall({ namespace: 'live', address: A }), /500/);
+  assert.equal(calls, 1);
+});

@@ -70,3 +70,18 @@ test('/api/check: the limit resets after the window', async () => {
     assert.equal((await fetch(`${s.base}/api/check?address=0x1`)).status, 200);
   } finally { s.close(); }
 });
+
+test('/api/stats reports the verified pre-scan count from data/prescan/verified.json when it exists', async () => {
+  const { mkdtempSync, mkdirSync, writeFileSync } = await import('node:fs');
+  const { tmpdir } = await import('node:os');
+  const dir = mkdtempSync(`${tmpdir()}/tr-stats-`);
+  mkdirSync(`${dir}/prescan`);
+  const none = await serve({ dataDir: dir });
+  try { assert.equal((await (await fetch(`${none.base}/api/stats`)).json()).prescanVerified, undefined); } finally { none.close(); }
+  writeFileSync(`${dir}/prescan/verified.json`, JSON.stringify({ of: 5, verified: ['0x1', '0x2', '0x3'], checkedAt: 'now' }));
+  const s = await serve({ dataDir: dir });
+  try {
+    const j = await (await fetch(`${s.base}/api/stats`)).json();
+    assert.deepEqual(j.prescanVerified, { recalledAndVerified: 3, of: 5, checkedAt: 'now', label: 'recalled and verified' });
+  } finally { s.close(); }
+});
