@@ -33,7 +33,19 @@ export async function loadBenchmark({ dataDir, benchDir }) {
   const stress = st && Number.isFinite(st.caught) && Number.isFinite(st.total)
     ? { label: 'synthetic, built by us', caught: st.caught, total: st.total }
     : null;
-  return { real, stress };
+  // The four-column test (plain AI, plain AI given the same report, checker, checker with memory), from bench/results/real.json.
+  const b = await readJson(join(benchDir, 'results', 'real.json'));
+  const h = b?.summary?.heldout;
+  const columns = h?.aiReport
+    ? {
+        model: b.model,
+        groups: h.mem.groups,
+        controls: h.mem.controls,
+        ai: h.ai, aiReport: h.aiReport, checker: h.nomem, memory: h.mem,
+        lostCases: [...new Set([...(b.summary.weLost ?? []), ...(b.summary.aiBeat ?? [])].map((x) => x.id))],
+      }
+    : null;
+  return { real, stress, columns };
 }
 
 /** The last run of the two-agent demo, written by the agent scripts. Null until one exists. */

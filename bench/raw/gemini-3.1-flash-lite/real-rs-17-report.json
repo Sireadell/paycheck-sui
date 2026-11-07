@@ -1,0 +1,19 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "5d6732399fc3688a",
+  "savedAt": "2026-11-07T19:12:55.843Z",
+  "text": "{\"verdict\": \"do not pay\", \"linked\": true, \"link_address\": \"0xf597c6aaeddcbeeefe7e7883479373a89e08c34e9541477502c6b33d64851675\", \"reason\": \"The wallet is part of a network of addresses funded and managed by 0xf597c6aaeddcbeeefe7e7883479373a89e08c34e9541477502c6b33d64851675, which has been linked to previous fraudulent activity. The transaction patterns show this wallet is likely a sybil or burner account used for suspicious activities.\"}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 35523,
+    "candidatesTokenCount": 186,
+    "totalTokenCount": 35709,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 35523
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

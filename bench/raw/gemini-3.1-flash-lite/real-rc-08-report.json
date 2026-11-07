@@ -1,0 +1,19 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "4af3fd703b88fff0",
+  "savedAt": "2026-11-07T19:13:55.530Z",
+  "text": "{\"verdict\": \"pay\", \"linked\": true, \"link_address\": \"0xaa19d6c6fc73ad17d65529077fdc0c303018e7846e31f0bdff8ef587673f3112\", \"reason\": \"The wallet shows normal activity including funding and standard token swaps. It is linked to its first funder, which is expected behavior for a new wallet.\"}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 1945,
+    "candidatesTokenCount": 113,
+    "totalTokenCount": 2058,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 1945
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

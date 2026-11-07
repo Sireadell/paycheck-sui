@@ -11,7 +11,7 @@ import { createTatum } from '../src/providers/tatum.js';
 import { createChecker } from '../src/check.js';
 import { createMemory } from '../src/memory/index.js';
 import { ROOT, DIR, CACHE, readJson, writeJson } from './lib/realSetCommon.js';
-import { buildCases, buildPrompt, parseAnswer, sha, tally, lossLists, lc } from './lib/bench.js';
+import { buildCases, buildPrompt, parseAnswer, reportText, sha, tally, lossLists, lc } from './lib/bench.js';
 
 const BENCH = path.join(ROOT, 'bench');
 const RAW = path.join(BENCH, 'raw');
@@ -61,10 +61,20 @@ async function askGemini({ model, key, prompt, file, stats, cap }) {
     } catch (e) {
       if (e.fatal) throw e;
       last = e;
-      await sleep(1000 * 2 ** attempt);
+      await sleep(4000 * 2 ** attempt);
     }
   }
   throw new Error(`Gemini failed after 5 tries: ${String(last?.message || last).slice(0, 120)}`);
+}
+
+// ---- plain AI given the same report memory holds for the group (the report about the training member). One cached call per case.
+async function askWithReport({ k, g, funderTxs, sponsorTxs, tg, model, geminiKey, templateReport, stats, cap }) {
+  const report = k.trainWallet ? reportText({ trainWallet: k.trainWallet, funder: tg?.funder ?? null, sponsor: tg?.sponsor ?? null, outcome: k.trainOutcome }) : reportText({});
+  const prompt = buildPrompt(templateReport, { wallet: k.wallet, walletTxs: g.page.transactions, funder: g.funder, funderTxs, sponsor: g.sponsor, sponsorTxs, report });
+  // model name is part of the cache key through the folder, and the report column has its own file per case
+  const file = path.join(RAW, model, `${k.set}-${k.id}-report.json`);
+  const a = await askGemini({ model, key: geminiKey, prompt, file, stats, cap });
+  return { ...parseAnswer(a.text), raw: path.relative(ROOT, file).replace(/\\/g, '/'), model: a.model, reportGiven: report };
 }
 
 // ---- memory training
@@ -82,7 +92,7 @@ const trainItems = async (checker, cases, log) => {
 };
 const itemKey = (m) => `${m.namespace}|${m.address}|${m.group ?? '-'}|${m.body.outcome}`;
 
-export async function run({ cases, memory, tatum, misses, progress, saveProgress, model, geminiKey, template, aiCap, log = (...a) => console.error(...a), recallRetries = 3 }) {
+export async function run({ cases, memory, tatum, misses, progress, saveProgress, model, geminiKey, template, templateReport, aiCap, log = (...a) => console.error(...a), recallRetries = 3 }) {
   const skipped = [];
   const usable = [];
   const nomemChecker = createChecker({ tatum, ankr: null, memory: noMemory, mode: 'bench' });
@@ -94,9 +104,9 @@ export async function run({ cases, memory, tatum, misses, progress, saveProgress
       const g = await nomemChecker.gather(k.wallet);
       const funderTxs = g.funder ? (await tatum.listTransactions(g.funder, { first: 50 })).transactions : [];
       const sponsorTxs = g.sponsor ? (await tatum.listTransactions(g.sponsor, { first: 50 })).transactions : [];
-      if (k.trainWallet) await nomemChecker.gather(k.trainWallet);
+      const tg = k.trainWallet ? await nomemChecker.gather(k.trainWallet) : null;
       if (misses.size) throw Object.assign(new Error('CACHE_MISS'), { code: 'CACHE_MISS' });
-      usable.push({ k, g, funderTxs, sponsorTxs });
+      usable.push({ k, g, funderTxs, sponsorTxs, tg });
     } catch (e) {
       skipped.push({ id: k.id, reason: e.code === 'CACHE_MISS' ? 'no cached raw data (not fetched)' : `could not be read: ${String(e.message).slice(0, 100)}` });
       log(`skip ${k.id}: ${skipped.at(-1).reason}`);
@@ -133,8 +143,8 @@ export async function run({ cases, memory, tatum, misses, progress, saveProgress
   // 3. The three columns.
   const rows = [];
   const aiStats = { calls: 0, cached: 0 };
-  for (const { k, g, funderTxs, sponsorTxs } of usable) {
-    const row = { case: k, ai: null, nomem: null, mem: null };
+  for (const { k, g, funderTxs, sponsorTxs, tg } of usable) {
+    const row = { case: k, ai: null, aiReport: null, nomem: null, mem: null };
     const nm = await nomemChecker.check(k.wallet, { memoryOn: false, deferWrite: true });
     row.nomem = slim(nm, k.linkAddress);
 
@@ -144,6 +154,7 @@ export async function run({ cases, memory, tatum, misses, progress, saveProgress
       const a = await askGemini({ model, key: geminiKey, prompt, file, stats: aiStats, cap: aiCap });
       row.ai = { ...parseAnswer(a.text), raw: path.relative(ROOT, file).replace(/\\/g, '/'), model: a.model };
       if (row.ai.linkAddress == null && row.ai.verdict === 'unparsed') row.ai.note = 'answer could not be read';
+      row.aiReport = await askWithReport({ k, g, funderTxs, sponsorTxs, tg, model, geminiKey, templateReport, stats: aiStats, cap: aiCap });
     }
 
     if (mem && k.split === 'heldout') {
@@ -165,8 +176,8 @@ export async function run({ cases, memory, tatum, misses, progress, saveProgress
 export function summarize(rows) {
   const held = rows.filter((x) => x.case.split === 'heldout');
   const col = (name, set) => tally(set, name);
-  const heldout = { ai: col('ai', held), nomem: col('nomem', held), mem: col('mem', held) };
-  const all = { ai: col('ai', rows), nomem: col('nomem', rows) };
+  const heldout = { ai: col('ai', held), aiReport: col('aiReport', held), nomem: col('nomem', held), mem: col('mem', held) };
+  const all = { ai: col('ai', rows), aiReport: col('aiReport', rows), nomem: col('nomem', rows) };
   const memoryChanged = held.filter((x) => x.mem?.changedByMemory).length;
   const changedList = held.filter((x) => x.mem?.changedByMemory).map((x) => ({ id: x.case.id, from: x.mem.withoutMemory, to: x.mem.verdict }));
   const diffFromNoMem = held.filter((x) => x.mem && x.mem.verdict !== x.nomem.verdict).length;
@@ -179,18 +190,18 @@ export function printTable(label, s, skipped, model) {
   const h = s.heldout;
   const cell = (c, f) => `${c[f]} of ${f.startsWith('falseAlarm') ? c.controls : c.groups}`;
   const rowsOut = [
-    ['Held-out linked groups: link found', ...['ai', 'nomem', 'mem'].map((k) => cell(h[k], 'linkFound'))],
-    ['  answered do not pay', ...['ai', 'nomem', 'mem'].map((k) => cell(h[k], 'stopped'))],
-    ['  answered caution or do not pay', ...['ai', 'nomem', 'mem'].map((k) => cell(h[k], 'flagged'))],
-    ['Held-out controls: false alarm, strict (do not pay)', ...['ai', 'nomem', 'mem'].map((k) => cell(h[k], 'falseAlarmStrict'))],
-    ['  false alarm incl. caution', ...['ai', 'nomem', 'mem'].map((k) => cell(h[k], 'falseAlarmIncl'))],
+    ['Held-out linked groups: link found', ...['ai', 'aiReport', 'nomem', 'mem'].map((k) => cell(h[k], 'linkFound'))],
+    ['  answered do not pay', ...['ai', 'aiReport', 'nomem', 'mem'].map((k) => cell(h[k], 'stopped'))],
+    ['  answered caution or do not pay', ...['ai', 'aiReport', 'nomem', 'mem'].map((k) => cell(h[k], 'flagged'))],
+    ['Held-out controls: false alarm, strict (do not pay)', ...['ai', 'aiReport', 'nomem', 'mem'].map((k) => cell(h[k], 'falseAlarmStrict'))],
+    ['  false alarm incl. caution', ...['ai', 'aiReport', 'nomem', 'mem'].map((k) => cell(h[k], 'falseAlarmIncl'))],
   ];
   console.log(`${label}\nHeld-out cases ${s.heldoutCases} (${h.mem.groups} linked groups, ${h.mem.controls} controls). Plain AI: ${model}, temperature 0, one run.`);
-  console.log(`${pad('', 52)}${pad('Plain AI', 12)}${pad('Checker', 12)}Checker + memory`);
-  for (const r of rowsOut) console.log(`${pad(r[0], 52)}${pad(r[1], 12)}${pad(r[2], 12)}${r[3]}`);
+  console.log(`${pad('', 52)}${pad('Plain AI', 12)}${pad('AI + report', 13)}${pad('Checker', 12)}Checker + memory`);
+  for (const r of rowsOut) console.log(`${pad(r[0], 52)}${pad(r[1], 12)}${pad(r[2], 13)}${pad(r[3], 12)}${r[4]}`);
   console.log(`Verdicts memory changed: ${s.memoryChanged} of ${s.heldoutCases}${s.changedList.length ? ` (${s.changedList.map((c) => `${c.id}: ${c.from} -> ${c.to}`).join(', ')})` : ''}`);
   const a = s.all;
-  console.log(`All ${a.ai.groups + a.ai.controls} cases, no memory involved: AI link found ${a.ai.linkFound} of ${a.ai.groups}, strict false alarms ${a.ai.falseAlarmStrict} of ${a.ai.controls}, with caution ${a.ai.falseAlarmIncl}; checker link found ${a.nomem.linkFound} of ${a.nomem.groups}, strict ${a.nomem.falseAlarmStrict}, with caution ${a.nomem.falseAlarmIncl}`);
+  console.log(`All ${a.ai.groups + a.ai.controls} cases, no memory involved: AI + report link found ${a.aiReport.linkFound} of ${a.aiReport.groups}, strict false alarms ${a.aiReport.falseAlarmStrict} of ${a.aiReport.controls}, with caution ${a.aiReport.falseAlarmIncl}; AI link found ${a.ai.linkFound} of ${a.ai.groups}, strict false alarms ${a.ai.falseAlarmStrict} of ${a.ai.controls}, with caution ${a.ai.falseAlarmIncl}; checker link found ${a.nomem.linkFound} of ${a.nomem.groups}, strict ${a.nomem.falseAlarmStrict}, with caution ${a.nomem.falseAlarmIncl}`);
   console.log(`Cases where plain AI did better than the checker with memory (${s.aiBeat.length}):`);
   for (const x of s.aiBeat) console.log(`  ${x.id} ${x.kind}: AI ${x.ai}, checker ${x.ours} (${x.why})`);
   console.log(`Cases where the checker with memory did not do well (${s.weLost.length}):`);
@@ -208,6 +219,7 @@ async function main() {
   mkdirSync(path.join(RAW, model), { recursive: true });
   mkdirSync(RESULTS, { recursive: true });
   const template = readFileSync(path.join(BENCH, 'prompt.txt'), 'utf8');
+  const templateReport = readFileSync(path.join(BENCH, 'prompt-report.txt'), 'utf8');
 
   const sets = [{ name: 'real', label: 'Real set: real mainnet wallets we checked', file: null }];
   for (const f of opt('cases')) sets.push({ name: path.basename(f, '.json'), file: f });
@@ -222,14 +234,25 @@ async function main() {
     const outFile = path.join(RESULTS, `${set.name}.json`);
     const outFile2 = args.includes('--no-memory') ? path.join(RESULTS, `${set.name}.nomemory-trial.json`) : outFile;
     let out = args.includes('--rerun') ? null : readJson(outFile2);
+    if (out && geminiKey && !out.cases.every((x) => x.aiReport)) {
+      // Older result without the fourth column: add only that column. No memory is trained or read, no chain data is fetched.
+      const cases = buildCases(spec, set.name);
+      const r = await run({ cases, memory: null, tatum, misses, progress, saveProgress, model: out.model, geminiKey, template, templateReport, aiCap: cases.length });
+      const by = Object.fromEntries(r.rows.map((x) => [x.case.id, x.aiReport]));
+      out.cases.forEach((x) => { x.aiReport = by[x.case.id] ?? null; });
+      out.summary = { ...summarize(out.cases), ...{} };
+      out.aiReportCalls = r.aiStats;
+      out.aiReportPrompt = 'bench/prompt-report.txt';
+      writeJson(outFile2, out);
+    }
     if (!out) {
       const cases = buildCases(spec, set.name);
-      const r = await run({ cases, memory, tatum, misses, progress, saveProgress, model, geminiKey, template, aiCap: cases.length });
+      const r = await run({ cases, memory, tatum, misses, progress, saveProgress, model, geminiKey, template, templateReport, aiCap: cases.length * 2 });
       const s = summarize(r.rows);
       const groups = r.rows.filter((x) => x.case.kind === 'group');
       out = {
         label: spec.label ?? set.label, set: set.name, ranAt: new Date().toISOString(), model, temperature: 0, aiRuns: 1,
-        split: 'docs/METHOD.md, Benchmark split rule', memoryNamespace: 'bench-train', skipped: r.skipped, aiCalls: r.aiStats,
+        aiReportPrompt: 'bench/prompt-report.txt', split: 'docs/METHOD.md, Benchmark split rule', memoryNamespace: 'bench-train', skipped: r.skipped, aiCalls: r.aiStats,
         caught: groups.filter((x) => x.nomem.links.some((l) => lc(l.address) === lc(x.case.linkAddress))).length, total: groups.length,
         summary: s, cases: r.rows.map((x) => ({ ...x, case: x.case })),
       };

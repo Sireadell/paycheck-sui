@@ -1,0 +1,19 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "e95b875b2a32cf2b",
+  "savedAt": "2026-11-07T19:11:01.754Z",
+  "text": "{\"verdict\": \"do not pay\", \"linked\": true, \"link_address\": \"0x0f5bcbd58c302ef4695b79dc35d2c319e18e55fcdc5e19f5ba6c3febc9c10c6c\", \"reason\": \"The wallet was funded by a central entity that has been linked to fraudulent activity, and the wallet's transaction pattern shows it immediately returning funds to that same entity, which is characteristic of a sybil or drainer account.\"}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 15058,
+    "candidatesTokenCount": 128,
+    "totalTokenCount": 15186,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 15058
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

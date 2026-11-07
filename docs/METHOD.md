@@ -115,3 +115,25 @@ The split below is fixed and public. It was written down before the benchmark ra
 | Columns scored | Link found: the column names the recorded link address. Do not pay, and caution or worse, on groups. False alarm strict (do not pay) and including caution, on controls |
 
 What this does and does not show. The outcome reports used for training are put in by the benchmark (a group member is marked as a payment that went bad), because the real set has no recorded losses. So it measures one thing: when one wallet of a linked group has a stored bad report, does a different, never-seen wallet of the same group get stopped, and are unlinked wallets left alone. It does not measure how often real payments go bad. Held-out groups share a funder or gas sponsor with their training wallet by construction, which is the case memory is built for.
+
+
+### What the memory test measures, and the fourth column (added 7 Nov, step 2.2b)
+
+In this test a report about one wallet in a group is given to memory, and we measure whether the rest of the group is stopped. It tests whether memory spreads a warning, not how well we find bad wallets. The "do not pay" count in the memory column is by construction: one training member of each group is marked as a payment that went bad, because the real set has no recorded losses.
+
+A fair question is why not just put that report into the AI's prompt. So the benchmark has a fourth column, "plain AI + report". It is the same model, the same fixed prompt style (`bench/prompt-report.txt`), temperature 0, one call per case, the same saved raw transactions, plus the same report text that memory receives for that group (the report about the training member: its address, its first funder and its gas fee payer). Held-out controls get "(no reports)", the same as memory, which holds nothing for them. No Tatum or Ankr call is made. The answers are cached in `bench/raw/<model>/` as `real-<case>-report.json`.
+
+Result on the real set, 30 held-out cases (20 group probes, 10 controls), gemini-3.1-flash-lite:
+
+| | Plain AI | Plain AI + report | Checker | Checker + memory |
+|---|---|---|---|---|
+| Groups answered "do not pay" | 5 of 20 | 18 of 20 | 0 of 20 | 18 of 20 |
+| Groups where the right link was named | 17 of 20 | 8 of 20 | 18 of 20 | 18 of 20 |
+| Controls wrongly told "do not pay" | 3 of 10 | 3 of 10 | 0 of 10 | 0 of 10 |
+| Controls wrongly told "do not pay" or "caution" | 4 of 10 | 5 of 10 | 1 of 10 | 1 of 10 |
+
+Plain AI with the report matches checker plus memory at stopping group wallets (18 of 20 each), and it has more false alarms on controls (3 of 10 against 0 of 10). So the value of memory is not smarter reasoning. It is a shared, persistent, cross-agent report that every agent reads without being told. In this test the AI only had the report because the benchmark pasted it in; a real agent would need something to carry the report to it, which is what memory does.
+
+The baseline model is small (gemini-3.1-flash-lite). Stronger models were over quota on the key used, or limited to 20 calls a day, so they could not run 60 or 80 calls. A stronger model may beat us. The benchmark supports `--model=<name>`, and its answers are cached under that model's own folder.
+
+Where the checker with memory did not do well: rs-20, rc-12, rs-19 and rs-15. They are listed on the first screen.

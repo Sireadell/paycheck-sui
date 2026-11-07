@@ -95,3 +95,16 @@ test('first screen: memory=on and memory=off give different verdicts for the sam
     assert.equal(on.test, true);
   } finally { s.close(); }
 });
+
+test('first screen: the benchmark shows four columns, the plain sentence and the four losses', async () => {
+  const s = await serve();
+  try {
+    const b = await (await fetch(`${s.base}/api/benchmark`)).json();
+    assert.ok(b.columns, 'four-column result is served');
+    for (const k of ['ai', 'aiReport', 'checker', 'memory']) assert.equal(typeof b.columns[k].stopped, 'number');
+    const copy = JSON.parse(readFileSync(new URL('../web/copy.json', import.meta.url), 'utf8'));
+    assert.match(copy.bench.columnsTest, /not how well we find bad wallets/);
+    assert.deepEqual(copy.bench.losses.map((x) => x.id).sort(), ['rc-12', 'rs-15', 'rs-19', 'rs-20']);
+    assert.deepEqual(copy.bench.losses.map((x) => x.id).sort(), b.columns.lostCases.slice().sort());
+  } finally { s.close(); }
+});

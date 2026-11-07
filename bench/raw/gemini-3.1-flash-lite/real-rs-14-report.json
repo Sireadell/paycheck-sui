@@ -1,0 +1,19 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "9601b9f57f7a4038",
+  "savedAt": "2026-11-07T19:12:50.510Z",
+  "text": "{\"verdict\": \"caution\", \"linked\": true, \"link_address\": \"0x9c844a4711235e778f59fc5845eefa55a65d46cefbde3d55c471d388c005b233\", \"reason\": \"The wallet was funded by an address that has been linked to other suspicious activity, including a wallet reported for bad transactions. Given this association with a potential sybil or malicious funding source, caution is advised.\"}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 5185,
+    "candidatesTokenCount": 125,
+    "totalTokenCount": 5310,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 5185
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

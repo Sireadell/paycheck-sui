@@ -34,9 +34,15 @@ export function compactTx(t) {
 }
 export const txLines = (txs) => (txs?.length ? txs.map((t) => JSON.stringify(compactTx(t))).join('\n') : '(none)');
 
-export function buildPrompt(template, { wallet, walletTxs, funder, funderTxs, sponsor, sponsorTxs }) {
-  const fill = { WALLET: wallet, WALLET_TXS: txLines(walletTxs), FUNDER: funder ?? 'none found', FUNDER_TXS: funder ? txLines(funderTxs) : '(none)', SPONSOR: sponsor ?? 'none (the wallet paid its own fees)', SPONSOR_TXS: sponsor ? txLines(sponsorTxs) : '(none)' };
+export function buildPrompt(template, { wallet, walletTxs, funder, funderTxs, sponsor, sponsorTxs, report }) {
+  const fill = { REPORT: report ?? '(no reports)', WALLET: wallet, WALLET_TXS: txLines(walletTxs), FUNDER: funder ?? 'none found', FUNDER_TXS: funder ? txLines(funderTxs) : '(none)', SPONSOR: sponsor ?? 'none (the wallet paid its own fees)', SPONSOR_TXS: sponsor ? txLines(sponsorTxs) : '(none)' };
   return template.replace(/\{\{(\w+)\}\}/g, (_, k) => fill[k] ?? '');
+}
+/** The report text a memory write holds for a training wallet, in plain words: who went bad, and its funder and gas payer. */
+export function reportText({ trainWallet, funder, sponsor, outcome = 'bad' }) {
+  if (!trainWallet) return '(no reports)';
+  const what = outcome === 'bad' ? 'went bad' : 'went fine';
+  return `An agent reports that its payment to wallet ${trainWallet} ${what}. That wallet's first funder was ${funder ?? 'none found'} and its gas fee payer was ${sponsor ?? 'none (it paid its own fees)'}.`;
 }
 export const sha = (s) => createHash('sha256').update(s).digest('hex').slice(0, 16);
 

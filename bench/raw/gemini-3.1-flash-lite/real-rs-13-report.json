@@ -1,0 +1,19 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "e93c11c532ad8a36",
+  "savedAt": "2026-11-07T19:11:06.901Z",
+  "text": "{\n  \"verdict\": \"do not pay\",\n  \"linked\": true,\n  \"link_address\": \"0x00a410baa4d96f50fdd42f9b4e7300add4def4dae3da77f21e333fc17400101b\",\n  \"reason\": \"The wallet is directly linked to a known bad actor (0x0adb4c5202adfe7d0eae2cc07329f460f9262eacd1ccb0e26bfcd40bd4e59b2a) through shared funding sources and exhibits suspicious, rapid-fire transaction patterns characteristic of malicious activity.\"\n}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 32245,
+    "candidatesTokenCount": 175,
+    "totalTokenCount": 32420,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 32245
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

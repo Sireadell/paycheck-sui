@@ -108,6 +108,15 @@ button { font: inherit; cursor: pointer; }
 .big2 { font-size: 34px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; font-variant-numeric: tabular-nums; }
 .mid { font-size: 22px; font-weight: 750; font-variant-numeric: tabular-nums; }
 .tail { font-size: 16px; font-weight: 500; color: var(--dark-muted); letter-spacing: 0; }
+.columns { border-top: 1px solid var(--dark-line); padding-top: 18px; }
+.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.cols-table { border-collapse: collapse; width: 100%; table-layout: fixed; font-size: 13px; font-variant-numeric: tabular-nums; }
+.cols-table th, .cols-table td { text-align: left; padding: 8px 6px 8px 0; overflow-wrap: anywhere; border-bottom: 1px solid var(--dark-line); vertical-align: top; }
+.cols-table th { font: 650 12px var(--mono); color: #cfe0ff; }
+.cols-table .rowname { color: var(--dark-muted); width: 34%; }
+.cols-test { font-weight: 650; }
+.losses { padding-left: 0; list-style: none; display: grid; gap: 8px; font-size: 14px; }
+.losses strong { font-family: var(--mono); }
 .stress { border: 1px dashed var(--dark-muted); border-radius: 12px; padding: 12px 14px; }
 
 .limits { padding: 64px 0 56px; }

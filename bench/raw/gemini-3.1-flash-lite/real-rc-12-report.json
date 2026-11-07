@@ -1,0 +1,19 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "9d623a569987ae1f",
+  "savedAt": "2026-11-07T19:14:00.222Z",
+  "text": "{\"verdict\": \"pay\", \"linked\": true, \"link_address\": \"0x9bd23463cd99c1c73bfe953a03b814d7799b8e0d2fadc1928b0fe5cfea160b85\", \"reason\": \"The wallet shows normal transactional behavior, including receiving funds from a primary source and interacting with it, with no signs of malicious activity.\"}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 8498,
+    "candidatesTokenCount": 108,
+    "totalTokenCount": 8606,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 8498
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

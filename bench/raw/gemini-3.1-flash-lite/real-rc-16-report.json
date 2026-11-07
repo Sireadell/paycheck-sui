@@ -1,0 +1,19 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "f2706155da9ddc85",
+  "savedAt": "2026-11-07T19:14:05.937Z",
+  "text": "{\"verdict\": \"caution\", \"linked\": false, \"link_address\": null, \"reason\": \"The wallet received multiple small, rapid funding transactions from different addresses before immediately transferring a large sum to another wallet, which is characteristic of a temporary transit or 'peel' wallet.\"}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 2586,
+    "candidatesTokenCount": 60,
+    "totalTokenCount": 2646,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 2586
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "5e1a7a96858d8b38",
+  "savedAt": "2026-11-07T19:11:05.087Z",
+  "text": "{\n  \"verdict\": \"do not pay\",\n  \"linked\": true,\n  \"link_address\": \"0xb5efe55a53b225a9f92e77169c8e411f0935874e0c519a6560d8cf45d4640f27\",\n  \"reason\": \"The wallet was funded by 0xb5efe55a53b225a9f92e77169c8e411f0935874e0c519a6560d8cf45d4640f27, which is the same funder for a wallet previously reported as problematic. The wallet's transaction pattern shows it immediately drains its funds to another address, which is a common indicator of a sybil or malicious actor.\"\n}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 11830,
+    "candidatesTokenCount": 210,
+    "totalTokenCount": 12040,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 11830
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

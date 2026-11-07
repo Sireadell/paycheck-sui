@@ -26,6 +26,15 @@
         "falseAlarmStrict": 3,
         "falseAlarmIncl": 4
       },
+      "aiReport": {
+        "groups": 20,
+        "linkFound": 8,
+        "flagged": 19,
+        "stopped": 18,
+        "controls": 10,
+        "falseAlarmStrict": 3,
+        "falseAlarmIncl": 5
+      },
       "nomem": {
         "groups": 20,
         "linkFound": 18,
@@ -54,6 +63,15 @@
         "controls": 20,
         "falseAlarmStrict": 6,
         "falseAlarmIncl": 8
+      },
+      "aiReport": {
+        "groups": 20,
+        "linkFound": 8,
+        "flagged": 19,
+        "stopped": 18,
+        "controls": 20,
+        "falseAlarmStrict": 3,
+        "falseAlarmIncl": 5
       },
       "nomem": {
         "groups": 20,
@@ -284,6 +302,15 @@
           "recallError": null,
           "degraded": false
         }
+      },
+      "aiReport": {
+        "verdict": "do not pay",
+        "linked": true,
+        "linkAddress": "0x5bd845a51b45a554e0a77c9f0c002fbf1b4f9b752a6e45e42ea7f0594e91639e",
+        "reason": "The wallet is directly linked to a known bad actor through the same gas fee payer and first funder, and its transaction history shows it is part of a cluster of wallets involved in suspicious activity.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-01-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "An agent reports that its payment to wallet 0x5bd845a51b45a554e0a77c9f0c002fbf1b4f9b752a6e45e42ea7f0594e91639e went bad. That wallet's first funder was 0x2500020428c933ae7610362753bad2a85eaf4bd8e93a160ab18c7821c5ccf0e7 and its gas fee payer was 0x1f6cd55584e6d0c19ae34bfc48b1bd9b1b8a166987e34052cfea7f3c795c6d76."
       }
     },
     {
@@ -353,6 +380,15 @@
           "recallError": null,
           "degraded": false
         }
+      },
+      "aiReport": {
+        "verdict": "do not pay",
+        "linked": true,
+        "linkAddress": "0x8d6a92f0e479a4ece6c714f2086a219a9383067d6c44864f903a6ae459a1adf0",
+        "reason": "The wallet was funded by a source that also funded a wallet previously reported for fraudulent activity, and it appears to be part of a network of wallets used for similar transactions.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-02-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "An agent reports that its payment to wallet 0x8d6a92f0e479a4ece6c714f2086a219a9383067d6c44864f903a6ae459a1adf0 went bad. That wallet's first funder was 0x749b5fa18ffa6376bec07fa5ede8df90d8937285086e76fc7f5aa64449e22619 and its gas fee payer was none (it paid its own fees)."
       }
     },
     {
@@ -422,6 +458,15 @@
           "recallError": null,
           "degraded": false
         }
+      },
+      "aiReport": {
+        "verdict": "do not pay",
+        "linked": true,
+        "linkAddress": "0xf50c2c67dd2255803066f61137395a07a14d0a9a02a52cf275ce8635845d68a0",
+        "reason": "The wallet shares the same gas fee payer as another wallet that has been reported for fraudulent activity.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-03-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "An agent reports that its payment to wallet 0xf50c2c67dd2255803066f61137395a07a14d0a9a02a52cf275ce8635845d68a0 went bad. That wallet's first funder was none found and its gas fee payer was 0xd9179e689a530294f6cd0d65b4f243ffdba402dcf04eb3ad722c9f88af18c9a3."
       }
     },
     {
@@ -491,6 +536,15 @@
           "recallError": null,
           "degraded": false
         }
+      },
+      "aiReport": {
+        "verdict": "do not pay",
+        "linked": true,
+        "linkAddress": "0x53376ae44cab6954251ffed887db358555e9ecf8a1eede1eb0f6e7f4aa7fb728",
+        "reason": "The wallet shares the same gas fee payer as a wallet reported for fraudulent activity, and its transaction history shows it is part of a network of wallets funneling assets to a common address.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-04-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "An agent reports that its payment to wallet 0x53376ae44cab6954251ffed887db358555e9ecf8a1eede1eb0f6e7f4aa7fb728 went bad. That wallet's first funder was 0x935029ca5219502a47ac9b69f556ccf6e2198b5e7815cf50f68846f723739cbd and its gas fee payer was 0x6415ec433b2ba10fd605a89101d631eb29246f8f6c23db9003a3e92572b4b2f8."
       }
     },
     {
@@ -564,6 +618,15 @@
           "recallError": null,
           "degraded": false
         }
+      },
+      "aiReport": {
+        "verdict": "do not pay",
+        "linked": true,
+        "linkAddress": "0xedff7181951f4006db32c415c15ff4e07bba6506a5881d0d0fc3d7e38abbafb5",
+        "reason": "The wallet shares the same gas fee payer as another wallet previously reported for suspicious activity, and its history shows a pattern of numerous failed transactions, which is a strong indicator of malicious or automated bot behavior.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-05-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "An agent reports that its payment to wallet 0xedff7181951f4006db32c415c15ff4e07bba6506a5881d0d0fc3d7e38abbafb5 went bad. That wallet's first funder was none found and its gas fee payer was 0x3b87194850cb9d665f0ea94e97a0eb0cff3e4a564961d30704b8da5e3157397a."
       }
     },
     {
@@ -633,6 +696,15 @@
           "recallError": null,
           "degraded": false
         }
+      },
+      "aiReport": {
+        "verdict": "do not pay",
+        "linked": true,
+        "linkAddress": "0x2328712dc3e12f492cfeaafafc391ed4c61210b4454c164167446383d0e6febe",
+        "reason": "The wallet is directly linked to a known bad actor (0x5d0743c6d20f9b5d7798e46b5e83bd1c2ab09108d3152b646a120f8f047d0cea) through the same first funder. Both wallets exhibit suspicious patterns of receiving and returning large amounts of SUI to the same funding address.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-06-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "An agent reports that its payment to wallet 0x5d0743c6d20f9b5d7798e46b5e83bd1c2ab09108d3152b646a120f8f047d0cea went bad. That wallet's first funder was 0x2328712dc3e12f492cfeaafafc391ed4c61210b4454c164167446383d0e6febe and its gas fee payer was none (it paid its own fees)."
       }
     },
     {
@@ -702,6 +774,15 @@
           "recallError": null,
           "degraded": false
         }
+      },
+      "aiReport": {
+        "verdict": "do not pay",
+        "linked": true,
+        "linkAddress": "0xbd39abb7260439f498daa70c3c9000c6cd0b0a2f338494469a7d413f2c218277",
+        "reason": "The wallet is directly linked to 0xbd39abb7260439f498daa70c3c9000c6cd0b0a2f338494469a7d413f2c218277, which has been reported for fraudulent activity, and it frequently exchanges funds with that same address.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-07-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "An agent reports that its payment to wallet 0xbd39abb7260439f498daa70c3c9000c6cd0b0a2f338494469a7d413f2c218277 went bad. That wallet's first funder was 0xd9a080ec4fffd0c9d362c275be2620e85aa2b44cd6a690c23d46f125952c7382 and its gas fee payer was none (it paid its own fees)."
       }
     },
     {
@@ -771,6 +852,15 @@
           "recallError": null,
           "degraded": false
         }
+      },
+      "aiReport": {
+        "verdict": "do not pay",
+        "linked": true,
+        "linkAddress": "0x5bb54f8b08c8fae84ece08a9562b73c6e9f5c2a9043370e8471d4d0b2e96cef3",
+        "reason": "The wallet was funded by the same source as another wallet reported for fraudulent activity. Given the shared funding origin and the suspicious pattern of activity, it is unsafe to proceed with payment.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-08-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "An agent reports that its payment to wallet 0x5bb54f8b08c8fae84ece08a9562b73c6e9f5c2a9043370e8471d4d0b2e96cef3 went bad. That wallet's first funder was 0xbac27160e8cd0829807f8fb6762df9e30801f18e0ddd3c41b16b63af6a5d7d77 and its gas fee payer was none (it paid its own fees)."
       }
     },
     {
@@ -840,6 +930,15 @@
           "recallError": null,
           "degraded": false
         }
+      },
+      "aiReport": {
+        "verdict": "do not pay",
+        "linked": true,
+        "linkAddress": "0x9ee9d7d4de4e0e3b01b2a4e69679fd674d62843f1e6bc056498f569e8b12e3f5",
+        "reason": "The wallet is linked to a gas fee payer that has been associated with failed transactions and suspicious activity reported by other agents.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-09-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "An agent reports that its payment to wallet 0xfc69b005af9152cd881ba6eacd899fe0c1b920cf87b51ccbb267b183da946c0a went bad. That wallet's first funder was none found and its gas fee payer was 0x9ee9d7d4de4e0e3b01b2a4e69679fd674d62843f1e6bc056498f569e8b12e3f5."
       }
     },
     {
@@ -909,6 +1008,15 @@
           "recallError": null,
           "degraded": false
         }
+      },
+      "aiReport": {
+        "verdict": "do not pay",
+        "linked": true,
+        "linkAddress": "0x0f5bcbd58c302ef4695b79dc35d2c319e18e55fcdc5e19f5ba6c3febc9c10c6c",
+        "reason": "The wallet was funded by a central entity that has been linked to fraudulent activity, and the wallet's transaction pattern shows it immediately returning funds to that same entity, which is characteristic of a sybil or drainer account.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-10-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "An agent reports that its payment to wallet 0x0f5bcbd58c302ef4695b79dc35d2c319e18e55fcdc5e19f5ba6c3febc9c10c6c went bad. That wallet's first funder was 0xf069396c46e017d321e6f50f9a0502ed65084b465e126a7245b50a1bce358811 and its gas fee payer was none (it paid its own fees)."
       }
     },
     {
@@ -982,6 +1090,15 @@
           "recallError": null,
           "degraded": false
         }
+      },
+      "aiReport": {
+        "verdict": "do not pay",
+        "linked": true,
+        "linkAddress": "0x61b1b7f667c06d1ccfe5e404a1e705d4d0da457040c279e7c2a23bb39b9d1e05",
+        "reason": "The wallet is heavily linked to a gas fee payer that has been involved in suspicious, high-frequency transactions with other wallets reported for bad behavior. The pattern of activity suggests this wallet is part of a coordinated network of accounts used for potentially malicious or spam-related activities.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-11-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "An agent reports that its payment to wallet 0x3f032b3392f5e264c69b0092dcd70e28bcf80002e294ca7dd2fe9c8f5d0980ed went bad. That wallet's first funder was none found and its gas fee payer was 0x61b1b7f667c06d1ccfe5e404a1e705d4d0da457040c279e7c2a23bb39b9d1e05."
       }
     },
     {
@@ -1051,6 +1168,15 @@
           "recallError": null,
           "degraded": false
         }
+      },
+      "aiReport": {
+        "verdict": "do not pay",
+        "linked": true,
+        "linkAddress": "0xb5efe55a53b225a9f92e77169c8e411f0935874e0c519a6560d8cf45d4640f27",
+        "reason": "The wallet was funded by 0xb5efe55a53b225a9f92e77169c8e411f0935874e0c519a6560d8cf45d4640f27, which is the same funder for a wallet previously reported as problematic. The wallet's transaction pattern shows it immediately drains its funds to another address, which is a common indicator of a sybil or malicious actor.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-12-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "An agent reports that its payment to wallet 0xf29b3fe80886959f9e03a906c02d2c25b6d27499f728ed45b5b258d91e102a99 went bad. That wallet's first funder was 0xb5efe55a53b225a9f92e77169c8e411f0935874e0c519a6560d8cf45d4640f27 and its gas fee payer was none (it paid its own fees)."
       }
     },
     {
@@ -1120,6 +1246,15 @@
           "recallError": null,
           "degraded": false
         }
+      },
+      "aiReport": {
+        "verdict": "do not pay",
+        "linked": true,
+        "linkAddress": "0x00a410baa4d96f50fdd42f9b4e7300add4def4dae3da77f21e333fc17400101b",
+        "reason": "The wallet is directly linked to a known bad actor (0x0adb4c5202adfe7d0eae2cc07329f460f9262eacd1ccb0e26bfcd40bd4e59b2a) through shared funding sources and exhibits suspicious, rapid-fire transaction patterns characteristic of malicious activity.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-13-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "An agent reports that its payment to wallet 0x0adb4c5202adfe7d0eae2cc07329f460f9262eacd1ccb0e26bfcd40bd4e59b2a went bad. That wallet's first funder was 0x00a410baa4d96f50fdd42f9b4e7300add4def4dae3da77f21e333fc17400101b and its gas fee payer was none (it paid its own fees)."
       }
     },
     {
@@ -1189,6 +1324,15 @@
           "recallError": null,
           "degraded": false
         }
+      },
+      "aiReport": {
+        "verdict": "caution",
+        "linked": true,
+        "linkAddress": "0x9c844a4711235e778f59fc5845eefa55a65d46cefbde3d55c471d388c005b233",
+        "reason": "The wallet was funded by an address that has been linked to other suspicious activity, including a wallet reported for bad transactions. Given this association with a potential sybil or malicious funding source, caution is advised.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-14-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "An agent reports that its payment to wallet 0x46a6726e0422911f0f9e453b33de0a2f5d69bf9d86a08d0d8e89091996f1a912 went bad. That wallet's first funder was 0x9c844a4711235e778f59fc5845eefa55a65d46cefbde3d55c471d388c005b233 and its gas fee payer was none (it paid its own fees)."
       }
     },
     {
@@ -1250,6 +1394,15 @@
           "recallError": null,
           "degraded": false
         }
+      },
+      "aiReport": {
+        "verdict": "do not pay",
+        "linked": true,
+        "linkAddress": "0x59540034ef34dede361f050fdfa207a662e7877fea122e44b0fdf45d0ed9f418",
+        "reason": "The wallet received funds from a known bad actor (0x5954...) and exhibits a pattern of receiving large, frequent transfers from a central funding wallet, which is characteristic of high-risk or sybil-linked accounts.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-15-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "An agent reports that its payment to wallet 0x59540034ef34dede361f050fdfa207a662e7877fea122e44b0fdf45d0ed9f418 went bad. That wallet's first funder was 0x3da2cb67c887c9a03d1052d486733a77105824f7413fc3cbbe3641d4b67af102 and its gas fee payer was none (it paid its own fees)."
       }
     },
     {
@@ -1319,6 +1472,15 @@
           "recallError": null,
           "degraded": false
         }
+      },
+      "aiReport": {
+        "verdict": "do not pay",
+        "linked": true,
+        "linkAddress": "0x77fbb9e2e7db1c9540afdf9a979152082aae776b3fce82d7bb6245103059ed6f",
+        "reason": "The wallet is directly linked to 0x77fbb9e2e7db1c9540afdf9a979152082aae776b3fce82d7bb6245103059ed6f, which has been reported by another agent as a malicious or problematic address.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-16-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "An agent reports that its payment to wallet 0x77fbb9e2e7db1c9540afdf9a979152082aae776b3fce82d7bb6245103059ed6f went bad. That wallet's first funder was 0x4665c46504d47e38d5e80b491ca86bc027caeae8de3964e2cc2777daa1c3e87b and its gas fee payer was none (it paid its own fees)."
       }
     },
     {
@@ -1388,6 +1550,15 @@
           "recallError": null,
           "degraded": false
         }
+      },
+      "aiReport": {
+        "verdict": "do not pay",
+        "linked": true,
+        "linkAddress": "0xf597c6aaeddcbeeefe7e7883479373a89e08c34e9541477502c6b33d64851675",
+        "reason": "The wallet is part of a network of addresses funded and managed by 0xf597c6aaeddcbeeefe7e7883479373a89e08c34e9541477502c6b33d64851675, which has been linked to previous fraudulent activity. The transaction patterns show this wallet is likely a sybil or burner account used for suspicious activities.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-17-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "An agent reports that its payment to wallet 0x544081d155db42693324a80b991fd553626375301b5b08a35234d1b6673584c5 went bad. That wallet's first funder was none found and its gas fee payer was 0xf597c6aaeddcbeeefe7e7883479373a89e08c34e9541477502c6b33d64851675."
       }
     },
     {
@@ -1457,6 +1628,15 @@
           "recallError": null,
           "degraded": false
         }
+      },
+      "aiReport": {
+        "verdict": "do not pay",
+        "linked": true,
+        "linkAddress": "0x569f6d7d9f3e474423d85439e26a50348ae46ec8fa926833b2d0f36afd23db8d",
+        "reason": "The wallet is linked to a known bad actor (0x569f6d7d9f3e474423d85439e26a50348ae46ec8fa926833b2d0f36afd23db8d) through the same first funder, and its transaction history shows frequent, suspicious circular transfers of SUI back to that funder.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-18-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "An agent reports that its payment to wallet 0x569f6d7d9f3e474423d85439e26a50348ae46ec8fa926833b2d0f36afd23db8d went bad. That wallet's first funder was 0xe3ae7a719266c7d686cef7f8cb6bd19911872c467379b58173ebe4c2880ce5be and its gas fee payer was none (it paid its own fees)."
       }
     },
     {
@@ -1516,6 +1696,15 @@
           "recallError": null,
           "degraded": false
         }
+      },
+      "aiReport": {
+        "verdict": "do not pay",
+        "linked": true,
+        "linkAddress": "0x77574d4c975aa3bf3cf9571834bd3ee798707a3c7ddf9e3dfc82f34c50bb8fbf",
+        "reason": "The wallet is directly linked to 0x77574d4c975aa3bf3cf9571834bd3ee798707a3c7ddf9e3dfc82f34c50bb8fbf, which has been reported for fraudulent activity. Both wallets share the same funding source and exhibit similar suspicious transaction patterns.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-19-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "An agent reports that its payment to wallet 0x77574d4c975aa3bf3cf9571834bd3ee798707a3c7ddf9e3dfc82f34c50bb8fbf went bad. That wallet's first funder was 0x13ff52dfd326839dcad2c0f7c699224206df6c45a6e7784f34a60f10c0892bd5 and its gas fee payer was none (it paid its own fees)."
       }
     },
     {
@@ -1591,6 +1780,15 @@
           "recallError": null,
           "degraded": false
         }
+      },
+      "aiReport": {
+        "verdict": "pay",
+        "linked": true,
+        "linkAddress": "0x9218e4c21e10f8c3e9dbceeebe9bb6fecf799d12179f6810b2991da4ac38a22f",
+        "reason": "The wallet has a clear and active transaction history with no signs of malicious activity or association with the reported bad wallet. It is linked to 0x9218e4c21e10f8c3e9dbceeebe9bb6fecf799d12179f6810b2991da4ac38a22f, which appears to be a legitimate funding and gas-paying source.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-20-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "An agent reports that its payment to wallet 0x84cc1915c8206dafd410117bb1e6eff448c15cd5d64a76a9280b973b601941f7 went bad. That wallet's first funder was 0x2b47e70eaa6465d035e812483cccbf4f2fef8b9c0ded69da064b03c448c05974 and its gas fee payer was 0x2b47e70eaa6465d035e812483cccbf4f2fef8b9c0ded69da064b03c448c05974."
       }
     },
     {
@@ -1631,7 +1829,16 @@
           "degraded": false
         }
       },
-      "mem": null
+      "mem": null,
+      "aiReport": {
+        "verdict": "pay",
+        "linked": true,
+        "linkAddress": "0x1c899ecacde278c25f141b198ac6cd1eee03fa0e1645a24ff3e0b8e8dd7bdeaa",
+        "reason": "The wallet's transaction history shows normal activity and it is linked to 0x1c899ecacde278c25f141b198ac6cd1eee03fa0e1645a24ff3e0b8e8dd7bdeaa, which is a known funder that has been previously verified by another agent.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-01-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "An agent reports that its payment to wallet 0xe1b6e64f397d6120e4a9350209b2b835052c7aee51e78f860931ab6891133029 went fine. That wallet's first funder was 0x1c899ecacde278c25f141b198ac6cd1eee03fa0e1645a24ff3e0b8e8dd7bdeaa and its gas fee payer was none (it paid its own fees)."
+      }
     },
     {
       "case": {
@@ -1688,6 +1895,15 @@
           "recallError": null,
           "degraded": false
         }
+      },
+      "aiReport": {
+        "verdict": "pay",
+        "linked": true,
+        "linkAddress": "0xf1d05fbd89be96f7ba83c79e27aa9d17c2f5875c72fa0f20df8a2d0db6e0c6ba",
+        "reason": "The wallet has a clean history with only a single funding transaction from the source address. There are no signs of suspicious activity or malicious behavior.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-02-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "(no reports)"
       }
     },
     {
@@ -1728,7 +1944,16 @@
           "degraded": false
         }
       },
-      "mem": null
+      "mem": null,
+      "aiReport": {
+        "verdict": "pay",
+        "linked": true,
+        "linkAddress": "0xd20d95c804677b891acf027fd788c09dbbbe608b2bf9b6f15efbab894eba439b",
+        "reason": "The wallet has a clean transaction history and has been successfully used in previous payments. It is linked to the address 0xd20d95c804677b891acf027fd788c09dbbbe608b2bf9b6f15efbab894eba439b, which acts as its primary funding source.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-03-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "An agent reports that its payment to wallet 0x87dcac02511da1fa2b17017f9a06469892de2dd2f6d2c9a8c6e508dc2a9f5f8e went fine. That wallet's first funder was 0xd20d95c804677b891acf027fd788c09dbbbe608b2bf9b6f15efbab894eba439b and its gas fee payer was none (it paid its own fees)."
+      }
     },
     {
       "case": {
@@ -1785,6 +2010,15 @@
           "recallError": null,
           "degraded": false
         }
+      },
+      "aiReport": {
+        "verdict": "do not pay",
+        "linked": true,
+        "linkAddress": "0x07ba269852a94270c1a2817fab522f1d2206fe425beb99b85e5a9ed97d98d61d",
+        "reason": "The wallet is part of a clear pattern where a single funder repeatedly sends small, identical amounts of SUI to this address, which is characteristic of automated bot activity or a sybil network. There is no evidence of legitimate user activity or interaction with decentralized applications.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-04-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "(no reports)"
       }
     },
     {
@@ -1825,7 +2059,16 @@
           "degraded": false
         }
       },
-      "mem": null
+      "mem": null,
+      "aiReport": {
+        "verdict": "pay",
+        "linked": true,
+        "linkAddress": "0x7b42da06a1b98742396e8261c40cb4378b95fee6c3bcf88631a8e8258b8cd482",
+        "reason": "The wallet has a clean transaction history and was previously verified by another agent. It is linked to the address 0x7b42da06a1b98742396e8261c40cb4378b95fee6c3bcf88631a8e8258b8cd482, which acted as its initial funder.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-05-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "An agent reports that its payment to wallet 0x48c29778f72c8b31aa1024d0a61c0f9273b91efe9c83f7af6b825095d497bf7a went fine. That wallet's first funder was 0x7b42da06a1b98742396e8261c40cb4378b95fee6c3bcf88631a8e8258b8cd482 and its gas fee payer was none (it paid its own fees)."
+      }
     },
     {
       "case": {
@@ -1882,6 +2125,15 @@
           "recallError": null,
           "degraded": false
         }
+      },
+      "aiReport": {
+        "verdict": "do not pay",
+        "linked": true,
+        "linkAddress": "0x90f40c718d36b48106a837ee979b58986643d9a2ff22683283805f75ef52ee0b",
+        "reason": "The wallet received funds from a source and immediately transferred the entire balance to another address, which is a common pattern for money laundering or temporary transit wallets.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-06-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "(no reports)"
       }
     },
     {
@@ -1922,7 +2174,16 @@
           "degraded": false
         }
       },
-      "mem": null
+      "mem": null,
+      "aiReport": {
+        "verdict": "pay",
+        "linked": true,
+        "linkAddress": "0x4d16f4cbd7e29ce8d9eabdf761d1723589748417c0b84effc6d40c56904dacfe",
+        "reason": "The wallet has a clean transaction history and another agent reported a successful payment to this address. It is linked to its first funder, but there is no evidence of malicious activity.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-07-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "An agent reports that its payment to wallet 0x8b5abeb7ccd1b88823b519d6e5c13f0c43ce570863015a0b8b6a42d9d90e41fd went fine. That wallet's first funder was 0x4d16f4cbd7e29ce8d9eabdf761d1723589748417c0b84effc6d40c56904dacfe and its gas fee payer was none (it paid its own fees)."
+      }
     },
     {
       "case": {
@@ -1979,6 +2240,15 @@
           "recallError": null,
           "degraded": false
         }
+      },
+      "aiReport": {
+        "verdict": "pay",
+        "linked": true,
+        "linkAddress": "0xaa19d6c6fc73ad17d65529077fdc0c303018e7846e31f0bdff8ef587673f3112",
+        "reason": "The wallet shows normal activity including funding and standard token swaps. It is linked to its first funder, which is expected behavior for a new wallet.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-08-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "(no reports)"
       }
     },
     {
@@ -2019,7 +2289,16 @@
           "degraded": false
         }
       },
-      "mem": null
+      "mem": null,
+      "aiReport": {
+        "verdict": "pay",
+        "linked": true,
+        "linkAddress": "0xe3af5822aa0026bac82707fee255fba10a8b024b3a6f990f25d04f4d442eb75d",
+        "reason": "The wallet has a consistent history of receiving funds from a single source and performing standard transactions without suspicious patterns. It is linked to other wallets through the common funding address 0xe3af5822aa0026bac82707fee255fba10a8b024b3a6f990f25d04f4d442eb75d.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-09-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "An agent reports that its payment to wallet 0x13528d2507282eb66aea5aab02575b33fbae28258db031c3cd8f9964648195d9 went fine. That wallet's first funder was 0xe3af5822aa0026bac82707fee255fba10a8b024b3a6f990f25d04f4d442eb75d and its gas fee payer was none (it paid its own fees)."
+      }
     },
     {
       "case": {
@@ -2076,6 +2355,15 @@
           "recallError": null,
           "degraded": false
         }
+      },
+      "aiReport": {
+        "verdict": "do not pay",
+        "linked": false,
+        "linkAddress": null,
+        "reason": "The wallet exhibits highly suspicious behavior, receiving numerous small, rapid transfers from a wide variety of different addresses before immediately sending a large sum (over 7.5 SUI) to a single destination, which is characteristic of a money laundering or 'peel chain' pattern.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-10-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "(no reports)"
       }
     },
     {
@@ -2116,7 +2404,16 @@
           "degraded": false
         }
       },
-      "mem": null
+      "mem": null,
+      "aiReport": {
+        "verdict": "pay",
+        "linked": false,
+        "linkAddress": null,
+        "reason": "The wallet has a clean transaction history and was previously verified as safe by another agent.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-11-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "An agent reports that its payment to wallet 0xeb575b54e4ff3884040acd9ec02bb7e71019fcf9319890059d55f8568f4d1d59 went fine. That wallet's first funder was 0x3a18968c8a6fb12e0644cef01cb0964b7c683b581a59214108e69762efa3808c and its gas fee payer was none (it paid its own fees)."
+      }
     },
     {
       "case": {
@@ -2173,6 +2470,15 @@
           "recallError": null,
           "degraded": false
         }
+      },
+      "aiReport": {
+        "verdict": "pay",
+        "linked": true,
+        "linkAddress": "0x9bd23463cd99c1c73bfe953a03b814d7799b8e0d2fadc1928b0fe5cfea160b85",
+        "reason": "The wallet shows normal transactional behavior, including receiving funds from a primary source and interacting with it, with no signs of malicious activity.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-12-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "(no reports)"
       }
     },
     {
@@ -2213,7 +2519,16 @@
           "degraded": false
         }
       },
-      "mem": null
+      "mem": null,
+      "aiReport": {
+        "verdict": "pay",
+        "linked": true,
+        "linkAddress": "0xb882ccc38dcb879e7c7a0156ccd3ea26c58343141dc5c5834c8512780a53622f",
+        "reason": "The wallet has a consistent history of legitimate-looking transactions and has been previously verified by another agent. It is linked to 0xb882ccc38dcb879e7c7a0156ccd3ea26c58343141dc5c5834c8512780a53622f, which is its original funding source.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-13-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "An agent reports that its payment to wallet 0x2e435c932755e02366a589894a89d89b9362d00790ceea038acfe351af4e9390 went fine. That wallet's first funder was 0xb882ccc38dcb879e7c7a0156ccd3ea26c58343141dc5c5834c8512780a53622f and its gas fee payer was none (it paid its own fees)."
+      }
     },
     {
       "case": {
@@ -2270,6 +2585,15 @@
           "recallError": null,
           "degraded": false
         }
+      },
+      "aiReport": {
+        "verdict": "pay",
+        "linked": true,
+        "linkAddress": "0x47a4a1626977bd1c7fd68a0fcf47cb2cd863398d3c772cea7c5e21108b558e17",
+        "reason": "The wallet has a clear funding history from a single source and shows no suspicious activity. It is linked to the address 0x47a4a1626977bd1c7fd68a0fcf47cb2cd863398d3c772cea7c5e21108b558e17, which acted as its primary funder.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-14-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "(no reports)"
       }
     },
     {
@@ -2310,7 +2634,16 @@
           "degraded": false
         }
       },
-      "mem": null
+      "mem": null,
+      "aiReport": {
+        "verdict": "pay",
+        "linked": true,
+        "linkAddress": "0xc1e523a74870e48b24ab0b75d5c53f1a118c679a9d6d590934462ef20a1feb98",
+        "reason": "The wallet has a clear history of legitimate transactions and was funded by a wallet that has been previously verified as safe by another agent.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-15-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "An agent reports that its payment to wallet 0x803c1fda130fb738adf9e78b43e5f542a3a1a5105f3373753502c7830c43fb94 went fine. That wallet's first funder was 0xc1e523a74870e48b24ab0b75d5c53f1a118c679a9d6d590934462ef20a1feb98 and its gas fee payer was none (it paid its own fees)."
+      }
     },
     {
       "case": {
@@ -2367,6 +2700,15 @@
           "recallError": null,
           "degraded": false
         }
+      },
+      "aiReport": {
+        "verdict": "caution",
+        "linked": false,
+        "linkAddress": null,
+        "reason": "The wallet received multiple small, rapid funding transactions from different addresses before immediately transferring a large sum to another wallet, which is characteristic of a temporary transit or 'peel' wallet.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-16-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "(no reports)"
       }
     },
     {
@@ -2407,7 +2749,16 @@
           "degraded": false
         }
       },
-      "mem": null
+      "mem": null,
+      "aiReport": {
+        "verdict": "pay",
+        "linked": true,
+        "linkAddress": "0x9b4849dd82a23069cd514e2425306ea770f324c381266bdc2bb56ef3d113f897",
+        "reason": "The wallet has a clean transaction history and has been successfully used in previous transactions. It is linked to the funder 0x9b4849dd82a23069cd514e2425306ea770f324c381266bdc2bb56ef3d113f897, which has also been reported as safe by another agent.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-17-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "An agent reports that its payment to wallet 0x8ca8ea0f797f340e66789096fa26d79f9bc018201fb7247b2fec07f4a0f4d980 went fine. That wallet's first funder was 0x9b4849dd82a23069cd514e2425306ea770f324c381266bdc2bb56ef3d113f897 and its gas fee payer was none (it paid its own fees)."
+      }
     },
     {
       "case": {
@@ -2464,6 +2815,15 @@
           "recallError": null,
           "degraded": false
         }
+      },
+      "aiReport": {
+        "verdict": "caution",
+        "linked": true,
+        "linkAddress": "0x9be6b5d4d6c5191bbdba16f5cbb016e84282a19531c01d7ec0c31ff8365a38f2",
+        "reason": "The wallet was funded by 0x9be6b5d4d6c5191bbdba16f5cbb016e84282a19531c01d7ec0c31ff8365a38f2 and immediately transferred almost all its funds to another address, which is typical of a temporary transit wallet.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-18-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "(no reports)"
       }
     },
     {
@@ -2504,7 +2864,16 @@
           "degraded": false
         }
       },
-      "mem": null
+      "mem": null,
+      "aiReport": {
+        "verdict": "pay",
+        "linked": true,
+        "linkAddress": "0x56bc798612556538d74f1d311b5bdb48faab8b7d2f32d88262d68f78a216b427",
+        "reason": "The wallet has a clean transaction history and was previously reported as safe by another agent. It is linked to the address 0x56bc798612556538d74f1d311b5bdb48faab8b7d2f32d88262d68f78a216b427, which acts as its primary funding source.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-19-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "An agent reports that its payment to wallet 0xa3c288acfb8abc2b7a8740e581428dfea7846e1f60327aef0cf576be53fb0ff2 went fine. That wallet's first funder was 0x56bc798612556538d74f1d311b5bdb48faab8b7d2f32d88262d68f78a216b427 and its gas fee payer was none (it paid its own fees)."
+      }
     },
     {
       "case": {
@@ -2561,7 +2930,21 @@
           "recallError": null,
           "degraded": false
         }
+      },
+      "aiReport": {
+        "verdict": "pay",
+        "linked": true,
+        "linkAddress": "0x6c0b48a0fe0723f2726d385a47c2ac8486ea69819c40d199dfaa9683bda71d47",
+        "reason": "The wallet was funded by a single transaction from a source that appears to be performing standard DeFi activities, and there are no signs of suspicious or malicious behavior.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-20-report.json",
+        "model": "gemini-3.1-flash-lite",
+        "reportGiven": "(no reports)"
       }
     }
-  ]
+  ],
+  "aiReportCalls": {
+    "calls": 16,
+    "cached": 64
+  },
+  "aiReportPrompt": "bench/prompt-report.txt"
 }

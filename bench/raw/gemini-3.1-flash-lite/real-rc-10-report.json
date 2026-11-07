@@ -1,0 +1,19 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "12d6e7fd2ca7a307",
+  "savedAt": "2026-11-07T19:13:57.954Z",
+  "text": "{\"verdict\": \"do not pay\", \"linked\": false, \"link_address\": null, \"reason\": \"The wallet exhibits highly suspicious behavior, receiving numerous small, rapid transfers from a wide variety of different addresses before immediately sending a large sum (over 7.5 SUI) to a single destination, which is characteristic of a money laundering or 'peel chain' pattern.\"}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 15265,
+    "candidatesTokenCount": 81,
+    "totalTokenCount": 15346,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 15265
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

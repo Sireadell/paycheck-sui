@@ -1,0 +1,19 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "d1c490d6a30e274d",
+  "savedAt": "2026-11-07T19:10:57.658Z",
+  "text": "{\"verdict\": \"do not pay\", \"linked\": true, \"link_address\": \"0xbd39abb7260439f498daa70c3c9000c6cd0b0a2f338494469a7d413f2c218277\", \"reason\": \"The wallet is directly linked to 0xbd39abb7260439f498daa70c3c9000c6cd0b0a2f338494469a7d413f2c218277, which has been reported for fraudulent activity, and it frequently exchanges funds with that same address.\"}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 25063,
+    "candidatesTokenCount": 172,
+    "totalTokenCount": 25235,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 25063
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

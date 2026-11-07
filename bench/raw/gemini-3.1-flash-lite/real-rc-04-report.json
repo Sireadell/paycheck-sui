@@ -1,0 +1,19 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "a01981be516d5cf9",
+  "savedAt": "2026-11-07T19:13:06.953Z",
+  "text": "{\"verdict\": \"do not pay\", \"linked\": true, \"link_address\": \"0x07ba269852a94270c1a2817fab522f1d2206fe425beb99b85e5a9ed97d98d61d\", \"reason\": \"The wallet is part of a clear pattern where a single funder repeatedly sends small, identical amounts of SUI to this address, which is characteristic of automated bot activity or a sybil network. There is no evidence of legitimate user activity or interaction with decentralized applications.\"}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 26422,
+    "candidatesTokenCount": 138,
+    "totalTokenCount": 26560,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 26422
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

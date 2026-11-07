@@ -1,0 +1,19 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "b2377861da7030bc",
+  "savedAt": "2026-11-07T19:12:52.586Z",
+  "text": "{\"verdict\": \"do not pay\", \"linked\": true, \"link_address\": \"0x59540034ef34dede361f050fdfa207a662e7877fea122e44b0fdf45d0ed9f418\", \"reason\": \"The wallet received funds from a known bad actor (0x5954...) and exhibits a pattern of receiving large, frequent transfers from a central funding wallet, which is characteristic of high-risk or sybil-linked accounts.\"}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 35535,
+    "candidatesTokenCount": 131,
+    "totalTokenCount": 35666,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 35535
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

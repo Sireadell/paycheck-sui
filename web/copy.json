@@ -6,7 +6,6 @@
   "testBadge": "TEST MODE",
   "testNote": "Test mode: what this server saves goes to a test area and is never shown as a result.",
   "liveBadge": "LIVE MODE",
-
   "switch": {
     "label": "Shared memory",
     "on": "On",
@@ -14,7 +13,6 @@
     "hintOn": "Memory is on: agents read what other agents reported.",
     "hintOff": "Memory is off: the same address, judged from the chain alone."
   },
-
   "panel": {
     "heading": "Agent A got burned. Agent B was stopped.",
     "placeholderBadge": "PLACEHOLDER",
@@ -38,7 +36,6 @@
     "runLiveDisabled": "Not available yet. It needs the two agent programs and a funded wallet, which come in a later step.",
     "sharedAccount": "Both agents share one Walrus Memory account and read the same shared space. They run as separate programs."
   },
-
   "check": {
     "heading": "Try an address",
     "lead": "The box holds a real address from my hand-checked set. Press Check, or paste any Sui address.",
@@ -65,7 +62,6 @@
     "limited": "Too many checks from your address. Try again in a minute.",
     "failed": "The check did not finish: {why}"
   },
-
   "counters": {
     "heading": "What memory has done so far",
     "changedLine": "{n} memories changed a verdict",
@@ -79,7 +75,6 @@
     "testNote": "Test memories. Never counted in the total and never able to change an answer.",
     "since": "Counted since this server started."
   },
-
   "bench": {
     "heading": "How well does it find real groups?",
     "realTag": "Real set, verified by script against two providers",
@@ -97,9 +92,45 @@
     "stressHeadline": "{caught} of {total} caught",
     "stressNone": "Not run yet. When it is, its numbers show here, kept apart from the real set because I built these wallets myself.",
     "ranAt": "Real set run: {when}.",
-    "missing": "The benchmark file could not be read."
+    "missing": "The benchmark file could not be read.",
+    "columnsHeading": "Four ways to answer the same wallets",
+    "columnsLead": "{groups} wallets from linked groups and {controls} ordinary wallets I held back, read from the same saved chain data. The AI is {model}, a small model, temperature 0, one run.",
+    "columnsTest": "In this test a report about one wallet in a group is given to memory, and we measure whether the rest of the group is stopped. It tests whether memory spreads a warning, not how well we find bad wallets.",
+    "columnHeads": {
+      "ai": "Plain AI",
+      "aiReport": "Plain AI + report",
+      "checker": "Checker",
+      "memory": "Checker + memory"
+    },
+    "columnRows": {
+      "stopped": "Group wallets answered \"do not pay\"",
+      "linkFound": "Group wallets where the right link was named",
+      "controlsStrict": "Ordinary wallets wrongly told \"do not pay\"",
+      "controlsLoose": "Ordinary wallets wrongly told \"do not pay\" or \"caution\""
+    },
+    "columnsHonest": "The plain AI also got the same report that memory holds, written into its prompt. It stops about as many group wallets as memory does. So the value here is not smarter reasoning. It is a report that is shared, kept, and read by every agent without being told to look. The small model may be beaten by a stronger one, and you can run it with --model=<name>. Stronger models were over quota or limited to 20 calls a day on my key.",
+    "lossesHeading": "Where the checker with memory did not do well",
+    "lossesLead": "Four held-out cases, listed as they are:",
+    "losses": [
+      {
+        "id": "rs-20",
+        "text": "The AI said \"do not pay\". The checker said \"pay\", because the link was a shared fee payer and the report did not reach it."
+      },
+      {
+        "id": "rc-12",
+        "text": "An ordinary wallet that sent money back to its funder. The checker said \"caution\", the AI said \"pay\"."
+      },
+      {
+        "id": "rs-19",
+        "text": "The AI named the recorded funder. The checker did not name it, though memory still stopped the wallet."
+      },
+      {
+        "id": "rs-15",
+        "text": "The checker found no link, because the shared transactions are not in the oldest 50 it reads. It said \"pay\"."
+      }
+    ],
+    "columnsMissing": "The four-column result could not be read."
   },
-
   "limits": {
     "heading": "What this is not, and where it is weak",
     "items": [
@@ -112,9 +143,7 @@
       "Ankr's history for an address is shallower than Tatum's, so some links are checked by transaction instead of by address history."
     ]
   },
-
   "footer": "PayCheck Sui, built for the Tatum and Walrus Memory hackathon. Sui data through Tatum, cross-checked with Ankr, memory in Walrus Memory.",
-
   "sample": {
     "who": "Agent A"
   }

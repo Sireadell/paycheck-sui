@@ -1,0 +1,19 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "be94b5010e599988",
+  "savedAt": "2026-11-07T19:13:05.342Z",
+  "text": "{\"verdict\": \"pay\", \"linked\": true, \"link_address\": \"0xd20d95c804677b891acf027fd788c09dbbbe608b2bf9b6f15efbab894eba439b\", \"reason\": \"The wallet has a clean transaction history and has been successfully used in previous payments. It is linked to the address 0xd20d95c804677b891acf027fd788c09dbbbe608b2bf9b6f15efbab894eba439b, which acts as its primary funding source.\"}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 8542,
+    "candidatesTokenCount": 162,
+    "totalTokenCount": 8704,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 8542
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

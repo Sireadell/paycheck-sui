@@ -1,0 +1,19 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "06d84039009bc55b",
+  "savedAt": "2026-11-07T19:11:03.672Z",
+  "text": "{\n  \"verdict\": \"do not pay\",\n  \"linked\": true,\n  \"link_address\": \"0x61b1b7f667c06d1ccfe5e404a1e705d4d0da457040c279e7c2a23bb39b9d1e05\",\n  \"reason\": \"The wallet is heavily linked to a gas fee payer that has been involved in suspicious, high-frequency transactions with other wallets reported for bad behavior. The pattern of activity suggests this wallet is part of a coordinated network of accounts used for potentially malicious or spam-related activities.\"\n}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 35666,
+    "candidatesTokenCount": 152,
+    "totalTokenCount": 35818,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 35666
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

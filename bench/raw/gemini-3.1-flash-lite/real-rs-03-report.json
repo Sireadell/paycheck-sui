@@ -1,0 +1,19 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "cfb3170dcba8a70e",
+  "savedAt": "2026-11-07T19:10:49.210Z",
+  "text": "{\n  \"verdict\": \"do not pay\",\n  \"linked\": true,\n  \"link_address\": \"0xf50c2c67dd2255803066f61137395a07a14d0a9a02a52cf275ce8635845d68a0\",\n  \"reason\": \"The wallet shares the same gas fee payer as another wallet that has been reported for fraudulent activity.\"\n}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 4379,
+    "candidatesTokenCount": 117,
+    "totalTokenCount": 4496,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 4379
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}
