@@ -29,3 +29,12 @@ POST /api/outcome needs the report token, sent as the header `x-outcome-token: <
 Body: `{"address": "0x...", "outcome": "bad" or "good", "reporter": "optional name"}`.
 
 Command line: `npm run outcome -- <address> <bad|good>` writes directly. With PAYCHECK_URL set it posts to that server and sends OUTCOME_TOKEN from the environment.
+
+## Read-only pages data
+
+| Endpoint | Purpose |
+|---|---|
+| GET /api/benchmark | Real set numbers from `data/real-set/results.json` and, when `bench/results/stress.json` exists, the stress test numbers (labelled synthetic) |
+| GET /api/cross-agent | The last two-agent demo run from `data/cross-agent/latest.json`. 404 `{available:false}` until one exists |
+
+The first screen (`web/`) is served from `/` and calls only the endpoints in this file.

@@ -1,0 +1,121 @@
+{
+  "_about": "Every word a visitor reads lives in this file. Layout and code never contain reader-facing text. {name} markers are filled in by the page.",
+  "title": "PayCheck Sui",
+  "tagline": "One agent gets burned. Every other agent is warned.",
+  "intro": "I built PayCheck so an AI agent can look at a Sui address before it pays. When one agent loses money to an address, that lesson is saved in shared memory. The next agent about to pay a different address from the same group gets stopped, even though it has never seen that address.",
+  "testBadge": "TEST MODE",
+  "testNote": "Test mode: what this server saves goes to a test area and is never shown as a result.",
+  "liveBadge": "LIVE MODE",
+
+  "switch": {
+    "label": "Shared memory",
+    "on": "On",
+    "off": "Off",
+    "hintOn": "Memory is on: agents read what other agents reported.",
+    "hintOff": "Memory is off: the same address, judged from the chain alone."
+  },
+
+  "panel": {
+    "heading": "Agent A got burned. Agent B was stopped.",
+    "placeholderBadge": "PLACEHOLDER",
+    "placeholderNote": "A placeholder, not a real run. The two-agent demo has not run yet, so these addresses and ids are made up.",
+    "liveBadge": "REAL RUN",
+    "liveNote": "A real run of two separate agent programs, {when}.",
+    "agentAHeading": "Agent A",
+    "agentATell": "paid {address} and the payment went bad. It reported that to shared memory.",
+    "memoryId": "Memory id: {id}",
+    "linkHeading": "What connects them",
+    "linkGasSponsor": "The same wallet, {address}, paid the network fees for both addresses.",
+    "linkFunder": "The same wallet, {address}, sent the first money to both addresses.",
+    "linkNote": "A link alone never turns an answer red. The report from Agent A does.",
+    "agentBHeading": "Agent B",
+    "agentBTell": "was about to pay {address}, a different address. It has never seen Agent A's address.",
+    "stoppedOn": "PayCheck stopped it.",
+    "stoppedBy": "Stopped by memory {id}, reported by {who}.",
+    "wouldHavePaid": "Memory is off, so Agent B would have paid.",
+    "verdictLabel": "Answer",
+    "runLive": "Run it again live",
+    "runLiveDisabled": "Not available yet. It needs the two agent programs and a funded wallet, which come in a later step.",
+    "sharedAccount": "Both agents share one Walrus Memory account and read the same shared space. They run as separate programs."
+  },
+
+  "check": {
+    "heading": "Try an address",
+    "lead": "The box holds a real address from my hand-checked set. Press Check, or paste any Sui address.",
+    "placeholder": "0x... (a Sui address)",
+    "button": "Check",
+    "working": "Reading the chain and shared memory. This can take up to 30 seconds.",
+    "prefillNote": "Filled in from the real set: {id}, a wallet in a group found by {how}.",
+    "howSponsor": "a shared fee payer",
+    "howFunder": "a shared first funder",
+    "withMemory": "With memory",
+    "withoutMemory": "Without memory",
+    "changed": "Memory changed this answer. Without it the answer would have been {was}.",
+    "notChanged": "Memory did not change this answer. Most addresses have no report in memory, so most answers match.",
+    "memoryUsed": "Memories used: {n}",
+    "evidenceHeading": "What the answer rests on",
+    "noEvidence": "No links found for this address.",
+    "basisFact": "FACT",
+    "basisGuess": "GUESS",
+    "basisReport": "REPORT",
+    "callLine": "This check used {tatum} Tatum calls and {ankr} Ankr calls.",
+    "agreeLine": "Ankr cross-check: {agree} of {checked} links agree.",
+    "agreeNone": "Ankr cross-check: nothing to compare for this address.",
+    "callIdle": "Run a check to see how many calls it took and whether the second provider agrees.",
+    "limited": "Too many checks from your address. Try again in a minute.",
+    "failed": "The check did not finish: {why}"
+  },
+
+  "counters": {
+    "heading": "What memory has done so far",
+    "changedLine": "{n} memories changed a verdict",
+    "changedNote": "Counted when a stored report made an answer different from the same check with memory off.",
+    "totalLine": "{n} memories stored in total",
+    "liveLine": "Live: {n}",
+    "liveNote": "Written by real checks while this server ran.",
+    "prescanLine": "Pre-scan: {n}",
+    "prescanNote": "Checks I ran myself on public addresses before launch, so memory is not empty on day one. They are not user activity.",
+    "testLine": "Test: {n}",
+    "testNote": "Test memories. Never counted in the total and never able to change an answer.",
+    "since": "Counted since this server started."
+  },
+
+  "bench": {
+    "heading": "How well does it find real groups?",
+    "realTag": "Real set, verified by script against two providers",
+    "realHeadline": "{caught} of {groups}",
+    "realHeadlineTail": "real groups caught",
+    "realDetail": "{membersCaught} of {members} wallets inside those groups were linked back to their group.",
+    "caughtMeans": "Caught means the link was found and shown. With no bad report stored, the answer stays \"pay, linked, no bad history\". Only a report turns it red.",
+    "controlsHeading": "Wallets that should not be flagged",
+    "controlsStrict": "{n} of {controls}",
+    "controlsStrictTail": "wrongly told \"do not pay\"",
+    "controlsLoose": "{n} of {controls}",
+    "controlsLooseTail": "wrongly told \"do not pay\" or \"caution\"",
+    "controlsNote": "The caution cases are wallets that sent money straight back to the wallet that funded them.",
+    "stressTag": "Stress test, synthetic, built by us",
+    "stressHeadline": "{caught} of {total} caught",
+    "stressNone": "Not run yet. When it is, its numbers show here, kept apart from the real set because I built these wallets myself.",
+    "ranAt": "Real set run: {when}.",
+    "missing": "The benchmark file could not be read."
+  },
+
+  "limits": {
+    "heading": "What this is not, and where it is weak",
+    "items": [
+      "It is not a fraud detector. Being linked to other wallets is not unsafe, because exchanges and payroll wallets fund many honest wallets. A red answer needs a stored report of a bad payment that reaches the address through a real link.",
+      "It cannot protect the first wallet in a brand new group. With no report anywhere in the group, the answer is \"pay, linked, no bad history\" and the links are only shown.",
+      "It reads only the oldest 50 transactions of a wallet. On a busy wallet that can hide a link. Two of the 20 real groups were missed, and one of those misses was for this reason.",
+      "Shared services are spotted with a rule I chose: 15 or more wallets over 25 hours or more. Those two numbers are my picks. They are checked against real data, not proven.",
+      "One bad report is enough to turn a direct link red. The answer always shows who reported it and the memory id, so you can judge the source.",
+      "The real set has small groups (2 to 9 wallets) and young control wallets. It shows the method works on real chain data, not that it works everywhere.",
+      "Ankr's history for an address is shallower than Tatum's, so some links are checked by transaction instead of by address history."
+    ]
+  },
+
+  "footer": "PayCheck Sui, built for the Tatum and Walrus Memory hackathon. Sui data through Tatum, cross-checked with Ankr, memory in Walrus Memory.",
+
+  "sample": {
+    "who": "Agent A"
+  }
+}

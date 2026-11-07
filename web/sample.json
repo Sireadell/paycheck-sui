@@ -1,0 +1,18 @@
+{
+  "placeholder": true,
+  "sharedAccount": true,
+  "agentA": { "id": "Agent A", "address": "0x00000000000000000000000000000000000000000000000000000000000a0001", "memoryId": "SAMPLE-memory-id-1" },
+  "link": { "type": "gas_sponsor", "address": "0x00000000000000000000000000000000000000000000000000000000005b0001" },
+  "agentB": {
+    "id": "Agent B",
+    "address": "0x00000000000000000000000000000000000000000000000000000000000b0002",
+    "check": {
+      "verdict": "do not pay",
+      "code": "GROUP_BAD_OUTCOME",
+      "label": "do not pay",
+      "reason": "Placeholder answer. A wallet with the same fee payer was reported as a bad payment.",
+      "warnedBy": [{ "memoryId": "SAMPLE-memory-id-1", "reporter": "Agent A", "via": "gas_sponsor" }],
+      "withoutMemory": { "verdict": "pay", "code": "LINKED_NO_BAD_HISTORY", "label": "linked, no bad history" }
+    }
+  }
+}

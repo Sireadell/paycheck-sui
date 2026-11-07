@@ -1,12 +1,14 @@
 // PayCheck API: /api/check, /api/outcome, /api/stats, /health. Contract: docs/API.md
 import express from 'express';
-import { pathToFileURL } from 'node:url';
+import { pathToFileURL, fileURLToPath } from 'node:url';
 import { createHash, timingSafeEqual } from 'node:crypto';
 import { createChecker } from './src/check.js';
 import { createMemory } from './src/memory/index.js';
 import { getTatum, getAnkr, callLog } from './src/providers/index.js';
 import { loadConfig } from './src/config.js';
+import { loadBenchmark, loadCrossAgent } from './src/api/benchmark.js';
 
+const ROOT = fileURLToPath(new URL('./', import.meta.url));
 const PROBE_EVERY_MS = 30000;
 const PROBE_TIMEOUT_MS = 5000;
 
@@ -33,7 +35,7 @@ const sameToken = (given, wanted) => {
   return timingSafeEqual(a, b);
 };
 
-export function createApp({ checker, memory, probe = null, outcomeToken = process.env.OUTCOME_TOKEN, checkLimit = CHECK_LIMIT, outcomeLimit = OUTCOME_LIMIT, now = () => Date.now() } = {}) {
+export function createApp({ checker, memory, probe = null, outcomeToken = process.env.OUTCOME_TOKEN, checkLimit = CHECK_LIMIT, outcomeLimit = OUTCOME_LIMIT, now = () => Date.now(), webDir = `${ROOT}web`, dataDir = `${ROOT}data`, benchDir = `${ROOT}bench` } = {}) {
   const checkHit = ipLimiter(checkLimit, now);
   const outcomeHit = ipLimiter(outcomeLimit, now);
   const tooMany = (res, wait, what) => res.set('retry-after', String(wait)).status(429).json({ error: `Too many ${what} from your address. Try again in ${wait} seconds.`, retryable: true });
@@ -106,6 +108,13 @@ export function createApp({ checker, memory, probe = null, outcomeToken = proces
       calls: { tatum: callLog.summarize(0, 'tatum'), ankr: callLog.summarize(0, 'ankr') },
     });
   });
+
+  app.get('/api/benchmark', async (_req, res) => res.json(await loadBenchmark({ dataDir, benchDir })));
+  app.get('/api/cross-agent', async (_req, res) => {
+    const run = await loadCrossAgent(dataDir);
+    return run ? res.json(run) : res.status(404).json({ available: false });
+  });
+  app.use(express.static(webDir));
   return app;
 }
 

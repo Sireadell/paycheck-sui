@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PayCheck Sui</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap top-row">
+    <strong class="brand" data-copy="title"></strong>
+    <span id="mode-badge" class="mode" hidden></span>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-text">
+        <h1 data-copy="tagline"></h1>
+      </div>
+      <p id="test-note" class="test-note" hidden></p>
+
+      <div class="switchbar">
+        <span class="switch-label" id="switch-label" data-copy="switch.label"></span>
+        <div class="switch" role="group" aria-labelledby="switch-label">
+          <button type="button" id="sw-on" class="sw" aria-pressed="true" data-copy="switch.on"></button>
+          <button type="button" id="sw-off" class="sw" aria-pressed="false" data-copy="switch.off"></button>
+        </div>
+        <span id="switch-hint" class="hint" aria-live="polite"></span>
+      </div>
+
+      <article class="panel" id="panel" aria-labelledby="panel-h">
+        <header class="panel-head">
+          <h2 id="panel-h" data-copy="panel.heading"></h2>
+          <span id="panel-tag" class="tag"></span>
+        </header>
+        <p id="panel-note" class="panel-note"></p>
+        <div class="trio">
+          <div class="agent a">
+            <h3 data-copy="panel.agentAHeading"></h3>
+            <p id="a-tell"></p>
+            <p id="a-mem" class="mono small"></p>
+          </div>
+          <div class="link">
+            <h3 data-copy="panel.linkHeading"></h3>
+            <p id="link-text"></p>
+            <p class="small muted" data-copy="panel.linkNote"></p>
+          </div>
+          <div class="agent b">
+            <h3 data-copy="panel.agentBHeading"></h3>
+            <p id="b-tell"></p>
+            <div class="answer" id="b-answer" aria-live="polite">
+              <span class="answer-label" data-copy="panel.verdictLabel"></span>
+              <span id="b-chip" class="chip"></span>
+              <p id="b-why" class="small"></p>
+            </div>
+          </div>
+        </div>
+        <div class="panel-foot">
+          <button type="button" id="run-live" class="btn secondary" disabled></button>
+          <p id="run-live-note" class="small muted"></p>
+          <p id="shared-account" class="small muted"></p>
+        </div>
+      </article>
+      <p class="lead after" data-copy="intro"></p>
+    </div>
+  </section>
+
+  <section class="try">
+    <div class="wrap">
+      <h2 data-copy="check.heading"></h2>
+      <p class="lead2" data-copy="check.lead"></p>
+      <form id="check-form" class="check-form" autocomplete="off">
+        <label class="sr" for="addr" data-copy="check.heading"></label>
+        <input id="addr" name="address" type="text" inputmode="text" spellcheck="false" autocapitalize="off">
+        <button type="submit" class="btn primary" id="check-btn" data-copy="check.button"></button>
+      </form>
+      <p id="prefill-note" class="small muted"></p>
+      <p id="check-status" class="status" role="status" aria-live="polite"></p>
+      <div id="check-result" class="result" hidden>
+        <div class="cols2">
+          <div class="rcol" id="col-on"><h3 data-copy="check.withMemory"></h3><div class="chip-row"><span class="chip" id="chip-on"></span></div><p class="small" id="reason-on"></p></div>
+          <div class="rcol" id="col-off"><h3 data-copy="check.withoutMemory"></h3><div class="chip-row"><span class="chip" id="chip-off"></span></div><p class="small" id="reason-off"></p></div>
+        </div>
+        <p id="changed-line" class="changed"></p>
+        <h3 class="ev-h" data-copy="check.evidenceHeading"></h3>
+        <ul id="evidence" class="evidence"></ul>
+      </div>
+      <p id="call-line" class="mono small calls"></p>
+    </div>
+  </section>
+
+  <section class="nums">
+    <div class="wrap">
+      <div class="nums-grid">
+        <div class="counters" id="counters">
+          <h2 data-copy="counters.heading"></h2>
+          <p class="big" id="changed-big"></p>
+          <p class="small on-dark-muted" data-copy="counters.changedNote"></p>
+          <p class="beside" id="total-line"></p>
+          <dl class="lines">
+            <div><dt id="live-line"></dt><dd data-copy="counters.liveNote"></dd></div>
+            <div><dt id="prescan-line"></dt><dd data-copy="counters.prescanNote"></dd></div>
+            <div><dt id="test-line"></dt><dd data-copy="counters.testNote"></dd></div>
+          </dl>
+          <p class="small on-dark-muted" data-copy="counters.since"></p>
+        </div>
+
+        <div class="bench" id="bench">
+          <h2 data-copy="bench.heading"></h2>
+          <div class="bench-block">
+            <p class="tag-line" data-copy="bench.realTag"></p>
+            <p class="big2"><span id="real-n"></span> <span class="tail" data-copy="bench.realHeadlineTail"></span></p>
+            <p class="small" id="real-detail"></p>
+            <p class="small muted" data-copy="bench.caughtMeans"></p>
+          </div>
+          <div class="bench-block">
+            <h3 data-copy="bench.controlsHeading"></h3>
+            <p class="mid"><span id="ctl-strict"></span> <span class="tail" data-copy="bench.controlsStrictTail"></span></p>
+            <p class="mid"><span id="ctl-loose"></span> <span class="tail" data-copy="bench.controlsLooseTail"></span></p>
+            <p class="small muted" data-copy="bench.controlsNote"></p>
+          </div>
+          <div class="bench-block stress">
+            <p class="tag-line" data-copy="bench.stressTag"></p>
+            <p class="mid" id="stress-n"></p>
+            <p class="small muted" id="stress-note"></p>
+          </div>
+          <p class="small muted" id="bench-ran"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="limits">
+    <div class="wrap">
+      <h2 data-copy="limits.heading"></h2>
+      <ol id="limits-list" class="limits-list"></ol>
+    </div>
+  </section>
+</main>
+<footer class="foot"><div class="wrap"><p class="small" data-copy="footer"></p></div></footer>
+<script src="app.js" type="module"></script>
+</body>
+</html>
