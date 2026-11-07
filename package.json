@@ -9,7 +9,9 @@
   },
   "scripts": {
     "start": "node --env-file-if-exists=.env server.js",
-    "test": "node --test \"test/**/*.test.js\""
+    "test": "node --test \"test/**/*.test.js\"",
+    "check": "node --env-file=.env scripts/check.js",
+    "outcome": "node --env-file=.env scripts/outcome.js"
   },
   "dependencies": {
     "@mysten-incubation/memwal": "^0.1.13",
