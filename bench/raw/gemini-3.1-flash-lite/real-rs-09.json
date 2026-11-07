@@ -1,0 +1,19 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "3aca2d70b522007b",
+  "savedAt": "2026-11-07T18:57:59.690Z",
+  "text": "{\"verdict\": \"do not pay\", \"linked\": true, \"link_address\": \"0x9ee9d7d4de4e0e3b01b2a4e69679fd674d62843f1e6bc056498f569e8b12e3f5\", \"reason\": \"The wallet is part of a cluster of addresses being funded and managed by a single entity that exhibits high-frequency, repetitive transaction patterns typical of automated bot activity. The gas payer is clearly a central hub for multiple wallets, indicating a coordinated network rather than an individual user.\"}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 16784,
+    "candidatesTokenCount": 142,
+    "totalTokenCount": 16926,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 16784
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "045d2161baa76142",
+  "savedAt": "2026-11-07T19:00:40.263Z",
+  "text": "{\"verdict\": \"caution\", \"linked\": true, \"link_address\": \"0x9be6b5d4d6c5191bbdba16f5cbb016e84282a19531c01d7ec0c31ff8365a38f2\", \"reason\": \"The wallet received its entire balance from a funder and immediately transferred it to another address, which is characteristic of a transit or burner wallet. Caution is advised as this behavior is typical of wallets used for obfuscating fund flows.\"}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 2200,
+    "candidatesTokenCount": 128,
+    "totalTokenCount": 2328,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 2200
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

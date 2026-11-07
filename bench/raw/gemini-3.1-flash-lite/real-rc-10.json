@@ -1,0 +1,19 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "f7cebdf3f84e7974",
+  "savedAt": "2026-11-07T19:00:20.576Z",
+  "text": "{\"verdict\": \"pay\", \"linked\": false, \"link_address\": null, \"reason\": \"The wallet shows a consistent pattern of receiving small amounts of SUI from various addresses, likely from a faucet or exchange, followed by a single large outbound transfer. There is no evidence of malicious activity or suspicious patterns in its transaction history.\"}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 15207,
+    "candidatesTokenCount": 71,
+    "totalTokenCount": 15278,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 15207
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

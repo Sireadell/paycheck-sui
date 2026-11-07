@@ -1,0 +1,2567 @@
+{
+  "label": "Real set: real mainnet wallets we checked",
+  "set": "real",
+  "ranAt": "2026-11-07T19:07:33.730Z",
+  "model": "gemini-3.1-flash-lite",
+  "temperature": 0,
+  "aiRuns": 1,
+  "split": "docs/METHOD.md, Benchmark split rule",
+  "memoryNamespace": "bench-train",
+  "skipped": [],
+  "aiCalls": {
+    "calls": 0,
+    "cached": 40
+  },
+  "caught": 18,
+  "total": 20,
+  "summary": {
+    "heldoutCases": 30,
+    "heldout": {
+      "ai": {
+        "groups": 20,
+        "linkFound": 17,
+        "flagged": 9,
+        "stopped": 5,
+        "controls": 10,
+        "falseAlarmStrict": 3,
+        "falseAlarmIncl": 4
+      },
+      "nomem": {
+        "groups": 20,
+        "linkFound": 18,
+        "flagged": 5,
+        "stopped": 0,
+        "controls": 10,
+        "falseAlarmStrict": 0,
+        "falseAlarmIncl": 1
+      },
+      "mem": {
+        "groups": 20,
+        "linkFound": 18,
+        "flagged": 18,
+        "stopped": 18,
+        "controls": 10,
+        "falseAlarmStrict": 0,
+        "falseAlarmIncl": 1
+      }
+    },
+    "all": {
+      "ai": {
+        "groups": 20,
+        "linkFound": 17,
+        "flagged": 9,
+        "stopped": 5,
+        "controls": 20,
+        "falseAlarmStrict": 6,
+        "falseAlarmIncl": 8
+      },
+      "nomem": {
+        "groups": 20,
+        "linkFound": 18,
+        "flagged": 5,
+        "stopped": 0,
+        "controls": 20,
+        "falseAlarmStrict": 0,
+        "falseAlarmIncl": 3
+      }
+    },
+    "memoryChanged": 18,
+    "changedList": [
+      {
+        "id": "rs-01",
+        "from": "pay",
+        "to": "do not pay"
+      },
+      {
+        "id": "rs-02",
+        "from": "pay",
+        "to": "do not pay"
+      },
+      {
+        "id": "rs-03",
+        "from": "pay",
+        "to": "do not pay"
+      },
+      {
+        "id": "rs-04",
+        "from": "pay",
+        "to": "do not pay"
+      },
+      {
+        "id": "rs-05",
+        "from": "pay",
+        "to": "do not pay"
+      },
+      {
+        "id": "rs-06",
+        "from": "caution",
+        "to": "do not pay"
+      },
+      {
+        "id": "rs-07",
+        "from": "caution",
+        "to": "do not pay"
+      },
+      {
+        "id": "rs-08",
+        "from": "pay",
+        "to": "do not pay"
+      },
+      {
+        "id": "rs-09",
+        "from": "pay",
+        "to": "do not pay"
+      },
+      {
+        "id": "rs-10",
+        "from": "caution",
+        "to": "do not pay"
+      },
+      {
+        "id": "rs-11",
+        "from": "pay",
+        "to": "do not pay"
+      },
+      {
+        "id": "rs-12",
+        "from": "pay",
+        "to": "do not pay"
+      },
+      {
+        "id": "rs-13",
+        "from": "caution",
+        "to": "do not pay"
+      },
+      {
+        "id": "rs-14",
+        "from": "pay",
+        "to": "do not pay"
+      },
+      {
+        "id": "rs-16",
+        "from": "pay",
+        "to": "do not pay"
+      },
+      {
+        "id": "rs-17",
+        "from": "pay",
+        "to": "do not pay"
+      },
+      {
+        "id": "rs-18",
+        "from": "caution",
+        "to": "do not pay"
+      },
+      {
+        "id": "rs-19",
+        "from": "pay",
+        "to": "do not pay"
+      }
+    ],
+    "diffFromNoMem": 18,
+    "recallProblems": [],
+    "aiBeat": [
+      {
+        "id": "rs-19",
+        "kind": "group",
+        "ai": "pay",
+        "ours": "do not pay",
+        "why": "AI named the recorded link address, the checker did not"
+      },
+      {
+        "id": "rs-20",
+        "kind": "group",
+        "ai": "do not pay",
+        "ours": "pay",
+        "why": "AI answered better on the verdict"
+      },
+      {
+        "id": "rc-12",
+        "kind": "control",
+        "ai": "pay",
+        "ours": "caution",
+        "why": "AI answered better on the verdict"
+      }
+    ],
+    "weLost": [
+      {
+        "id": "rs-15",
+        "kind": "group",
+        "ours": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "ai": "pay"
+      },
+      {
+        "id": "rs-20",
+        "kind": "group",
+        "ours": "pay",
+        "code": "LINKED_NO_BAD_HISTORY",
+        "ai": "do not pay"
+      },
+      {
+        "id": "rc-12",
+        "kind": "control",
+        "ours": "caution",
+        "code": "ROUND_TRIP_TO_FUNDER",
+        "ai": "pay"
+      }
+    ]
+  },
+  "cases": [
+    {
+      "case": {
+        "id": "rs-01",
+        "set": "real",
+        "kind": "group",
+        "type": "shared_funder",
+        "wallet": "0x36684098e89e315e57b8be53513a56e595452c7106de0f5c468262ba571a2964",
+        "linkAddress": "0x2500020428c933ae7610362753bad2a85eaf4bd8e93a160ab18c7821c5ccf0e7",
+        "trainWallet": "0x5bd845a51b45a554e0a77c9f0c002fbf1b4f9b752a6e45e42ea7f0594e91639e",
+        "split": "heldout",
+        "trainOutcome": "bad"
+      },
+      "ai": {
+        "verdict": "pay",
+        "linked": true,
+        "linkAddress": "0x2500020428c933ae7610362753bad2a85eaf4bd8e93a160ab18c7821c5ccf0e7",
+        "reason": "The wallet has a clear and simple transaction history involving a standard funding and transfer process. It is linked to the first funder address, which appears to be a legitimate source of funds.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-01.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "pay",
+        "code": "LINKED_NO_BAD_HISTORY",
+        "label": "linked, no bad history",
+        "linkAddress": "0x2500020428c933ae7610362753bad2a85eaf4bd8e93a160ab18c7821c5ccf0e7",
+        "links": [
+          {
+            "type": "shared_funder",
+            "address": "0x2500020428c933ae7610362753bad2a85eaf4bd8e93a160ab18c7821c5ccf0e7"
+          },
+          {
+            "type": "gas_sponsor",
+            "address": "0x1f6cd55584e6d0c19ae34bfc48b1bd9b1b8a166987e34052cfea7f3c795c6d76"
+          }
+        ],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": {
+        "verdict": "do not pay",
+        "code": "GROUP_BAD_OUTCOME",
+        "label": "do not pay",
+        "linkAddress": "0x2500020428c933ae7610362753bad2a85eaf4bd8e93a160ab18c7821c5ccf0e7",
+        "links": [
+          {
+            "type": "shared_funder",
+            "address": "0x2500020428c933ae7610362753bad2a85eaf4bd8e93a160ab18c7821c5ccf0e7"
+          },
+          {
+            "type": "gas_sponsor",
+            "address": "0x1f6cd55584e6d0c19ae34bfc48b1bd9b1b8a166987e34052cfea7f3c795c6d76"
+          }
+        ],
+        "notes": [],
+        "changedByMemory": true,
+        "withoutMemory": "pay",
+        "memoryIds": [
+          "0tfWNZUYB_iy4exCqI68QpZ0mZliimUV2Hb_ml8O6V0",
+          "5rnFL5jD_8HInKhQa0-Fw3Gs0jEiLjmF_L8u5YKJlI0"
+        ],
+        "memory": {
+          "used": 2,
+          "recalled": 2,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "rs-02",
+        "set": "real",
+        "kind": "group",
+        "type": "shared_funder",
+        "wallet": "0x61f2a6c029cba9c11617c1dd6c9fbe970e34e1009b5a3e11a9d5aea84b5bcd08",
+        "linkAddress": "0x749b5fa18ffa6376bec07fa5ede8df90d8937285086e76fc7f5aa64449e22619",
+        "trainWallet": "0x8d6a92f0e479a4ece6c714f2086a219a9383067d6c44864f903a6ae459a1adf0",
+        "split": "heldout",
+        "trainOutcome": "bad"
+      },
+      "ai": {
+        "verdict": "pay",
+        "linked": true,
+        "linkAddress": "0x749b5fa18ffa6376bec07fa5ede8df90d8937285086e76fc7f5aa64449e22619",
+        "reason": "The wallet has a simple, short history consisting of receiving funds from a primary source and then sending them out, which is consistent with standard wallet usage. It is linked to the address that provided its initial funding.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-02.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "pay",
+        "code": "LINKED_NO_BAD_HISTORY",
+        "label": "linked, no bad history",
+        "linkAddress": "0x749b5fa18ffa6376bec07fa5ede8df90d8937285086e76fc7f5aa64449e22619",
+        "links": [
+          {
+            "type": "shared_funder",
+            "address": "0x749b5fa18ffa6376bec07fa5ede8df90d8937285086e76fc7f5aa64449e22619"
+          }
+        ],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": {
+        "verdict": "do not pay",
+        "code": "GROUP_BAD_OUTCOME",
+        "label": "do not pay",
+        "linkAddress": "0x749b5fa18ffa6376bec07fa5ede8df90d8937285086e76fc7f5aa64449e22619",
+        "links": [
+          {
+            "type": "shared_funder",
+            "address": "0x749b5fa18ffa6376bec07fa5ede8df90d8937285086e76fc7f5aa64449e22619"
+          }
+        ],
+        "notes": [],
+        "changedByMemory": true,
+        "withoutMemory": "pay",
+        "memoryIds": [
+          "RDZtuA_6j4C3kv3klsx8IA-zar6wqhJ-6YwKlctFJ_0"
+        ],
+        "memory": {
+          "used": 1,
+          "recalled": 1,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "rs-03",
+        "set": "real",
+        "kind": "group",
+        "type": "gas_sponsor",
+        "wallet": "0x1c56e4c6a5af92d514a9967c35ffeb6f5f204a03527de71ebf062ae2445efc79",
+        "linkAddress": "0xd9179e689a530294f6cd0d65b4f243ffdba402dcf04eb3ad722c9f88af18c9a3",
+        "trainWallet": "0xf50c2c67dd2255803066f61137395a07a14d0a9a02a52cf275ce8635845d68a0",
+        "split": "heldout",
+        "trainOutcome": "bad"
+      },
+      "ai": {
+        "verdict": "caution",
+        "linked": true,
+        "linkAddress": "0xf50c2c67dd2255803066f61137395a07a14d0a9a02a52cf275ce8635845d68a0",
+        "reason": "The wallet is linked to other addresses through a common gas fee payer that is actively funding multiple accounts. This pattern is often associated with automated or sybil-like activity.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-03.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "pay",
+        "code": "LINKED_NO_BAD_HISTORY",
+        "label": "linked, no bad history",
+        "linkAddress": "0xd9179e689a530294f6cd0d65b4f243ffdba402dcf04eb3ad722c9f88af18c9a3",
+        "links": [
+          {
+            "type": "gas_sponsor",
+            "address": "0xd9179e689a530294f6cd0d65b4f243ffdba402dcf04eb3ad722c9f88af18c9a3"
+          }
+        ],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": {
+        "verdict": "do not pay",
+        "code": "GROUP_BAD_OUTCOME",
+        "label": "do not pay",
+        "linkAddress": "0xd9179e689a530294f6cd0d65b4f243ffdba402dcf04eb3ad722c9f88af18c9a3",
+        "links": [
+          {
+            "type": "gas_sponsor",
+            "address": "0xd9179e689a530294f6cd0d65b4f243ffdba402dcf04eb3ad722c9f88af18c9a3"
+          }
+        ],
+        "notes": [],
+        "changedByMemory": true,
+        "withoutMemory": "pay",
+        "memoryIds": [
+          "kTVG5vLDgmuyIczXGG0GV0rVfeJ6UEQHGHIJ25yx0Ww"
+        ],
+        "memory": {
+          "used": 1,
+          "recalled": 1,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "rs-04",
+        "set": "real",
+        "kind": "group",
+        "type": "gas_sponsor",
+        "wallet": "0x4a8230ac89abca3ebc41b7792f62dfedb59b2bc8ee0164b9890a4e50a8e15165",
+        "linkAddress": "0x6415ec433b2ba10fd605a89101d631eb29246f8f6c23db9003a3e92572b4b2f8",
+        "trainWallet": "0x53376ae44cab6954251ffed887db358555e9ecf8a1eede1eb0f6e7f4aa7fb728",
+        "split": "heldout",
+        "trainOutcome": "bad"
+      },
+      "ai": {
+        "verdict": "do not pay",
+        "linked": true,
+        "linkAddress": "0x555bf90903ad18a90fa585fbc7f4b31945964c87f341eca53df9c04bd30365f6",
+        "reason": "The wallet is part of a chain of transfers where it immediately forwards received assets to another address, which is a common pattern for money laundering or obfuscation. It is linked to 0x555bf90903ad18a90fa585fbc7f4b31945964c87f341eca53df9c04bd30365f6, which acts as a central hub for these funds.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-04.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "pay",
+        "code": "LINKED_NO_BAD_HISTORY",
+        "label": "linked, no bad history",
+        "linkAddress": "0x6415ec433b2ba10fd605a89101d631eb29246f8f6c23db9003a3e92572b4b2f8",
+        "links": [
+          {
+            "type": "gas_sponsor",
+            "address": "0x6415ec433b2ba10fd605a89101d631eb29246f8f6c23db9003a3e92572b4b2f8"
+          }
+        ],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": {
+        "verdict": "do not pay",
+        "code": "GROUP_BAD_OUTCOME",
+        "label": "do not pay",
+        "linkAddress": "0x6415ec433b2ba10fd605a89101d631eb29246f8f6c23db9003a3e92572b4b2f8",
+        "links": [
+          {
+            "type": "gas_sponsor",
+            "address": "0x6415ec433b2ba10fd605a89101d631eb29246f8f6c23db9003a3e92572b4b2f8"
+          }
+        ],
+        "notes": [],
+        "changedByMemory": true,
+        "withoutMemory": "pay",
+        "memoryIds": [
+          "Jjx5sSMokvupfo4egboluW3I0suqD0thh1UYb10D2Fk"
+        ],
+        "memory": {
+          "used": 1,
+          "recalled": 1,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "rs-05",
+        "set": "real",
+        "kind": "group",
+        "type": "gas_sponsor",
+        "wallet": "0x2c17c0636cf91fa404a23d9a14ec9a7eac7f645e2249e834b0ccc7c80a0f0a26",
+        "linkAddress": "0x3b87194850cb9d665f0ea94e97a0eb0cff3e4a564961d30704b8da5e3157397a",
+        "trainWallet": "0xedff7181951f4006db32c415c15ff4e07bba6506a5881d0d0fc3d7e38abbafb5",
+        "split": "heldout",
+        "trainOutcome": "bad"
+      },
+      "ai": {
+        "verdict": "pay",
+        "linked": true,
+        "linkAddress": "0x3b87194850cb9d665f0ea94e97a0eb0cff3e4a564961d30704b8da5e3157397a",
+        "reason": "The wallet shows consistent, legitimate-looking transaction activity with a gas payer that appears to be a primary account or service provider. There are no signs of malicious behavior or suspicious patterns in the transaction history.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-05.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "pay",
+        "code": "LINKED_NO_BAD_HISTORY",
+        "label": "linked, no bad history",
+        "linkAddress": "0x3b87194850cb9d665f0ea94e97a0eb0cff3e4a564961d30704b8da5e3157397a",
+        "links": [
+          {
+            "type": "gas_sponsor",
+            "address": "0x3b87194850cb9d665f0ea94e97a0eb0cff3e4a564961d30704b8da5e3157397a"
+          }
+        ],
+        "notes": [
+          "Only the oldest 50 transactions of this wallet were read."
+        ],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": {
+        "verdict": "do not pay",
+        "code": "GROUP_BAD_OUTCOME",
+        "label": "do not pay",
+        "linkAddress": "0x3b87194850cb9d665f0ea94e97a0eb0cff3e4a564961d30704b8da5e3157397a",
+        "links": [
+          {
+            "type": "gas_sponsor",
+            "address": "0x3b87194850cb9d665f0ea94e97a0eb0cff3e4a564961d30704b8da5e3157397a"
+          }
+        ],
+        "notes": [
+          "Only the oldest 50 transactions of this wallet were read."
+        ],
+        "changedByMemory": true,
+        "withoutMemory": "pay",
+        "memoryIds": [
+          "le9yMrxk7XbogrTmIH4mOuyWp6HO2dTQ5vtwtM-DLFo"
+        ],
+        "memory": {
+          "used": 1,
+          "recalled": 1,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "rs-06",
+        "set": "real",
+        "kind": "group",
+        "type": "shared_funder",
+        "wallet": "0xa53f5d723990461c700b340c96ce91cba55b6808fb519b4c2f4017ae6f5613fb",
+        "linkAddress": "0x2328712dc3e12f492cfeaafafc391ed4c61210b4454c164167446383d0e6febe",
+        "trainWallet": "0x5d0743c6d20f9b5d7798e46b5e83bd1c2ab09108d3152b646a120f8f047d0cea",
+        "split": "heldout",
+        "trainOutcome": "bad"
+      },
+      "ai": {
+        "verdict": "pay",
+        "linked": true,
+        "linkAddress": "0x2328712dc3e12f492cfeaafafc391ed4c61210b4454c164167446383d0e6febe",
+        "reason": "The wallet's transaction history shows normal activity, including receiving funds and returning them to the funder, which is consistent with standard wallet usage.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-06.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "caution",
+        "code": "ROUND_TRIP_TO_FUNDER",
+        "label": "caution",
+        "linkAddress": "0x2328712dc3e12f492cfeaafafc391ed4c61210b4454c164167446383d0e6febe",
+        "links": [
+          {
+            "type": "shared_funder",
+            "address": "0x2328712dc3e12f492cfeaafafc391ed4c61210b4454c164167446383d0e6febe"
+          }
+        ],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "caution",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": {
+        "verdict": "do not pay",
+        "code": "GROUP_BAD_OUTCOME",
+        "label": "do not pay",
+        "linkAddress": "0x2328712dc3e12f492cfeaafafc391ed4c61210b4454c164167446383d0e6febe",
+        "links": [
+          {
+            "type": "shared_funder",
+            "address": "0x2328712dc3e12f492cfeaafafc391ed4c61210b4454c164167446383d0e6febe"
+          }
+        ],
+        "notes": [],
+        "changedByMemory": true,
+        "withoutMemory": "caution",
+        "memoryIds": [
+          "EzWfIZ6hSPf-qfNxjVTz27vcIBM16r8-4r1CWsgLYF8"
+        ],
+        "memory": {
+          "used": 1,
+          "recalled": 1,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "rs-07",
+        "set": "real",
+        "kind": "group",
+        "type": "shared_funder",
+        "wallet": "0x1f3689e26e8261f878894b3d79ec664d4d267ae9f674a303f3f06c36427c5c34",
+        "linkAddress": "0xd9a080ec4fffd0c9d362c275be2620e85aa2b44cd6a690c23d46f125952c7382",
+        "trainWallet": "0xbd39abb7260439f498daa70c3c9000c6cd0b0a2f338494469a7d413f2c218277",
+        "split": "heldout",
+        "trainOutcome": "bad"
+      },
+      "ai": {
+        "verdict": "pay",
+        "linked": true,
+        "linkAddress": "0xd9a080ec4fffd0c9d362c275be2620e85aa2b44cd6a690c23d46f125952c7382",
+        "reason": "The wallet shows normal activity, including receiving funds from its primary funder and performing standard transactions. It is linked to the funder address, which appears to be a central hub for multiple wallets.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-07.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "caution",
+        "code": "ROUND_TRIP_TO_FUNDER",
+        "label": "caution",
+        "linkAddress": "0xd9a080ec4fffd0c9d362c275be2620e85aa2b44cd6a690c23d46f125952c7382",
+        "links": [
+          {
+            "type": "shared_funder",
+            "address": "0xd9a080ec4fffd0c9d362c275be2620e85aa2b44cd6a690c23d46f125952c7382"
+          }
+        ],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "caution",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": {
+        "verdict": "do not pay",
+        "code": "GROUP_BAD_OUTCOME",
+        "label": "do not pay",
+        "linkAddress": "0xd9a080ec4fffd0c9d362c275be2620e85aa2b44cd6a690c23d46f125952c7382",
+        "links": [
+          {
+            "type": "shared_funder",
+            "address": "0xd9a080ec4fffd0c9d362c275be2620e85aa2b44cd6a690c23d46f125952c7382"
+          }
+        ],
+        "notes": [],
+        "changedByMemory": true,
+        "withoutMemory": "caution",
+        "memoryIds": [
+          "weLfPXfDEiHOlTabHBCq4d464ZT9In_pi-EK76x_te4"
+        ],
+        "memory": {
+          "used": 1,
+          "recalled": 1,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "rs-08",
+        "set": "real",
+        "kind": "group",
+        "type": "shared_funder",
+        "wallet": "0x7d4749c0d28b7665168da6be446878fc4d918b066e1b5bf7cf7f90b962024f71",
+        "linkAddress": "0xbac27160e8cd0829807f8fb6762df9e30801f18e0ddd3c41b16b63af6a5d7d77",
+        "trainWallet": "0x5bb54f8b08c8fae84ece08a9562b73c6e9f5c2a9043370e8471d4d0b2e96cef3",
+        "split": "heldout",
+        "trainOutcome": "bad"
+      },
+      "ai": {
+        "verdict": "pay",
+        "linked": true,
+        "linkAddress": "0xbac27160e8cd0829807f8fb6762df9e30801f18e0ddd3c41b16b63af6a5d7d77",
+        "reason": "The wallet has a clear funding source and shows standard activity consistent with receiving and holding funds. It is linked to the funder address 0xbac27160e8cd0829807f8fb6762df9e30801f18e0ddd3c41b16b63af6a5d7d77.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-08.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "pay",
+        "code": "LINKED_NO_BAD_HISTORY",
+        "label": "linked, no bad history",
+        "linkAddress": "0xbac27160e8cd0829807f8fb6762df9e30801f18e0ddd3c41b16b63af6a5d7d77",
+        "links": [
+          {
+            "type": "shared_funder",
+            "address": "0xbac27160e8cd0829807f8fb6762df9e30801f18e0ddd3c41b16b63af6a5d7d77"
+          }
+        ],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": {
+        "verdict": "do not pay",
+        "code": "GROUP_BAD_OUTCOME",
+        "label": "do not pay",
+        "linkAddress": "0xbac27160e8cd0829807f8fb6762df9e30801f18e0ddd3c41b16b63af6a5d7d77",
+        "links": [
+          {
+            "type": "shared_funder",
+            "address": "0xbac27160e8cd0829807f8fb6762df9e30801f18e0ddd3c41b16b63af6a5d7d77"
+          }
+        ],
+        "notes": [],
+        "changedByMemory": true,
+        "withoutMemory": "pay",
+        "memoryIds": [
+          "_q77Xa3sFNmkdsEmkQTefi9PCRMpq-I6aObNrDyysok"
+        ],
+        "memory": {
+          "used": 1,
+          "recalled": 1,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "rs-09",
+        "set": "real",
+        "kind": "group",
+        "type": "gas_sponsor",
+        "wallet": "0x335401cc7d665c25bc7b15a3cc5caea1a8de8c53f5a294eac7f06b78d72abc99",
+        "linkAddress": "0x9ee9d7d4de4e0e3b01b2a4e69679fd674d62843f1e6bc056498f569e8b12e3f5",
+        "trainWallet": "0xfc69b005af9152cd881ba6eacd899fe0c1b920cf87b51ccbb267b183da946c0a",
+        "split": "heldout",
+        "trainOutcome": "bad"
+      },
+      "ai": {
+        "verdict": "do not pay",
+        "linked": true,
+        "linkAddress": "0x9ee9d7d4de4e0e3b01b2a4e69679fd674d62843f1e6bc056498f569e8b12e3f5",
+        "reason": "The wallet is part of a cluster of addresses being funded and managed by a single entity that exhibits high-frequency, repetitive transaction patterns typical of automated bot activity. The gas payer is clearly a central hub for multiple wallets, indicating a coordinated network rather than an individual user.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-09.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "pay",
+        "code": "LINKED_NO_BAD_HISTORY",
+        "label": "linked, no bad history",
+        "linkAddress": "0x9ee9d7d4de4e0e3b01b2a4e69679fd674d62843f1e6bc056498f569e8b12e3f5",
+        "links": [
+          {
+            "type": "gas_sponsor",
+            "address": "0x9ee9d7d4de4e0e3b01b2a4e69679fd674d62843f1e6bc056498f569e8b12e3f5"
+          }
+        ],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": {
+        "verdict": "do not pay",
+        "code": "GROUP_BAD_OUTCOME",
+        "label": "do not pay",
+        "linkAddress": "0x9ee9d7d4de4e0e3b01b2a4e69679fd674d62843f1e6bc056498f569e8b12e3f5",
+        "links": [
+          {
+            "type": "gas_sponsor",
+            "address": "0x9ee9d7d4de4e0e3b01b2a4e69679fd674d62843f1e6bc056498f569e8b12e3f5"
+          }
+        ],
+        "notes": [],
+        "changedByMemory": true,
+        "withoutMemory": "pay",
+        "memoryIds": [
+          "q55dKg7Ro7IgbkPWQuDVYo_EsnoGqgSVRbNHB8yz_P4"
+        ],
+        "memory": {
+          "used": 1,
+          "recalled": 1,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "rs-10",
+        "set": "real",
+        "kind": "group",
+        "type": "shared_funder",
+        "wallet": "0x68ae71654976c566c039a2212d24a580067b5c23cab786c1d54e60df53e80c6d",
+        "linkAddress": "0xf069396c46e017d321e6f50f9a0502ed65084b465e126a7245b50a1bce358811",
+        "trainWallet": "0x0f5bcbd58c302ef4695b79dc35d2c319e18e55fcdc5e19f5ba6c3febc9c10c6c",
+        "split": "heldout",
+        "trainOutcome": "bad"
+      },
+      "ai": {
+        "verdict": "do not pay",
+        "linked": true,
+        "linkAddress": "0xf069396c46e017d321e6f50f9a0502ed65084b465e126a7245b50a1bce358811",
+        "reason": "The wallet was funded by a central address that appears to be systematically draining funds from multiple other wallets, indicating it is part of a larger suspicious network.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-10.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "caution",
+        "code": "ROUND_TRIP_TO_FUNDER",
+        "label": "caution",
+        "linkAddress": "0xf069396c46e017d321e6f50f9a0502ed65084b465e126a7245b50a1bce358811",
+        "links": [
+          {
+            "type": "shared_funder",
+            "address": "0xf069396c46e017d321e6f50f9a0502ed65084b465e126a7245b50a1bce358811"
+          }
+        ],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "caution",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": {
+        "verdict": "do not pay",
+        "code": "GROUP_BAD_OUTCOME",
+        "label": "do not pay",
+        "linkAddress": "0xf069396c46e017d321e6f50f9a0502ed65084b465e126a7245b50a1bce358811",
+        "links": [
+          {
+            "type": "shared_funder",
+            "address": "0xf069396c46e017d321e6f50f9a0502ed65084b465e126a7245b50a1bce358811"
+          }
+        ],
+        "notes": [],
+        "changedByMemory": true,
+        "withoutMemory": "caution",
+        "memoryIds": [
+          "oPfyMo-kcM3IcXc-kbvr3MzqwNl-eBndR56bZo_hhp8"
+        ],
+        "memory": {
+          "used": 1,
+          "recalled": 1,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "rs-11",
+        "set": "real",
+        "kind": "group",
+        "type": "gas_sponsor",
+        "wallet": "0xcb2d094b980ae95fa06db5bfabd638bd59006d20ff7f3662eb9b9e41bf20d8e0",
+        "linkAddress": "0x61b1b7f667c06d1ccfe5e404a1e705d4d0da457040c279e7c2a23bb39b9d1e05",
+        "trainWallet": "0x3f032b3392f5e264c69b0092dcd70e28bcf80002e294ca7dd2fe9c8f5d0980ed",
+        "split": "heldout",
+        "trainOutcome": "bad"
+      },
+      "ai": {
+        "verdict": "caution",
+        "linked": true,
+        "linkAddress": "0x61b1b7f667c06d1ccfe5e404a1e705d4d0da457040c279e7c2a23bb39b9d1e05",
+        "reason": "The wallet is heavily involved in high-frequency trading of the same 'SUIPUMP' token as its gas fee payer, suggesting it is part of a coordinated bot network or a single user managing multiple accounts. This pattern of activity is typical of speculative trading bots rather than a standard user wallet.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-11.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "pay",
+        "code": "LINKED_NO_BAD_HISTORY",
+        "label": "linked, no bad history",
+        "linkAddress": "0x61b1b7f667c06d1ccfe5e404a1e705d4d0da457040c279e7c2a23bb39b9d1e05",
+        "links": [
+          {
+            "type": "gas_sponsor",
+            "address": "0x61b1b7f667c06d1ccfe5e404a1e705d4d0da457040c279e7c2a23bb39b9d1e05"
+          }
+        ],
+        "notes": [
+          "Only the oldest 50 transactions of this wallet were read."
+        ],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": {
+        "verdict": "do not pay",
+        "code": "GROUP_BAD_OUTCOME",
+        "label": "do not pay",
+        "linkAddress": "0x61b1b7f667c06d1ccfe5e404a1e705d4d0da457040c279e7c2a23bb39b9d1e05",
+        "links": [
+          {
+            "type": "gas_sponsor",
+            "address": "0x61b1b7f667c06d1ccfe5e404a1e705d4d0da457040c279e7c2a23bb39b9d1e05"
+          }
+        ],
+        "notes": [
+          "Only the oldest 50 transactions of this wallet were read."
+        ],
+        "changedByMemory": true,
+        "withoutMemory": "pay",
+        "memoryIds": [
+          "MVDeHYqAzB3aQSX2xcH7L_-KeOnucprg3-OXbSS4BIc"
+        ],
+        "memory": {
+          "used": 1,
+          "recalled": 1,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "rs-12",
+        "set": "real",
+        "kind": "group",
+        "type": "shared_funder",
+        "wallet": "0x307931549ef581adc40c0660caa253e2951259609d4ceb151df4ce799f9de5aa",
+        "linkAddress": "0xb5efe55a53b225a9f92e77169c8e411f0935874e0c519a6560d8cf45d4640f27",
+        "trainWallet": "0xf29b3fe80886959f9e03a906c02d2c25b6d27499f728ed45b5b258d91e102a99",
+        "split": "heldout",
+        "trainOutcome": "bad"
+      },
+      "ai": {
+        "verdict": "do not pay",
+        "linked": true,
+        "linkAddress": "0xb5efe55a53b225a9f92e77169c8e411f0935874e0c519a6560d8cf45d4640f27",
+        "reason": "The wallet is part of a network of addresses funded by a single source that systematically drains funds to a common destination, indicating a bot or sybil operation. The wallet's activity is limited to receiving funds and immediately transferring them out, which is characteristic of a temporary transit account.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-12.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "pay",
+        "code": "LINKED_NO_BAD_HISTORY",
+        "label": "linked, no bad history",
+        "linkAddress": "0xb5efe55a53b225a9f92e77169c8e411f0935874e0c519a6560d8cf45d4640f27",
+        "links": [
+          {
+            "type": "shared_funder",
+            "address": "0xb5efe55a53b225a9f92e77169c8e411f0935874e0c519a6560d8cf45d4640f27"
+          }
+        ],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": {
+        "verdict": "do not pay",
+        "code": "GROUP_BAD_OUTCOME",
+        "label": "do not pay",
+        "linkAddress": "0xb5efe55a53b225a9f92e77169c8e411f0935874e0c519a6560d8cf45d4640f27",
+        "links": [
+          {
+            "type": "shared_funder",
+            "address": "0xb5efe55a53b225a9f92e77169c8e411f0935874e0c519a6560d8cf45d4640f27"
+          }
+        ],
+        "notes": [],
+        "changedByMemory": true,
+        "withoutMemory": "pay",
+        "memoryIds": [
+          "PbelA-v5aTmexe0oHkarsxRJK-x3uVBlJlUUhcCSGOQ"
+        ],
+        "memory": {
+          "used": 1,
+          "recalled": 1,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "rs-13",
+        "set": "real",
+        "kind": "group",
+        "type": "shared_funder",
+        "wallet": "0xe216d509c0227ccadde8e178116dec830704119934e341c25343a92863a40a76",
+        "linkAddress": "0x00a410baa4d96f50fdd42f9b4e7300add4def4dae3da77f21e333fc17400101b",
+        "trainWallet": "0x0adb4c5202adfe7d0eae2cc07329f460f9262eacd1ccb0e26bfcd40bd4e59b2a",
+        "split": "heldout",
+        "trainOutcome": "bad"
+      },
+      "ai": {
+        "verdict": "pay",
+        "linked": true,
+        "linkAddress": "0x00a410baa4d96f50fdd42f9b4e7300add4def4dae3da77f21e333fc17400101b",
+        "reason": "The wallet has a consistent history of receiving funds from a primary source and engaging in regular, successful transactions. There are no signs of malicious activity or suspicious patterns in its transaction history.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-13.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "caution",
+        "code": "ROUND_TRIP_TO_FUNDER",
+        "label": "caution",
+        "linkAddress": "0x00a410baa4d96f50fdd42f9b4e7300add4def4dae3da77f21e333fc17400101b",
+        "links": [
+          {
+            "type": "shared_funder",
+            "address": "0x00a410baa4d96f50fdd42f9b4e7300add4def4dae3da77f21e333fc17400101b"
+          }
+        ],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "caution",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": {
+        "verdict": "do not pay",
+        "code": "GROUP_BAD_OUTCOME",
+        "label": "do not pay",
+        "linkAddress": "0x00a410baa4d96f50fdd42f9b4e7300add4def4dae3da77f21e333fc17400101b",
+        "links": [
+          {
+            "type": "shared_funder",
+            "address": "0x00a410baa4d96f50fdd42f9b4e7300add4def4dae3da77f21e333fc17400101b"
+          }
+        ],
+        "notes": [],
+        "changedByMemory": true,
+        "withoutMemory": "caution",
+        "memoryIds": [
+          "R0k36sT-uYxL0NWGnGwBVV8UDQBBylxemVgEyxMUDZA"
+        ],
+        "memory": {
+          "used": 1,
+          "recalled": 1,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "rs-14",
+        "set": "real",
+        "kind": "group",
+        "type": "shared_funder",
+        "wallet": "0x8bbe81c8efaf4b4e700c99ea5e37343b6cd428b453fc72b02a139a6aba07f67e",
+        "linkAddress": "0x9c844a4711235e778f59fc5845eefa55a65d46cefbde3d55c471d388c005b233",
+        "trainWallet": "0x46a6726e0422911f0f9e453b33de0a2f5d69bf9d86a08d0d8e89091996f1a912",
+        "split": "heldout",
+        "trainOutcome": "bad"
+      },
+      "ai": {
+        "verdict": "caution",
+        "linked": true,
+        "linkAddress": "0x9c844a4711235e778f59fc5845eefa55a65d46cefbde3d55c471d388c005b233",
+        "reason": "The wallet was funded by an address that appears to be a high-volume distributor, having sent funds to many other wallets in a short period. This pattern is characteristic of automated or sybil-like activity.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-14.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "pay",
+        "code": "LINKED_NO_BAD_HISTORY",
+        "label": "linked, no bad history",
+        "linkAddress": "0x9c844a4711235e778f59fc5845eefa55a65d46cefbde3d55c471d388c005b233",
+        "links": [
+          {
+            "type": "shared_funder",
+            "address": "0x9c844a4711235e778f59fc5845eefa55a65d46cefbde3d55c471d388c005b233"
+          }
+        ],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": {
+        "verdict": "do not pay",
+        "code": "GROUP_BAD_OUTCOME",
+        "label": "do not pay",
+        "linkAddress": "0x9c844a4711235e778f59fc5845eefa55a65d46cefbde3d55c471d388c005b233",
+        "links": [
+          {
+            "type": "shared_funder",
+            "address": "0x9c844a4711235e778f59fc5845eefa55a65d46cefbde3d55c471d388c005b233"
+          }
+        ],
+        "notes": [],
+        "changedByMemory": true,
+        "withoutMemory": "pay",
+        "memoryIds": [
+          "_5IJ8DZkaKnJ6UlXWrAJIeAMOeaqPOc1KFCZU1TkcFA"
+        ],
+        "memory": {
+          "used": 1,
+          "recalled": 1,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "rs-15",
+        "set": "real",
+        "kind": "group",
+        "type": "gas_sponsor",
+        "wallet": "0xc96a0eeb20448fc94eacfc87183b40b2e0a480b14c77d09ce9887b74871e0515",
+        "linkAddress": "0x3431d6bc503f416a4b3d9e474e6ac34bb70b8d1dc5f8e23aa8e96ca5a2687fdb",
+        "trainWallet": "0x59540034ef34dede361f050fdfa207a662e7877fea122e44b0fdf45d0ed9f418",
+        "split": "heldout",
+        "trainOutcome": "bad"
+      },
+      "ai": {
+        "verdict": "pay",
+        "linked": true,
+        "linkAddress": "0x2bd863720c03caf23eab07ff615aac380f6a0f614273f5dbbc7f3a8641c05c96",
+        "reason": "The wallet shows consistent, legitimate-looking transaction patterns with a primary funding source and no signs of malicious activity or suspicious behavior.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-15.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "linkAddress": null,
+        "links": [],
+        "notes": [
+          "Only the oldest 50 transactions of this wallet were read."
+        ],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": {
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "linkAddress": null,
+        "links": [],
+        "notes": [
+          "Only the oldest 50 transactions of this wallet were read."
+        ],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "rs-16",
+        "set": "real",
+        "kind": "group",
+        "type": "shared_funder",
+        "wallet": "0x7e833ef3adf7a8a39ceb46d517e5b1083a614a3f14cecaa70be1512e1864904e",
+        "linkAddress": "0x4665c46504d47e38d5e80b491ca86bc027caeae8de3964e2cc2777daa1c3e87b",
+        "trainWallet": "0x77fbb9e2e7db1c9540afdf9a979152082aae776b3fce82d7bb6245103059ed6f",
+        "split": "heldout",
+        "trainOutcome": "bad"
+      },
+      "ai": {
+        "verdict": "pay",
+        "linked": true,
+        "linkAddress": "0x4665c46504d47e38d5e80b491ca86bc027caeae8de3964e2cc2777daa1c3e87b",
+        "reason": "The wallet shows normal activity, including receiving initial funding and interacting with a template asset, and it pays its own gas fees.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-16.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "pay",
+        "code": "LINKED_NO_BAD_HISTORY",
+        "label": "linked, no bad history",
+        "linkAddress": "0x4665c46504d47e38d5e80b491ca86bc027caeae8de3964e2cc2777daa1c3e87b",
+        "links": [
+          {
+            "type": "shared_funder",
+            "address": "0x4665c46504d47e38d5e80b491ca86bc027caeae8de3964e2cc2777daa1c3e87b"
+          }
+        ],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": {
+        "verdict": "do not pay",
+        "code": "GROUP_BAD_OUTCOME",
+        "label": "do not pay",
+        "linkAddress": "0x4665c46504d47e38d5e80b491ca86bc027caeae8de3964e2cc2777daa1c3e87b",
+        "links": [
+          {
+            "type": "shared_funder",
+            "address": "0x4665c46504d47e38d5e80b491ca86bc027caeae8de3964e2cc2777daa1c3e87b"
+          }
+        ],
+        "notes": [],
+        "changedByMemory": true,
+        "withoutMemory": "pay",
+        "memoryIds": [
+          "cVMjB2A7aoZHeSxVzIE9E4yHYK7lNpT7PaPqha1zHb4"
+        ],
+        "memory": {
+          "used": 1,
+          "recalled": 1,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "rs-17",
+        "set": "real",
+        "kind": "group",
+        "type": "gas_sponsor",
+        "wallet": "0x5f63e174cf7777781df837a450773c308d5b1d02b6e27a95bbfa70be62cfe20f",
+        "linkAddress": "0xf597c6aaeddcbeeefe7e7883479373a89e08c34e9541477502c6b33d64851675",
+        "trainWallet": "0x544081d155db42693324a80b991fd553626375301b5b08a35234d1b6673584c5",
+        "split": "heldout",
+        "trainOutcome": "bad"
+      },
+      "ai": {
+        "verdict": "caution",
+        "linked": true,
+        "linkAddress": "0xf597c6aaeddcbeeefe7e7883479373a89e08c34e9541477502c6b33d64851675",
+        "reason": "The wallet is part of a cluster of addresses funded and managed by 0xf597c6aaeddcbeeefe7e7883479373a89e08c34e9541477502c6b33d64851675, which appears to be performing high-frequency, repetitive transactions across multiple linked wallets. This pattern is characteristic of automated bot activity or a coordinated network rather than a standard user wallet.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-17.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "pay",
+        "code": "LINKED_NO_BAD_HISTORY",
+        "label": "linked, no bad history",
+        "linkAddress": "0xf597c6aaeddcbeeefe7e7883479373a89e08c34e9541477502c6b33d64851675",
+        "links": [
+          {
+            "type": "gas_sponsor",
+            "address": "0xf597c6aaeddcbeeefe7e7883479373a89e08c34e9541477502c6b33d64851675"
+          }
+        ],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": {
+        "verdict": "do not pay",
+        "code": "GROUP_BAD_OUTCOME",
+        "label": "do not pay",
+        "linkAddress": "0xf597c6aaeddcbeeefe7e7883479373a89e08c34e9541477502c6b33d64851675",
+        "links": [
+          {
+            "type": "gas_sponsor",
+            "address": "0xf597c6aaeddcbeeefe7e7883479373a89e08c34e9541477502c6b33d64851675"
+          }
+        ],
+        "notes": [],
+        "changedByMemory": true,
+        "withoutMemory": "pay",
+        "memoryIds": [
+          "lK08aV7iuBFMiS_k6cCJXnZnr1Jj9mVRhYJH84YcU4E"
+        ],
+        "memory": {
+          "used": 1,
+          "recalled": 1,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "rs-18",
+        "set": "real",
+        "kind": "group",
+        "type": "shared_funder",
+        "wallet": "0xb61db63f9c6a6e2a81b8345ffe0c7eb63d6bec6564e29304159b3fcd31743f4a",
+        "linkAddress": "0xe3ae7a719266c7d686cef7f8cb6bd19911872c467379b58173ebe4c2880ce5be",
+        "trainWallet": "0x569f6d7d9f3e474423d85439e26a50348ae46ec8fa926833b2d0f36afd23db8d",
+        "split": "heldout",
+        "trainOutcome": "bad"
+      },
+      "ai": {
+        "verdict": "pay",
+        "linked": true,
+        "linkAddress": "0xe3ae7a719266c7d686cef7f8cb6bd19911872c467379b58173ebe4c2880ce5be",
+        "reason": "The wallet shows a consistent pattern of receiving funds from and returning funds to its primary funder, which is typical for a sub-account or managed wallet. There is no evidence of malicious activity or suspicious behavior.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-18.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "caution",
+        "code": "ROUND_TRIP_TO_FUNDER",
+        "label": "caution",
+        "linkAddress": "0xe3ae7a719266c7d686cef7f8cb6bd19911872c467379b58173ebe4c2880ce5be",
+        "links": [
+          {
+            "type": "shared_funder",
+            "address": "0xe3ae7a719266c7d686cef7f8cb6bd19911872c467379b58173ebe4c2880ce5be"
+          }
+        ],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "caution",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": {
+        "verdict": "do not pay",
+        "code": "GROUP_BAD_OUTCOME",
+        "label": "do not pay",
+        "linkAddress": "0xe3ae7a719266c7d686cef7f8cb6bd19911872c467379b58173ebe4c2880ce5be",
+        "links": [
+          {
+            "type": "shared_funder",
+            "address": "0xe3ae7a719266c7d686cef7f8cb6bd19911872c467379b58173ebe4c2880ce5be"
+          }
+        ],
+        "notes": [],
+        "changedByMemory": true,
+        "withoutMemory": "caution",
+        "memoryIds": [
+          "SYu8rd16edA1xEl-XPkQ7YLQ6_qZVHmy7IIxgAv92pw"
+        ],
+        "memory": {
+          "used": 1,
+          "recalled": 1,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "rs-19",
+        "set": "real",
+        "kind": "group",
+        "type": "shared_funder",
+        "wallet": "0x17660b79ab313a1e69a55b5a98e3a978e4bfe3c385ed95a22d8d6056d58f9855",
+        "linkAddress": "0x13ff52dfd326839dcad2c0f7c699224206df6c45a6e7784f34a60f10c0892bd5",
+        "trainWallet": "0x77574d4c975aa3bf3cf9571834bd3ee798707a3c7ddf9e3dfc82f34c50bb8fbf",
+        "split": "heldout",
+        "trainOutcome": "bad"
+      },
+      "ai": {
+        "verdict": "pay",
+        "linked": true,
+        "linkAddress": "0x13ff52dfd326839dcad2c0f7c699224206df6c45a6e7784f34a60f10c0892bd5",
+        "reason": "The wallet has a clear history of receiving funds and performing standard transactions without suspicious patterns. It is linked to the first funder, which appears to be a common funding source for multiple addresses.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-19.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "linkAddress": null,
+        "links": [],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": {
+        "verdict": "do not pay",
+        "code": "GROUP_BAD_OUTCOME",
+        "label": "do not pay",
+        "linkAddress": null,
+        "links": [],
+        "notes": [],
+        "changedByMemory": true,
+        "withoutMemory": "pay",
+        "memoryIds": [
+          "10Mc8vmTzjvUIFCiPfCNUoel015UvW8IV57IR3TzEtA"
+        ],
+        "memory": {
+          "used": 1,
+          "recalled": 1,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "rs-20",
+        "set": "real",
+        "kind": "group",
+        "type": "gas_sponsor",
+        "wallet": "0x921d5fbaa5e0c2975b57b504373f1c70af0e22c44c6d48cd29a87fd96cf0a22f",
+        "linkAddress": "0x9218e4c21e10f8c3e9dbceeebe9bb6fecf799d12179f6810b2991da4ac38a22f",
+        "trainWallet": "0x84cc1915c8206dafd410117bb1e6eff448c15cd5d64a76a9280b973b601941f7",
+        "split": "heldout",
+        "trainOutcome": "bad"
+      },
+      "ai": {
+        "verdict": "do not pay",
+        "linked": true,
+        "linkAddress": "0x9218e4c21e10f8c3e9dbceeebe9bb6fecf799d12179f6810b2991da4ac38a22f",
+        "reason": "The wallet is part of a network of addresses involved in high-frequency, large-volume transfers of 'SUIPUMP' tokens, which is characteristic of automated bot activity or wash trading.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rs-20.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "pay",
+        "code": "LINKED_NO_BAD_HISTORY",
+        "label": "linked, no bad history",
+        "linkAddress": "0x9218e4c21e10f8c3e9dbceeebe9bb6fecf799d12179f6810b2991da4ac38a22f",
+        "links": [
+          {
+            "type": "shared_funder",
+            "address": "0x9218e4c21e10f8c3e9dbceeebe9bb6fecf799d12179f6810b2991da4ac38a22f"
+          },
+          {
+            "type": "gas_sponsor",
+            "address": "0x9218e4c21e10f8c3e9dbceeebe9bb6fecf799d12179f6810b2991da4ac38a22f"
+          }
+        ],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": {
+        "verdict": "pay",
+        "code": "LINKED_NO_BAD_HISTORY",
+        "label": "linked, no bad history",
+        "linkAddress": "0x9218e4c21e10f8c3e9dbceeebe9bb6fecf799d12179f6810b2991da4ac38a22f",
+        "links": [
+          {
+            "type": "shared_funder",
+            "address": "0x9218e4c21e10f8c3e9dbceeebe9bb6fecf799d12179f6810b2991da4ac38a22f"
+          },
+          {
+            "type": "gas_sponsor",
+            "address": "0x9218e4c21e10f8c3e9dbceeebe9bb6fecf799d12179f6810b2991da4ac38a22f"
+          }
+        ],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "rc-01",
+        "set": "real",
+        "kind": "control",
+        "type": "control",
+        "wallet": "0xe1b6e64f397d6120e4a9350209b2b835052c7aee51e78f860931ab6891133029",
+        "linkAddress": null,
+        "trainWallet": "0xe1b6e64f397d6120e4a9350209b2b835052c7aee51e78f860931ab6891133029",
+        "split": "train",
+        "trainOutcome": "good"
+      },
+      "ai": {
+        "verdict": "pay",
+        "linked": true,
+        "linkAddress": "0x1c899ecacde278c25f141b198ac6cd1eee03fa0e1645a24ff3e0b8e8dd7bdeaa",
+        "reason": "The wallet has a clear history of legitimate transactions and was funded by a wallet that appears to be engaged in standard trading activities. There are no signs of suspicious behavior or malicious activity in the transaction history.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-01.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "linkAddress": null,
+        "links": [],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": null
+    },
+    {
+      "case": {
+        "id": "rc-02",
+        "set": "real",
+        "kind": "control",
+        "type": "control",
+        "wallet": "0x8be2602f6812200e291f0c99b149986bee43b28a896deb12dae7c12eec5855a0",
+        "linkAddress": null,
+        "trainWallet": null,
+        "split": "heldout",
+        "trainOutcome": "good"
+      },
+      "ai": {
+        "verdict": "pay",
+        "linked": false,
+        "linkAddress": null,
+        "reason": "The wallet has a clean history with only one transaction receiving funds from its funder, showing no signs of suspicious activity.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-02.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "linkAddress": null,
+        "links": [],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": {
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "linkAddress": null,
+        "links": [],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "rc-03",
+        "set": "real",
+        "kind": "control",
+        "type": "control",
+        "wallet": "0x87dcac02511da1fa2b17017f9a06469892de2dd2f6d2c9a8c6e508dc2a9f5f8e",
+        "linkAddress": null,
+        "trainWallet": "0x87dcac02511da1fa2b17017f9a06469892de2dd2f6d2c9a8c6e508dc2a9f5f8e",
+        "split": "train",
+        "trainOutcome": "good"
+      },
+      "ai": {
+        "verdict": "do not pay",
+        "linked": true,
+        "linkAddress": "0xd20d95c804677b891acf027fd788c09dbbbe608b2bf9b6f15efbab894eba439b",
+        "reason": "The wallet received funds from a central address and immediately returned the majority of those funds, which is a common pattern for money laundering or wash trading. The wallet is linked to other addresses through the same funding source, which appears to be acting as a hub for multiple accounts.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-03.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "caution",
+        "code": "ROUND_TRIP_TO_FUNDER",
+        "label": "caution",
+        "linkAddress": null,
+        "links": [],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "caution",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": null
+    },
+    {
+      "case": {
+        "id": "rc-04",
+        "set": "real",
+        "kind": "control",
+        "type": "control",
+        "wallet": "0x16ca1ea5b359125499cfa0cfd9147dec6f43beda41572b829f7383d508398329",
+        "linkAddress": null,
+        "trainWallet": null,
+        "split": "heldout",
+        "trainOutcome": "good"
+      },
+      "ai": {
+        "verdict": "do not pay",
+        "linked": true,
+        "linkAddress": "0x07ba269852a94270c1a2817fab522f1d2206fe425beb99b85e5a9ed97d98d61d",
+        "reason": "The wallet is part of a clear pattern of automated, repetitive micro-transactions from a single funder, which is characteristic of bot activity or a sybil network. The wallet has no independent transaction history other than receiving these funds.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-04.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "linkAddress": null,
+        "links": [],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": {
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "linkAddress": null,
+        "links": [],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "rc-05",
+        "set": "real",
+        "kind": "control",
+        "type": "control",
+        "wallet": "0x48c29778f72c8b31aa1024d0a61c0f9273b91efe9c83f7af6b825095d497bf7a",
+        "linkAddress": null,
+        "trainWallet": "0x48c29778f72c8b31aa1024d0a61c0f9273b91efe9c83f7af6b825095d497bf7a",
+        "split": "train",
+        "trainOutcome": "good"
+      },
+      "ai": {
+        "verdict": "do not pay",
+        "linked": true,
+        "linkAddress": "0x7b42da06a1b98742396e8261c40cb4378b95fee6c3bcf88631a8e8258b8cd482",
+        "reason": "The wallet received a large amount of SUI from the funder and immediately transferred almost all of it to another address, which is a common pattern for money laundering or temporary transit wallets.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-05.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "linkAddress": null,
+        "links": [],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": null
+    },
+    {
+      "case": {
+        "id": "rc-06",
+        "set": "real",
+        "kind": "control",
+        "type": "control",
+        "wallet": "0xb33216d61725c776092a9abe4b515dcc27786836f6c0737c24b43306e81cb1a8",
+        "linkAddress": null,
+        "trainWallet": null,
+        "split": "heldout",
+        "trainOutcome": "good"
+      },
+      "ai": {
+        "verdict": "do not pay",
+        "linked": false,
+        "linkAddress": null,
+        "reason": "The wallet received funds and immediately transferred the entire balance to another address, which is a common pattern for money laundering or temporary transit wallets.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-06.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "linkAddress": null,
+        "links": [],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": {
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "linkAddress": null,
+        "links": [],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "rc-07",
+        "set": "real",
+        "kind": "control",
+        "type": "control",
+        "wallet": "0x8b5abeb7ccd1b88823b519d6e5c13f0c43ce570863015a0b8b6a42d9d90e41fd",
+        "linkAddress": null,
+        "trainWallet": "0x8b5abeb7ccd1b88823b519d6e5c13f0c43ce570863015a0b8b6a42d9d90e41fd",
+        "split": "train",
+        "trainOutcome": "good"
+      },
+      "ai": {
+        "verdict": "caution",
+        "linked": true,
+        "linkAddress": "0x4d16f4cbd7e29ce8d9eabdf761d1723589748417c0b84effc6d40c56904dacfe",
+        "reason": "The wallet was funded by a source that immediately transferred the funds and then sent them to another address, suggesting it may be part of a chain of temporary wallets used for obfuscation.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-07.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "linkAddress": null,
+        "links": [],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": null
+    },
+    {
+      "case": {
+        "id": "rc-08",
+        "set": "real",
+        "kind": "control",
+        "type": "control",
+        "wallet": "0x7e437688cddb52e21de25cb0086b561cf1a3c32e86978470ae89e40afa603467",
+        "linkAddress": null,
+        "trainWallet": null,
+        "split": "heldout",
+        "trainOutcome": "good"
+      },
+      "ai": {
+        "verdict": "pay",
+        "linked": true,
+        "linkAddress": "0xaa19d6c6fc73ad17d65529077fdc0c303018e7846e31f0bdff8ef587673f3112",
+        "reason": "The wallet has a clear funding source and shows standard trading activity without suspicious patterns. It is linked to the funding address, which is expected behavior for a new wallet.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-08.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "linkAddress": null,
+        "links": [],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": {
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "linkAddress": null,
+        "links": [],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "rc-09",
+        "set": "real",
+        "kind": "control",
+        "type": "control",
+        "wallet": "0x13528d2507282eb66aea5aab02575b33fbae28258db031c3cd8f9964648195d9",
+        "linkAddress": null,
+        "trainWallet": "0x13528d2507282eb66aea5aab02575b33fbae28258db031c3cd8f9964648195d9",
+        "split": "train",
+        "trainOutcome": "good"
+      },
+      "ai": {
+        "verdict": "pay",
+        "linked": true,
+        "linkAddress": "0xe3af5822aa0026bac82707fee255fba10a8b024b3a6f990f25d04f4d442eb75d",
+        "reason": "The wallet has a consistent history of receiving funds from a single source and performing standard transactions without suspicious patterns. It is linked to the address 0xe3af5822aa0026bac82707fee255fba10a8b024b3a6f990f25d04f4d442eb75d, which acts as its primary funding source.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-09.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "linkAddress": null,
+        "links": [],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": null
+    },
+    {
+      "case": {
+        "id": "rc-10",
+        "set": "real",
+        "kind": "control",
+        "type": "control",
+        "wallet": "0x5d8982bf03a1fe46cb8517469f721685ea9dfacbc4c840f681beabbf9cfab507",
+        "linkAddress": null,
+        "trainWallet": null,
+        "split": "heldout",
+        "trainOutcome": "good"
+      },
+      "ai": {
+        "verdict": "pay",
+        "linked": false,
+        "linkAddress": null,
+        "reason": "The wallet shows a consistent pattern of receiving small amounts of SUI from various addresses, likely from a faucet or exchange, followed by a single large outbound transfer. There is no evidence of malicious activity or suspicious patterns in its transaction history.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-10.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "linkAddress": null,
+        "links": [],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": {
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "linkAddress": null,
+        "links": [],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "rc-11",
+        "set": "real",
+        "kind": "control",
+        "type": "control",
+        "wallet": "0xeb575b54e4ff3884040acd9ec02bb7e71019fcf9319890059d55f8568f4d1d59",
+        "linkAddress": null,
+        "trainWallet": "0xeb575b54e4ff3884040acd9ec02bb7e71019fcf9319890059d55f8568f4d1d59",
+        "split": "train",
+        "trainOutcome": "good"
+      },
+      "ai": {
+        "verdict": "pay",
+        "linked": true,
+        "linkAddress": "0x3a18968c8a6fb12e0644cef01cb0964b7c683b581a59214108e69762efa3808c",
+        "reason": "The wallet has a clear funding source and no suspicious activity in its history. It is linked to other wallets through its first funder, which appears to be a standard funding pattern.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-11.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "linkAddress": null,
+        "links": [],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": null
+    },
+    {
+      "case": {
+        "id": "rc-12",
+        "set": "real",
+        "kind": "control",
+        "type": "control",
+        "wallet": "0x200f860efdb1b703b2367066278d21b7bf9bf9a48c3ddad563e38db8849e00fe",
+        "linkAddress": null,
+        "trainWallet": null,
+        "split": "heldout",
+        "trainOutcome": "good"
+      },
+      "ai": {
+        "verdict": "pay",
+        "linked": true,
+        "linkAddress": "0x9bd23463cd99c1c73bfe953a03b814d7799b8e0d2fadc1928b0fe5cfea160b85",
+        "reason": "The wallet shows normal activity including receiving funds from a primary source and interacting with it, with no signs of suspicious or malicious behavior. It is linked to the address 0x9bd23463cd99c1c73bfe953a03b814d7799b8e0d2fadc1928b0fe5cfea160b85, which acted as its initial funder.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-12.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "caution",
+        "code": "ROUND_TRIP_TO_FUNDER",
+        "label": "caution",
+        "linkAddress": null,
+        "links": [],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "caution",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": {
+        "verdict": "caution",
+        "code": "ROUND_TRIP_TO_FUNDER",
+        "label": "caution",
+        "linkAddress": null,
+        "links": [],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "caution",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "rc-13",
+        "set": "real",
+        "kind": "control",
+        "type": "control",
+        "wallet": "0x2e435c932755e02366a589894a89d89b9362d00790ceea038acfe351af4e9390",
+        "linkAddress": null,
+        "trainWallet": "0x2e435c932755e02366a589894a89d89b9362d00790ceea038acfe351af4e9390",
+        "split": "train",
+        "trainOutcome": "good"
+      },
+      "ai": {
+        "verdict": "pay",
+        "linked": true,
+        "linkAddress": "0xb882ccc38dcb879e7c7a0156ccd3ea26c58343141dc5c5834c8512780a53622f",
+        "reason": "The wallet has a consistent history of active trading and legitimate transactions, and its funding source is a well-established wallet with a long history of similar activity.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-13.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "linkAddress": null,
+        "links": [],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": null
+    },
+    {
+      "case": {
+        "id": "rc-14",
+        "set": "real",
+        "kind": "control",
+        "type": "control",
+        "wallet": "0x43f2f96650557e904c274e98fc35988aad27c7b42a401c83b8df8ed7ec2e611f",
+        "linkAddress": null,
+        "trainWallet": null,
+        "split": "heldout",
+        "trainOutcome": "good"
+      },
+      "ai": {
+        "verdict": "pay",
+        "linked": true,
+        "linkAddress": "0x47a4a1626977bd1c7fd68a0fcf47cb2cd863398d3c772cea7c5e21108b558e17",
+        "reason": "The wallet is linked to its funder, but the transaction history shows standard funding and transfer activity without suspicious patterns.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-14.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "linkAddress": null,
+        "links": [],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": {
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "linkAddress": null,
+        "links": [],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "rc-15",
+        "set": "real",
+        "kind": "control",
+        "type": "control",
+        "wallet": "0x803c1fda130fb738adf9e78b43e5f542a3a1a5105f3373753502c7830c43fb94",
+        "linkAddress": null,
+        "trainWallet": "0x803c1fda130fb738adf9e78b43e5f542a3a1a5105f3373753502c7830c43fb94",
+        "split": "train",
+        "trainOutcome": "good"
+      },
+      "ai": {
+        "verdict": "pay",
+        "linked": true,
+        "linkAddress": "0xc1e523a74870e48b24ab0b75d5c53f1a118c679a9d6d590934462ef20a1feb98",
+        "reason": "The wallet's transaction history shows normal activity, including receiving funds from a primary source and interacting with a specific address, with no signs of malicious behavior or suspicious patterns.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-15.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "linkAddress": null,
+        "links": [],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": null
+    },
+    {
+      "case": {
+        "id": "rc-16",
+        "set": "real",
+        "kind": "control",
+        "type": "control",
+        "wallet": "0xb0799e8a22419df5f5763347047c0cf698a7b9815795ab5e39b380a8a69266d1",
+        "linkAddress": null,
+        "trainWallet": null,
+        "split": "heldout",
+        "trainOutcome": "good"
+      },
+      "ai": {
+        "verdict": "do not pay",
+        "linked": true,
+        "linkAddress": "0x113615161a8ebb9c1b64e5d16b48c0ef2b5c01da4eaf0ac4a1e3181d27bd6967",
+        "reason": "The wallet is a newly created account that received multiple small, rapid funding transactions from different sources before immediately transferring a large sum to another address, which is characteristic of a wash trading or money laundering pattern.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-16.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "linkAddress": null,
+        "links": [],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": {
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "linkAddress": null,
+        "links": [],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "rc-17",
+        "set": "real",
+        "kind": "control",
+        "type": "control",
+        "wallet": "0x8ca8ea0f797f340e66789096fa26d79f9bc018201fb7247b2fec07f4a0f4d980",
+        "linkAddress": null,
+        "trainWallet": "0x8ca8ea0f797f340e66789096fa26d79f9bc018201fb7247b2fec07f4a0f4d980",
+        "split": "train",
+        "trainOutcome": "good"
+      },
+      "ai": {
+        "verdict": "do not pay",
+        "linked": true,
+        "linkAddress": "0x9b4849dd82a23069cd514e2425306ea770f324c381266bdc2bb56ef3d113f897",
+        "reason": "The wallet was funded by a source that appears to be a high-volume distributor of assets to many different addresses, and it immediately returned almost all of its funds to that same address. This behavior is characteristic of a temporary or sybil-linked wallet.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-17.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "caution",
+        "code": "ROUND_TRIP_TO_FUNDER",
+        "label": "caution",
+        "linkAddress": null,
+        "links": [],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "caution",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": null
+    },
+    {
+      "case": {
+        "id": "rc-18",
+        "set": "real",
+        "kind": "control",
+        "type": "control",
+        "wallet": "0xed751ddfc39ecdabaebf83a86a0699aa185abba4a3f1ca560c2b906ca9c64423",
+        "linkAddress": null,
+        "trainWallet": null,
+        "split": "heldout",
+        "trainOutcome": "good"
+      },
+      "ai": {
+        "verdict": "caution",
+        "linked": true,
+        "linkAddress": "0x9be6b5d4d6c5191bbdba16f5cbb016e84282a19531c01d7ec0c31ff8365a38f2",
+        "reason": "The wallet received its entire balance from a funder and immediately transferred it to another address, which is characteristic of a transit or burner wallet. Caution is advised as this behavior is typical of wallets used for obfuscating fund flows.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-18.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "linkAddress": null,
+        "links": [],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": {
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "linkAddress": null,
+        "links": [],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "rc-19",
+        "set": "real",
+        "kind": "control",
+        "type": "control",
+        "wallet": "0xa3c288acfb8abc2b7a8740e581428dfea7846e1f60327aef0cf576be53fb0ff2",
+        "linkAddress": null,
+        "trainWallet": "0xa3c288acfb8abc2b7a8740e581428dfea7846e1f60327aef0cf576be53fb0ff2",
+        "split": "train",
+        "trainOutcome": "good"
+      },
+      "ai": {
+        "verdict": "pay",
+        "linked": true,
+        "linkAddress": "0x56bc798612556538d74f1d311b5bdb48faab8b7d2f32d88262d68f78a216b427",
+        "reason": "The wallet is consistently funded by a single source that appears to be managing its own funds and distributing them to this address. There is no evidence of suspicious activity or malicious behavior in the transaction history.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-19.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "linkAddress": null,
+        "links": [],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": null
+    },
+    {
+      "case": {
+        "id": "rc-20",
+        "set": "real",
+        "kind": "control",
+        "type": "control",
+        "wallet": "0x764c3c2163abd07d4df3cbe1d4b67178d88ebcd1b3ddbbf5f76cba298f7da672",
+        "linkAddress": null,
+        "trainWallet": null,
+        "split": "heldout",
+        "trainOutcome": "good"
+      },
+      "ai": {
+        "verdict": "pay",
+        "linked": true,
+        "linkAddress": "0x6c0b48a0fe0723f2726d385a47c2ac8486ea69819c40d199dfaa9683bda71d47",
+        "reason": "The wallet was funded by a single source and performed a simple transfer of funds, which is consistent with standard wallet usage.",
+        "raw": "bench/raw/gemini-3.1-flash-lite/real-rc-20.json",
+        "model": "gemini-3.1-flash-lite"
+      },
+      "nomem": {
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "linkAddress": null,
+        "links": [],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      },
+      "mem": {
+        "verdict": "pay",
+        "code": "NO_LINKS_NO_BAD_HISTORY",
+        "label": "no links, no bad history",
+        "linkAddress": null,
+        "links": [],
+        "notes": [],
+        "changedByMemory": false,
+        "withoutMemory": "pay",
+        "memoryIds": [],
+        "memory": {
+          "used": 0,
+          "recalled": 0,
+          "recallOk": true,
+          "recallError": null,
+          "degraded": false
+        }
+      }
+    }
+  ]
+}

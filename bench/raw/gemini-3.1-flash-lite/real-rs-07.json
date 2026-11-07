@@ -1,0 +1,19 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "7922927be87bfded",
+  "savedAt": "2026-11-07T18:57:54.480Z",
+  "text": "{\"verdict\": \"pay\", \"linked\": true, \"link_address\": \"0xd9a080ec4fffd0c9d362c275be2620e85aa2b44cd6a690c23d46f125952c7382\", \"reason\": \"The wallet shows normal activity, including receiving funds from its primary funder and performing standard transactions. It is linked to the funder address, which appears to be a central hub for multiple wallets.\"}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 24855,
+    "candidatesTokenCount": 122,
+    "totalTokenCount": 24977,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 24855
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

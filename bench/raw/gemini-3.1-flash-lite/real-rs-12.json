@@ -1,0 +1,19 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "69d578399400a30d",
+  "savedAt": "2026-11-07T18:58:04.681Z",
+  "text": "{\n  \"verdict\": \"do not pay\",\n  \"linked\": true,\n  \"link_address\": \"0xb5efe55a53b225a9f92e77169c8e411f0935874e0c519a6560d8cf45d4640f27\",\n  \"reason\": \"The wallet is part of a network of addresses funded by a single source that systematically drains funds to a common destination, indicating a bot or sybil operation. The wallet's activity is limited to receiving funds and immediately transferring them out, which is characteristic of a temporary transit account.\"\n}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 11616,
+    "candidatesTokenCount": 154,
+    "totalTokenCount": 11770,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 11616
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

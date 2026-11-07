@@ -1,0 +1,19 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "01bc34adfe5ee60e",
+  "savedAt": "2026-11-07T18:58:30.576Z",
+  "text": "{\"verdict\": \"pay\", \"linked\": true, \"link_address\": \"0xe3ae7a719266c7d686cef7f8cb6bd19911872c467379b58173ebe4c2880ce5be\", \"reason\": \"The wallet shows a consistent pattern of receiving funds from and returning funds to its primary funder, which is typical for a sub-account or managed wallet. There is no evidence of malicious activity or suspicious behavior.\"}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 16931,
+    "candidatesTokenCount": 122,
+    "totalTokenCount": 17053,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 16931
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "33d4a959c5807197",
+  "savedAt": "2026-11-07T18:58:03.210Z",
+  "text": "{\n  \"verdict\": \"caution\",\n  \"linked\": true,\n  \"link_address\": \"0x61b1b7f667c06d1ccfe5e404a1e705d4d0da457040c279e7c2a23bb39b9d1e05\",\n  \"reason\": \"The wallet is heavily involved in high-frequency trading of the same 'SUIPUMP' token as its gas fee payer, suggesting it is part of a coordinated bot network or a single user managing multiple accounts. This pattern of activity is typical of speculative trading bots rather than a standard user wallet.\"\n}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 35460,
+    "candidatesTokenCount": 155,
+    "totalTokenCount": 35615,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 35460
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

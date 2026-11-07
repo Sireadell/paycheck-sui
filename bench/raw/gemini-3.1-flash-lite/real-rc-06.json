@@ -1,0 +1,19 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "44399aa1efc6a762",
+  "savedAt": "2026-11-07T19:00:06.577Z",
+  "text": "{\"verdict\": \"do not pay\", \"linked\": false, \"link_address\": null, \"reason\": \"The wallet received funds and immediately transferred the entire balance to another address, which is a common pattern for money laundering or temporary transit wallets.\"}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 2625,
+    "candidatesTokenCount": 53,
+    "totalTokenCount": 2678,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 2625
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

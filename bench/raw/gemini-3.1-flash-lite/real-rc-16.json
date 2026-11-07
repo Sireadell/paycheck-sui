@@ -1,0 +1,19 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "5488cecae80100ad",
+  "savedAt": "2026-11-07T19:00:37.986Z",
+  "text": "{\n  \"verdict\": \"do not pay\",\n  \"linked\": true,\n  \"link_address\": \"0x113615161a8ebb9c1b64e5d16b48c0ef2b5c01da4eaf0ac4a1e3181d27bd6967\",\n  \"reason\": \"The wallet is a newly created account that received multiple small, rapid funding transactions from different sources before immediately transferring a large sum to another address, which is characteristic of a wash trading or money laundering pattern.\"\n}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 2528,
+    "candidatesTokenCount": 135,
+    "totalTokenCount": 2663,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 2528
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

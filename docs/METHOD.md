@@ -97,3 +97,21 @@ Known limits of this set: most groups are small (2 to 9 wallets), because the pi
 | Scale to 200 | Stopped by the data provider (Tatum HTTP 429) while picking wallets 85 and on. The 20 above stand. See the scale-up note in the build log |
 
 A "shared service" here means the scanned wallet itself paid many different wallets over a long time, read from the same page of history the check already reads. "Linked" means the wallet has a real on-chain link (shared funder or gas sponsor) and no bad history is stored. Neither is a safety judgement.
+
+
+### Benchmark split rule (plain AI, checker, checker with memory)
+
+The split below is fixed and public. It was written down before the benchmark ran and it never looks at an outcome or a result.
+
+| Item | Rule |
+|---|---|
+| Cases | The real set: for each of the 20 groups, its recorded probe wallet. All 20 controls. Another case file with the same shape (`groups`, `controls`) can be added later with `--cases=<file>` and gets the same rule |
+| Same input for every column | The plain AI, the checker without memory and the checker with memory read the same saved raw answers: the wallet's oldest 50 transactions, and the first 50 of its first funder and of its gas sponsor. The run makes no Tatum or Ankr calls. A case without saved raw data is skipped and listed, never fetched |
+| Held out (scored) | Each group's probe wallet. Every second control in id order starting with the second (rc-02, rc-04 and so on). That is 20 group cases and 10 control cases |
+| Training (memory learns from these) | For each group, the first listed member that is not the probe: memory is told its payment went bad. Every first, third, fifth control: memory is told its payment went fine. A training wallet is never a scored case |
+| Namespace | Memory is written and read only in `bench-train`. The live namespace is never written or read by the benchmark, and nothing here is counted in a live number or in the pre-scan number |
+| Memory changed a verdict | A held-out case where the answer with memory differs from the answer with memory off, in the same run |
+| Plain AI | Gemini, temperature 0, one run per case, the fixed prompt in `bench/prompt.txt`, the raw answers kept in `bench/raw/`. The model name is stored in the result file |
+| Columns scored | Link found: the column names the recorded link address. Do not pay, and caution or worse, on groups. False alarm strict (do not pay) and including caution, on controls |
+
+What this does and does not show. The outcome reports used for training are put in by the benchmark (a group member is marked as a payment that went bad), because the real set has no recorded losses. So it measures one thing: when one wallet of a linked group has a stored bad report, does a different, never-seen wallet of the same group get stopped, and are unlinked wallets left alone. It does not measure how often real payments go bad. Held-out groups share a funder or gas sponsor with their training wallet by construction, which is the case memory is built for.

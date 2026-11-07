@@ -1,0 +1,19 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "acf9d9a54826ded3",
+  "savedAt": "2026-11-07T18:58:32.611Z",
+  "text": "{\n  \"verdict\": \"pay\",\n  \"linked\": true,\n  \"link_address\": \"0x13ff52dfd326839dcad2c0f7c699224206df6c45a6e7784f34a60f10c0892bd5\",\n  \"reason\": \"The wallet has a clear history of receiving funds and performing standard transactions without suspicious patterns. It is linked to the first funder, which appears to be a common funding source for multiple addresses.\"\n}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 17954,
+    "candidatesTokenCount": 132,
+    "totalTokenCount": 18086,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 17954
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

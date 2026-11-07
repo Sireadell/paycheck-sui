@@ -1,0 +1,19 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "1741215695c8834d",
+  "savedAt": "2026-11-07T19:00:34.273Z",
+  "text": "{\"verdict\": \"pay\", \"linked\": true, \"link_address\": \"0xb882ccc38dcb879e7c7a0156ccd3ea26c58343141dc5c5834c8512780a53622f\", \"reason\": \"The wallet has a consistent history of active trading and legitimate transactions, and its funding source is a well-established wallet with a long history of similar activity.\"}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 43367,
+    "candidatesTokenCount": 113,
+    "totalTokenCount": 43480,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 43367
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

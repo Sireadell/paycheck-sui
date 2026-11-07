@@ -1,0 +1,19 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "f0bc29750f415046",
+  "savedAt": "2026-11-07T18:53:42.633Z",
+  "text": "{\"verdict\": \"do not pay\", \"linked\": true, \"link_address\": \"0x555bf90903ad18a90fa585fbc7f4b31945964c87f341eca53df9c04bd30365f6\", \"reason\": \"The wallet is part of a chain of transfers where it immediately forwards received assets to another address, which is a common pattern for money laundering or obfuscation. It is linked to 0x555bf90903ad18a90fa585fbc7f4b31945964c87f341eca53df9c04bd30365f6, which acts as a central hub for these funds.\"}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 21606,
+    "candidatesTokenCount": 189,
+    "totalTokenCount": 21795,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 21606
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

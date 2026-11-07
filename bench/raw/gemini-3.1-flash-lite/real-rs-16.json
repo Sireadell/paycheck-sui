@@ -1,0 +1,19 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "f2894222dc891638",
+  "savedAt": "2026-11-07T18:58:24.058Z",
+  "text": "{\"verdict\": \"pay\", \"linked\": true, \"link_address\": \"0x4665c46504d47e38d5e80b491ca86bc027caeae8de3964e2cc2777daa1c3e87b\", \"reason\": \"The wallet shows normal activity, including receiving initial funding and interacting with a template asset, and it pays its own gas fees.\"}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 15623,
+    "candidatesTokenCount": 106,
+    "totalTokenCount": 15729,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 15623
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

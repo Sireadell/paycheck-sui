@@ -1,0 +1,19 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "8340d1864845abbd",
+  "savedAt": "2026-11-07T19:00:42.483Z",
+  "text": "{\"verdict\": \"pay\", \"linked\": true, \"link_address\": \"0x6c0b48a0fe0723f2726d385a47c2ac8486ea69819c40d199dfaa9683bda71d47\", \"reason\": \"The wallet was funded by a single source and performed a simple transfer of funds, which is consistent with standard wallet usage.\"}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 3389,
+    "candidatesTokenCount": 108,
+    "totalTokenCount": 3497,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 3389
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

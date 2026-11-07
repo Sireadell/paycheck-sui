@@ -1,0 +1,19 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "0eced6869fb68ea5",
+  "savedAt": "2026-11-07T19:00:01.093Z",
+  "text": "{\"verdict\": \"do not pay\", \"linked\": true, \"link_address\": \"0x7b42da06a1b98742396e8261c40cb4378b95fee6c3bcf88631a8e8258b8cd482\", \"reason\": \"The wallet received a large amount of SUI from the funder and immediately transferred almost all of it to another address, which is a common pattern for money laundering or temporary transit wallets.\"}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 2471,
+    "candidatesTokenCount": 123,
+    "totalTokenCount": 2594,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 2471
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

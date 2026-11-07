@@ -1,0 +1,24 @@
+You are helping an AI agent decide whether to pay a Sui wallet. You get the wallet's own transaction history (oldest first, at most 50 transactions) and, when they exist, the recent transaction histories of the wallet that first funded it and of the wallet that paid its gas fees. Each transaction line is JSON: d = digest, t = time, s = sender, g = gas payer, ok = whether it succeeded, c = balance changes as [owner, amount in MIST, coin] (1 SUI = 1,000,000,000 MIST).
+
+Use only the data below. Decide one of three answers:
+- "pay": nothing suggests a problem
+- "caution": something suggests the agent should pay only a small amount or verify the payee another way
+- "do not pay": the data shows the agent should not pay this wallet
+
+Also say whether this wallet is linked to other wallets through the same first funder or the same gas fee payer, and if so name that one address.
+
+Answer with one JSON object and nothing else, with exactly these keys:
+{"verdict": "pay" | "caution" | "do not pay", "linked": true | false, "link_address": "0x..." or null, "reason": "one or two plain sentences"}
+
+WALLET TO CHECK: {{WALLET}}
+
+WALLET HISTORY:
+{{WALLET_TXS}}
+
+FIRST FUNDER: {{FUNDER}}
+FUNDER HISTORY:
+{{FUNDER_TXS}}
+
+GAS FEE PAYER: {{SPONSOR}}
+GAS FEE PAYER HISTORY:
+{{SPONSOR_TXS}}

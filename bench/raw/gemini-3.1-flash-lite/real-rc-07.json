@@ -1,0 +1,19 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "f1878b42d7f54f8c",
+  "savedAt": "2026-11-07T19:00:08.811Z",
+  "text": "{\"verdict\": \"caution\", \"linked\": true, \"link_address\": \"0x4d16f4cbd7e29ce8d9eabdf761d1723589748417c0b84effc6d40c56904dacfe\", \"reason\": \"The wallet was funded by a source that immediately transferred the funds and then sent them to another address, suggesting it may be part of a chain of temporary wallets used for obfuscation.\"}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 1812,
+    "candidatesTokenCount": 116,
+    "totalTokenCount": 1928,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 1812
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

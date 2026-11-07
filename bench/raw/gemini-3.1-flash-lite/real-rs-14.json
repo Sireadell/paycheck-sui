@@ -1,0 +1,19 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "3f3abae9e4801caa",
+  "savedAt": "2026-11-07T18:58:12.512Z",
+  "text": "{\"verdict\": \"caution\", \"linked\": true, \"link_address\": \"0x9c844a4711235e778f59fc5845eefa55a65d46cefbde3d55c471d388c005b233\", \"reason\": \"The wallet was funded by an address that appears to be a high-volume distributor, having sent funds to many other wallets in a short period. This pattern is characteristic of automated or sybil-like activity.\"}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 4972,
+    "candidatesTokenCount": 126,
+    "totalTokenCount": 5098,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 4972
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "5478f1c22269fcf4",
+  "savedAt": "2026-11-07T18:59:57.464Z",
+  "text": "{\"verdict\": \"do not pay\", \"linked\": true, \"link_address\": \"0x07ba269852a94270c1a2817fab522f1d2206fe425beb99b85e5a9ed97d98d61d\", \"reason\": \"The wallet is part of a clear pattern of automated, repetitive micro-transactions from a single funder, which is characteristic of bot activity or a sybil network. The wallet has no independent transaction history other than receiving these funds.\"}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 26364,
+    "candidatesTokenCount": 131,
+    "totalTokenCount": 26495,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 26364
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

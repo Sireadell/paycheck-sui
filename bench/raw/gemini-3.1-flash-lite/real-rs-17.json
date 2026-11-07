@@ -1,0 +1,19 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "eb843048d9c42d99",
+  "savedAt": "2026-11-07T18:58:28.464Z",
+  "text": "{\"verdict\": \"caution\", \"linked\": true, \"link_address\": \"0xf597c6aaeddcbeeefe7e7883479373a89e08c34e9541477502c6b33d64851675\", \"reason\": \"The wallet is part of a cluster of addresses funded and managed by 0xf597c6aaeddcbeeefe7e7883479373a89e08c34e9541477502c6b33d64851675, which appears to be performing high-frequency, repetitive transactions across multiple linked wallets. This pattern is characteristic of automated bot activity or a coordinated network rather than a standard user wallet.\"}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 35317,
+    "candidatesTokenCount": 190,
+    "totalTokenCount": 35507,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 35317
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

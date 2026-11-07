@@ -1,0 +1,19 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "a1f80ae14e87463d",
+  "savedAt": "2026-11-07T18:58:37.210Z",
+  "text": "{\n  \"verdict\": \"do not pay\",\n  \"linked\": true,\n  \"link_address\": \"0x9218e4c21e10f8c3e9dbceeebe9bb6fecf799d12179f6810b2991da4ac38a22f\",\n  \"reason\": \"The wallet is part of a network of addresses involved in high-frequency, large-volume transfers of 'SUIPUMP' tokens, which is characteristic of automated bot activity or wash trading.\"\n}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 66305,
+    "candidatesTokenCount": 132,
+    "totalTokenCount": 66437,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 66305
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

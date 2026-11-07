@@ -1,0 +1,19 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "456fc33a3e5274a4",
+  "savedAt": "2026-11-07T18:58:01.187Z",
+  "text": "{\"verdict\": \"do not pay\", \"linked\": true, \"link_address\": \"0xf069396c46e017d321e6f50f9a0502ed65084b465e126a7245b50a1bce358811\", \"reason\": \"The wallet was funded by a central address that appears to be systematically draining funds from multiple other wallets, indicating it is part of a larger suspicious network.\"}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 14849,
+    "candidatesTokenCount": 119,
+    "totalTokenCount": 14968,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 14849
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

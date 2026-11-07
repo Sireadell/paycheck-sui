@@ -1,0 +1,26 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "7c0b02166430c5ca",
+  "savedAt": "2026-11-07T18:57:24.911Z",
+  "text": "{\n  \"verdict\": \"pay\",\n  \"linked\": true,\n  \"link_address\": \"0x3b87194850cb9d665f0ea94e97a0eb0cff3e4a564961d30704b8da5e3157397a\",\n  \"reason\": \"The wallet shows consistent, legitimate-looking transaction activity with a gas payer that appears to be a primary account or service provider. There are no signs of malicious behavior or suspicious patterns in the transaction history.\"\n}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 32796,
+    "candidatesTokenCount": 135,
+    "totalTokenCount": 32931,
+    "cachedContentTokenCount": 30630,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 32796
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 30630
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

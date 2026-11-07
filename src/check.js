@@ -6,6 +6,7 @@
 //   'test' (default for now): every write goes to namespace k2-test, labelled test, counted apart, and
 //          recalled test memories are fed to the rules so the whole loop can be shown. Answers carry test: true.
 //   'live': verdicts go to namespace live, outcomes to shared-outcomes.
+//   'bench': the benchmark. Reads and writes only namespace bench-train, never live. Answers are not marked test.
 import { createHash } from 'node:crypto';
 import { analyze } from './engine/index.js';
 import { classifyHub } from './engine/exchanges.js';
@@ -63,13 +64,16 @@ function withTimeout(p, ms, label) {
 }
 
 export function createChecker({ tatum, ankr = null, memory, mode = 'test', recallTimeoutMs = 25000, now = () => Date.now() } = {}) {
-  const test = mode !== 'live';
-  const ns = {
-    verdict: test ? 'k2-test' : 'live',
-    outcome: test ? 'k2-test' : 'shared-outcomes',
-    recall: test ? ['k2-test'] : ['live', 'shared-outcomes'],
-  };
-  const origin = test ? 'k2-test' : 'check';
+  const bench = mode === 'bench';
+  const test = mode !== 'live' && !bench;
+  const ns = bench
+    ? { verdict: 'bench-train', outcome: 'bench-train', recall: ['bench-train'] }
+    : {
+      verdict: test ? 'k2-test' : 'live',
+      outcome: test ? 'k2-test' : 'shared-outcomes',
+      recall: test ? ['k2-test'] : ['live', 'shared-outcomes'],
+    };
+  const origin = bench ? 'bench-train' : test ? 'k2-test' : 'check';
   const state = { lastRecallOk: null, lastRecallError: null };
 
   // Everything read from the chain for one wallet.
@@ -245,5 +249,5 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
     return { address: wallet, outcome, test, namespace: ns.outcome, written };
   }
 
-  return { check, reportOutcome, gather, mode: test ? 'test' : 'live', state };
+  return { check, reportOutcome, gather, mode: bench ? 'bench' : test ? 'test' : 'live', state };
 }

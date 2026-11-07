@@ -1,0 +1,19 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "promptSha": "a1817bab5aa82830",
+  "savedAt": "2026-11-07T19:00:39.168Z",
+  "text": "{\n  \"verdict\": \"do not pay\",\n  \"linked\": true,\n  \"link_address\": \"0x9b4849dd82a23069cd514e2425306ea770f324c381266bdc2bb56ef3d113f897\",\n  \"reason\": \"The wallet was funded by a source that appears to be a high-volume distributor of assets to many different addresses, and it immediately returned almost all of its funds to that same address. This behavior is characteristic of a temporary or sybil-linked wallet.\"\n}",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 6594,
+    "candidatesTokenCount": 147,
+    "totalTokenCount": 6741,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 6594
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}
