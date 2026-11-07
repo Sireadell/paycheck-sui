@@ -112,3 +112,36 @@ test('unknown namespace is refused', () => {
   const m = createMemory({ sdkFactory: fakeSdk().factory });
   assert.throws(() => m.enqueue({ ...base, namespace: 'oops' }));
 });
+
+test('bulkWrite stores a batch, skips what is already stored and counts prescan apart', async () => {
+  const calls = [];
+  const m = createMemory({ sdkFactory: () => ({
+    async rememberBulkAndWait(items, opts) {
+      calls.push({ n: items.length, key: opts.idempotencyKey });
+      return { results: items.map((_, i) => ({ id: 'j' + i, blob_id: 'b' + i, status: 'done', namespace: 'live' })), total: items.length, succeeded: items.length, failed: 0 };
+    },
+    destroy() {},
+  }) });
+  const mk = (a) => ({ namespace: 'live', kind: 'verdict', origin: 'prescan', address: '0x' + a.repeat(64), group: null, body: { v: a } });
+  const first = await m.bulkWrite([mk('1'), mk('2')]);
+  assert.deepEqual(first.map((e) => e.state), ['stored', 'stored']);
+  const second = await m.bulkWrite([mk('1'), mk('3')]);
+  assert.equal(second.length, 1);
+  assert.equal(calls[1].n, 1);
+  assert.deepEqual(m.counter(), { changed: 0, stored: 3, prescan: 3, test: 0 });
+});
+
+test('bulkWrite marks every item failed when the call throws, and a retry writes them', async () => {
+  let boom = true;
+  const m = createMemory({ sdkFactory: () => ({
+    async rememberBulkAndWait(items) {
+      if (boom) throw new Error('relayer 503');
+      return { results: items.map(() => ({ id: 'j', blob_id: 'b', status: 'done' })), total: items.length, succeeded: items.length, failed: 0 };
+    },
+    destroy() {},
+  }) });
+  const it = { namespace: 'live', kind: 'verdict', origin: 'prescan', address: '0x' + '4'.repeat(64), body: {} };
+  assert.equal((await m.bulkWrite([it]))[0].state, 'failed');
+  boom = false;
+  assert.equal((await m.bulkWrite([it]))[0].state, 'stored');
+});

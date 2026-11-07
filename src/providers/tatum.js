@@ -68,6 +68,14 @@ export function createTatum({ key, fetchImpl = fetch, limiter = sharedLimiter, e
       const d = await gql('latestCheckpoint', '{ checkpoint { sequenceNumber } }');
       return d.checkpoint.sequenceNumber;
     },
+    // The first 50 transactions of one checkpoint, in the order Tatum lists them. Used by the pre-scan pick rule.
+    async checkpointTransactions(sequenceNumber) {
+      const n = Number(sequenceNumber);
+      if (!Number.isInteger(n) || n < FLOOR_CHECKPOINT) throw new Error('Checkpoint is below the data floor');
+      const d = await gql('checkpointTransactions', `{ checkpoint(sequenceNumber:${n}) { sequenceNumber transactions(first:50) { nodes { digest sender{address} effects{status} } } } }`);
+      if (!d.checkpoint) return null;
+      return d.checkpoint.transactions.nodes.map((t) => ({ digest: t.digest, sender: t.sender?.address?.toLowerCase() ?? null, status: t.effects?.status ?? null }));
+    },
     async referenceGasPrice() {
       const d = await gql('referenceGasPrice', '{ epoch { referenceGasPrice } }');
       return Number(d.epoch.referenceGasPrice);

@@ -94,6 +94,8 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
       const touches = sponsoredSenders(sponsor, sl.transactions.map((t) => ({ sender: t.sender, gasSponsor: t.gasSponsor, timestampMs: tsMs(t) })));
       hubs.sponsor = classifyHub(touches, { capped: sl.hasNextPage });
     }
+    // Is the wallet itself a shared service (it paid many different wallets)? Read from the same page, no extra call.
+    const selfHub = classifyHub(funderTouches(payoutsOf(wallet, page.transactions)), { capped: page.hasNextPage });
     const groupIds = [funder && groupIdOf(funder), sponsor && groupIdOf(sponsor)].filter(Boolean);
     const sf = analysis.sharedFunder;
     const groupId = sf?.groupSize > 0 && funder ? groupIdOf(funder) : (sponsor && !hubs.sponsor?.verdict?.startsWith('shared') ? groupIdOf(sponsor) : null);
@@ -101,7 +103,7 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
     if (page.hasNextPage) notes.push('Only the oldest 50 transactions of this wallet were read.');
     if (fl?.error) notes.push('The funder history could not be read, so the shared service check was skipped.');
     if (sl?.error) notes.push('The gas sponsor history could not be read.');
-    return { page, analysis, hubs, funder, sponsor, groupId, groupIds, notes, links: { firstDigest: first?.digest ?? null, sponsorDigest: sponsorTx?.digest ?? null } };
+    return { page, analysis, hubs, selfHub, funder, sponsor, groupId, groupIds, notes, links: { firstDigest: first?.digest ?? null, sponsorDigest: sponsorTx?.digest ?? null } };
   }
 
   // Ankr cross-check of the links that matter (first funding and first sponsored transaction), by digest.
@@ -155,7 +157,7 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
   // Each check counts only its own provider calls, so checks running at the same time never mix their numbers.
   const check = (address, opts = {}) => callLog.withRecorder((own) => runCheck(address, opts, own));
 
-  async function runCheck(address, { memoryOn = true } = {}, own) {
+  async function runCheck(address, { memoryOn = true, deferWrite = false, originOverride = null, extraBody = null } = {}, own) {
     const t0 = now();
     const base = { address, memoryOn, test, namespace: ns.verdict };
     if (!isSuiAddress(address)) {
@@ -187,18 +189,27 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
     // Queue the verdict memory in the background and return at once.
     const tatumSummary = own('tatum');
     let write = { count: 0, state: 'none' };
+    let deferred = null;
     if (g && !['INVALID_INPUT', 'DATA_UNAVAILABLE'].includes(verdict.code)) {
       const group = g.groupIds[0] ?? null;
-      const e = memory.enqueue({
-        namespace: ns.verdict, kind: 'verdict', address: wallet, group, origin,
+      const item = {
+        namespace: ns.verdict, kind: 'verdict', address: wallet, group, origin: originOverride || origin,
         body: {
+          ...(extraBody || {}),
           test, verdict: verdict.verdict, code: verdict.code, label: verdict.label,
           funder: g.funder, gasSponsor: g.sponsor, groupId: g.groupId,
           links: verdict.evidence.filter((x) => x.kind === 'link').length,
           checkpoint, tatumCalls: tatumSummary.calls, checkedAt: new Date(now()).toISOString(),
         },
-      });
-      write = { count: 1, state: e.state, key: e.key, namespace: ns.verdict, note: 'saving in the background, 15 to 25 s' };
+      };
+      if (deferWrite) {
+        // Scripts that write in bulk take the memory and write it themselves.
+        deferred = item;
+        write = { count: 0, state: 'deferred' };
+      } else {
+        const e = memory.enqueue(item);
+        write = { count: 1, state: e.state, key: e.key, namespace: ns.verdict, note: 'saving in the background, 15 to 25 s' };
+      }
     }
 
     return {
@@ -206,6 +217,8 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
       ...verdict,
       memory: { used: verdict.memoryIds.length, recalled: recalled.memories.length, recallOk: recalled.ok, recallError: recalled.error, degraded: !recalled.ok },
       write,
+      walletHub: g?.selfHub?.verdict ?? null,
+      ...(deferred ? { memoryItem: deferred } : {}),
       dataAsOfCheckpoint: checkpoint,
       crossCheck: cross,
       notes: [...(g?.notes ?? []), ...(chainError ? [`Chain data could not be read (${chainError}).`] : [])],

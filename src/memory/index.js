@@ -82,6 +82,39 @@ export function createMemory({ sdkFactory, retries = 2, retryWaitMs = 2000, writ
       await this.flush();
       return this.entry(e.key, e.namespace);
     },
+    // Bulk write for scripts (the pre-scan). One call for many memories of one namespace; 20 took about 56 s in the K2 test.
+    // Memories already stored are skipped, so a resumed run never writes the same text twice. Never call this on the screen path.
+    async bulkWrite(memories, { timeoutMs = 300000 } = {}) {
+      const fresh = [];
+      for (const m of memories) {
+        if (!NAMESPACES.includes(m.namespace)) throw new Error(`unknown namespace: ${m.namespace}`);
+        const text = buildText(m, m.body);
+        const key = idempotencyKey(text);
+        const lk = `${m.namespace}:${key}`;
+        const existing = ledger.get(lk);
+        if (existing && existing.state !== 'failed') continue;
+        const e = { key, namespace: m.namespace, kind: m.kind, origin: m.origin, address: m.address || null, group: m.group || null, text, state: 'pending' };
+        ledger.set(lk, e);
+        fresh.push(e);
+      }
+      if (!fresh.length) return [];
+      const namespace = fresh[0].namespace;
+      if (fresh.some((e) => e.namespace !== namespace)) throw new Error('bulkWrite takes one namespace per call');
+      try {
+        const r = await clientFor(namespace).rememberBulkAndWait(
+          fresh.map((e) => ({ text: e.text, namespace })),
+          { timeoutMs, idempotencyKey: idempotencyKey(fresh.map((e) => e.key).join(',')) },
+        );
+        fresh.forEach((e, i) => {
+          const it = r.results?.[i];
+          if (it?.status === 'done') { e.state = 'stored'; e.blobId = it.blob_id; e.id = it.id; e.writtenAt = new Date().toISOString(); e.error = null; }
+          else { e.state = 'failed'; e.error = String(it?.error || it?.status || 'no result'); }
+        });
+      } catch (err) {
+        for (const e of fresh) { e.state = 'failed'; e.error = String(err?.message || err); }
+      }
+      return fresh.map(view);
+    },
     flush() {
       if (!running && !queue.length) return Promise.resolve();
       return new Promise((r) => idleWaiters.push(r));
