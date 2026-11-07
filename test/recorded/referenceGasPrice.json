@@ -1,0 +1,9 @@
+{
+ "response": {
+  "data": {
+   "epoch": {
+    "referenceGasPrice": "100"
+   }
+  }
+ }
+}

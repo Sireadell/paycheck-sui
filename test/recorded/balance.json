@@ -1,0 +1,12 @@
+{
+ "address": "0xcf7b91b3b69ae2ec80dd7162ad700f03890d70619ff0d36d6f2a7ea3aa32997f",
+ "response": {
+  "data": {
+   "address": {
+    "balance": {
+     "totalBalance": "20599700000"
+    }
+   }
+  }
+ }
+}
