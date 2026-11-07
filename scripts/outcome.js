@@ -7,6 +7,18 @@ import { loadConfig } from '../src/config.js';
 
 const [address, outcome, reporter] = process.argv.slice(2);
 if (!address || !['bad', 'good'].includes(outcome)) { console.error('Usage: npm run outcome -- <sui address> <bad|good> [reporter]'); process.exit(1); }
+// With PAYCHECK_URL set, the report goes through the running API and carries OUTCOME_TOKEN from the environment.
+if (process.env.PAYCHECK_URL) {
+  const token = process.env.OUTCOME_TOKEN;
+  if (!token) { console.error('OUTCOME_TOKEN is not set'); process.exit(1); }
+  const res = await fetch(new URL('/api/outcome', process.env.PAYCHECK_URL), {
+    method: 'POST',
+    headers: { 'content-type': 'application/json', 'x-outcome-token': token },
+    body: JSON.stringify({ address, outcome, reporter: reporter || 'cli' }),
+  });
+  console.log(res.status, JSON.stringify(await res.json()));
+  process.exit(res.ok ? 0 : 1);
+}
 loadConfig();
 const memory = createMemory();
 const checker = createChecker({ tatum: getTatum(), memory, mode: 'test' });

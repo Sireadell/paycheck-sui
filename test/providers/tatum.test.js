@@ -36,21 +36,11 @@ test('transaction by digest returns sender, sponsor and balance changes', async 
   assert.ok(tx.balanceChanges.length >= 2);
 });
 
-test('listing always carries afterCheckpoint and finds first funder', async () => {
+test('listing always carries afterCheckpoint', async () => {
   const a = client(() => json(rec('listTransactions').response));
   const page = await a.t.listTransactions(pick.addr);
   assert.match(a.calls[0], new RegExp(`afterCheckpoint:${FLOOR_CHECKPOINT}`));
   assert.ok(page.transactions.length > 0);
-  const f = await a.t.firstFunder(pick.addr);
-  assert.ok(f.funder === null ? f.olderThanData : /^0x/.test(f.funder));
-});
-
-test('no incoming transfer gives the floor message', async () => {
-  const a = client(() => json({ data: { transactions: { pageInfo: { hasNextPage: false, endCursor: null }, nodes: [] } } }));
-  const f = await a.t.firstFunder(pick.addr);
-  assert.equal(f.funder, null);
-  assert.equal(f.olderThanData, true);
-  assert.match(f.note, /older than our data/);
 });
 
 test('429 is retried once, then succeeds', async () => {
@@ -82,4 +72,53 @@ test('limiter spaces calls at 2.5 a second', async () => {
   const acquire = createLimiter({ perSecond: 2.5, now: () => t, wait: async (ms) => { waits.push(ms); t += ms; } });
   for (let i = 0; i < 4; i++) await acquire();
   assert.deepEqual(waits, [400, 400, 400]);
+});
+
+test('short and mixed-case addresses are padded to 64 hex in the query', async () => {
+  const a = client(() => json(rec('balance').response));
+  await a.t.balance('0x1');
+  await a.t.balance('0xAbC');
+  assert.ok(a.calls[0].includes(`address(address:"0x${'0'.repeat(63)}1")`));
+  assert.ok(a.calls[1].includes(`address(address:"0x${'0'.repeat(61)}abc")`));
+});
+
+test('a timeout is retried at most twice, then fails with a plain message', async () => {
+  let n = 0;
+  const fetchImpl = async () => { n++; throw new DOMException('timed out', 'TimeoutError'); };
+  const t = createTatum({ key: 'k', fetchImpl, limiter: noWait, retryWaitMs: 1 });
+  await assert.rejects(t.latestCheckpoint(), /timed out/);
+  assert.equal(n, 3);
+});
+
+test('a timeout then success returns the answer', async () => {
+  let n = 0;
+  const fetchImpl = async () => { n++; if (n === 1) throw new DOMException('timed out', 'TimeoutError'); return json(rec('latestCheckpoint').response); };
+  const t = createTatum({ key: 'k', fetchImpl, limiter: noWait, retryWaitMs: 1 });
+  assert.ok((await t.latestCheckpoint()) > FLOOR_CHECKPOINT);
+  assert.equal(n, 2);
+});
+
+test('429 is retried at most twice', async () => {
+  let n = 0;
+  const t = createTatum({ key: 'k', fetchImpl: async () => { n++; return json({}, 429); }, limiter: noWait, retryWaitMs: 1 });
+  await assert.rejects(t.latestCheckpoint(), /429/);
+  assert.equal(n, 3);
+});
+
+test('call log keeps at most 5000 entries', () => {
+  callLog.reset();
+  for (let i = 0; i < callLog.MAX_ENTRIES + 10; i++) callLog.record('tatum', 'x', 1, true);
+  assert.equal(callLog.summarize(0, 'tatum').calls, callLog.MAX_ENTRIES);
+  callLog.reset();
+});
+
+test('limiter refuses when the waiting line is full', async () => {
+  const release = [];
+  const acquire = createLimiter({ perSecond: 1, maxQueue: 2, now: () => 0, wait: () => new Promise((r) => release.push(r)) });
+  await acquire();
+  const a = acquire();
+  const b = acquire();
+  await assert.rejects(acquire(), /queue is full/);
+  release.forEach((r) => r());
+  await Promise.all([a, b]);
 });

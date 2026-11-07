@@ -2,6 +2,7 @@
 import { createLimiter } from './rateLimit.js';
 import { record } from './callLog.js';
 import { SUI_COIN } from './tatum.js';
+import { padAddress } from '../address.js';
 
 export const ENDPOINT_BASE = 'https://rpc.ankr.com/sui/';
 // Recorded depth note (7 Nov 2026): Ankr serves checkpoints back to 1 (13 Apr 2023), but its address
@@ -37,8 +38,9 @@ export function createAnkr({ key, fetchImpl = fetch, limiter = ankrLimiter, time
   }
 
   const addr = (a) => {
-    if (!/^0x[0-9a-fA-F]{1,64}$/.test(a || '')) throw new Error('Not a Sui address');
-    return a.toLowerCase();
+    const p = padAddress(a);
+    if (!p) throw new Error('Not a Sui address');
+    return p;
   };
 
   return {

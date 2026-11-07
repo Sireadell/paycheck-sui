@@ -1,6 +1,7 @@
 // Tatum Sui GraphQL client. Every read for the checker goes through here.
 import { sharedLimiter } from './rateLimit.js';
 import { record } from './callLog.js';
+import { padAddress } from '../address.js';
 
 export const ENDPOINT = 'https://sui-mainnet.gateway.tatum.io/graphql';
 // About 23 Jan 2026. Listings must always carry afterCheckpoint, and nothing older is served.
@@ -11,6 +12,9 @@ const TX_FIELDS = `digest sender{address} gasInput{gasSponsor{address}}
   effects{ status timestamp checkpoint{sequenceNumber}
     balanceChanges(first:50){ nodes{ amount coinType{repr} owner{address} } } }`;
 
+const MAX_RETRIES = 2;
+const isTimeout = (e) => e?.name === 'TimeoutError' || e?.name === 'AbortError';
+
 export function createTatum({ key, fetchImpl = fetch, limiter = sharedLimiter, endpoint = ENDPOINT, retryWaitMs = 1000, timeoutMs = 15000 } = {}) {
   if (!key) throw new Error('Missing TATUM_API_KEY_MAINNET');
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -19,15 +23,28 @@ export function createTatum({ key, fetchImpl = fetch, limiter = sharedLimiter, e
     const started = Date.now();
     let ok = false;
     try {
-      for (let attempt = 0; attempt < 2; attempt++) {
+      // Up to 2 retries, only for a 429 or a timeout.
+      for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
         await limiter();
-        const res = await fetchImpl(endpoint, {
-          method: 'POST',
-          signal: AbortSignal.timeout(timeoutMs),
-          headers: { 'content-type': 'application/json', 'x-api-key': key },
-          body: JSON.stringify({ query }),
-        });
-        if (res.status === 429 && attempt === 0) { await sleep(retryWaitMs); continue; }
+        let res;
+        try {
+          res = await fetchImpl(endpoint, {
+            method: 'POST',
+            signal: AbortSignal.timeout(timeoutMs),
+            headers: { 'content-type': 'application/json', 'x-api-key': key },
+            body: JSON.stringify({ query }),
+          });
+        } catch (e) {
+          if (isTimeout(e)) {
+            if (attempt < MAX_RETRIES) { await sleep(retryWaitMs); continue; }
+            throw new Error(`Tatum timed out after ${timeoutMs} ms`);
+          }
+          throw e;
+        }
+        if (res.status === 429) {
+          if (attempt < MAX_RETRIES) { await sleep(retryWaitMs); continue; }
+          throw new Error('Tatum HTTP 429');
+        }
         if (!res.ok) throw new Error(`Tatum HTTP ${res.status}`);
         const json = await res.json();
         if (json.errors?.length) throw new Error(`Tatum GraphQL: ${json.errors[0].message}`);
@@ -41,8 +58,9 @@ export function createTatum({ key, fetchImpl = fetch, limiter = sharedLimiter, e
   }
 
   const addr = (a) => {
-    if (!/^0x[0-9a-fA-F]{1,64}$/.test(a || '')) throw new Error('Not a Sui address');
-    return a.toLowerCase();
+    const p = padAddress(a);
+    if (!p) throw new Error('Not a Sui address');
+    return p;
   };
 
   return {
@@ -75,17 +93,6 @@ export function createTatum({ key, fetchImpl = fetch, limiter = sharedLimiter, e
         oldestCheckpoint: nodes.length ? Math.min(...nodes.map((t) => t.checkpoint)) : null,
         afterCheckpoint,
       };
-    },
-    // Who sent the first SUI to this address. Returns olderThanData when the first funding may predate our floor.
-    async firstFunder(address) {
-      const a = addr(address);
-      const page = await this.listTransactions(a, { first: 50 });
-      for (const t of page.transactions) {
-        if (t.status !== 'SUCCESS' || t.sender === a) continue;
-        const got = t.balanceChanges.find((b) => b.owner === a && b.coin === SUI_COIN && BigInt(b.amount) > 0n);
-        if (got) return { funder: t.sender, digest: t.digest, amount: got.amount, checkpoint: t.checkpoint, timestamp: t.timestamp, gasSponsor: t.gasSponsor, olderThanData: false };
-      }
-      return { funder: null, olderThanData: true, note: 'first funding is older than our data', incoming: 0 };
     },
   };
 }

@@ -1,6 +1,7 @@
 // PayCheck API: /api/check, /api/outcome, /api/stats, /health. Contract: docs/API.md
 import express from 'express';
 import { pathToFileURL } from 'node:url';
+import { createHash, timingSafeEqual } from 'node:crypto';
 import { createChecker } from './src/check.js';
 import { createMemory } from './src/memory/index.js';
 import { getTatum, getAnkr, callLog } from './src/providers/index.js';
@@ -9,7 +10,33 @@ import { loadConfig } from './src/config.js';
 const PROBE_EVERY_MS = 30000;
 const PROBE_TIMEOUT_MS = 5000;
 
-export function createApp({ checker, memory, probe = null } = {}) {
+const CHECK_LIMIT = { max: 10, windowMs: 60 * 1000 };
+const OUTCOME_LIMIT = { max: 20, windowMs: 60 * 60 * 1000 };
+
+// Per-IP counter in memory. Old entries are dropped as the window passes.
+function ipLimiter({ max, windowMs }, now) {
+  const hits = new Map();
+  return (ip) => {
+    const t = now();
+    for (const [k, v] of hits) if (v.resetAt <= t) hits.delete(k);
+    const h = hits.get(ip) ?? { count: 0, resetAt: t + windowMs };
+    h.count++;
+    hits.set(ip, h);
+    return h.count > max ? Math.ceil((h.resetAt - t) / 1000) : 0;
+  };
+}
+
+// Constant-time token compare: both sides are hashed first so the length never leaks.
+const sameToken = (given, wanted) => {
+  const a = createHash('sha256').update(String(given ?? '')).digest();
+  const b = createHash('sha256').update(String(wanted ?? '')).digest();
+  return timingSafeEqual(a, b);
+};
+
+export function createApp({ checker, memory, probe = null, outcomeToken = process.env.OUTCOME_TOKEN, checkLimit = CHECK_LIMIT, outcomeLimit = OUTCOME_LIMIT, now = () => Date.now() } = {}) {
+  const checkHit = ipLimiter(checkLimit, now);
+  const outcomeHit = ipLimiter(outcomeLimit, now);
+  const tooMany = (res, wait, what) => res.set('retry-after', String(wait)).status(429).json({ error: `Too many ${what} from your address. Try again in ${wait} seconds.`, retryable: true });
   const app = express();
   app.use(express.json());
   app.use((_req, res, next) => { res.set('access-control-allow-origin', '*'); next(); });
@@ -37,6 +64,8 @@ export function createApp({ checker, memory, probe = null } = {}) {
   });
 
   app.get('/api/check', async (req, res) => {
+    const wait = checkHit(req.ip);
+    if (wait) return tooMany(res, wait, 'checks');
     try {
       const memoryOn = String(req.query.memory ?? 'on').toLowerCase() !== 'off';
       res.json(await checker.check(String(req.query.address ?? ''), { memoryOn }));
@@ -46,6 +75,12 @@ export function createApp({ checker, memory, probe = null } = {}) {
   });
 
   app.post('/api/outcome', async (req, res) => {
+    // No token set on the server means no one can report. A wrong or missing token gets 401.
+    const bearer = /^Bearer (.+)$/i.exec(req.get('authorization') ?? '')?.[1];
+    const given = req.get('x-outcome-token') ?? bearer;
+    if (!outcomeToken || !given || !sameToken(given, outcomeToken)) return res.status(401).json({ error: 'A report token is required.' });
+    const wait = outcomeHit(req.ip);
+    if (wait) return tooMany(res, wait, 'reports');
     const { address, outcome, reporter } = req.body ?? {};
     try {
       // Waits for the write on purpose: a reporter wants to know it was saved.

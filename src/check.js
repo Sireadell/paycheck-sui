@@ -14,17 +14,17 @@ import { sponsoredSenders } from './engine/gasSponsor.js';
 import { buildVerdict } from './engine/verdict.js';
 import { compareTx } from './providers/crosscheck.js';
 import { callLog } from './providers/index.js';
+import { isSuiAddress, padAddress } from './address.js';
 
 const SUI_SUFFIX = '::sui::SUI';
 const isSui = (b) => typeof b.coin === 'string' && b.coin.endsWith(SUI_SUFFIX);
-const isAddress = (a) => typeof a === 'string' && /^0x[0-9a-fA-F]{1,64}$/.test(a);
 const tsMs = (t) => Date.parse(t.timestamp ?? '');
 
-export const groupIdOf = (address) => `g-${createHash('sha256').update(String(address).toLowerCase()).digest('hex').slice(0, 8)}`;
+export const groupIdOf = (address) => `g-${createHash('sha256').update(padAddress(String(address)) ?? String(address).toLowerCase()).digest('hex').slice(0, 8)}`;
 
 /** Turn one provider listing (Tatum shape) into the plain lists the engine reads. Pure. */
 export function engineInputs(wallet, txs) {
-  const w = wallet.toLowerCase();
+  const w = (padAddress(wallet) ?? wallet.toLowerCase());
   const ok = txs.filter((t) => t.status === 'SUCCESS');
   const incoming = [];
   const sent = [];
@@ -45,7 +45,7 @@ export function engineInputs(wallet, txs) {
 
 /** The funder's own payouts (who it sent SUI to), from the funder's listing. Pure. */
 export function payoutsOf(funder, txs) {
-  const f = funder.toLowerCase();
+  const f = (padAddress(funder) ?? funder.toLowerCase());
   const out = [];
   for (const t of txs) {
     if (t.status !== 'SUCCESS' || t.sender !== f) continue;
@@ -56,10 +56,11 @@ export function payoutsOf(funder, txs) {
   return out;
 }
 
-const withTimeout = (p, ms, label) => Promise.race([
-  p,
-  new Promise((_, rej) => setTimeout(() => rej(new Error(`${label} timed out after ${ms} ms`)), ms).unref?.()),
-]);
+function withTimeout(p, ms, label) {
+  let timer;
+  const timeout = new Promise((_, rej) => { timer = setTimeout(() => rej(new Error(`${label} timed out after ${ms} ms`)), ms); timer.unref?.(); });
+  return Promise.race([p, timeout]).finally(() => clearTimeout(timer));
+}
 
 export function createChecker({ tatum, ankr = null, memory, mode = 'test', recallTimeoutMs = 25000, now = () => Date.now() } = {}) {
   const test = mode !== 'live';
@@ -151,14 +152,16 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
   // In test mode the labelled test memories are read by the rules (the verdict rules otherwise ignore k2-test).
   const forRules = (memories) => (test ? memories.map((m) => ({ ...m, origin: 'test-run', namespace: 'test-run' })) : memories);
 
-  async function check(address, { memoryOn = true } = {}) {
+  // Each check counts only its own provider calls, so checks running at the same time never mix their numbers.
+  const check = (address, opts = {}) => callLog.withRecorder((own) => runCheck(address, opts, own));
+
+  async function runCheck(address, { memoryOn = true } = {}, own) {
     const t0 = now();
-    const since = callLog.mark();
     const base = { address, memoryOn, test, namespace: ns.verdict };
-    if (!isAddress(address)) {
+    if (!isSuiAddress(address)) {
       return { ...base, ...buildVerdict({ wallet: address }), memory: { used: 0, recalled: 0, recallOk: true }, write: { count: 0, state: 'none' }, tookMs: now() - t0 };
     }
-    const wallet = address.toLowerCase();
+    const wallet = padAddress(address);
     let g = null;
     let chainError = null;
     try { g = await gather(wallet); } catch (e) { chainError = String(e.message || e).slice(0, 160); }
@@ -182,7 +185,7 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
     if (verdict.changedByMemory) memory.markChanged(verdict.changedByIds);
 
     // Queue the verdict memory in the background and return at once.
-    const tatumSummary = callLog.summarize(since, 'tatum');
+    const tatumSummary = own('tatum');
     let write = { count: 0, state: 'none' };
     if (g && !['INVALID_INPUT', 'DATA_UNAVAILABLE'].includes(verdict.code)) {
       const group = g.groupIds[0] ?? null;
@@ -206,16 +209,16 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
       dataAsOfCheckpoint: checkpoint,
       crossCheck: cross,
       notes: [...(g?.notes ?? []), ...(chainError ? [`Chain data could not be read (${chainError}).`] : [])],
-      callLog: { tatum: tatumSummary, ankr: callLog.summarize(since, 'ankr') },
+      callLog: { tatum: tatumSummary, ankr: own('ankr') },
       tookMs: now() - t0,
     };
   }
 
   // Report how a payment went. Waits for its memory write(s). One memory per group id so every linked wallet can find it.
   async function reportOutcome(address, outcome, { reporter = 'cli' } = {}) {
-    if (!isAddress(address)) throw new Error('Not a Sui address');
+    if (!isSuiAddress(address)) throw new Error('Not a Sui address');
     if (!['bad', 'good'].includes(outcome)) throw new Error('outcome must be bad or good');
-    const wallet = address.toLowerCase();
+    const wallet = padAddress(address);
     const g = await gather(wallet);
     const groups = g.groupIds.length ? g.groupIds : [null];
     const written = [];
