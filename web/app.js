@@ -144,6 +144,9 @@ function renderResult(r) {
   const off = r.withoutMemory ?? {};
   setChip($('chip-off'), off.verdict);
   $('reason-off').textContent = off.label ?? '';
+  const again = r.retryable === true;
+  $('retry-btn').hidden = !again;
+  $('retry-note').hidden = !again;
   $('changed-line').textContent = r.changedByMemory
     ? t('check.changed', { was: off.verdict })
     : t('check.notChanged');
@@ -188,6 +191,7 @@ async function init() {
   renderStatic();
   $('sw-on').addEventListener('click', () => { state.memoryOn = true; renderSwitch(); });
   $('sw-off').addEventListener('click', () => { state.memoryOn = false; renderSwitch(); });
+  $('retry-btn').addEventListener('click', () => { if (state.result?.address) runCheck(state.result.address); });
   $('check-form').addEventListener('submit', (e) => { e.preventDefault(); if ($('addr').value.trim()) runCheck($('addr').value); });
 
   const [stats, bench, live, sample] = await Promise.all([getJson('/api/stats'), getJson('/api/benchmark'), getJson('/api/cross-agent'), getJson('sample.json')]);

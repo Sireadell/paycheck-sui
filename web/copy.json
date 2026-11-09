@@ -59,6 +59,8 @@
     "agreeLine": "Second opinion from Ankr: {agree} of {checked} links match.",
     "agreeNone": "Second opinion from Ankr: nothing to compare for this address.",
     "callIdle": "Run a check to see how many calls it took and whether Ankr agrees with Tatum.",
+    "retry": "Retry",
+    "retryNote": "Part of this check could not finish, so the answer is a caution, not a pass. Press Retry to run it again.",
     "limited": "Too many checks from your connection. Try again in a minute.",
     "failed": "The check didn't finish: {why}"
   },

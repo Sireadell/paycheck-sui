@@ -17,6 +17,8 @@
  *  6. real links, no bad history                                      -> pay LINKED_NO_BAD_HISTORY
  *  7. no links, no history                                            -> pay NO_LINKS_NO_BAD_HISTORY
  *  Input missing or unusable -> caution INVALID_INPUT / DATA_UNAVAILABLE (rule 1 still applies when data is missing)
+ *  Shared memory could not be read fully (memoryDegraded) -> a "pay" becomes caution MEMORY_UNAVAILABLE, retryable.
+ *  A red answer stays red and another caution keeps its code, with the retry note added.
  * A hub (classifyHub "shared service, weak link") and a known exchange are weak
  * links: shown as evidence, never counted, never used to match a group id. A bad
  * report about a hub turns the hub itself red when it is checked, but only gives
@@ -176,7 +178,7 @@ export function memorySavedCalls({ wallet, memories, now = Date.now(), maxAgeMs 
  * memoryOn false (memory switch off): recalled memories are ignored, memoryIds is empty.
  */
 export function buildVerdict(input = {}) {
-  const { wallet, analysis, groupId = null, hubs = {}, memoryOn = true, now = Date.now() } = input;
+  const { wallet, analysis, groupId = null, hubs = {}, memoryOn = true, memoryDegraded = false, now = Date.now() } = input;
   const base = { label: 'caution', evidence: [], memoryIds: [], changedByMemory: false, changedByIds: [], warnedBy: [], withoutMemory: { verdict: VERDICTS.CAUTION, code: null, label: 'caution' }, memorySavedCalls: 0, memorySavedFrom: null };
   if (!isAddress(wallet)) {
     return { ...base, verdict: VERDICTS.CAUTION, code: 'INVALID_INPUT', reason: 'That is not a Sui address (expected 0x followed by hex).', retryable: false, nextAction: 'Send a valid Sui address.' };
@@ -200,15 +202,20 @@ export function buildVerdict(input = {}) {
     : full.verdict === VERDICTS.CAUTION
       ? 'Pay only a small amount or verify the payee another way.'
       : 'Safe to proceed on current evidence. Report the outcome after paying.';
+  // A memory read that failed must never look like a clean "pay": nobody could see whether a bad report exists.
+  const unread = memoryOn && memoryDegraded;
+  const demote = unread && full.verdict === VERDICTS.PAY;
+  const unreadNote = 'The shared memory could not be read fully, so reports of bad payments could not be checked. Try again.';
+  const reason = noData ? `${full.reason} On-chain data could not be read, so only memory was used.` : full.reason;
   return {
-    verdict: full.verdict,
-    code: full.code,
-    label: labelOf(full),
-    reason: noData ? `${full.reason} On-chain data could not be read, so only memory was used.` : full.reason,
+    verdict: demote ? VERDICTS.CAUTION : full.verdict,
+    code: demote ? 'MEMORY_UNAVAILABLE' : full.code,
+    label: demote ? 'caution' : labelOf(full),
+    reason: demote ? unreadNote : unread && full.verdict === VERDICTS.CAUTION ? `${reason} ${unreadNote}` : reason,
     evidence: full.evidence,
     memoryIds,
-    retryable: false,
-    nextAction,
+    retryable: unread && full.verdict !== VERDICTS.DO_NOT_PAY,
+    nextAction: demote ? 'Retry the check in a moment, or pay only a small amount.' : nextAction,
     changedByMemory: changed,
     changedByIds,
     warnedBy,

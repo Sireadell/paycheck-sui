@@ -140,7 +140,10 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
       if (sponsor) asks.push({ namespace, address: sponsor });
       for (const g of groupIds) asks.push({ namespace, group: g });
     }
-    const settled = await Promise.allSettled(asks.map((q) => withTimeout(memory.recall(q).catch(() => memory.recall(q)), recallTimeoutMs, 'memory recall').then((r) => r.map((m) => ({ ...m, namespace: q.namespace })))));
+    // Each read gets its own time limit and one more try before it counts as failed.
+    const readOnce = (q) => withTimeout(Promise.resolve().then(() => memory.recall(q)), recallTimeoutMs, 'memory recall');
+    const readTwice = (q) => readOnce(q).catch(() => readOnce(q));
+    const settled = await Promise.allSettled(asks.map((q) => readTwice(q).then((r) => r.map((m) => ({ ...m, namespace: q.namespace })))));
     const failed = settled.filter((s) => s.status === 'rejected');
     state.lastRecallOk = failed.length === 0;
     state.lastRecallError = failed.length ? String(failed[0].reason?.message || failed[0].reason).slice(0, 120) : null;
@@ -189,6 +192,7 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
       groupId: g?.groupId ?? null,
       hubs: g?.hubs ?? {},
       memoryOn,
+      memoryDegraded: !recalled.ok,
       now: now(),
     });
     if (verdict.changedByMemory) memory.markChanged(verdict.changedByIds);
@@ -197,7 +201,7 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
     const tatumSummary = own('tatum');
     let write = { count: 0, state: 'none' };
     let deferred = null;
-    if (g && !['INVALID_INPUT', 'DATA_UNAVAILABLE'].includes(verdict.code)) {
+    if (g && !['INVALID_INPUT', 'DATA_UNAVAILABLE', 'MEMORY_UNAVAILABLE'].includes(verdict.code)) {
       const group = g.groupIds[0] ?? null;
       const item = {
         namespace: ns.verdict, kind: 'verdict', address: wallet, group, origin: originOverride || origin,

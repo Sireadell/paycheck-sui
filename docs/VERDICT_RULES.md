@@ -15,6 +15,9 @@ The main idea: being linked to other wallets is not unsafe. Exchanges and payrol
 | 7 | No links and no reports | pay ("no links, no bad history") | NO_LINKS_NO_BAD_HISTORY | FACT |
 | - | Not a Sui address | caution | INVALID_INPUT | - |
 | - | Chain data could not be read (rule 1 still applies) | caution | DATA_UNAVAILABLE | - |
+| - | The shared memory could not be read fully (timed out or failed, after one retry) and the answer would have been "pay" | caution, `retryable: true` | MEMORY_UNAVAILABLE | - |
+
+When the shared memory cannot be read fully, a "pay" becomes caution, because nobody could look for a report of a bad payment. A "do not pay" stays as it is. Another caution keeps its own code and gets the same note added to its reason. The "without memory" side of the answer is not changed. A check that ended this way is not saved as a new memory. The web page shows the caution with a Retry button.
 
 ## What each signal is
 
