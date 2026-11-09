@@ -1,3 +1,4 @@
+import { renderTatumPanel } from './tatum-panel.js';
 const API_BASE = '';
 
 const COPY = {
@@ -460,6 +461,7 @@ function renderVerdictCard(data) {
     metaText += ' ' + COPY.metaSavedCalls.replace('{savedCalls}', data.memorySavedCalls);
   }
   document.getElementById('verdict-stats-line').textContent = metaText;
+  renderTatumPanel(data);
 
   const degradedLine = document.getElementById('verdict-degraded-line');
   if (data.memory && data.memory.degraded) {

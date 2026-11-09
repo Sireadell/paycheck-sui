@@ -1,12 +1,12 @@
 /* Reset and Base Variables */
 :root {
-  --bg-page: #f6f3ec;
+  --bg-page: #eaf2f6;
   --bg-card: #ffffff;
-  --bg-light-band: #ece7da;
-  --text-main: #1c2330;
-  --text-muted: #566070;
-  --border-line: #d6d0c1;
-  --accent-blue: #1d4ed8;
+  --bg-light-band: #dde9ef;
+  --text-main: #0f2233;
+  --text-muted: #4a6073;
+  --border-line: #c3d6e0;
+  --accent-blue: #0a62b8;
 
   /* Verdict Colors */
   --pay-text: #14612f;
@@ -17,11 +17,11 @@
   --danger-bg: #fbe3e1;
 
   /* Dark Numbers Band */
-  --dark-bg: #14202e;
+  --dark-bg: #0a1f33;
   --dark-text: #eef2f7;
-  --dark-muted: #aebbcb;
-  --dark-border: #2d3d50;
-  --dark-card: #1b293a;
+  --dark-muted: #a9c3d6;
+  --dark-border: #24435f;
+  --dark-card: #10304a;
 }
 
 *, *::before, *::after {
@@ -68,8 +68,8 @@ a:hover {
 
 /* Top bar */
 .top-bar {
-  background-color: var(--bg-card);
-  border-bottom: 1px solid var(--border-line);
+  background-color: #0a1f33;
+  border-bottom: 3px solid #2ec4b6;
   padding: 14px 0;
 }
 
@@ -774,3 +774,30 @@ a:hover {
   .table-metric-head { min-width: 0; }
   .live-counters-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+
+/* What Tatum read for this check */
+.tatum-panel {
+  margin: 16px 0 0;
+  padding: 12px 14px;
+  border: 1px solid var(--border-line);
+  border-radius: 6px;
+  background: var(--bg-light-band);
+}
+.tatum-panel h4 {
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+.tatum-panel ul { list-style: none; }
+.tatum-panel li { font-size: 0.88rem; margin: 4px 0; overflow-wrap: anywhere; }
+.tatum-panel .tatum-note { font-size: 0.8rem; color: var(--text-muted); margin-top: 6px; }
+
+/* Sea and ink theme: dark header band with a teal rule */
+.top-bar .brand { color: #ffffff; }
+.top-bar .top-nav-link { color: #7cc4ff; }
+.top-bar .badge-mode.live { background-color: #123d2c; color: #7ee2a8; border-color: #7ee2a8; }
+.top-bar .badge-mode:not(.live) { background-color: #3d2f0d; color: #f2c96b; border-color: #f2c96b; }
+.btn-primary { background-color: #0a62b8; }
+.btn-primary:hover { background-color: #084f96; }
