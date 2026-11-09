@@ -62,7 +62,9 @@ test('/proof shows the four columns, the losses, pre-scan and the notes', async 
     for (const head of ['Plain AI', 'Plain AI + report', 'Checker', 'Checker + memory']) assert.ok(html.includes(`<th>${head}</th>`), head);
     assert.ok(html.includes('What this is not'));
     assert.ok(html.includes('href="/docs/METHOD.md"'));
-    assert.equal((html.match(/Not yet run\./g) ?? []).length, 4);
+    const api0 = await (await fetch(`http://127.0.0.1:${server.address().port}/api/proof`)).json();
+    const unrun = [api0.stress, api0.crossAgent, api0.refuseThenPay, api0.paidCheck].filter((x) => !x.ran).length;
+    assert.equal((html.match(/Not yet run\./g) ?? []).length, unrun);
     assert.ok(!html.includes('—'));
     const api = await (await fetch(`http://127.0.0.1:${server.address().port}/api/proof`)).json();
     assert.equal(api.prescan.recalledAndVerified, 171);

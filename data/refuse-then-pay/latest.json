@@ -1,0 +1,31 @@
+{
+  "ranAt": "2026-11-09T14:23:12.594Z",
+  "mode": "live",
+  "sharedAccount": true,
+  "note": "The refused wallet is a fresh address built by us and reported bad by a setup step. No real stranger wallet is named as bad. The paid wallet is an ordinary real-set wallet (rc-01).",
+  "refused": {
+    "address": "0xfa908e71fc537e28e04e580bb968ee22fcbd03c31fe92a4f8aad4e35fe575a84",
+    "builtByUs": true,
+    "verdict": "do not pay",
+    "code": "OUTCOME_BAD_SELF",
+    "reason": "An earlier payment to this exact address went bad (stored report).",
+    "memoryIds": [
+      "S9Lg93qfmbZ7_YhulweVbkigg_mBojpMqWh3Ij4qbU4"
+    ],
+    "reportMemoryId": "S9Lg93qfmbZ7_YhulweVbkigg_mBojpMqWh3Ij4qbU4",
+    "refusalMemoryId": "NqhwjC_VbAyclnitobnMIJuGO1WEhM8A48dJEYN_HYc",
+    "transactionSent": false
+  },
+  "paid": {
+    "address": "0xe1b6e64f397d6120e4a9350209b2b835052c7aee51e78f860931ab6891133029",
+    "source": "real set ordinary wallet rc-01",
+    "verdict": "pay",
+    "code": "NO_LINKS_NO_BAD_HISTORY",
+    "amountSui": "0.001",
+    "digest": "2Wx6UC8XTAzcwfTceurmbPcyFtgDS2cUU2V4wpoEQCve",
+    "explorer": "https://suiscan.xyz/mainnet/tx/2Wx6UC8XTAzcwfTceurmbPcyFtgDS2cUU2V4wpoEQCve",
+    "gasMist": "1088000"
+  },
+  "spentMist": "2088000",
+  "spentSui": "0.002088"
+}
