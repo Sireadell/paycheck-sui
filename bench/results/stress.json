@@ -1,0 +1,8 @@
+{
+  "caught": 65,
+  "total": 65,
+  "falseAlarms": 0,
+  "controls": 16,
+  "label": "Synthetic stress test: wallets we built on Sui mainnet ourselves, not real-world cases",
+  "ranAt": "2026-11-09T14:57:54.717Z"
+}

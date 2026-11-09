@@ -28,7 +28,7 @@ test('default mode prints the proof numbers and finds 0 differences', async () =
   assert.match(text, /pre-scan recalled and verified: 171 of 200/);
   assert.match(text, /groups missed: rs-15, rs-19/);
   assert.match(text, /loss cases: rc-12, rs-15, rs-19, rs-20/);
-  assert.match(text, /stress test: not yet run/);
+  assert.match(text, /stress test: (not yet run|\d+ of \d+)/);
   assert.match(text, /0 differences$/);
 });
 

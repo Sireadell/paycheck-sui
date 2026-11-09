@@ -9,7 +9,7 @@ import { createSuiPayer } from './payer.js';
 
 const SUI_TYPE = '0x2::sui::SUI';
 
-async function sponsoredNoop(rpc, wallet, sponsor) {
+export async function sponsoredNoop(rpc, wallet, sponsor) {
   const tx = new Transaction();
   tx.setSender(wallet.toSuiAddress());
   tx.setGasOwner(sponsor.toSuiAddress());

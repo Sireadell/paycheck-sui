@@ -1,0 +1,403 @@
+{
+  "label": "Synthetic stress test: wallets we built on Sui mainnet ourselves, not real-world cases",
+  "builtAt": "2026-11-09T14:56:07.516Z",
+  "fundDigests": [
+    "ERqwYhc8UjbjYoVH9nHuM1SEknoiMvTcE6Gij48buapW",
+    "Btmsd155xEHEDkx1JnR9GVxzuWmtdceFC6LGC7YDsyS",
+    "DfzQpeqLJ28RSGX2fRejQiCCKqzyHu327bZWKB8A3JZF",
+    "7SBwhd925cPBRFBYy7PvVVELMsGqd17JrSeHYVXkAMyy"
+  ],
+  "groups": [
+    {
+      "id": "sg-01",
+      "type": "funder",
+      "funder": "0xa409973c703319f96809e1fb15f3317891cd3b18f85f5e4a0e6bcdd9b261deb1",
+      "members": [
+        "0x052889022010b7486b3e55a33127953bea27dfd571bbbd741ec4ccabfb6e57a1",
+        "0x3a188063500e629d4cf5484b5f8b102b35c57e8007ef83b9178ac785e445f8b6",
+        "0x91698cea36ea42868ee14e210659a1e4a04d60f990fd3bd55ba7238f6689e043"
+      ],
+      "firstFundingDigest": "HG2C24RQScwRTkuXo8PTurzFQZ9BzXo91YswrYPep5a1",
+      "sponsoredDigests": [],
+      "roundTripDigests": [],
+      "sponsorFailures": 0
+    },
+    {
+      "id": "sg-02",
+      "type": "funder_sponsor",
+      "funder": "0x0d7fd5ba2f67c900e7bea85a9444ee2de681ae051abc0d8d2b66f497923216ed",
+      "members": [
+        "0xf8ebd28a533213b71fc1a36367f193aa93531ed47a8b71dc371be90895807df9",
+        "0x0da91f094d039c64d3bcdc6f0464b3605489206052cdc71f0e12f2232cf8ef74",
+        "0x62136e1f8ef724ddf24c0091b4eac1502071719a5f9015257da407e4751ef3c7",
+        "0x8791cff132d84cfbdebe1aac5605439f913bd1fc4aafd6fdd288c74195b2ef14"
+      ],
+      "firstFundingDigest": "5EhQTYESYvnXdMXqmNcWtf5X5EfyDb1AD7TA3og75nTD",
+      "sponsoredDigests": [
+        "6cSkcpSrkpBjA5gkdYEmZHd3bNB9JS649sJeY2Y8xGXw",
+        "J5T9XZ1Be6RQ19AqEBitj1eo7wYLqp5p7bbyMVDSJtas",
+        "2jRhbQuH44BdPw4tv18ejgXwSLL19mHM5Jr4JqJMgPDd",
+        "Ae1RaT3PBGyoc4xtrLf4ekeCGDKfaj84QjLCcH7WSVXA"
+      ],
+      "roundTripDigests": [],
+      "sponsorFailures": 0
+    },
+    {
+      "id": "sg-03",
+      "type": "round_trip",
+      "funder": "0x21ab7b806d086dd65dbcd8afc792f958ad052c8c5c0d116f1973241c63399a2d",
+      "members": [
+        "0x4704daea899c1411a4188d434f259b7b74ed1aea35a09703b4adc14d6d04ecc3",
+        "0x7986056cf78f16bf219e53ad6ee95d298fc60df85d6cf251c2644f8bfbf58d3d",
+        "0x37c565fbf759fb97b8bfad1299ceffb5671d866b62d6598e1725e60f9dc0c43d",
+        "0xebd79a905844b713c9e66532f55585dc4e638985b24709302a766e965df6ee68",
+        "0xdc7f7edfceb5d3f706fdd276931950dc79176b6cc4bc7ba922dbfe8094baef08"
+      ],
+      "firstFundingDigest": "FkaWhuaPGkFQ3FtqbXDN8G47pFbBdMbtXQgHBqyAPMc6",
+      "sponsoredDigests": [],
+      "roundTripDigests": [
+        "uz78G1KWUmPUYH4GotjDXKzRzUo6dmRcyTSVYMqKNdj",
+        "GLHPfjnmmJKzQC83sQLCYtdS6LHsgb2rSqSy3duAXQuK"
+      ],
+      "sponsorFailures": 0
+    },
+    {
+      "id": "sg-04",
+      "type": "funder",
+      "funder": "0x211e8d079f30c86f1f960d1c657c8cdc4f4fa9cde3274b26892e086271547d8a",
+      "members": [
+        "0x51308c0f8aedcfb42508cffc1a30ade5ad233a6481b11921bfdb49f2421bb50d",
+        "0x943fb832669059f6d86bd9b37d27cae0875cf2c1fff05968eace2ab88735c9df",
+        "0x5d7a63167b9db0aed046925770994f4f5ee55dbc506fc7587d25f33bcbedb518"
+      ],
+      "firstFundingDigest": "9zv3CK3E9Zs4WEVGPzT3sV32Yy6tFDoVsRG7hXGsCydD",
+      "sponsoredDigests": [],
+      "roundTripDigests": [],
+      "sponsorFailures": 0
+    },
+    {
+      "id": "sg-05",
+      "type": "funder",
+      "funder": "0x59050b7b85484a723d6bdff615d52f0954cacfc45e23fcb8f6607f0954e40d04",
+      "members": [
+        "0xefedb7fa2d9eb22fab541a36966bee229bba8f7463a9e793a3cd76d550a5fe64",
+        "0x01b325879298be22a401b5a7ecafb992fc4bbe63fb1dd8eff4e3b6e5fd0161d0",
+        "0x956744e3e928b1d514cb244c79f53e184bda29488cee1911aa433b8a3e2a57f6",
+        "0x65f93679742895bbcdb6fca4445e052c8bd76ce0788df368ece6d4edbafeba33"
+      ],
+      "firstFundingDigest": "FHtYWLQLerbFmRm1kD9EJsDTtmhUapNe6MfgPJv2kx1a",
+      "sponsoredDigests": [],
+      "roundTripDigests": [],
+      "sponsorFailures": 0
+    },
+    {
+      "id": "sg-06",
+      "type": "funder_sponsor",
+      "funder": "0xe5ff26d7ef4804d0c5724642cb8ae0c353fd9ba20caa9b62fb2deacb756fb2a0",
+      "members": [
+        "0xa913bf816314f60ea7739fed34b9ac81313e4ca4a19d5904622655dd406f296a",
+        "0xae518e519f69d424def87581299d40036639218eebae6644bca71d23317a3f35",
+        "0xeec80beb51b97ca60c6946fc84dcc2701d010455a4b386d53e9ab56e9351061a",
+        "0x195fcd1c5c00fc0fe78ffd7064c4f9bc39f3a19a4b9bc479f1cb7bb0d5c723bc",
+        "0xd351e5769751851942ec1d15a928897ce68fb4c3d6771537cdcf304f46d06de5",
+        "0xebc83cccef2691a6d172b908334feac9efd284dcfdf9d27779ecff97ab389ad6"
+      ],
+      "firstFundingDigest": "H3gTYqZU1pCzGJtRnRK95RwbRPsJZJwUy3sJDRFjhtbF",
+      "sponsoredDigests": [
+        "2hJKniEZr7XZ25tvN2q9ECBbks4gyPfk4u92PwBo31i2",
+        "39SiFXCEEJYk7HF7hqUocyknwRNTJ6gCHuEDfmKhmuMr",
+        "EfRMrcAXsxDnCTJ3K5hE2yA1FWFVF9XiK8M8EwfdDRHV",
+        "HvXgETqpnZscpgtCgBBrm6vDzJ5UvEYNks9aawLcn2j7",
+        "Ae6nDjU4t9QeiNnvrmVm5Y2JisdiS9BtiR51pW1a4upr",
+        "FCw3Pwdq5V3Rq1NT6QH8aCC99x9f4tcFtdoeMB9NdJS1"
+      ],
+      "roundTripDigests": [],
+      "sponsorFailures": 0
+    },
+    {
+      "id": "sg-07",
+      "type": "round_trip",
+      "funder": "0x09ba28bb79dfcfaa74bc8cc55404ac0acee49a718ff5fcf8e0f4e8f47fb64794",
+      "members": [
+        "0x04f8a2a8c51c543b5c571abddb80ad393602ac8c19466549f45ff68c234d9ce1",
+        "0x017830f956f31a2f069264055c0d8116b4e391a8ff65e7d9563909f62e3aa71d",
+        "0x4789cafa618d779df1bdf139e4904c69ba25f5b8045a53f14029415dc0a4dc72"
+      ],
+      "firstFundingDigest": "CvbiX8V6AywS733Ht7CVAcTGzt1LfURXBRAWDJsKYbBV",
+      "sponsoredDigests": [],
+      "roundTripDigests": [
+        "8zmh5nWucEjxChYJC9RfeuDrGupjiwXbN4bBvsFkPScs",
+        "B2ER3JwXJinUXNSDrYeCxeukMSauT7KediLXM2cd4aog"
+      ],
+      "sponsorFailures": 0
+    },
+    {
+      "id": "sg-08",
+      "type": "funder",
+      "funder": "0x253791907dddf19921c5f31eb37c5b50e8cd24c9faedd8d289a81f4726343ad9",
+      "members": [
+        "0x5dcd41d6ebf54aa283eec1deeee02126d6236d5a0261c330825a2ac5f78f35e5",
+        "0x39ee121c969460b677251432edf1b7e5c3578866d7df2f74663eb71f90d376da",
+        "0x4e969dea0a04340f59a23b78b1f5b9e71d89a5401e1c0d7021c4922ce4deb4d4",
+        "0x818bf3a45305964c1b24aa22b9cd26476ade8e31cce340d2eff8108a692a6595"
+      ],
+      "firstFundingDigest": "7ChgNnYgK4jEtXJGdPxK6uG39hyMQeLnirZyvEi54WRr",
+      "sponsoredDigests": [],
+      "roundTripDigests": [],
+      "sponsorFailures": 0
+    },
+    {
+      "id": "sg-09",
+      "type": "funder",
+      "funder": "0x92bc56f2d2229562483a612e2ba93b9f7a39de3d19225154d15ab85e90269da2",
+      "members": [
+        "0xcbdb46fa370281c4af323c27e9843461507a1e10c3805daa39d0c1a163163855",
+        "0xdbf9c36815485e7072a4ecc130b390f95c65a2a7df32a7a99d22c8821f904e93",
+        "0xdf8346ec9411acebdeb089ead8d906061fd8c66b1863f7f64fb7a52411ce453e",
+        "0x961df88250467f876f9c3b4c1dfcc3bd067e1e0dd766044603d50555adf4b55e",
+        "0x0c5fcee63cda7f3f4a2c52182cddcb500cd413043499b950e68477c41239d64f"
+      ],
+      "firstFundingDigest": "9A5L3L22ZRujVZsS44ZapHaQYEYa4UGkLBfRp2btsmme",
+      "sponsoredDigests": [],
+      "roundTripDigests": [],
+      "sponsorFailures": 0
+    },
+    {
+      "id": "sg-10",
+      "type": "funder_sponsor",
+      "funder": "0x96bc4ce9b941cc9db9ba63783ab8f20fce5063edb0ff0db93845b68c6629c71a",
+      "members": [
+        "0x089fcbf4f0d61d9433ebb33b3db29a5bdcda33f72ef03f7b6ef987ae59944fd5",
+        "0x6a48d7aefee90bf92c3a72fa1e04c5572b9d7100a0bb1c602857137204b238b1",
+        "0xa82fe2a997bff76181161a01ea97f9c0c6de4e72b6695ba90194f5bce13c20bd"
+      ],
+      "firstFundingDigest": "6huzC7GBpVyzyXndvgEAbQ6diCpTL5gZwbtMYjjUWZWy",
+      "sponsoredDigests": [
+        "5K4xe8Uu31qAFyayipEpALyrNhrCJevAKSV4WbPTSthA",
+        "2T9zMzcj1pAaZjy6PrhZi1rEeA6NRAyHywWXKVRrMBFW",
+        "41XpC9LDAKV2T2Wtk8ebqoWXSpHDrG9Ry55YZ2W6bdL6"
+      ],
+      "roundTripDigests": [],
+      "sponsorFailures": 0
+    },
+    {
+      "id": "sg-11",
+      "type": "round_trip",
+      "funder": "0xd6a5c97801baecb3db8a50f6b08be07e3e504cc53d80f2811289b789519ab97c",
+      "members": [
+        "0xd2a6f4373df906b2440154e74372dadbf42ae82001d80c5c05471b04ad839ac8",
+        "0x4d899b21526d022e4face6f140730740904156920b288badca8ba5670eac1715",
+        "0x19022a81262f38635647a6d965702c4dfc5373ef27df3dd55585a9df49864a34",
+        "0x3129248e1d1634d51c234e51a11c01cbf23d866f84fdc9534774b2468ca351ca"
+      ],
+      "firstFundingDigest": "FV8dAbGdBfcb972NG2mq9GtLEJQUDYwkQJwQncniYwYP",
+      "sponsoredDigests": [],
+      "roundTripDigests": [
+        "CZwAJjSomT1YDAiDT4ERoxBFfgHBPn311GhKhmRce9f3",
+        "FjdRmsuHNp1n9BuDoUm3AeUaBLxmQa6bc1RdJzJ2DR2z"
+      ],
+      "sponsorFailures": 0
+    },
+    {
+      "id": "sg-12",
+      "type": "funder",
+      "funder": "0xa87d786e1087df0589e347a72d51c710586a198193511a52fa2393d4cd1185ff",
+      "members": [
+        "0x749496d14e3de3173973a277bb1d8d33c71ffc1c24a7e88a5b4876c6beae2c82",
+        "0xfa6dca3371feee2fb04db618c0ccf8c04b976c2d1a25c40a9677f155e99d1cc8",
+        "0xb0c6317cb6adf7e79b864dca33462ca9fb5d53b59a3548faf3636bb578ccfde9",
+        "0x4a0242045a779e91b29c347dda97fb575a6a506b81029a065a89fcec5a537e10",
+        "0x1ec3ee5382029e62c0b48b0b8f5de0bbc189c60e0ec2d16d520c873fdb9a2f0e",
+        "0xcdcb527e89ef3c80d43945cd59eafa741e74f5607a37c6b685ad0d6d2e0b0a4d"
+      ],
+      "firstFundingDigest": "CRiGiGNGokiVWegVbAK5jeahvRMEXWMJQG5gaNhtYcEf",
+      "sponsoredDigests": [],
+      "roundTripDigests": [],
+      "sponsorFailures": 0
+    },
+    {
+      "id": "sg-13",
+      "type": "funder",
+      "funder": "0x2f704b3e7c6579aaf8123835d600e606399b3c3f851884e2ee3e4dea94ecf98e",
+      "members": [
+        "0xd48dec7d3740198b4999fc16f7a41a5146786e4427ae56792ebcfddd2fd5f1d3",
+        "0x979f8f5dd91e341e938ba4768726bc945b371474fb63734289e76d090307e8ce",
+        "0xc5071c990cfda3527db8e6823c5528bd98edf273a66a3e9858e4acfa05a3f7e3"
+      ],
+      "firstFundingDigest": "8DNmda2ucDqhGx2dMVmr2mw7RAaaSZBtjZ7336nNJMM",
+      "sponsoredDigests": [],
+      "roundTripDigests": [],
+      "sponsorFailures": 0
+    },
+    {
+      "id": "sg-14",
+      "type": "funder_sponsor",
+      "funder": "0x72000cb21bc3365eac9dde2618d9e7022f129d676f48a546ab72862851c6c902",
+      "members": [
+        "0x39f1eec247fa5d7f8fd476ee2efc0d764898407634bc2febb7455f862b8ca12c",
+        "0xd23a4c7c4412b63ffd956cdba4fe7d3027fa70272fd489a998b03042aaf69e1b",
+        "0x69a190fdf8bdfb38da364fb189159b88b17ac0de08ecbcf88be41141ec69d5fa",
+        "0x26a5038f8866c947528a819d37bbf22ccbca9d4870877aff3da616a924bd197c"
+      ],
+      "firstFundingDigest": "6ZHciupETbiXNa84xTZxiSpMwrLzjDr2AikgiYjrxA2c",
+      "sponsoredDigests": [
+        "Aa1he7W2S8YgKG5EC8Je35JJeTM4yMfFgJ2rJRC2chcW",
+        "6TdGccspXDqQZTJRsoJgeWf5j5sjB5sABmi5H5eum5PU",
+        "B2A5c5oA7aBFqxzcAk6ApA5NExEXPryNAHdr5NoXQjNd",
+        "838nEtSd7QpRb2eHiVxuK7JCbbU9t5dmLhhxdn9skETb"
+      ],
+      "roundTripDigests": [],
+      "sponsorFailures": 0
+    },
+    {
+      "id": "sg-15",
+      "type": "round_trip",
+      "funder": "0xa029b50de95bcb7cd37c3828aa6c5ac63ecd836c78647fb15d5c08962ee0a8ab",
+      "members": [
+        "0xecf29e0b864f8dc5485807cb315bee636622da64aa1975a8f5af037b83dd0ca6",
+        "0x1c5733a796c17c5bd45c27c2eca084dfa2531d7910ac79b220a546963bea9bf6",
+        "0x09d945993bf8d89b42a46f6465288ed2d4b0051731d5f6bc7e81f3b2b8c537e7",
+        "0x9aa8035d0e449342b890aef6bac5356f8fdb1ff2598bef60a98496f6615a5166",
+        "0x3c0ce99ce7e4635079076031e5563310d01078c457c4531768843486504ef47e"
+      ],
+      "firstFundingDigest": "EX42CujJZBaSq5SXkCFqFzrBpqTTjMphkXobmLg6ULfm",
+      "sponsoredDigests": [],
+      "roundTripDigests": [
+        "HbeG3ikxMxbcfYnt3mFdQ3sikzPN2ZQSNZyhesK9u6bk",
+        "B8aetAuJSuQFAqBCodyXztsx3mwbuqS68Zy29Mng3Apa"
+      ],
+      "sponsorFailures": 0
+    },
+    {
+      "id": "sg-16",
+      "type": "funder",
+      "funder": "0x3b37280f35bf507390aa7341eea806a26e94244e97447dc4a2c7a29a4646d840",
+      "members": [
+        "0xacae7f3cd6f5766df9fc34abeebc05c91e5667a9667d38a5d08fff62ca937a2d",
+        "0xbfedbc422c8cfc81d13dee2d058ab724a0a29688a0daf8e3db396b5e1b2ae7de",
+        "0x6ed0bf2d9058df54684d1befe54a23990c3ff69773d518c00c4aebd1a5c165ec"
+      ],
+      "firstFundingDigest": "BA6Ej5u9z2TVsC8srMnWb37KqihNvwAcpe7sHsy9cc5V",
+      "sponsoredDigests": [],
+      "roundTripDigests": [],
+      "sponsorFailures": 0
+    }
+  ],
+  "controls": [
+    {
+      "id": "sc-01",
+      "address": "0x9d3a6ca1c1d05d9f15de4f55a13437328e8e2f550e90741811097a08d85063d8",
+      "funder": "0x63549cbf66295245263e6fc05e06b44bb16767fb42e3273cc32af0777e0ee977",
+      "firstFundingDigest": "6jdzvuhwNqsvd6xuZ6Mpuj9zd8ddmcDJRXp33pdv2HkA",
+      "outgoingDigest": null
+    },
+    {
+      "id": "sc-02",
+      "address": "0x014e6209296f9e8595fec53f3effe14e2758d25a8fa78513b483ba4cfaf9e2a5",
+      "funder": "0xcc9cedfdbb2e8e3c1ed977148b4cb1e261113d12de8e5739bb9c4573e2096934",
+      "firstFundingDigest": "HhpfbADnaES3dcKykbvPKuBZ4e4xhuDoGC4y7XmXvkPw",
+      "outgoingDigest": "GerfhPhNLHJRJp8JRP6rXjoRKjunqZTYAsLXeVnUjtEU"
+    },
+    {
+      "id": "sc-03",
+      "address": "0xd9cfe96f0bf805266673721a6fc84a3494cf4c84a57531de7c65bcc009093324",
+      "funder": "0x74c795d23839df54b5c5bb19a4002424d9df2fe3403e55b076050c28aa29c0d9",
+      "firstFundingDigest": "HMJRdrTo3SRnC3cNpRr8MkFptGwfXeKuSBs8FP8ormby",
+      "outgoingDigest": null
+    },
+    {
+      "id": "sc-04",
+      "address": "0x5ace21512cf55521163c9480e3824c10f8740e001f833e3ea87c6d14c3abe19b",
+      "funder": "0x2b0d5df70a6430266afe30856756d1129ddbc14ca00fc6627db1713eac02a120",
+      "firstFundingDigest": "8pyKreXNvxivFgUcLDSTbMmyRZjjtUygN89A8Drrm5zQ",
+      "outgoingDigest": "EDUoTfmwjUtYC2kZEkPFgXbenuranGuzy5ZsmMSZeSCp"
+    },
+    {
+      "id": "sc-05",
+      "address": "0xbdfd7ca6c82264c0e3c2ffdc6f3ad2bb548dd55880cdfe7b9d277bafa52a7be1",
+      "funder": "0x5f5e469bd103c038925ccd2c5114175699b3fdd3935e0c8394c7eb6a74b4bf09",
+      "firstFundingDigest": "8EM5iK34AhwoaMsUSUvACARjV93HDpBb7hNgAgZTDJLt",
+      "outgoingDigest": null
+    },
+    {
+      "id": "sc-06",
+      "address": "0x94c114158f05c15bc159c7d82c4d8d70b4d12bb22e8009b84d1bc6500e2ee286",
+      "funder": "0xf2aabb1590e0ebb5840767c21228c6a130210feb6827046f07f9183980883319",
+      "firstFundingDigest": "9S5hkEYxXWot477kQL5hcBfKUZsm7kz4fTrS5kbsbRJQ",
+      "outgoingDigest": "6AB74i5RSxTCazghQpt3E9rjfFSed9jznu5aADCVRyfA"
+    },
+    {
+      "id": "sc-07",
+      "address": "0x2400d8eeb299cfef72b9b52185ac810457e177c5ce17e641685c33a864e800af",
+      "funder": "0x5f6023b2eca9b073300c081f9344bd5f3ef437a20d5f7c90fe2f302bd8f96a76",
+      "firstFundingDigest": "dJzzpqkyYRQfFw2P1daCPEp6gnDGQgKuJU96bv4UTcu",
+      "outgoingDigest": null
+    },
+    {
+      "id": "sc-08",
+      "address": "0x7d2a8430b8ac832636de32e16279f6c0af5df4a3c382e3e6bb593f3bd5cf18ba",
+      "funder": "0x7255197c0395cbf25815a097d4830134ce6c2dac290c0e2a8d0489cff68d1eb3",
+      "firstFundingDigest": "56UVWm47FJwRj4K4rcL5CuU6WGCfVDSAXLUXdAyTDF5u",
+      "outgoingDigest": "aC9373oesS66ZarwMsPaLQC4tQPDV1YxPfdiRJFXB1Q"
+    },
+    {
+      "id": "sc-09",
+      "address": "0x4f30421e43d79420fca0ce1b69a4004769d8e3a66e018f22c0b8c13b0d9ec240",
+      "funder": "0xee4c220cb8f1d560d6993bbb4f42962eca4b211ac2d7d9c6675f8bda29afe517",
+      "firstFundingDigest": "H8qh7TJneVmApwsqe8vetnENKUyvnpxUfPgwUD5JZNv5",
+      "outgoingDigest": null
+    },
+    {
+      "id": "sc-10",
+      "address": "0xc84e1ff4a0ac1a2e9f6efeb25099c0b6ad296b1dc025e9e6b5521ea03dd180cd",
+      "funder": "0xc583fcf5bbe990dc2a7e3e9652e90a2ce7603f928a34b9f83bcfbe45d9972125",
+      "firstFundingDigest": "9CR2Rek4nJx7XZTMBw2Fxbw224X87wgfkQmtUXcGSfP6",
+      "outgoingDigest": "7y3HvpEiUDyY37dF19GYvBDQZAGCgH7GNLuobVg2bFSw"
+    },
+    {
+      "id": "sc-11",
+      "address": "0x04dac377e2945e77b53f961d6ac9de915705923ac93167c959b08c1a4bbf46c6",
+      "funder": "0x9cbaa973508af16bdcffc96b48a27f25048248e0ca07d5bd8a1f66b831cb184c",
+      "firstFundingDigest": "EcXhkjv4WXjDCKTN7HJJwkoG6ENhgmJKH5GxXzYo9gAQ",
+      "outgoingDigest": null
+    },
+    {
+      "id": "sc-12",
+      "address": "0x38b7dfcb125e7685c13611c51c4c76c566bb5b47c9894888a0f4241cb7d0f947",
+      "funder": "0x3e34d76701619da9fed85940b955c6a57ba50b486d46db90c73e9d9ff85ded28",
+      "firstFundingDigest": "FZsBdiK7dteQ5zXMtrnLrWEgDdu6E6Hb6ZwjtgbaaMsS",
+      "outgoingDigest": "2LyrKQrC2oZkXSeZMtnb9MKYudbpe7ayFByjFs6VHuRm"
+    },
+    {
+      "id": "sc-13",
+      "address": "0xd93e55575a4ed220bd8fbc2f928254ab66b473b4e6716d5e30792de4b41cb442",
+      "funder": "0x2985b43594dc9d8687ada228842230db8cb46ae69b9a4cbaa8b87584926d1833",
+      "firstFundingDigest": "FfTetAGbKNcC7ZpuMoyj4dtjKfbt4bj1B3WhRDENYmZc",
+      "outgoingDigest": null
+    },
+    {
+      "id": "sc-14",
+      "address": "0x01240eafc206d8e7a02517929c7e1567583febb2713430b888c43ec7b49522ff",
+      "funder": "0xe71aaed8e2b00982ca08ac83836975e8d667ff1588065bb6484ca39c2c4d1ca8",
+      "firstFundingDigest": "AR7o2YES8qTHmGY4KU4Ft9E4ithNyh8hqZpUtJU2gLH",
+      "outgoingDigest": "EzqsLjhcaci82xLt81nKfCWBMHj3iH2pxqyQwYGptbDS"
+    },
+    {
+      "id": "sc-15",
+      "address": "0x4947014c187a55d9679118a382311f3121d8cb68bc009e304e58a04f44903fc4",
+      "funder": "0xcea21b04e291cdb3f1fb8a1e783c70d0db9e9bbc89d757ea333ad55cf08267ca",
+      "firstFundingDigest": "Cjrsr9WWBX2JXg1zURDKGvnnBxhZQA2NvgfoxGra1jSL",
+      "outgoingDigest": null
+    },
+    {
+      "id": "sc-16",
+      "address": "0xe4c2ddc9a0ac963e1231a8efcd8b64996662545327a6a35f6fe3f923f1b3b50f",
+      "funder": "0x660f32a89505b507e26672ee483c2430ee44986a2cd104b4857030736ae73ef8",
+      "firstFundingDigest": "Nw8o2aamx257sdj92kry8pkr7WXhqtneypFnAhSWNYh",
+      "outgoingDigest": "AW4bzjtaYSbJSncAAre8iUQRNLshZZQuY8LbURNwMZF"
+    }
+  ],
+  "spentMist": "1284016000",
+  "spentSui": "1.284016",
+  "rule": "A wallet counts as found when its check shows a counted link to the funder written here. A control counts as a false alarm when its check is anything other than \"no links, no bad history\"."
+}
