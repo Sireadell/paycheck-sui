@@ -143,19 +143,23 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
     }
   }
 
-  // Exact recall for the wallet, its funder, its gas sponsor and their group ids. A failure never blocks the answer.
-  async function recallAll(wallet, funder, sponsor, groupIds) {
+  // Exact recall asks for the wallet, its funder, its gas sponsor and their group ids. The wallet's own asks need nothing from
+  // the chain, so they start at once; the rest start when the funder and sponsor are known. A failure never blocks the answer.
+  const asksFor = ({ wallet, funder, sponsor, groupIds = [] }) => {
     const asks = [];
     for (const namespace of ns.recall) {
-      asks.push({ namespace, address: wallet });
+      if (wallet) asks.push({ namespace, address: wallet });
       if (funder) asks.push({ namespace, address: funder });
       if (sponsor) asks.push({ namespace, address: sponsor });
       for (const g of groupIds) asks.push({ namespace, group: g });
     }
-    // Each read gets its own time limit and one more try before it counts as failed.
-    const readOnce = (q) => withTimeout(Promise.resolve().then(() => memory.recall(q)), recallTimeoutMs, 'memory recall');
-    const readTwice = (q) => readOnce(q).catch(() => readOnce(q));
-    const settled = await Promise.allSettled(asks.map((q) => readTwice(q).then((r) => r.map((m) => ({ ...m, namespace: q.namespace })))));
+    return asks;
+  };
+  // Each read gets its own time limit and one more try before it counts as failed.
+  const readOnce = (q) => withTimeout(Promise.resolve().then(() => memory.recall(q)), recallTimeoutMs, 'memory recall');
+  const readTwice = (q) => readOnce(q).catch(() => readOnce(q));
+  const readAsks = (asks) => Promise.allSettled(asks.map((q) => readTwice(q).then((r) => r.map((m) => ({ ...m, namespace: q.namespace })))));
+  function collect(settled) {
     const failed = settled.filter((s) => s.status === 'rejected');
     state.lastRecallOk = failed.length === 0;
     state.lastRecallError = failed.length ? String(failed[0].reason?.message || failed[0].reason).slice(0, 120) : null;
@@ -173,6 +177,16 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
     return { memories: out, ok: failed.length === 0, error: state.lastRecallError };
   }
 
+  // The checkpoint is only a "data as of" label, so one read is shared for 10 seconds.
+  let cp = { at: 0, value: null };
+  const checkpointNow = () => {
+    if (cp.value && now() - cp.at < 10000) return cp.value;
+    const p = Promise.resolve().then(() => tatum.latestCheckpoint()).catch(() => null);
+    cp = { at: now(), value: p };
+    p.then((v) => { if (v == null && cp.value === p) cp = { at: 0, value: null }; });
+    return p;
+  };
+
   // In test mode the labelled test memories are read by the rules (the verdict rules otherwise ignore k2-test).
   const forRules = (memories) => (test ? memories.map((m) => ({ ...m, origin: 'test-run', namespace: 'test-run' })) : memories);
 
@@ -189,14 +203,15 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
     const wallet = parsed.address;
     let g = null;
     let chainError = null;
+    // With memory switched off nothing is read from memory: the answer cannot use it, so waiting for it would only be slow.
+    const walletRecall = memoryOn ? readAsks(asksFor({ wallet })) : null;
+    const checkpointP = checkpointNow();
     try { g = await gather(wallet); } catch (e) { chainError = String(e.message || e).slice(0, 160); }
 
     // Recall runs for the wallet even if the chain read failed (a stored bad report still counts).
-    const recalled = await recallAll(wallet, g?.funder ?? null, g?.sponsor ?? null, g?.groupIds ?? []);
-    const [cross, checkpoint] = g ? await Promise.all([
-      crossCheck(wallet, g.page, g.links),
-      tatum.latestCheckpoint().catch(() => null),
-    ]) : [null, null];
+    const restRecall = memoryOn && g ? readAsks(asksFor({ funder: g.funder, sponsor: g.sponsor, groupIds: g.groupIds })) : null;
+    const recalled = memoryOn ? collect([...(await walletRecall), ...(restRecall ? await restRecall : [])]) : { memories: [], ok: true, error: null };
+    const [cross, checkpoint] = g ? await Promise.all([crossCheck(wallet, g.page, g.links), checkpointP]) : [null, null];
 
     const verdict = buildVerdict({
       wallet,

@@ -26,6 +26,10 @@ Anything else is refused with HTTP 400, `verdict: "caution"`, `code: "INVALID_IN
 | ETHEREUM_ADDRESS | Exactly 40 hex characters (the Ethereum shape, a likely wrong-chain mistake) |
 | NAME_NOT_SUPPORTED | A SuiNS name such as `alice.sui` or `@alice`. Names are not looked up |
 
+## Speed
+
+With `memory=off` the shared memory is not read at all, because the answer cannot use it. With memory on, the read for the wallet itself starts at the same time as the chain read, and the latest checkpoint (a "data as of" label) is shared for 10 seconds. Measured on the same 4 addresses, one pass, real Tatum and real Walrus Memory, before and after: with memory on the median check went from 14.95 s to 10.95 s (4 checks), with memory off from 11.5 s to 1.5 s (2 checks). Small sample, so read it as a size of effect, not a promise.
+
 ## Limits
 
 | Where | Limit | Over the limit |
