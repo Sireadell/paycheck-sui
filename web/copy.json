@@ -181,6 +181,72 @@
     "methodLead": "How the sets were picked, how the checker decides and where it falls short is written out in",
     "methodLink": "the method notes",
     "reproduceLink": "The exact commands to rerun every number are in the reproduce guide.",
-    "navLink": "Proof"
+    "navLink": "Proof",
+    "failuresLink": "Every miss and false alarm is listed on the failures page.",
+    "failuresLinkText": "See where it went wrong",
+    "curlHeading": "Ask the live server yourself",
+    "curlLead": "Copy any of these into a terminal. Each one returns JSON from this server as it is right now.",
+    "curlItems": [
+      {
+        "label": "Memory counters: how many memories are stored, and how many changed an answer since the server started",
+        "path": "/api/stats"
+      },
+      {
+        "label": "One check with memory on. In the saved two-agent run this address got \"do not pay\", citing memory uVKrZAcEnPYog1x0mLDYnDZkUmVNzDskqK4XdTOUpcU. Look at memoryIds and changedByMemory in the answer",
+        "path": "/api/check?address=0x0f8500ea00a3171ad047e3533b42ef8c5e261b6686cf603630b3b733cec9e6f4&memory=on"
+      },
+      {
+        "label": "Tatum and Ankr calls by type since the server started, under calls",
+        "path": "/api/stats"
+      }
+    ]
+  },
+  "failures": {
+    "pageTitle": "Where PayCheck went wrong",
+    "heading": "Where it went wrong",
+    "lead": "Every miss, false alarm and failed recall in the saved results, counted from the rows each time you load this page. I'd rather you see them here than find them yourself.",
+    "sourceTag": "Counted from",
+    "linkSponsor": "shared fee payer",
+    "linkFunder": "shared first funder",
+    "groupsHeading": "Real groups it missed",
+    "groupsTail": "real groups missed, reading the oldest 50 transactions per wallet",
+    "groupsHeads": [
+      "Group",
+      "What it missed",
+      "Reading 200 transactions"
+    ],
+    "groupsRow": "It found no link to the group's {link} ({address}).",
+    "deepStillMissed": "Still missed",
+    "deepFound": "Found",
+    "deepNotRun": "Not run",
+    "membersLine": "Inside the groups, {missed} wallets were not tied back to their group: {ids}.",
+    "alarmsHeading": "Ordinary wallets it flagged",
+    "alarmsTail": "ordinary wallets got something other than a plain \"pay\"",
+    "alarmsHeads": [
+      "Wallet",
+      "Answer",
+      "Code",
+      "Why"
+    ],
+    "codes": {
+      "ROUND_TRIP_TO_FUNDER": "The wallet sent money straight back to the wallet that funded it."
+    },
+    "alarmsNote": "None of them got \"do not pay\". A round trip on its own gives \"caution\", which is a false alarm all the same.",
+    "benchHeading": "Held-back cases it lost",
+    "benchTail": "held-back cases where the checker with memory did worse than the plain AI or got it wrong",
+    "benchHeads": [
+      "Case",
+      "What happened"
+    ],
+    "noText": "No write-up for this case yet. See bench/results/real.json.",
+    "prescanHeading": "Pre-scan memories that did not come back",
+    "prescanTail": "pre-scan memories not counted as recalled",
+    "prescanHeads": [
+      "How many",
+      "What happened"
+    ],
+    "prescanNote": "They are stored in Walrus Memory. They are left out of the count because asking for them by exact address did not bring back the stored verdict.",
+    "stressHeading": "Stress test (synthetic, wallets I built)",
+    "stressLine": "Missed {missed} wallets, flagged {alarms} ordinary wallets. These links were built by me and are easy, so this says little about real wallets."
   }
 }

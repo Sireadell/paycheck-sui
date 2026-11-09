@@ -35,7 +35,7 @@ Run the tests (recorded mainnet answers, no network):
 npm test
 ```
 
-147 tests pass.
+151 tests pass.
 
 Ask the live server about a real wallet from the real set (rs-01, a group tied by one shared first funder), with memory off and then on:
 
@@ -50,6 +50,7 @@ See the measured numbers and the memory counters:
 
 ```
 curl [[LIVE_URL]]/api/proof
+curl [[LIVE_URL]]/api/failures
 curl [[LIVE_URL]]/api/stats
 curl [[LIVE_URL]]/health
 ```
@@ -290,12 +291,13 @@ Seven runtime dependencies: `express`, `zod`, `@mysten-incubation/memwal`, `@mys
 
 | Path | What it does |
 |---|---|
-| `server.js` | The API: `/api/check`, `/api/outcome`, `/api/stats`, `/api/proof`, `/proof`, `/health` |
+| `server.js` | The API: `/api/check`, `/api/outcome`, `/api/stats`, `/api/proof`, `/proof`, `/failures`, `/health` |
 | `src/check.js` | One full check: read, link, recall, verdict, write |
 | `src/providers/` | Tatum and Ankr clients, the shared rate limit, the call log, the cross-check |
 | `src/engine/` | The link rules (first funder, shared funder, gas sponsor, round trip, timing) and the verdict rules |
 | `src/memory/` | Walrus Memory clients per namespace, the header format, exact recall, background writes, restore |
 | `src/proof.js` | The proof page, recounted from saved rows on every load |
+| `src/failures.js` | The failures page: every miss, false alarm and failed recall, recounted the same way |
 | `mcp/server.js` | The `check_payee` MCP tool |
 | `web/` | The first screen. Every visible word is in `web/copy.json` |
 | `scripts/` | Command line tools, the real-set builder and scorer, the benchmark, the pre-scan, reproduce |
@@ -303,7 +305,7 @@ Seven runtime dependencies: `express`, `zod`, `@mysten-incubation/memwal`, `@mys
 | `data/prescan/` | The pre-scan pick list, verdicts and the recall check |
 | `bench/` | Benchmark prompts, saved AI answers and results |
 | `docs/` | [API](docs/API.md), [MCP](docs/MCP.md), [verdict rules](docs/VERDICT_RULES.md), [method](docs/METHOD.md), [reproduce](docs/REPRODUCE.md) |
-| `test/` | 147 tests on recorded mainnet answers, no keys needed |
+| `test/` | 151 tests on recorded mainnet answers, no keys needed |
 
 ## What I built during the event
 

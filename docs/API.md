@@ -9,6 +9,7 @@ All answers are JSON. The web layer only calls these endpoints.
 | POST /api/paid/check | Buy a check with plain SUI. First call answers 402 with an amount and id; second call carries the payment digest. See PAYMENTS.md |
 | GET /api/stats | Memory counters and Tatum call totals |
 | GET /health | Returns `ok` |
+| GET /api/failures | Every miss, false alarm and failed recall in the saved results, recounted from the rows. The same data is shown at `/failures` |
 
 ## Addresses
 

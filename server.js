@@ -9,6 +9,7 @@ import { getTatum, getAnkr, callLog } from './src/providers/index.js';
 import { loadConfig } from './src/config.js';
 import { loadBenchmark, loadCrossAgent } from './src/api/benchmark.js';
 import { loadProof, renderProof } from './src/proof.js';
+import { loadFailures, renderFailures } from './src/failures.js';
 import { createPaidCheck } from './src/paid.js';
 
 const ROOT = fileURLToPath(new URL('./', import.meta.url));
@@ -144,10 +145,18 @@ export function createApp({ checker, memory, probe = null, outcomeToken = proces
     try {
       const copy = JSON.parse(await readFile(`${webDir}/copy.json`, 'utf8'));
       const proof = await loadProof({ dataDir, benchDir });
-      res.type('html').send(renderProof(proof, copy).replace('<body>', '<body class="proof-page">'));
+      res.type('html').send(renderProof(proof, copy, { base: `${_req.protocol}://${_req.get('host')}` }).replace('<body>', '<body class="proof-page">'));
     } catch { res.status(500).type('text').send('The proof page could not be built.'); }
   });
   app.get('/api/proof', async (_req, res) => res.json(await loadProof({ dataDir, benchDir })));
+  // Every miss, false alarm and failed recall, recounted from the saved rows like the proof page.
+  app.get('/failures', async (_req, res) => {
+    try {
+      const copy = JSON.parse(await readFile(`${webDir}/copy.json`, 'utf8'));
+      res.type('html').send(renderFailures(await loadFailures({ dataDir, benchDir }), copy));
+    } catch { res.status(500).type('text').send('The failures page could not be built.'); }
+  });
+  app.get('/api/failures', async (_req, res) => res.json(await loadFailures({ dataDir, benchDir })));
   // Plain-text copies of the method notes for the links on the proof page.
   app.get('/docs/:name', async (req, res) => {
     if (!['METHOD.md', 'VERDICT_RULES.md', 'REPRODUCE.md'].includes(req.params.name)) return res.status(404).type('text').send('Not found');

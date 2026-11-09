@@ -151,3 +151,6 @@ button { font: inherit; cursor: pointer; }
 .not-run { color: var(--warn); background: var(--warn-bg); padding: 2px 8px; border-radius: 4px; display: inline-block; }
 .proof-page footer { padding-bottom: 32px; color: var(--muted); font-size: 14px; }
 .top-link { font-size: 14px; color: var(--accent); }
+.curl { padding-left: 20px; }
+.curl pre { overflow-x: auto; background: var(--band); font-family: var(--mono); padding: 8px 10px; border-radius: 4px; font-size: 13px; }
+.source { color: var(--muted); font-size: 13px; }

@@ -74,7 +74,7 @@ const fill = (t, vars = {}) => esc(String(t ?? '').replace(/\{(\w+)\}/g, (_, k) 
 const ofN = (n, d) => `${n} of ${d}`;
 
 /** The proof page as plain HTML. Wording comes from copy.proof (web/copy.json). */
-export function renderProof(proof, copy) {
+export function renderProof(proof, copy, { base = '' } = {}) {
   const c = copy.proof;
   const b = copy.bench;
   const notRun = (text) => `<p class="not-run"><strong>${esc(c.notRunTag)}</strong> ${esc(text)}</p>`;
@@ -124,6 +124,10 @@ export function renderProof(proof, copy) {
   out.push(`<dt>${esc(c.refuseName)}</dt><dd>${rp.ran ? esc(c.refuseDone) : inline(c.refuseNone)}</dd>`);
   out.push(`<dt>${esc(c.paidName)}</dt><dd>${pc.ran ? esc(c.paidDone) : inline(c.paidNone)}</dd>`);
   out.push('</dl></section>');
+
+  out.push(`<section class="proof-block"><h2>${esc(c.curlHeading)}</h2><p>${esc(c.curlLead)}</p><ol class="curl">`);
+  for (const i of c.curlItems ?? []) out.push(`<li><p>${esc(i.label)}</p><pre><code>curl "${esc(base)}${esc(i.path)}"</code></pre></li>`);
+  out.push(`</ol><p>${esc(c.failuresLink)} <a href="/failures">${esc(c.failuresLinkText)}</a></p></section>`);
 
   out.push(`<section class="proof-block"><h2>${esc(c.methodHeading)}</h2><p>${esc(c.methodLead)} <a href="/docs/METHOD.md">${esc(c.methodLink)}</a>. <a href="/docs/REPRODUCE.md">${esc(c.reproduceLink)}</a></p></section>`);
   out.push(`<section class="proof-block"><h2>${esc(copy.limits.heading)}</h2><ul>${copy.limits.items.map((i) => `<li>${esc(i)}</li>`).join('')}</ul></section>`);
