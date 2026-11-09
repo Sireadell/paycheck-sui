@@ -16,6 +16,9 @@ The main idea: being linked to other wallets is not unsafe. Exchanges and payrol
 | - | Not a Sui address | caution | INVALID_INPUT | - |
 | - | Chain data could not be read (rule 1 still applies) | caution | DATA_UNAVAILABLE | - |
 | - | The shared memory could not be read fully (timed out or failed, after one retry) and the answer would have been "pay" | caution, `retryable: true` | MEMORY_UNAVAILABLE | - |
+| - | The address has no transactions and no SUI balance, and the answer would have been "pay" | caution | NO_HISTORY | FACT (nothing found) |
+
+A brand-new or unused wallet cannot be judged, and a mistyped address looks exactly the same, so it never gets "pay". The check reads the balance in the same moment as the first page of history, so it adds one Tatum call but no waiting. A stored bad report on the exact address still gives "do not pay". A check that ends this way is not saved as a memory.
 
 When the shared memory cannot be read fully, a "pay" becomes caution, because nobody could look for a report of a bad payment. A "do not pay" stays as it is. Another caution keeps its own code and gets the same note added to its reason. The "without memory" side of the answer is not changed. A check that ended this way is not saved as a new memory. The web page shows the caution with a Retry button.
 

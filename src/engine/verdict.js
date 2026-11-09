@@ -178,7 +178,7 @@ export function memorySavedCalls({ wallet, memories, now = Date.now(), maxAgeMs 
  * memoryOn false (memory switch off): recalled memories are ignored, memoryIds is empty.
  */
 export function buildVerdict(input = {}) {
-  const { wallet, analysis, groupId = null, hubs = {}, memoryOn = true, memoryDegraded = false, inputError = null, now = Date.now() } = input;
+  const { wallet, analysis, groupId = null, hubs = {}, memoryOn = true, memoryDegraded = false, inputError = null, payee = null, now = Date.now() } = input;
   const base = { label: 'caution', evidence: [], memoryIds: [], changedByMemory: false, changedByIds: [], warnedBy: [], withoutMemory: { verdict: VERDICTS.CAUTION, code: null, label: 'caution' }, memorySavedCalls: 0, memorySavedFrom: null };
   if (inputError || !isAddress(wallet)) {
     return { ...base, verdict: VERDICTS.CAUTION, code: 'INVALID_INPUT', reason: inputError?.reason ?? 'That is not a Sui address (expected 0x followed by hex).', retryable: false, nextAction: 'Send a valid Sui address.' };
@@ -204,18 +204,22 @@ export function buildVerdict(input = {}) {
       : 'Safe to proceed on current evidence. Report the outcome after paying.';
   // A memory read that failed must never look like a clean "pay": nobody could see whether a bad report exists.
   const unread = memoryOn && memoryDegraded;
-  const demote = unread && full.verdict === VERDICTS.PAY;
-  const unreadNote = 'The shared memory could not be read fully, so reports of bad payments could not be checked. Try again.';
+  // Things a "pay" must never be said about. A stored bad report still wins (it is red); these only turn a green into a caution.
+  const noHistory = payee?.noHistory ? { code: 'NO_HISTORY', reason: 'This address has no transactions and no balance on Sui. Brand-new or unused wallets cannot be judged, and a mistyped address looks the same.', retry: false } : null;
+  const unreadWhy = unread ? { code: 'MEMORY_UNAVAILABLE', reason: 'The shared memory could not be read fully, so reports of bad payments could not be checked. Try again.', retry: true } : null;
+  const unreadNote = unreadWhy?.reason ?? '';
+  const why = full.verdict === VERDICTS.PAY ? (noHistory ?? unreadWhy) : null;
+  const demote = Boolean(why);
   const reason = noData ? `${full.reason} On-chain data could not be read, so only memory was used.` : full.reason;
   return {
     verdict: demote ? VERDICTS.CAUTION : full.verdict,
-    code: demote ? 'MEMORY_UNAVAILABLE' : full.code,
+    code: demote ? why.code : full.code,
     label: demote ? 'caution' : labelOf(full),
-    reason: demote ? unreadNote : unread && full.verdict === VERDICTS.CAUTION ? `${reason} ${unreadNote}` : reason,
+    reason: demote ? (why.code === 'MEMORY_UNAVAILABLE' ? why.reason : `${why.reason}${unread ? ` ${unreadNote}` : ''}`) : unread && full.verdict === VERDICTS.CAUTION ? `${reason} ${unreadNote}` : reason,
     evidence: full.evidence,
     memoryIds,
     retryable: unread && full.verdict !== VERDICTS.DO_NOT_PAY,
-    nextAction: demote ? 'Retry the check in a moment, or pay only a small amount.' : nextAction,
+    nextAction: demote ? (why.code === 'MEMORY_UNAVAILABLE' ? 'Retry the check in a moment, or pay only a small amount.' : 'Check the address with the payee before paying. Send a small test amount first.') : nextAction,
     changedByMemory: changed,
     changedByIds,
     warnedBy,

@@ -84,6 +84,14 @@ export function createTatum({ key, fetchImpl = fetch, limiter = sharedLimiter, e
       const d = await gql('balance', `{ address(address:"${addr(address)}") { balance(coinType:"0x2::sui::SUI") { totalBalance } } }`);
       return d.address?.balance?.totalBalance ?? '0';
     },
+    // What this address is on chain, in one call: its SUI balance and whether it is really an object or a package (not a wallet).
+    // Returns null when the answer has an unexpected shape, so a caller never reads "unknown" as "nothing there".
+    async addressProfile(address) {
+      const d = await gql('addressProfile', `{ address(address:"${addr(address)}") { balance(coinType:"0x2::sui::SUI") { totalBalance } asObject { version asMovePackage { address } } } }`);
+      if (!d?.address) return null;
+      const obj = d.address.asObject;
+      return { balance: String(d.address.balance?.totalBalance ?? '0'), isObject: Boolean(obj), isPackage: Boolean(obj?.asMovePackage) };
+    },
     async transactionByDigest(digest) {
       if (!/^[1-9A-HJ-NP-Za-km-z]{32,50}$/.test(digest || '')) throw new Error('Not a transaction digest');
       const d = await gql('transactionByDigest', `{ transaction(digest:"${digest}") { ${TX_FIELDS} } }`);

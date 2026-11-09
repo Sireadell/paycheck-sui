@@ -64,6 +64,13 @@ function withTimeout(p, ms, label) {
   return Promise.race([p, timeout]).finally(() => clearTimeout(timer));
 }
 
+/** What the chain says this payee is, from one gathered read. Unknown stays unknown (null), never "nothing there". */
+export function payeeFacts(g) {
+  if (!g?.profile) return null;
+  const empty = g.page.transactions.length === 0 && !g.page.hasNextPage && /^0+$/.test(g.profile.balance) && !g.profile.isObject;
+  return { noHistory: empty };
+}
+
 export function createChecker({ tatum, ankr = null, memory, mode = 'test', recallTimeoutMs = 25000, now = () => Date.now(), maxTx = 50 } = {}) {
   // How many transactions of a wallet, its funder and its gas sponsor are read (50 default, up to 200, 4 calls at most per list).
   const depth = clampMaxTx(maxTx);
@@ -81,7 +88,11 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
 
   // Everything read from the chain for one wallet.
   async function gather(wallet) {
-    const page = await listHistory(tatum, wallet, { maxTx: depth });
+    // The address profile (balance, object or package) is read at the same time as the first page of history.
+    const [page, profile] = await Promise.all([
+      listHistory(tatum, wallet, { maxTx: depth }),
+      Promise.resolve().then(() => tatum.addressProfile?.(wallet)).catch(() => null),
+    ]);
     const inputs = engineInputs(wallet, page.transactions);
     const first = inputs.incoming.slice().sort((a, b) => a.timestampMs - b.timestampMs)[0];
     const funder = first?.sender ?? null;
@@ -108,9 +119,10 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
     const groupId = sf?.groupSize > 0 && funder ? groupIdOf(funder) : (sponsor && !hubs.sponsor?.verdict?.startsWith('shared') ? groupIdOf(sponsor) : null);
     const notes = [];
     if (page.hasNextPage) notes.push(`Only the oldest ${depth} transactions of this wallet were read.`);
+    if (!profile && tatum.addressProfile) notes.push('The balance of this address could not be read, so the check for an empty address was skipped.');
     if (fl?.error) notes.push('The funder history could not be read, so the shared service check was skipped.');
     if (sl?.error) notes.push('The gas sponsor history could not be read.');
-    return { page, analysis, hubs, selfHub, funder, sponsor, groupId, groupIds, notes, links: { firstDigest: first?.digest ?? null, sponsorDigest: sponsorTx?.digest ?? null } };
+    return { page, profile: profile ?? null, analysis, hubs, selfHub, funder, sponsor, groupId, groupIds, notes, links: { firstDigest: first?.digest ?? null, sponsorDigest: sponsorTx?.digest ?? null } };
   }
 
   // Ankr cross-check of the links that matter (first funding and first sponsored transaction), by digest.
@@ -194,6 +206,7 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
       hubs: g?.hubs ?? {},
       memoryOn,
       memoryDegraded: !recalled.ok,
+      payee: payeeFacts(g),
       now: now(),
     });
     if (verdict.changedByMemory) memory.markChanged(verdict.changedByIds);
@@ -202,7 +215,7 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
     const tatumSummary = own('tatum');
     let write = { count: 0, state: 'none' };
     let deferred = null;
-    if (g && !['INVALID_INPUT', 'DATA_UNAVAILABLE', 'MEMORY_UNAVAILABLE'].includes(verdict.code)) {
+    if (g && !['INVALID_INPUT', 'DATA_UNAVAILABLE', 'MEMORY_UNAVAILABLE', 'NO_HISTORY'].includes(verdict.code)) {
       const group = g.groupIds[0] ?? null;
       const item = {
         namespace: ns.verdict, kind: 'verdict', address: wallet, group, origin: originOverride || origin,
