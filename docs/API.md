@@ -24,6 +24,10 @@ Any Sui address of 1 to 64 hex characters is accepted, in any letter case. It is
 | GET /health | none | always answers |
 | Provider queue behind a check | at most 100 waiting Tatum calls | the call fails at once with a clear message, the check still answers and lists it in notes |
 
+### Who counts as one visitor
+
+The limits are counted per visitor, in the memory of the one server process (a restart resets them). Behind the host's proxy and Cloudflare the visitor is read from the `cf-connecting-ip` header, which Cloudflare sets together with `cf-ray`. A `cf-connecting-ip` header without `cf-ray` is ignored. When neither is present, the address Express reads from one trusted proxy hop (`X-Forwarded-For`) is used. An answer over the limit is HTTP 429 with a `Retry-After` header in seconds and `retryable: true`.
+
 ## Reporting an outcome
 
 POST /api/outcome needs the report token, sent as the header `x-outcome-token: <token>` or `Authorization: Bearer <token>`. The server reads the token from the environment variable OUTCOME_TOKEN. With no token or a wrong one the answer is 401 and nothing is written. If the server has no OUTCOME_TOKEN set, every report gets 401.

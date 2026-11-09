@@ -32,6 +32,15 @@ function ipLimiter({ max, windowMs }, now) {
   };
 }
 
+// Who is the visitor? Render sits behind Cloudflare, so the last forwarded address is a Cloudflare edge that can change from
+// one request to the next. Cloudflare puts the real visitor in cf-connecting-ip (it always sends cf-ray too, so a bare
+// cf-connecting-ip header is ignored). Otherwise the address Express works out from one trusted proxy hop is used.
+export function visitorKey(req) {
+  const cf = req.get('cf-connecting-ip');
+  if (cf && req.get('cf-ray')) return String(cf).trim().toLowerCase().slice(0, 64);
+  return req.ip;
+}
+
 // Constant-time token compare: both sides are hashed first so the length never leaks.
 const sameToken = (given, wanted) => {
   const a = createHash('sha256').update(String(given ?? '')).digest();
@@ -71,7 +80,7 @@ export function createApp({ checker, memory, probe = null, outcomeToken = proces
   });
 
   app.get('/api/check', async (req, res) => {
-    const wait = checkHit(req.ip);
+    const wait = checkHit(visitorKey(req));
     if (wait) return tooMany(res, wait, 'checks');
     try {
       const memoryOn = String(req.query.memory ?? 'on').toLowerCase() !== 'off';
@@ -84,7 +93,7 @@ export function createApp({ checker, memory, probe = null, outcomeToken = proces
   // Pay per check in SUI. First request answers 402 with an amount and an id; the second carries the transaction digest.
   app.post('/api/paid/check', async (req, res) => {
     if (!paidCheck) return res.status(503).json({ error: 'Paid checks are not switched on for this server.' });
-    const wait = checkHit(req.ip);
+    const wait = checkHit(visitorKey(req));
     if (wait) return tooMany(res, wait, 'checks');
     const b = req.body ?? {};
     try {
@@ -100,7 +109,7 @@ export function createApp({ checker, memory, probe = null, outcomeToken = proces
     const bearer = /^Bearer (.+)$/i.exec(req.get('authorization') ?? '')?.[1];
     const given = req.get('x-outcome-token') ?? bearer;
     if (!outcomeToken || !given || !sameToken(given, outcomeToken)) return res.status(401).json({ error: 'A report token is required.' });
-    const wait = outcomeHit(req.ip);
+    const wait = outcomeHit(visitorKey(req));
     if (wait) return tooMany(res, wait, 'reports');
     const { address, outcome, reporter } = req.body ?? {};
     try {

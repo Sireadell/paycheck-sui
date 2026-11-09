@@ -34,5 +34,5 @@ Not needed on the server: `GEMINI_API_KEY` (benchmark only) and the Sui wallet k
 | Topic | Detail |
 |---|---|
 | `PAYCHECK_MODE` | `test` keeps writes in the labelled test space. `live` writes real memories on mainnet |
-| Visitor rate limits | Counted per visitor. The server trusts one proxy hop (`app.set('trust proxy', 1)`), so each visitor gets their own limit behind Render |
+| Visitor rate limits | Counted per visitor. The server trusts one proxy hop (`app.set('trust proxy', 1)`) and reads the visitor from `cf-connecting-ip` when Cloudflare sent it with `cf-ray`, so each visitor gets their own limit behind Render (details in API.md) |
 | Free plan sleeps | The blueprint uses the paid `starter` plan so the site stays awake. Change `plan` if a slow first load is fine |
