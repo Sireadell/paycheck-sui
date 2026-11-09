@@ -10,10 +10,11 @@ export const EXPLORER_TX = (digest) => `https://suiscan.xyz/mainnet/tx/${digest}
 export const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 /** mode 'live' writes to the live namespaces (the public proof run); anything else uses the labelled test namespace. */
-export function buildEnv({ mode = 'test', withPayer = false, reserveSui = 2 } = {}) {
+// recallTimeoutMs counts the time a recall waits in the queue too, so agents allow far more than the 25 s web default.
+export function buildEnv({ mode = 'test', withPayer = false, reserveSui = 2, recallTimeoutMs = 150000 } = {}) {
   const cfg = loadConfig();
   const memory = createMemory();
-  const checker = createChecker({ tatum: getTatum(), ankr: cfg.ANKR_API_KEY ? getAnkr() : null, memory, mode: mode === 'live' ? 'live' : 'test' });
+  const checker = createChecker({ tatum: getTatum(), ankr: cfg.ANKR_API_KEY ? getAnkr() : null, memory, mode: mode === 'live' ? 'live' : 'test', recallTimeoutMs });
   let payer = null;
   if (withPayer) {
     const keypair = keypairFromSecret(cfg.SUI_WALLET_PRIVATE_KEY);
@@ -24,9 +25,9 @@ export function buildEnv({ mode = 'test', withPayer = false, reserveSui = 2 } = 
 }
 
 /** Walrus search needs a few seconds before a new memory can be found. Polls until the blob id is recalled. */
-export async function waitUntilRecalled(memory, { namespace, address, blobId }, { tries = 12, waitMs = 5000 } = {}) {
+export async function waitUntilRecalled(memory, { namespace, address, group, blobId }, { tries = 12, waitMs = 5000 } = {}) {
   for (let i = 0; i < tries; i++) {
-    const found = await memory.recall({ namespace, address }).catch(() => []);
+    const found = await memory.recall(group ? { namespace, group } : { namespace, address }).catch(() => []);
     if (found.some((m) => m.blobId === blobId)) return true;
     await sleep(waitMs);
   }

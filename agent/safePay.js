@@ -50,7 +50,9 @@ export function createSafePay({ checker, memory, payer = null, agentId = 'agent'
     const mist = suiToMist(amount);
     if (mist > maxMist) throw new Error(`Amount ${mistToSui(mist)} SUI is above this agent's limit of ${mistToSui(maxMist)} SUI`);
 
-    const verdict = await checker.check(payee);
+    let verdict = await checker.check(payee);
+    // If the shared memory could not be read in full, a "pay" answer cannot be trusted: stop, as with caution.
+    if (verdict.verdict === 'pay' && verdict.memory?.degraded) verdict = { ...verdict, verdict: 'caution', code: 'MEMORY_UNAVAILABLE', reason: 'The shared memory could not be read in full, so the check cannot rule out a bad report.' };
     if (verdict.verdict === 'do not pay') return refuse(payee, mist, verdict, 'PAYCHECK_REFUSED');
     if (verdict.verdict !== 'pay' && !allowCaution) return refuse(payee, mist, verdict, 'PAYCHECK_CAUTION');
 

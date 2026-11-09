@@ -132,3 +132,16 @@ test('signing key: the wallet export format gives the same address, an empty key
   assert.ok(raw.length > 0);
   assert.throws(() => keypairFromSecret(''), /No signing key/);
 });
+
+test('a refusal from a warning about another wallet carries the full check, the warning and the link evidence', async () => {
+  const check = { verdict: 'do not pay', code: 'GROUP_BAD_OUTCOME', reason: 'linked', memoryIds: ['m-1'], warnedBy: [{ memoryId: 'm-1', reporter: 'agent-a', crossAddress: true }], evidence: [{ kind: 'link', type: 'shared_funder', address: ADDR }], withoutMemory: { verdict: 'pay' } };
+  const safePay = createSafePay({ checker: checkerSaying(check), memory: fakeMemory(), dryRun: true });
+  await assert.rejects(() => safePay(GOOD, '0.001'), (e) => e.warnedBy[0].reporter === 'agent-a' && e.check.withoutMemory.verdict === 'pay' && e.evidence[0].address === ADDR);
+});
+
+test('a pay answer given while the shared memory could not be read is treated as caution and sends nothing', async () => {
+  const payer = fakePayer();
+  const checker = checkerSaying({ verdict: 'pay', code: 'LINKED_NO_BAD_HISTORY', memory: { degraded: true } });
+  await assert.rejects(() => createSafePay({ checker, memory: fakeMemory(), payer })(GOOD, '0.001'), (e) => e.code === 'PAYCHECK_CAUTION' && e.checkCode === 'MEMORY_UNAVAILABLE');
+  assert.equal(payer.sent.length, 0);
+});

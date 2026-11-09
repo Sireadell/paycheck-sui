@@ -103,7 +103,7 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
     }
     // Is the wallet itself a shared service (it paid many different wallets)? Read from the same page, no extra call.
     const selfHub = classifyHub(funderTouches(payoutsOf(wallet, page.transactions)), { capped: page.hasNextPage });
-    const groupIds = [funder && groupIdOf(funder), sponsor && groupIdOf(sponsor)].filter(Boolean);
+    const groupIds = [...new Set([funder && groupIdOf(funder), sponsor && groupIdOf(sponsor)].filter(Boolean))];
     const sf = analysis.sharedFunder;
     const groupId = sf?.groupSize > 0 && funder ? groupIdOf(funder) : (sponsor && !hubs.sponsor?.verdict?.startsWith('shared') ? groupIdOf(sponsor) : null);
     const notes = [];

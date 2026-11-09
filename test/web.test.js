@@ -1,6 +1,8 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, mkdtempSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { createApp } from '../server.js';
 import { createChecker } from '../src/check.js';
 import { createTatum } from '../src/providers/tatum.js';
@@ -24,8 +26,8 @@ const memory = {
 };
 const checker = createChecker({ tatum, memory, mode: 'test' });
 
-async function serve() {
-  const app = createApp({ checker, memory, checkLimit: { max: 100, windowMs: 60000 } });
+async function serve(extra = {}) {
+  const app = createApp({ checker, memory, checkLimit: { max: 100, windowMs: 60000 }, ...extra });
   const server = await new Promise((r) => { const s = app.listen(0, '127.0.0.1', () => r(s)); });
   return { base: `http://127.0.0.1:${server.address().port}`, close: () => { app.locals.stop(); server.close(); server.closeAllConnections?.(); } };
 }
@@ -75,7 +77,7 @@ test('first screen: stats keep live, pre-scan and test on separate lines', async
 });
 
 test('first screen: the cross-agent endpoint is a clean 404 until a real run exists', async () => {
-  const s = await serve();
+  const s = await serve({ dataDir: mkdtempSync(join(tmpdir(), 'no-runs-')) });
   try {
     const r = await fetch(`${s.base}/api/cross-agent`);
     assert.equal(r.status, 404);
