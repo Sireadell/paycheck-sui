@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PayCheck Sui</title>
-    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <!-- Top Bar -->
@@ -105,30 +105,30 @@
             <div id="main-verdict-chip" class="verdict-chip verdict-chip-caution">
               caution
             </div>
-            <p id="main-verdict-reason" class="verdict-reason">—</p>
+            <p id="main-verdict-reason" class="verdict-reason">...</p>
           </div>
 
           <!-- Comparison Columns -->
           <div class="columns-comparison">
             <div id="col-with-memory" class="compare-col outlined">
               <div class="col-head">With memory</div>
-              <div id="col-with-memory-verdict" class="col-verdict">—</div>
+              <div id="col-with-memory-verdict" class="col-verdict">...</div>
             </div>
             <div id="col-without-memory" class="compare-col">
               <div class="col-head">Without memory</div>
-              <div id="col-without-memory-verdict" class="col-verdict">—</div>
+              <div id="col-without-memory-verdict" class="col-verdict">...</div>
             </div>
           </div>
 
           <!-- Memory changed banner -->
           <div id="memory-changed-line" class="memory-changed-line">
-            —
+            ...
           </div>
 
           <!-- What to do next -->
           <div class="next-action-box">
             <span class="next-action-title">What to do next:</span>
-            <span id="next-action-text" class="next-action-text">—</span>
+            <span id="next-action-text" class="next-action-text">...</span>
           </div>
 
           <!-- Evidence List -->
@@ -206,15 +206,15 @@
           <div class="numbers-top-row">
             <div class="number-stat-item">
               <div class="stat-title">Real Sui wallet groups found</div>
-              <div class="stat-value" id="stat-groups-caught">—</div>
+              <div class="stat-value" id="stat-groups-caught">...</div>
             </div>
             <div class="number-stat-item">
               <div class="stat-title">Ordinary wallets wrongly told do not pay</div>
-              <div class="stat-value" id="stat-controls-strict">—</div>
+              <div class="stat-value" id="stat-controls-strict">...</div>
             </div>
             <div class="number-stat-item">
               <div class="stat-title">Memory recall checked by exact address</div>
-              <div class="stat-value" id="stat-prescan-verified">—</div>
+              <div class="stat-value" id="stat-prescan-verified">...</div>
             </div>
           </div>
 
@@ -233,31 +233,31 @@
               <tbody>
                 <tr>
                   <th scope="row">Group wallets answered do not pay</th>
-                  <td id="table-stopped-ai">—</td>
-                  <td id="table-stopped-aiReport">—</td>
-                  <td id="table-stopped-checker">—</td>
-                  <td id="table-stopped-memory">—</td>
+                  <td id="table-stopped-ai">...</td>
+                  <td id="table-stopped-aiReport">...</td>
+                  <td id="table-stopped-checker">...</td>
+                  <td id="table-stopped-memory">...</td>
                 </tr>
                 <tr>
                   <th scope="row">Group wallets where the right link was named</th>
-                  <td id="table-link-ai">—</td>
-                  <td id="table-link-aiReport">—</td>
-                  <td id="table-link-checker">—</td>
-                  <td id="table-link-memory">—</td>
+                  <td id="table-link-ai">...</td>
+                  <td id="table-link-aiReport">...</td>
+                  <td id="table-link-checker">...</td>
+                  <td id="table-link-memory">...</td>
                 </tr>
                 <tr>
                   <th scope="row">Ordinary wallets wrongly told do not pay</th>
-                  <td id="table-strict-ai">—</td>
-                  <td id="table-strict-aiReport">—</td>
-                  <td id="table-strict-checker">—</td>
-                  <td id="table-strict-memory">—</td>
+                  <td id="table-strict-ai">...</td>
+                  <td id="table-strict-aiReport">...</td>
+                  <td id="table-strict-checker">...</td>
+                  <td id="table-strict-memory">...</td>
                 </tr>
                 <tr>
                   <th scope="row">Ordinary wallets told do not pay or caution</th>
-                  <td id="table-incl-ai">—</td>
-                  <td id="table-incl-aiReport">—</td>
-                  <td id="table-incl-checker">—</td>
-                  <td id="table-incl-memory">—</td>
+                  <td id="table-incl-ai">...</td>
+                  <td id="table-incl-aiReport">...</td>
+                  <td id="table-incl-checker">...</td>
+                  <td id="table-incl-memory">...</td>
                 </tr>
               </tbody>
             </table>
@@ -267,19 +267,19 @@
           <div class="live-counters-grid">
             <div class="counter-card">
               <span class="counter-label">Memories that changed an answer</span>
-              <span class="counter-num" id="live-changed-verdicts">—</span>
+              <span class="counter-num" id="live-changed-verdicts">...</span>
             </div>
             <div class="counter-card">
               <span class="counter-label">Live memories</span>
-              <span class="counter-num" id="live-memories">—</span>
+              <span class="counter-num" id="live-memories">...</span>
             </div>
             <div class="counter-card">
               <span class="counter-label">Pre-scan memories</span>
-              <span class="counter-num" id="live-prescan">—</span>
+              <span class="counter-num" id="live-prescan">...</span>
             </div>
             <div class="counter-card">
               <span class="counter-label">Tatum calls since start</span>
-              <span class="counter-num" id="live-tatum-calls">—</span>
+              <span class="counter-num" id="live-tatum-calls">...</span>
             </div>
           </div>
           <div class="counter-note">Counted since this server last started.</div>
@@ -298,8 +298,6 @@
       </div>
     </footer>
 
-    <script type="module" src="/app.js"></script>
-    <div id="root" style="display:none"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <script type="module" src="app.js"></script>
   </body>
 </html>

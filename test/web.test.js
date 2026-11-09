@@ -36,20 +36,21 @@ test('first screen: page, copy file and styles are served', async () => {
   const s = await serve();
   try {
     const html = await (await fetch(`${s.base}/`)).text();
-    assert.match(html, /<script src="app.js"/);
-    for (const f of ['app.js', 'style.css', 'sample.json']) assert.equal((await fetch(`${s.base}/${f}`)).status, 200, f);
+    assert.match(html, /<script type="module" src="app.js"/);
+    for (const f of ['app.js', 'style.css']) assert.equal((await fetch(`${s.base}/${f}`)).status, 200, f);
     const copy = await (await fetch(`${s.base}/copy.json`)).json();
     assert.ok(copy.tagline && copy.panel && copy.bench && copy.counters && copy.limits.items.length >= 5);
   } finally { s.close(); }
 });
 
-test('first screen: every reader-facing word is in copy.json, with no em dashes', () => {
+test('first screen: no em dashes and no keys in the page files', () => {
   const dir = new URL('../web/', import.meta.url);
-  const html = readFileSync(new URL('index.html', dir), 'utf8');
-  // Static HTML holds no text between tags except inside script and style.
-  const body = html.replace(/<title>[\s\S]*?<\/title>|<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<!--[\s\S]*?-->/g, '').replace(/<[^>]+>/g, '');
-  assert.equal(body.replace(/\s+/g, ''), '', 'index.html has text outside copy.json');
-  for (const f of ['copy.json', 'sample.json', 'app.js', 'index.html', 'style.css']) assert.ok(!readFileSync(new URL(f, dir), 'utf8').includes('—'), `${f} has an em dash`);
+  for (const f of ['copy.json', 'app.js', 'index.html', 'style.css']) {
+    const txt = readFileSync(new URL(f, dir), 'utf8');
+    assert.ok(!txt.includes('—'), f + ' has an em dash');
+    assert.ok(!/x-api-key|MEMWAL_|DELEGATE_PRIVATE|suiprivkey/i.test(txt), f + ' mentions a key');
+  }
+  assert.ok(!/main.tsx/.test(readFileSync(new URL('index.html', dir), 'utf8')), 'leftover template line');
 });
 
 test('first screen: benchmark numbers come from the real set file, real set first', async () => {

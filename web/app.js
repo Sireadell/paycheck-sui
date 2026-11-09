@@ -387,7 +387,7 @@ function renderVerdictCard(data) {
   const colWithoutVerdict = document.getElementById('col-without-memory-verdict');
 
   colWithVerdict.textContent = data.verdict;
-  colWithoutVerdict.textContent = data.withoutMemory ? data.withoutMemory.verdict : '—';
+  colWithoutVerdict.textContent = data.withoutMemory ? data.withoutMemory.verdict : '...';
 
   if (isMemOn) {
     colWith.classList.add('outlined');
@@ -405,7 +405,7 @@ function renderVerdictCard(data) {
     memoryChangedLine.textContent = COPY.memoryNotChanged;
   }
 
-  document.getElementById('next-action-text').textContent = data.nextAction || '—';
+  document.getElementById('next-action-text').textContent = data.nextAction || '...';
 
   const evidenceList = document.getElementById('evidence-list');
   evidenceList.innerHTML = '';
@@ -600,13 +600,13 @@ function renderProofAndStats(proof, stats, isSample = false) {
     }
 
     if (stats.memories) {
-      document.getElementById('live-changed-verdicts').textContent = stats.memories.changedVerdicts != null ? stats.memories.changedVerdicts : '—';
-      document.getElementById('live-memories').textContent = stats.memories.live != null ? stats.memories.live : '—';
-      document.getElementById('live-prescan').textContent = stats.memories.prescan != null ? stats.memories.prescan : '—';
+      document.getElementById('live-changed-verdicts').textContent = stats.memories.changedVerdicts != null ? stats.memories.changedVerdicts : '...';
+      document.getElementById('live-memories').textContent = stats.memories.live != null ? stats.memories.live : '...';
+      document.getElementById('live-prescan').textContent = stats.memories.prescan != null ? stats.memories.prescan : '...';
     }
 
     if (stats.calls && stats.calls.tatum) {
-      document.getElementById('live-tatum-calls').textContent = stats.calls.tatum.calls != null ? stats.calls.tatum.calls : '—';
+      document.getElementById('live-tatum-calls').textContent = stats.calls.tatum.calls != null ? stats.calls.tatum.calls : '...';
     }
   }
 }
