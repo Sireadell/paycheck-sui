@@ -70,12 +70,13 @@ a:hover {
 .top-bar {
   background-color: var(--bg-card);
   border-bottom: 1px solid var(--border-line);
-  padding: 14px 16px;
+  padding: 14px 0;
 }
 
 .top-bar-inner {
   max-width: 860px;
   margin: 0 auto;
+  padding: 0 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -731,13 +732,14 @@ a:hover {
 /* Footer */
 .page-footer {
   border-top: 1px solid var(--border-line);
-  padding: 24px 16px;
+  padding: 24px 0;
   background-color: var(--bg-card);
 }
 
 .footer-inner {
   max-width: 860px;
   margin: 0 auto;
+  padding: 0 16px;
   font-size: 0.85rem;
   color: var(--text-muted);
   line-height: 1.45;
@@ -746,4 +748,29 @@ a:hover {
 /* Utility */
 .hidden {
   display: none !important;
+}
+
+/* Try-an-example link under the address box */
+.try-example {
+  margin: 10px 0 0;
+  font-size: 0.9rem;
+}
+.try-example button {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  font-weight: 600;
+  color: var(--accent-blue);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Phone: table fits without sideways scrolling, counters sit two across */
+@media (max-width: 600px) {
+  .benchmark-table { font-size: 0.78rem; }
+  .benchmark-table th, .benchmark-table td { padding: 8px 6px; }
+  .benchmark-table thead th { white-space: normal; vertical-align: bottom; }
+  .table-metric-head { min-width: 0; }
+  .live-counters-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }

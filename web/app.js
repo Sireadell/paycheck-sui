@@ -434,9 +434,11 @@ function renderVerdictCard(data) {
       const li = document.createElement('li');
       li.className = 'citation-row';
       const viaType = (w.via && w.via.type) ? w.via.type : 'link';
-      li.append('Stopped by memory ' + (w.memoryId || '') + ', reported by ' + (w.reporter || '') + ', about ');
-      li.appendChild(createAddressSpan(w.reportedAddress));
-      li.append(', reached through ' + viaType);
+      const line = document.createElement('span');
+      line.append('Stopped by memory ' + (w.memoryId || '') + ', reported by ' + (w.reporter || '') + ', about ');
+      line.appendChild(createAddressSpan(w.reportedAddress));
+      line.append(', reached through ' + viaType);
+      li.appendChild(line);
       warnedList.appendChild(li);
     });
   } else {
@@ -705,6 +707,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('check-form');
   const input = document.getElementById('address-input');
   const showAllBtn = document.getElementById('evidence-show-all-btn');
+
+  // One-click example: the wallet Agent B was about to pay in the saved two-agent run.
+  fetch(API_BASE + '/api/cross-agent').then((r) => (r.ok ? r.json() : null)).then((d) => {
+    const addr = d && d.agentB && d.agentB.address;
+    if (!addr) return;
+    document.getElementById('try-example').classList.remove('hidden');
+    document.getElementById('try-example-btn').addEventListener('click', () => { input.value = addr; setMemorySwitch('on'); doCheck(addr); });
+  }).catch(() => {});
 
   onBtn.addEventListener('click', () => setMemorySwitch('on'));
   offBtn.addEventListener('click', () => setMemorySwitch('off'));
