@@ -1,0 +1,32 @@
+# Render blueprint for the PayCheck server. Secret values are set in the Render dashboard, never in this file.
+services:
+  - type: web
+    name: paycheck-sui
+    runtime: node
+    plan: starter
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: PAYCHECK_MODE
+        value: test
+      - key: TATUM_API_KEY_MAINNET
+        sync: false
+      - key: MEMWAL_DELEGATE_PRIVATE_KEY
+        sync: false
+      - key: MEMWAL_ACCOUNT_ID
+        sync: false
+      - key: MEMWAL_AGENT_ID
+        sync: false
+      - key: MEMWAL_PACKAGE_ID
+        sync: false
+      - key: MEMWAL_REGISTRY_ID
+        sync: false
+      - key: MEMWAL_RELAYER_URL
+        sync: false
+      - key: ANKR_API_KEY
+        sync: false
+      - key: OUTCOME_TOKEN
+        sync: false
