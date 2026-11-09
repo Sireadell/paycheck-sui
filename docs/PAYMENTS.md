@@ -8,7 +8,7 @@ A check can be bought per call. The route is plain SUI on Sui mainnet. It is not
 2. The server answers HTTP 402 with the receiving address, the coin (SUI), an exact amount (0.001 SUI plus a few mist that make it unique) and a one-time id.
 3. The caller sends that exact amount on Sui mainnet.
 4. The caller sends the same request again with `id` and the transaction `digest`.
-5. The server reads the transaction back through Tatum GraphQL and checks four things: it succeeded, the receiving address got exactly the asked amount in SUI, it is less than 30 minutes old, and the digest was never used before. Only then it returns the check.
+5. The server reads the transaction back through Tatum GraphQL and checks four things: it succeeded, the receiving address got exactly the asked amount in SUI, it is less than 30 minutes old, and the digest was never used before. Only then it returns the check. The 402 answer also shows the price in dollars (`approxUsd` and `rate`), read from Tatum's exchange rate. If that read fails the answer simply leaves it out.
 
 Each id works once and expires after 15 minutes. Each digest works once, and used digests are saved to `data/paid-check/used.json` so a restart does not forget them. The receiving address is `PAID_CHECK_PAYEE`, or `SUI_ADDRESS` when that is not set.
 

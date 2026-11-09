@@ -180,7 +180,7 @@ export function createApp({ checker, memory, probe = null, outcomeToken = proces
 if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) {
   const cfg = loadConfig();
   const memory = createMemory();
-  const checker = createChecker({ tatum: getTatum(), ankr: cfg.ANKR_API_KEY ? getAnkr() : null, memory, mode: process.env.PAYCHECK_MODE === 'live' ? 'live' : 'test' });
+  const checker = createChecker({ tatum: getTatum(), ankr: cfg.ANKR_API_KEY ? getAnkr() : null, memory, mode: process.env.PAYCHECK_MODE === 'live' ? 'live' : 'test', chainFacts: true });
   const port = Number(process.env.PORT) || 3000;
   const payee = process.env.PAID_CHECK_PAYEE || cfg.SUI_ADDRESS;
   const paidCheck = payee ? createPaidCheck({ tatum: getTatum(), checker, payee, usedFile: `${ROOT}data/paid-check/used.json` }) : null;

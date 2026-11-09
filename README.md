@@ -2,6 +2,7 @@ PayCheck Sui stops an AI agent from paying a Sui address when another agent's ba
 
 **What one agent learns, every agent knows.**
 
+Built on two sponsor tools: Tatum reads the Sui chain (wallet history, who paid its first SUI and its fees, what it holds, the price of a paid check) and shows each check's real Tatum calls on screen; Walrus Memory carries the warning from one agent to the next.
 It works on any address. The person being paid doesn't need to sign up, sign anything or know I exist.
 
 Live app: https://paycheck-sui-app.onrender.com · Code: https://github.com/Sireadell/paycheck-sui · Proof page: https://paycheck-sui-app.onrender.com/proof
@@ -35,7 +36,7 @@ Run the tests (recorded mainnet answers, no network):
 npm test
 ```
 
-185 tests pass.
+192 tests pass.
 
 Ask the live server about a real wallet from the real set (rs-01, a group tied by one shared first funder), with memory off and then on:
 
@@ -131,16 +132,19 @@ Every chain read comes from Tatum's Sui GraphQL endpoint (`https://sui-mainnet.g
 | Gas sponsor field on each transaction | The Sui-only link: who paid the fee |
 | Latest checkpoint | How fresh the data behind each answer is |
 | Transactions in one checkpoint | The pick rules for the real set and the pre-scan |
-| Transaction by digest | Reading back each proof transaction of the real set |
+| Transaction by digest | Reading back each proof transaction of the real set, and reading a paid check's payment back |
+| Balances, objects and SuiNS name of an address (one call) | The "holdings" evidence row: what the checked wallet and its first funder hold. Evidence only, it never changes a verdict |
+| Reference gas price | The "network fee now" line next to the holdings, read once a minute at most |
+| Tatum exchange rate (SUI in USD, a REST call, not GraphQL) | The dollar price shown when a paid check asks for payment |
 
 How it stays reliable:
 
 - One shared limit of 2.5 requests a second for the whole process, under the free plan's 3 a second. A rate-limited or failed call is retried with a growing pause.
 - Every listing sets `afterCheckpoint` at Tatum's data floor. Without it the listing errors.
-- Every answer counts its own Tatum calls and failures. On the real set a check took 4.10 Tatum calls on average (largest 5) reading 50 transactions per wallet, and 5.79 (largest 14) reading 200. A check reads the address's balance too, which is one of those calls.
+- Every answer counts its own Tatum calls and failures. On the real set a check took 4.10 Tatum calls on average (largest 5) reading 50 transactions per wallet, and 5.79 (largest 14) reading 200. A check reads the address's balance too, which is one of those calls. Those numbers are the saved benchmark runs, which read history and balance only. The live server also reads holdings for the wallet and its funder and the network fee, so a live check takes about 2 to 3 more calls.
 - Building the real set took about 3,900 Tatum calls over 57,631 sampled checkpoints.
 
-Tatum's plain JSON-RPC route answered 404 when I tested it, and its gRPC route needs a separate client, so PayCheck uses GraphQL only.
+The check screen shows the real Tatum calls of that check (how many, which kind, median time) and the holdings, so you can see what Tatum was asked. What I tested and left out, with the date, is in [docs/TATUM.md](docs/TATUM.md): Tatum's plain JSON-RPC route answers 404 for Sui (its docs now point Sui users to gRPC, which needs a separate client), Tatum notifications do not list Sui, and address screening does not cover Sui.
 
 ### Second opinion from Ankr
 
@@ -305,7 +309,7 @@ Seven runtime dependencies: `express`, `zod`, `@mysten-incubation/memwal`, `@mys
 | `data/prescan/` | The pre-scan pick list, verdicts and the recall check |
 | `bench/` | Benchmark prompts, saved AI answers and results |
 | `docs/` | [API](docs/API.md), [MCP](docs/MCP.md), [verdict rules](docs/VERDICT_RULES.md), [method](docs/METHOD.md), [reproduce](docs/REPRODUCE.md) |
-| `test/` | 185 tests on recorded mainnet answers, no keys needed |
+| `test/` | 192 tests on recorded mainnet answers, no keys needed |
 
 ## What I built during the event
 

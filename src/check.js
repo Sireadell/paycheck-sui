@@ -71,7 +71,7 @@ export function payeeFacts(g) {
   return { kind: g.profile.isPackage ? 'package' : g.profile.isObject ? 'object' : null, noHistory: empty };
 }
 
-export function createChecker({ tatum, ankr = null, memory, mode = 'test', recallTimeoutMs = 25000, now = () => Date.now(), maxTx = 50 } = {}) {
+export function createChecker({ tatum, ankr = null, memory, mode = 'test', recallTimeoutMs = 25000, now = () => Date.now(), maxTx = 50, chainFacts = false } = {}) {
   // How many transactions of a wallet, its funder and its gas sponsor are read (50 default, up to 200, 4 calls at most per list).
   const depth = clampMaxTx(maxTx);
   const bench = mode === 'bench';
@@ -177,6 +177,24 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
     return { memories: out, ok: failed.length === 0, error: state.lastRecallError };
   }
 
+  // Extra evidence from Tatum, shown beside the verdict and never used by the verdict rules: what the wallet and its funder hold,
+  // and the network fee now. Off unless chainFacts is on. Every read can fail alone; a failure only leaves that part out.
+  let gas = { at: 0, value: null };
+  const gasNow = () => {
+    if (gas.value && now() - gas.at < 60000) return gas.value;
+    const p = Promise.resolve().then(() => tatum.referenceGasPrice()).catch(() => null);
+    gas = { at: now(), value: p };
+    p.then((v) => { if (v == null && gas.value === p) gas = { at: 0, value: null }; });
+    return p;
+  };
+  async function readChainFacts(wallet, funder) {
+    if (typeof tatum.walletSnapshot !== 'function') return null;
+    const snap = (a) => (a ? Promise.resolve().then(() => tatum.walletSnapshot(a)).catch(() => null) : Promise.resolve(null));
+    const [w, f, referenceGasPrice] = await Promise.all([snap(wallet), snap(funder), gasNow()]);
+    if (!w && !f && referenceGasPrice == null) return null;
+    return { wallet: w, funder: f ? { address: funder, ...f } : null, referenceGasPrice, note: 'Evidence only. These reads never change the verdict.' };
+  }
+
   // The checkpoint is only a "data as of" label, so one read is shared for 10 seconds.
   let cp = { at: 0, value: null };
   const checkpointNow = () => {
@@ -211,7 +229,7 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
     // Recall runs for the wallet even if the chain read failed (a stored bad report still counts).
     const restRecall = memoryOn && g ? readAsks(asksFor({ funder: g.funder, sponsor: g.sponsor, groupIds: g.groupIds })) : null;
     const recalled = memoryOn ? collect([...(await walletRecall), ...(restRecall ? await restRecall : [])]) : { memories: [], ok: true, error: null };
-    const [cross, checkpoint] = g ? await Promise.all([crossCheck(wallet, g.page, g.links), checkpointP]) : [null, null];
+    const [cross, checkpoint, facts] = g ? await Promise.all([crossCheck(wallet, g.page, g.links), checkpointP, chainFacts ? readChainFacts(wallet, g.funder) : null]) : [null, null, null];
 
     const verdict = buildVerdict({
       wallet,
@@ -262,7 +280,8 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
       dataAsOfCheckpoint: checkpoint,
       crossCheck: cross,
       notes: [...(g?.notes ?? []), ...(chainError ? [`Chain data could not be read (${chainError}).`] : [])],
-      callLog: { tatum: tatumSummary, ankr: own('ankr') },
+      ...(facts ? { chainFacts: facts } : {}),
+      callLog: { tatum: { ...own('tatum'), list: own.list('tatum') }, ankr: own('ankr') },
       tookMs: now() - t0,
     };
   }

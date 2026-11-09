@@ -11,6 +11,8 @@ All answers are JSON. The web layer only calls these endpoints.
 | GET /health | Returns `ok` |
 | GET /api/failures | Every miss, false alarm and failed recall in the saved results, recounted from the rows. The same data is shown at `/failures` |
 
+A check answer from the live server also carries `callLog.tatum.list` (each Tatum call of that check: kind, milliseconds, ok) and `chainFacts` (what the wallet and its first funder hold, plus the reference gas price). `chainFacts` is evidence only and never changes the verdict. See TATUM.md.
+
 ## Addresses
 
 An address is read in one place (`src/address.js`). Surrounding spaces are ignored. A Sui address of 1 to 64 hex characters after `0x` (or `0X`) is accepted in any letter case and is padded to 64 hex characters, lowercase, before it is looked up or compared, so `0x1` becomes `0x` plus 63 zeros and a 1. The answer's `address` field echoes what was sent.

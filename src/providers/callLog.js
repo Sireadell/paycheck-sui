@@ -17,7 +17,7 @@ export function record(provider, type, ms, ok) {
 /** Run fn(summarizeOwn). Only calls made inside fn (and what it awaits) land in its own list, so concurrent runs never mix. */
 export async function withRecorder(fn) {
   const own = [];
-  return scope.run(own, () => fn((provider) => summarizeList(own, provider)));
+  return scope.run(own, () => fn(Object.assign((provider) => summarizeList(own, provider), { list: (provider) => own.filter((e) => !provider || e.provider === provider).map((e) => ({ type: e.type, ms: e.ms, ok: e.ok })) })));
 }
 
 export function mark() {

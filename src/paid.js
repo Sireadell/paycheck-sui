@@ -82,6 +82,10 @@ export function createPaidCheck({ tatum, checker, payee, usedFile = null, now = 
     if (!addr) return { status: 400, body: { error: 'Send a Sui address in "address".' } };
     if (!id && !digest) {
       const payment = challenge(addr);
+      // The price in dollars, from Tatum's exchange rate. If the rate cannot be read, the SUI amount still stands on its own.
+      if (typeof tatum.exchangeRate === 'function') {
+        try { const r = await tatum.exchangeRate('SUI', 'USD'); payment.approxUsd = Number((Number(payment.amountSui) * r.value).toFixed(6)); payment.rate = { suiInUsd: r.value, source: 'Tatum exchange rate' }; } catch { /* leave out */ }
+      }
       return { status: 402, body: { error: 'Payment required. Pay this exact amount in SUI, then send the same request again with "id" and "digest".', payment } };
     }
     const v = await verify({ id, digest, address: addr });

@@ -3,6 +3,7 @@ import { sharedLimiter } from './rateLimit.js';
 import { record } from './callLog.js';
 import { padAddress } from '../address.js';
 
+export const RATE_ENDPOINT = 'https://api.tatum.io/v4/data/rate/symbol';
 export const ENDPOINT = 'https://sui-mainnet.gateway.tatum.io/graphql';
 // About 23 Jan 2026. Listings must always carry afterCheckpoint, and nothing older is served.
 export const FLOOR_CHECKPOINT = 237661232;
@@ -57,6 +58,24 @@ export function createTatum({ key, fetchImpl = fetch, limiter = sharedLimiter, e
     }
   }
 
+  // Tatum's exchange rate (price in a fiat currency). Not part of the Sui GraphQL door, so it has its own tiny read.
+  async function rateRead(symbol, basePair) {
+    const started = Date.now();
+    let ok = false;
+    try {
+      await limiter();
+      const res = await fetchImpl(`${RATE_ENDPOINT}?symbol=${encodeURIComponent(symbol)}&basePair=${encodeURIComponent(basePair)}`, { signal: AbortSignal.timeout(timeoutMs), headers: { 'x-api-key': key } });
+      if (!res.ok) throw new Error(`Tatum HTTP ${res.status}`);
+      const j = await res.json();
+      const value = Number(j?.value);
+      if (!Number.isFinite(value) || value <= 0) throw new Error('Tatum rate has an unexpected shape');
+      ok = true;
+      return { value, basePair: j.basePair ?? basePair, source: j.source ?? null, timestamp: j.timestamp ?? null };
+    } finally {
+      record('tatum', 'exchangeRate', Date.now() - started, ok);
+    }
+  }
+
   const addr = (a) => {
     const p = padAddress(a);
     if (!p) throw new Error('Not a Sui address');
@@ -64,6 +83,7 @@ export function createTatum({ key, fetchImpl = fetch, limiter = sharedLimiter, e
   };
 
   return {
+    exchangeRate: (symbol = 'SUI', basePair = 'USD') => rateRead(symbol, basePair),
     async latestCheckpoint() {
       const d = await gql('latestCheckpoint', '{ checkpoint { sequenceNumber } }');
       return d.checkpoint.sequenceNumber;
@@ -92,6 +112,12 @@ export function createTatum({ key, fetchImpl = fetch, limiter = sharedLimiter, e
       const obj = d.address.asObject;
       return { balance: String(d.address.balance?.totalBalance ?? '0'), isObject: Boolean(obj), isPackage: Boolean(obj?.asMovePackage) };
     },
+    // What a wallet holds, in one call: every coin type with its balance, how many objects it owns and of which kinds, and its
+    // SuiNS name if it has one. Evidence only. Returns null when the answer has an unexpected shape.
+    async walletSnapshot(address) {
+      const d = await gql('walletSnapshot', `{ address(address:"${addr(address)}") { balances(first:20){ pageInfo{hasNextPage} nodes{ coinType{repr} totalBalance coinMetadata{symbol decimals} } } objects(first:50){ pageInfo{hasNextPage} nodes{ contents{ type{repr} } } } defaultNameRecord{ domain } } }`);
+      return d?.address ? normalizeSnapshot(d.address) : null;
+    },
     async transactionByDigest(digest) {
       if (!/^[1-9A-HJ-NP-Za-km-z]{32,50}$/.test(digest || '')) throw new Error('Not a transaction digest');
       const d = await gql('transactionByDigest', `{ transaction(digest:"${digest}") { ${TX_FIELDS} } }`);
@@ -110,6 +136,30 @@ export function createTatum({ key, fetchImpl = fetch, limiter = sharedLimiter, e
         afterCheckpoint,
       };
     },
+  };
+}
+
+/** Coins held, objects owned (coin objects apart from everything else) and the SuiNS name. Pure. */
+export function normalizeSnapshot(a) {
+  const coins = (a.balances?.nodes || []).map((b) => ({
+    coinType: b.coinType?.repr ?? null,
+    symbol: b.coinMetadata?.symbol ?? null,
+    decimals: b.coinMetadata?.decimals ?? null,
+    balance: String(b.totalBalance ?? '0'),
+  }));
+  const objs = (a.objects?.nodes || []).map((o) => o.contents?.type?.repr ?? '');
+  const isCoinObj = (r) => /::coin::Coin</.test(r);
+  const other = objs.filter((r) => r && !isCoinObj(r));
+  const kinds = [...new Set(other.map((r) => (r.split('::').slice(-1)[0] || r).replace(/<.*$/, '')))].slice(0, 5);
+  return {
+    coins,
+    coinTypes: coins.length,
+    coinsMore: Boolean(a.balances?.pageInfo?.hasNextPage),
+    objects: objs.length,
+    objectsMore: Boolean(a.objects?.pageInfo?.hasNextPage),
+    otherObjects: other.length,
+    otherKinds: kinds,
+    name: a.defaultNameRecord?.domain ?? null,
   };
 }
 
