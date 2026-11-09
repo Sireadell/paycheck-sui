@@ -4,7 +4,7 @@ PayCheck Sui stops an AI agent from paying a Sui address when another agent's ba
 
 It works on any address. The person being paid doesn't need to sign up, sign anything or know I exist.
 
-Live app: [[LIVE_URL]] · Video: [[VIDEO_URL]] · Code: [[REPO_URL]] · Proof page: [[LIVE_URL]]/proof
+Live app: https://paycheck-sui.onrender.com · Code: https://github.com/Sireadell/paycheck-sui · Proof page: https://paycheck-sui.onrender.com/proof
 
 > **The question it answers:** my agent is about to pay this Sui address. Should it?
 
@@ -40,8 +40,8 @@ npm test
 Ask the live server about a real wallet from the real set (rs-01, a group tied by one shared first funder), with memory off and then on:
 
 ```
-curl "[[LIVE_URL]]/api/check?address=0x36684098e89e315e57b8be53513a56e595452c7106de0f5c468262ba571a2964&memory=off"
-curl "[[LIVE_URL]]/api/check?address=0x36684098e89e315e57b8be53513a56e595452c7106de0f5c468262ba571a2964&memory=on"
+curl "https://paycheck-sui.onrender.com/api/check?address=0x36684098e89e315e57b8be53513a56e595452c7106de0f5c468262ba571a2964&memory=off"
+curl "https://paycheck-sui.onrender.com/api/check?address=0x36684098e89e315e57b8be53513a56e595452c7106de0f5c468262ba571a2964&memory=on"
 ```
 
 Every answer carries `verdict`, `code`, `reason`, `evidence` (each row labelled FACT, GUESS or REPORT), `memoryIds`, `changedByMemory`, `withoutMemory` and a count of the Tatum and Ankr calls it took. If no bad report reaches the wallet, both answers say "pay, linked, no bad history". That's on purpose (see the rules below).
@@ -49,10 +49,10 @@ Every answer carries `verdict`, `code`, `reason`, `evidence` (each row labelled 
 See the measured numbers and the memory counters:
 
 ```
-curl [[LIVE_URL]]/api/proof
-curl [[LIVE_URL]]/api/failures
-curl [[LIVE_URL]]/api/stats
-curl [[LIVE_URL]]/health
+curl https://paycheck-sui.onrender.com/api/proof
+curl https://paycheck-sui.onrender.com/api/failures
+curl https://paycheck-sui.onrender.com/api/stats
+curl https://paycheck-sui.onrender.com/health
 ```
 
 ## How it works
@@ -107,7 +107,7 @@ Recall in Walrus Memory is a search by meaning, not an exact lookup. So each che
 |---|---|---|
 | Held-back benchmark cases where memory changed the answer | 18 of 30, all group wallets going to "do not pay" | `bench/results/real.json` |
 | Pre-scan memories recalled and verified by exact address | 171 of 200 | `data/prescan/verified.json` |
-| Live "memories changed an answer" counter | [[MEMORIES_CHANGED]] | `GET /api/stats` |
+| Live "memories changed an answer" counter | read it live, counted since the server last started | `GET /api/stats` |
 
 About the pre-scan: before launch I ran PayCheck on 200 public Sui addresses, picked by a fixed rule, and stored each verdict with `origin=prescan`, so memory isn't empty on day one. They aren't user activity and they can never count as memory changing an answer. Then I asked Walrus Memory for each one by its exact address. 171 came back with the right stored verdict. The other 29 are stored but not counted: for 23 the search ran but didn't return that verdict, and 6 hit errors or timeouts.
 
