@@ -1,5 +1,6 @@
 {
-  "ranAt": "2026-11-07T18:19:36.128Z",
+  "ranAt": "2026-11-09T19:14:09.410Z",
+  "maxTx": 50,
   "memory": "off",
   "label": "real set: real mainnet facts we verified by script against two providers (Tatum and Ankr)",
   "groups": [
@@ -31,7 +32,7 @@
         "weakLinks": [],
         "roundTrip": false,
         "notes": [],
-        "tatumCalls": 4
+        "tatumCalls": 5
       },
       "memberResults": [
         {
@@ -54,7 +55,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 4
+          "tatumCalls": 5
         },
         {
           "address": "0x5bd845a51b45a554e0a77c9f0c002fbf1b4f9b752a6e45e42ea7f0594e91639e",
@@ -76,7 +77,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 4
+          "tatumCalls": 5
         }
       ]
     },
@@ -103,7 +104,7 @@
         "weakLinks": [],
         "roundTrip": false,
         "notes": [],
-        "tatumCalls": 3
+        "tatumCalls": 4
       },
       "memberResults": [
         {
@@ -121,7 +122,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0x8d6a92f0e479a4ece6c714f2086a219a9383067d6c44864f903a6ae459a1adf0",
@@ -138,7 +139,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0xa2ab4e95e5dc916e11464d1c4ff3d7f002914cbe6edb7c2f8e3a1c126447d229",
@@ -155,7 +156,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         }
       ]
     },
@@ -182,7 +183,7 @@
         "weakLinks": [],
         "roundTrip": false,
         "notes": [],
-        "tatumCalls": 3
+        "tatumCalls": 4
       },
       "memberResults": [
         {
@@ -200,7 +201,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0xf50c2c67dd2255803066f61137395a07a14d0a9a02a52cf275ce8635845d68a0",
@@ -217,7 +218,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         }
       ]
     },
@@ -250,7 +251,7 @@
         ],
         "roundTrip": false,
         "notes": [],
-        "tatumCalls": 4
+        "tatumCalls": 5
       },
       "memberResults": [
         {
@@ -274,7 +275,7 @@
           ],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 4
+          "tatumCalls": 5
         },
         {
           "address": "0x53376ae44cab6954251ffed887db358555e9ecf8a1eede1eb0f6e7f4aa7fb728",
@@ -291,7 +292,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 4
+          "tatumCalls": 5
         }
       ]
     },
@@ -320,7 +321,7 @@
         "notes": [
           "Only the oldest 50 transactions of this wallet were read."
         ],
-        "tatumCalls": 3
+        "tatumCalls": 4
       },
       "memberResults": [
         {
@@ -340,7 +341,7 @@
           "notes": [
             "Only the oldest 50 transactions of this wallet were read."
           ],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0xedff7181951f4006db32c415c15ff4e07bba6506a5881d0d0fc3d7e38abbafb5",
@@ -357,7 +358,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0xb4d801680ccd3d7e8bf730603bad0c527fc2696603a39b7e87c71d9bf70d4273",
@@ -374,7 +375,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0x991c766e9bf29f4e367d97aa0a7041b19cd216d02caae412492e5e8d6cb526f7",
@@ -391,7 +392,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0x9c0f30e2353523ecac133cff426a9345b71e5164da053b25946f389a92f978a0",
@@ -408,7 +409,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0x167c3ab31f1bee7ce8a7e0e04b659fc023bd0206019827bd8d373dd11501165b",
@@ -425,7 +426,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         }
       ]
     },
@@ -452,7 +453,7 @@
         "weakLinks": [],
         "roundTrip": true,
         "notes": [],
-        "tatumCalls": 3
+        "tatumCalls": 4
       },
       "memberResults": [
         {
@@ -470,7 +471,7 @@
           "weakLinks": [],
           "roundTrip": true,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0x5d0743c6d20f9b5d7798e46b5e83bd1c2ab09108d3152b646a120f8f047d0cea",
@@ -487,7 +488,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         }
       ]
     },
@@ -514,7 +515,7 @@
         "weakLinks": [],
         "roundTrip": true,
         "notes": [],
-        "tatumCalls": 3
+        "tatumCalls": 4
       },
       "memberResults": [
         {
@@ -532,7 +533,7 @@
           "weakLinks": [],
           "roundTrip": true,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0xbd39abb7260439f498daa70c3c9000c6cd0b0a2f338494469a7d413f2c218277",
@@ -549,7 +550,7 @@
           "weakLinks": [],
           "roundTrip": true,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         }
       ]
     },
@@ -576,7 +577,7 @@
         "weakLinks": [],
         "roundTrip": false,
         "notes": [],
-        "tatumCalls": 3
+        "tatumCalls": 4
       },
       "memberResults": [
         {
@@ -594,7 +595,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0x5bb54f8b08c8fae84ece08a9562b73c6e9f5c2a9043370e8471d4d0b2e96cef3",
@@ -611,7 +612,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         }
       ]
     },
@@ -638,7 +639,7 @@
         "weakLinks": [],
         "roundTrip": false,
         "notes": [],
-        "tatumCalls": 3
+        "tatumCalls": 4
       },
       "memberResults": [
         {
@@ -656,7 +657,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0xfc69b005af9152cd881ba6eacd899fe0c1b920cf87b51ccbb267b183da946c0a",
@@ -673,7 +674,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0x141b7182aa323b60d78d4a2cda3b546facb3047f70ed8dc3928b097da0fa5177",
@@ -690,7 +691,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0xce51f5d7396a85659d8850f55c701e0b6682024f8e10beccbde64785e52d434e",
@@ -707,7 +708,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0x18f3b1000b28307b633a88bfdbbf97edb4dfa578d118568ac1ac34e4220011ee",
@@ -724,7 +725,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         }
       ]
     },
@@ -751,7 +752,7 @@
         "weakLinks": [],
         "roundTrip": true,
         "notes": [],
-        "tatumCalls": 3
+        "tatumCalls": 4
       },
       "memberResults": [
         {
@@ -769,7 +770,7 @@
           "weakLinks": [],
           "roundTrip": true,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0x0f5bcbd58c302ef4695b79dc35d2c319e18e55fcdc5e19f5ba6c3febc9c10c6c",
@@ -786,7 +787,7 @@
           "weakLinks": [],
           "roundTrip": true,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0x27d3f6bb8c9b8421548cc49dbba1e7af978842f96ecc98bae78205020a9496ed",
@@ -803,7 +804,7 @@
           "weakLinks": [],
           "roundTrip": true,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         }
       ]
     },
@@ -832,7 +833,7 @@
         "notes": [
           "Only the oldest 50 transactions of this wallet were read."
         ],
-        "tatumCalls": 3
+        "tatumCalls": 4
       },
       "memberResults": [
         {
@@ -852,7 +853,7 @@
           "notes": [
             "Only the oldest 50 transactions of this wallet were read."
           ],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0x3f032b3392f5e264c69b0092dcd70e28bcf80002e294ca7dd2fe9c8f5d0980ed",
@@ -869,7 +870,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0x14fd2b20b89b8da21a731afc959e4fd2d4ccaf79f024e2557122134c8d62b12d",
@@ -886,7 +887,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0xb5a70a50789c785f3f553c32a7170eb501363b25c3e5eebab84a16e7c871a6a0",
@@ -903,7 +904,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0xb38d5ca5f85948c916d7f5157f5c7c5043962ad76c79cf297d6aaf1274dd4cfb",
@@ -920,7 +921,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0x4911f90dfadc8aed27558e92cf95206d39775a744504c8df87108da67772eb33",
@@ -937,7 +938,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         }
       ]
     },
@@ -964,7 +965,7 @@
         "weakLinks": [],
         "roundTrip": false,
         "notes": [],
-        "tatumCalls": 3
+        "tatumCalls": 4
       },
       "memberResults": [
         {
@@ -982,7 +983,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0xf29b3fe80886959f9e03a906c02d2c25b6d27499f728ed45b5b258d91e102a99",
@@ -999,7 +1000,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0xbd6bc470ce3bd9dbff715cab4dd516afa23fe80a7ccc44eae7096e3d807d3507",
@@ -1016,7 +1017,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         }
       ]
     },
@@ -1043,7 +1044,7 @@
         "weakLinks": [],
         "roundTrip": true,
         "notes": [],
-        "tatumCalls": 3
+        "tatumCalls": 4
       },
       "memberResults": [
         {
@@ -1061,7 +1062,7 @@
           "weakLinks": [],
           "roundTrip": true,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0x0adb4c5202adfe7d0eae2cc07329f460f9262eacd1ccb0e26bfcd40bd4e59b2a",
@@ -1078,7 +1079,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0x58eeb31cda40bf7ecd2fbf90516728d276414a89f2cd9758fa8a3ed8d945e3a7",
@@ -1095,7 +1096,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         }
       ]
     },
@@ -1122,7 +1123,7 @@
         "weakLinks": [],
         "roundTrip": false,
         "notes": [],
-        "tatumCalls": 3
+        "tatumCalls": 4
       },
       "memberResults": [
         {
@@ -1140,7 +1141,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0x46a6726e0422911f0f9e453b33de0a2f5d69bf9d86a08d0d8e89091996f1a912",
@@ -1157,7 +1158,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0x3701daaa4d79e19b694a49ada9189a3d531bd64d5bd0c65d1497ac4d8a8d80e1",
@@ -1174,7 +1175,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0xc8e156a936b6289f296b7f53840066b58a719303739217e4f153f658663856e8",
@@ -1191,7 +1192,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0x24754721e5bf28157204905784f797cd86820e5eb2ea4a39919f62b1ef91210c",
@@ -1208,7 +1209,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0x746229b34976ed532985f26b4c6fd9aa56ed72af9dc60cfa90c80cbda701d848",
@@ -1225,7 +1226,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         }
       ]
     },
@@ -1248,7 +1249,7 @@
         "notes": [
           "Only the oldest 50 transactions of this wallet were read."
         ],
-        "tatumCalls": 3
+        "tatumCalls": 4
       },
       "memberResults": [
         {
@@ -1262,7 +1263,7 @@
           "notes": [
             "Only the oldest 50 transactions of this wallet were read."
           ],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0x59540034ef34dede361f050fdfa207a662e7877fea122e44b0fdf45d0ed9f418",
@@ -1273,7 +1274,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0x2bd863720c03caf23eab07ff615aac380f6a0f614273f5dbbc7f3a8641c05c96",
@@ -1292,7 +1293,7 @@
           "notes": [
             "Only the oldest 50 transactions of this wallet were read."
           ],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0x9d5e5d6f421b08724351fba012492bd5146f055102f61468fa2a7df6a3878ea4",
@@ -1305,7 +1306,7 @@
           "notes": [
             "Only the oldest 50 transactions of this wallet were read."
           ],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0x9e03dc183bbf63368e9d2be39115d58127971b7ea7af9d4d2dec4b6bfe4a13b3",
@@ -1324,7 +1325,7 @@
           "notes": [
             "Only the oldest 50 transactions of this wallet were read."
           ],
-          "tatumCalls": 4
+          "tatumCalls": 5
         },
         {
           "address": "0x943c8af2332f7933adf5c92af33849301ec4834611e915d084ad801e1ce1d83c",
@@ -1341,7 +1342,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 4
+          "tatumCalls": 5
         }
       ],
       "missReason": "engine showed no link to the recorded gas sponsor (Only the oldest 50 transactions of this wallet were read.)"
@@ -1369,7 +1370,7 @@
         "weakLinks": [],
         "roundTrip": false,
         "notes": [],
-        "tatumCalls": 3
+        "tatumCalls": 4
       },
       "memberResults": [
         {
@@ -1387,7 +1388,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0x77fbb9e2e7db1c9540afdf9a979152082aae776b3fce82d7bb6245103059ed6f",
@@ -1404,7 +1405,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         }
       ]
     },
@@ -1431,7 +1432,7 @@
         "weakLinks": [],
         "roundTrip": false,
         "notes": [],
-        "tatumCalls": 3
+        "tatumCalls": 4
       },
       "memberResults": [
         {
@@ -1449,7 +1450,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0x544081d155db42693324a80b991fd553626375301b5b08a35234d1b6673584c5",
@@ -1466,7 +1467,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0x85f8a2894dc4e974b4e7bb1ad42f717a3d5d2a01e3e366cdb8f3e75403481a09",
@@ -1483,7 +1484,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0x78bda58d6f978b7088ff98f7f2ad533c885d123e6be847a1617ebdafb21b22a1",
@@ -1502,7 +1503,7 @@
           "notes": [
             "Only the oldest 50 transactions of this wallet were read."
           ],
-          "tatumCalls": 3
+          "tatumCalls": 4
         }
       ]
     },
@@ -1529,7 +1530,7 @@
         "weakLinks": [],
         "roundTrip": true,
         "notes": [],
-        "tatumCalls": 3
+        "tatumCalls": 4
       },
       "memberResults": [
         {
@@ -1547,7 +1548,7 @@
           "weakLinks": [],
           "roundTrip": true,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0x569f6d7d9f3e474423d85439e26a50348ae46ec8fa926833b2d0f36afd23db8d",
@@ -1564,7 +1565,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         }
       ]
     },
@@ -1585,7 +1586,7 @@
         "weakLinks": [],
         "roundTrip": false,
         "notes": [],
-        "tatumCalls": 3
+        "tatumCalls": 4
       },
       "memberResults": [
         {
@@ -1597,7 +1598,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0x77574d4c975aa3bf3cf9571834bd3ee798707a3c7ddf9e3dfc82f34c50bb8fbf",
@@ -1608,7 +1609,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0x4aa0c0fbbfb4065f7856c2986eccc81f59a4620046662fe0e31fec87f204bc48",
@@ -1619,7 +1620,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         }
       ],
       "missReason": "engine showed no link to the recorded funder"
@@ -1652,7 +1653,7 @@
         "weakLinks": [],
         "roundTrip": false,
         "notes": [],
-        "tatumCalls": 3
+        "tatumCalls": 4
       },
       "memberResults": [
         {
@@ -1675,7 +1676,7 @@
           "weakLinks": [],
           "roundTrip": false,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0x84cc1915c8206dafd410117bb1e6eff448c15cd5d64a76a9280b973b601941f7",
@@ -1692,7 +1693,7 @@
           "weakLinks": [],
           "roundTrip": true,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0xd8c7699de466cacc82dcda6dc3873db88cc513234ba8a9f2c88a7ca5659eb008",
@@ -1711,7 +1712,7 @@
           "notes": [
             "Only the oldest 50 transactions of this wallet were read."
           ],
-          "tatumCalls": 4
+          "tatumCalls": 5
         },
         {
           "address": "0x188a837a70c79ceb0332c5286a79a7e75a77e84f7be154ee2ad626d2ca2c8abb",
@@ -1730,7 +1731,7 @@
           "notes": [
             "Only the oldest 50 transactions of this wallet were read."
           ],
-          "tatumCalls": 4
+          "tatumCalls": 5
         },
         {
           "address": "0x4ef2bdde5c2724e5056447c4f0c2de383a112aeaa7f19d1cf1a62e631212e3de",
@@ -1741,7 +1742,7 @@
           "weakLinks": [],
           "roundTrip": true,
           "notes": [],
-          "tatumCalls": 3
+          "tatumCalls": 4
         },
         {
           "address": "0x5b0e1eef8fda237730e270721ee3d6818a3a558a75eea8e610db7b339e6b3703",
@@ -1758,7 +1759,7 @@
           "weakLinks": [],
           "roundTrip": true,
           "notes": [],
-          "tatumCalls": 4
+          "tatumCalls": 5
         }
       ]
     }
@@ -1777,7 +1778,7 @@
         "weakLinks": [],
         "roundTrip": false,
         "notes": [],
-        "tatumCalls": 3
+        "tatumCalls": 4
       }
     },
     {
@@ -1793,7 +1794,7 @@
         "weakLinks": [],
         "roundTrip": false,
         "notes": [],
-        "tatumCalls": 3
+        "tatumCalls": 4
       }
     },
     {
@@ -1809,7 +1810,7 @@
         "weakLinks": [],
         "roundTrip": true,
         "notes": [],
-        "tatumCalls": 3
+        "tatumCalls": 4
       },
       "alarmReason": "sent money back to its funder (caution)"
     },
@@ -1826,7 +1827,7 @@
         "weakLinks": [],
         "roundTrip": false,
         "notes": [],
-        "tatumCalls": 3
+        "tatumCalls": 4
       }
     },
     {
@@ -1842,7 +1843,7 @@
         "weakLinks": [],
         "roundTrip": false,
         "notes": [],
-        "tatumCalls": 3
+        "tatumCalls": 4
       }
     },
     {
@@ -1858,7 +1859,7 @@
         "weakLinks": [],
         "roundTrip": false,
         "notes": [],
-        "tatumCalls": 3
+        "tatumCalls": 4
       }
     },
     {
@@ -1874,7 +1875,7 @@
         "weakLinks": [],
         "roundTrip": false,
         "notes": [],
-        "tatumCalls": 3
+        "tatumCalls": 4
       }
     },
     {
@@ -1890,7 +1891,7 @@
         "weakLinks": [],
         "roundTrip": false,
         "notes": [],
-        "tatumCalls": 3
+        "tatumCalls": 4
       }
     },
     {
@@ -1906,7 +1907,7 @@
         "weakLinks": [],
         "roundTrip": false,
         "notes": [],
-        "tatumCalls": 3
+        "tatumCalls": 4
       }
     },
     {
@@ -1922,7 +1923,7 @@
         "weakLinks": [],
         "roundTrip": false,
         "notes": [],
-        "tatumCalls": 3
+        "tatumCalls": 4
       }
     },
     {
@@ -1938,7 +1939,7 @@
         "weakLinks": [],
         "roundTrip": false,
         "notes": [],
-        "tatumCalls": 3
+        "tatumCalls": 4
       }
     },
     {
@@ -1954,7 +1955,7 @@
         "weakLinks": [],
         "roundTrip": true,
         "notes": [],
-        "tatumCalls": 3
+        "tatumCalls": 4
       },
       "alarmReason": "sent money back to its funder (caution)"
     },
@@ -1971,7 +1972,7 @@
         "weakLinks": [],
         "roundTrip": false,
         "notes": [],
-        "tatumCalls": 3
+        "tatumCalls": 4
       }
     },
     {
@@ -1987,7 +1988,7 @@
         "weakLinks": [],
         "roundTrip": false,
         "notes": [],
-        "tatumCalls": 3
+        "tatumCalls": 4
       }
     },
     {
@@ -2003,7 +2004,7 @@
         "weakLinks": [],
         "roundTrip": false,
         "notes": [],
-        "tatumCalls": 3
+        "tatumCalls": 4
       }
     },
     {
@@ -2019,7 +2020,7 @@
         "weakLinks": [],
         "roundTrip": false,
         "notes": [],
-        "tatumCalls": 3
+        "tatumCalls": 4
       }
     },
     {
@@ -2035,7 +2036,7 @@
         "weakLinks": [],
         "roundTrip": true,
         "notes": [],
-        "tatumCalls": 3
+        "tatumCalls": 4
       },
       "alarmReason": "sent money back to its funder (caution)"
     },
@@ -2052,7 +2053,7 @@
         "weakLinks": [],
         "roundTrip": false,
         "notes": [],
-        "tatumCalls": 3
+        "tatumCalls": 4
       }
     },
     {
@@ -2068,7 +2069,7 @@
         "weakLinks": [],
         "roundTrip": false,
         "notes": [],
-        "tatumCalls": 3
+        "tatumCalls": 4
       }
     },
     {
@@ -2084,7 +2085,7 @@
         "weakLinks": [],
         "roundTrip": false,
         "notes": [],
-        "tatumCalls": 3
+        "tatumCalls": 4
       }
     }
   ],
@@ -3024,6 +3025,12 @@
     "caughtByFunder": 11,
     "funderGroups": 12,
     "controls": 20,
-    "falseAlarms": 3
+    "falseAlarms": 3,
+    "strictFalseAlarms": 0,
+    "sharedServicesSeen": 84,
+    "sharedServicesNamed": 18,
+    "checksRun": 90,
+    "tatumCallsPerCheckAvg": 4.1,
+    "tatumCallsPerCheckMax": 5
   }
 }

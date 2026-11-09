@@ -9,6 +9,7 @@ The main idea: being linked to other wallets is not unsafe. Exchanges and payrol
 | 1 | Someone reported a bad payment to this exact address | do not pay | OUTCOME_BAD_SELF | REPORT |
 | 2 | A bad payment was reported for a wallet with a direct link to this one: the same first funder (not a shared service), the same gas sponsor (not a shared service), the same group, or the funder or sponsor itself | do not pay | GROUP_BAD_OUTCOME | FACT (the link) + REPORT |
 | 3 | The bad report reaches this wallet only through a shared service | caution | HUB_BAD_OUTCOME | GUESS (shared service) + REPORT |
+| 3b | A bad report about another wallet, or about the funder itself, reaches this wallet only because they share a first funder that paid 15 or more wallets in under 25 hours, and this wallet is not in that funder's group | caution | BUSY_FUNDER_BAD_OUTCOME | FACT (same first funder) + GUESS (busy service) + REPORT |
 | 4 | The bad report reaches this wallet through a link we have not yet checked for being a shared service | caution | LINK_NOT_CHECKED | FACT + REPORT |
 | 5 | This wallet sent money straight back to its own first funder | caution | ROUND_TRIP_TO_FUNDER | FACT |
 | 6 | Linked to other wallets, but there is no bad report anywhere in the group | pay ("linked, no bad history") | LINKED_NO_BAD_HISTORY | FACT |
@@ -24,6 +25,8 @@ A brand-new or unused wallet cannot be judged, and a mistyped address looks exac
 The check asks Tatum whether an object or package exists at the address (the same call that reads the balance). Wallets have no object at their address, so this has no false alarms on wallets. If that read fails the check is skipped and a note says so. A stored bad report still wins.
 
 When the shared memory cannot be read fully, a "pay" becomes caution, because nobody could look for a report of a bad payment. A "do not pay" stays as it is. Another caution keeps its own code and gets the same note added to its reason. The "without memory" side of the answer is not changed. A check that ended this way is not saved as a new memory. The web page shows the caution with a Retry button.
+
+Rule 3b exists because a busy payout wallet can look like a farm: it pays many wallets in a short run. One report about one of its wallets must not turn all the others red. The red answer (rule 2) is kept when this wallet sits in the funder's group by the 24 hour window, or when the funder paid fewer than 15 wallets. Measured on the real set, this changes nothing: 18 of 20 groups found at depth 50, 19 of 20 at depth 200, 0 of 20 ordinary wallets told "do not pay", 3 of 20 with caution.
 
 ## What each signal is
 

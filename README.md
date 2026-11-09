@@ -35,7 +35,7 @@ Run the tests (recorded mainnet answers, no network):
 npm test
 ```
 
-172 tests pass.
+180 tests pass.
 
 Ask the live server about a real wallet from the real set (rs-01, a group tied by one shared first funder), with memory off and then on:
 
@@ -137,7 +137,7 @@ How it stays reliable:
 
 - One shared limit of 2.5 requests a second for the whole process, under the free plan's 3 a second. A rate-limited or failed call is retried with a growing pause.
 - Every listing sets `afterCheckpoint` at Tatum's data floor. Without it the listing errors.
-- Every answer counts its own Tatum calls and failures. On the real set a check took 3.10 Tatum calls on average reading 50 transactions per wallet, and 4.79 reading 200. Those numbers were measured before checks also read the balance of the address, which adds one call to a live check.
+- Every answer counts its own Tatum calls and failures. On the real set a check took 4.10 Tatum calls on average (largest 5) reading 50 transactions per wallet, and 5.79 (largest 14) reading 200. A check reads the address's balance too, which is one of those calls.
 - Building the real set took about 3,900 Tatum calls over 57,631 sampled checkpoints.
 
 Tatum's plain JSON-RPC route answered 404 when I tested it, and its gRPC route needs a separate client, so PayCheck uses GraphQL only.
@@ -305,7 +305,7 @@ Seven runtime dependencies: `express`, `zod`, `@mysten-incubation/memwal`, `@mys
 | `data/prescan/` | The pre-scan pick list, verdicts and the recall check |
 | `bench/` | Benchmark prompts, saved AI answers and results |
 | `docs/` | [API](docs/API.md), [MCP](docs/MCP.md), [verdict rules](docs/VERDICT_RULES.md), [method](docs/METHOD.md), [reproduce](docs/REPRODUCE.md) |
-| `test/` | 172 tests on recorded mainnet answers, no keys needed |
+| `test/` | 180 tests on recorded mainnet answers, no keys needed |
 
 ## What I built during the event
 

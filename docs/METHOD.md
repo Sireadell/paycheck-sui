@@ -155,4 +155,4 @@ The checker has a setting, `maxTx`: how many of a wallet's oldest transactions i
 | First screen figures and live checks (default) | 50 |
 | Cross-agent proof run | 50 |
 
-Cost at depth 200 on the real set: 4.79 calls to Tatum per check on average (largest 13), against 3.10 (largest 4) at depth 50, so 1.69 more calls per check on average. Depth 200 left the strict false alarms at 0 of 20. rs-19 (funder) is now caught. rs-15 (gas sponsor) is still missed: its sponsored transactions lie beyond the oldest 200.
+Cost at depth 200 on the real set: 5.79 calls to Tatum per check on average (largest 14), against 4.10 (largest 5) at depth 50, so 1.69 more calls per check on average. Depth 200 left the strict false alarms at 0 of 20. rs-19 (funder) is now caught. rs-15 (gas sponsor) is still missed: its sponsored transactions lie beyond the oldest 200.

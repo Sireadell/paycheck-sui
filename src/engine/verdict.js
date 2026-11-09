@@ -12,6 +12,7 @@
  *     (same group id, a sibling of the same funder, the funder itself,
  *      the gas sponsor itself, or a reported wallet with the same funder or sponsor)
  *  3. bad-outcome memory reached only through a hub (shared service)  -> caution HUB_BAD_OUTCOME
+ *  3b. bad-outcome memory reached only by a shared first funder that paid 15+ wallets in a fast run, with this wallet not in its group -> caution BUSY_FUNDER_BAD_OUTCOME
  *  4. bad-outcome memory reached through a link whose hub check was not run -> caution LINK_NOT_CHECKED
  *  5. money sent straight back to its own first funder (not a hub)    -> caution ROUND_TRIP_TO_FUNDER
  *  6. real links, no bad history                                      -> pay LINKED_NO_BAD_HISTORY
@@ -87,15 +88,30 @@ function reach(m, ctx) {
   const a = lc(m.address);
   const bf = lc(m.body?.funder);
   const bs = lc(m.body?.gasSponsor ?? m.body?.sponsor);
-  const at = (state, via) => ({ tier: state === 'strong' ? 'strong' : state === 'weak' ? 'hub' : 'unchecked', via });
+  const at = (state, via) => ({ tier: state === 'strong' ? 'strong' : state === 'weak' ? 'hub' : state === 'busy' ? 'busy' : 'unchecked', via });
   if (useGroup && m.group && m.group === groupId) return { tier: 'strong', via: { type: 'group', group: groupId } };
   if (a && siblings.has(a)) return { tier: 'strong', via: { type: 'shared_funder', address: funder, sibling: a } };
   if (a && a === funder) return at(funderState, { type: 'funder_reported', address: funder });
   if (a && a === sponsor) return at(sponsorState, { type: 'gas_sponsor_reported', address: sponsor });
   // A reported wallet that shares our funder or sponsor. Through a hub this says nothing, so it does not reach.
-  if (bf && bf === funder && funderState !== 'weak') return at(funderState, { type: 'shared_funder', address: funder });
+  // A busy funder says little, so if the same report also shares our gas sponsor, that checked link decides instead.
+  if (bf && bf === funder && funderState !== 'weak' && !(funderState === 'busy' && bs && bs === sponsor && sponsorState === 'strong')) return at(funderState, { type: 'shared_funder', address: funder });
   if (bs && bs === sponsor && sponsorState !== 'weak') return at(sponsorState, { type: 'gas_sponsor', address: sponsor });
   return {};
+}
+
+/**
+ * How strongly a report about another wallet of the same first funder reaches this wallet.
+ *  weak: the funder is a shared service. strong: a checked link (this wallet sits in the funder's group) or a funder that
+ *  paid fewer than 15 wallets (small and tight). busy: the funder paid 15 or more wallets in a fast run and this wallet
+ *  is not in its group, so "same funder" says little (a busy payout wallet looks like that). unchecked: not read.
+ */
+function funderState(funder, weakAddrs, links, hub) {
+  if (!funder) return 'none';
+  if (weakAddrs.has(funder)) return 'weak';
+  if (links.some((l) => l.type === 'shared_funder')) return 'strong';
+  if (!hub) return 'unchecked';
+  return hub.reason === 'burst' ? 'busy' : 'strong';
 }
 
 function decide({ wallet, analysis, memories, groupId, hubs }) {
@@ -114,7 +130,7 @@ function decide({ wallet, analysis, memories, groupId, hubs }) {
     funder,
     sponsor,
     // the funder is checked when its payouts were read (shared funder found) or classifyHub ran on it
-    funderState: state(funder, links.some((l) => l.type === 'shared_funder') || Boolean(hubs?.funder)),
+    funderState: funderState(funder, weakAddrs, links, hubs?.funder),
     sponsorState: state(sponsor, Boolean(sponsorLink?.hubChecked)),
   };
 
@@ -140,6 +156,7 @@ function decide({ wallet, analysis, memories, groupId, hubs }) {
   if (self.length) return out(VERDICTS.DO_NOT_PAY, 'OUTCOME_BAD_SELF', 'An earlier payment to this exact address went bad (stored report).', self);
   if (tier('strong').length) return out(VERDICTS.DO_NOT_PAY, 'GROUP_BAD_OUTCOME', 'This wallet has a direct on-chain link (same funder, same gas sponsor or same group) to a wallet where a payment went bad (stored report).', tier('strong'));
   if (tier('hub').length) return out(VERDICTS.CAUTION, 'HUB_BAD_OUTCOME', 'A bad payment is reported for a shared service that also served this wallet. A shared service serves many honest wallets, so this is a warning, not a stop.', tier('hub'));
+  if (tier('busy').length) return out(VERDICTS.CAUTION, 'BUSY_FUNDER_BAD_OUTCOME', `A bad payment is reported for a wallet first funded by the same funder, but that funder has paid ${hubs?.funder?.countText ?? 'many'} different wallets, so it looks like a busy service and this wallet is not tied to the reported one by anything else. A busy funder serves many unrelated wallets, so this is a warning, not a stop.`, tier('busy'));
   if (tier('unchecked').length) return out(VERDICTS.CAUTION, 'LINK_NOT_CHECKED', 'A bad payment is reported through a link we have not yet checked for being a shared service. Warning only until it is checked.', tier('unchecked'));
   if (directRound) return out(VERDICTS.CAUTION, 'ROUND_TRIP_TO_FUNDER', 'This wallet sent money straight back to the wallet that funded it (on-chain fact). That is not proof of harm, and no bad history is stored.', []);
   if (links.length) return out(VERDICTS.PAY, 'LINKED_NO_BAD_HISTORY', 'Linked to other wallets, but no bad outcome is stored for it or its group. Being linked is not unsafe.', []);
