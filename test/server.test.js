@@ -85,3 +85,10 @@ test('/api/stats reports the verified pre-scan count from data/prescan/verified.
     assert.deepEqual(j.prescanVerified, { recalledAndVerified: 3, of: 5, checkedAt: 'now', label: 'recalled and verified' });
   } finally { s.close(); }
 });
+
+test('/api/stats says plainly whether paid checks are enabled', async () => {
+  const off = await serve();
+  try { const j = await (await fetch(`${off.base}/api/stats`)).json(); assert.equal(j.paidChecks.enabled, false); assert.match(j.paidChecks.note, /switched off/); } finally { off.close(); }
+  const on = await serve({ paidCheck: { count: async () => 1 } });
+  try { const j = await (await fetch(`${on.base}/api/stats`)).json(); assert.equal(j.paidChecks.enabled, true); assert.equal(j.paidChecks.settled, 1); } finally { on.close(); }
+});

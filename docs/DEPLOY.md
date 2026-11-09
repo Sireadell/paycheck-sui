@@ -25,6 +25,7 @@ Node 22 or newer is required (`NODE_VERSION` is set to 22 in the blueprint).
 | `MEMWAL_RELAYER_URL` | no | Defaults to the public relayer |
 | `ANKR_API_KEY` | no | Second opinion on chain data |
 | `OUTCOME_TOKEN` | no | Lets a caller report "went fine" or "went bad". Without it every report is refused |
+| `PAID_CHECK_PAYEE` | no | The Sui address that receives paid checks. Without it paid checks are switched off: `/api/stats` shows `paidChecks.enabled: false` and `POST /api/paid/check` answers 503 |
 | `PAYCHECK_MODE` | no | `test` (default in the blueprint) keeps writes in the labelled test space. `live` writes to the real memory space |
 
 Not needed on the server: `GEMINI_API_KEY` (benchmark only) and the Sui wallet keys.

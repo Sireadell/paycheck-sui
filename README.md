@@ -35,7 +35,7 @@ Run the tests (recorded mainnet answers, no network):
 npm test
 ```
 
-180 tests pass.
+181 tests pass.
 
 Ask the live server about a real wallet from the real set (rs-01, a group tied by one shared first funder), with memory off and then on:
 
@@ -305,7 +305,7 @@ Seven runtime dependencies: `express`, `zod`, `@mysten-incubation/memwal`, `@mys
 | `data/prescan/` | The pre-scan pick list, verdicts and the recall check |
 | `bench/` | Benchmark prompts, saved AI answers and results |
 | `docs/` | [API](docs/API.md), [MCP](docs/MCP.md), [verdict rules](docs/VERDICT_RULES.md), [method](docs/METHOD.md), [reproduce](docs/REPRODUCE.md) |
-| `test/` | 180 tests on recorded mainnet answers, no keys needed |
+| `test/` | 181 tests on recorded mainnet answers, no keys needed |
 
 ## What I built during the event
 

@@ -141,7 +141,7 @@ export function createApp({ checker, memory, probe = null, outcomeToken = proces
         failedWrites: memory.failed().length,
         note: 'Counted since this server started. Test memories are never part of the live or pre-scan numbers.',
       },
-      paidChecks: { settled: paidCheck ? await paidCheck.count() : 0, route: 'plain SUI on Sui mainnet' },
+      paidChecks: { enabled: Boolean(paidCheck), settled: paidCheck ? await paidCheck.count() : 0, route: 'plain SUI on Sui mainnet', note: paidCheck ? 'Paid checks are switched on.' : 'Paid checks are switched off on this server: no receiving address is set, so POST /api/paid/check answers 503.' },
       calls: { tatum: callLog.summarize(0, 'tatum'), ankr: callLog.summarize(0, 'ankr') },
     });
   });

@@ -28,3 +28,7 @@ I looked for an x402 route that settles on Sui (9 Nov 2026).
 | Public x402 facilitators for Sui | One community facilitator announces testnet only; another lists Sui as coming soon | No confirmed mainnet facilitator |
 
 None of these was run, so nothing here claims x402 or MPP. If one is added later and settles a real mainnet payment, this page will say which.
+
+## Is it switched on?
+
+Paid checks run only when the server has a receiving address (`PAID_CHECK_PAYEE`, or `SUI_ADDRESS`). `GET /api/stats` shows `paidChecks.enabled` as true or false. When it is false the route answers 503.

@@ -30,3 +30,5 @@ services:
         sync: false
       - key: OUTCOME_TOKEN
         sync: false
+      - key: PAID_CHECK_PAYEE
+        sync: false
