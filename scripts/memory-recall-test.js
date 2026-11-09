@@ -1,4 +1,4 @@
-// Step 1.2a: can we get an exact memory back by address or by group id? Writes 10 labelled TEST memories into
+// Exact recall test: can we get a memory back by address or by group id? Writes 10 labelled TEST memories into
 // namespace k2-test (origin=k2-test, never counted in headline numbers), then recalls each two ways.
 import { createHash } from 'node:crypto';
 import { MemWal } from '@mysten-incubation/memwal';
@@ -32,7 +32,7 @@ async function pickAddresses(n) {
   return [...set];
 }
 
-const groupOf = (i) => 'g-' + createHash('sha256').update('k2b-group-' + Math.floor(i / 2)).digest('hex').slice(0, 8);
+const groupOf = (i) => 'g-' + createHash('sha256').update('recall-group-' + Math.floor(i / 2)).digest('hex').slice(0, 8);
 const header = (kind, address, group) => `PAYCHECK v1 kind=${kind} address=${address} group=${group} origin=k2-test`;
 const parse = (text) => {
   const line = String(text).split('\n')[0];
@@ -46,7 +46,7 @@ const client = MemWal.create({ key: cfg.MEMWAL_DELEGATE_PRIVATE_KEY, accountId: 
 const writeMs = [];
 for (let i = 0; i < 10; i++) {
   const group = groupOf(i);
-  const text = `${header('verdict', addrs[i], group)}\n` + JSON.stringify({ test: true, note: 'K2b recall test memory, not a real check', verdict: i % 2 ? 'caution' : 'pay', index: i });
+  const text = `${header('verdict', addrs[i], group)}\n` + JSON.stringify({ test: true, note: 'Recall test memory, not a real check', verdict: i % 2 ? 'caution' : 'pay', index: i });
   const t0 = Date.now();
   const r = await client.rememberAndWait(text, NS, { idempotencyKey: createHash('sha256').update(text).digest('hex'), timeoutMs: 90000 });
   writeMs.push(Date.now() - t0);

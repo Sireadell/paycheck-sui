@@ -1,4 +1,4 @@
-// Step 1.4 smoke test: node --env-file=.env scripts/crosscheck-smoke.js <sui address>
+// Smoke test: node --env-file=.env scripts/crosscheck-smoke.js <sui address>
 import { getTatum, getAnkr, callLog } from '../src/providers/index.js';
 import { crossCheck } from '../src/providers/crosscheck.js';
 

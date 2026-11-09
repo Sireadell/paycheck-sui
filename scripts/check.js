@@ -1,5 +1,5 @@
 // Usage: npm run check -- <sui address> [--memory=off] [--json]
-// Runs a full check. Memory writes go to the test namespace (k2-test) until the live mode is switched on in a later step.
+// Runs a full check. Memory writes go to the test namespace (k2-test) until live mode is switched on.
 import { createChecker } from '../src/check.js';
 import { createMemory } from '../src/memory/index.js';
 import { getTatum, getAnkr } from '../src/providers/index.js';

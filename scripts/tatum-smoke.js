@@ -1,4 +1,4 @@
-// Step 1.3 smoke test: node --env-file=.env scripts/tatum-smoke.js <sui address>
+// Smoke test: node --env-file=.env scripts/tatum-smoke.js <sui address>
 import { getTatum, callLog } from '../src/providers/index.js';
 
 const address = process.argv[2];

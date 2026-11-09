@@ -117,7 +117,7 @@ The split below is fixed and public. It was written down before the benchmark ra
 What this does and does not show. The outcome reports used for training are put in by the benchmark (a group member is marked as a payment that went bad), because the real set has no recorded losses. So it measures one thing: when one wallet of a linked group has a stored bad report, does a different, never-seen wallet of the same group get stopped, and are unlinked wallets left alone. It does not measure how often real payments go bad. Held-out groups share a funder or gas sponsor with their training wallet by construction, which is the case memory is built for.
 
 
-### What the memory test measures, and the fourth column (added 7 Nov, step 2.2b)
+### What the memory test measures, and the fourth column (added 7 Nov)
 
 In this test a report about one wallet in a group is given to memory, and we measure whether the rest of the group is stopped. It tests whether memory spreads a warning, not how well we find bad wallets. The "do not pay" count in the memory column is by construction: one training member of each group is marked as a payment that went bad, because the real set has no recorded losses.
 

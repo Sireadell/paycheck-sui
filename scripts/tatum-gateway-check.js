@@ -1,4 +1,4 @@
-// Step 1.0b: checks which Tatum Sui routes answer. Plain fetch, no install. Never prints key values.
+// Checks which Tatum Sui routes answer. Plain fetch, no install. Never prints key values.
 const KEY = process.env.TATUM_API_KEY_MAINNET;
 if (!KEY) { console.error('Missing TATUM_API_KEY_MAINNET'); process.exit(1); }
 const BASE = 'https://sui-mainnet.gateway.tatum.io';

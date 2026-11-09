@@ -1,4 +1,4 @@
-// Step 1.2: K2 memory cost and speed. 10 single writes, then 1 bulk of 20, all into namespace k2-test,
+// Memory cost and speed: 10 single writes, then 1 bulk of 20, all into namespace k2-test,
 // every text labelled as a test. Reads SUI balances (read only) before and after. Sends no transaction.
 import { createHash } from 'node:crypto';
 import { MemWal } from '@mysten-incubation/memwal';
@@ -33,7 +33,7 @@ async function balance(address) {
   try { return await balanceAnkr(address); } catch { return await balanceTatum(address); }
 }
 const text = (i, kind) => `PAYCHECK v1 kind=test address=0x${createHash('sha256').update(`k2-${RUN}-${i}`).digest('hex')} group=g-k2test origin=k2-test\n` +
-  JSON.stringify({ test: true, note: `K2 cost and speed test memory (${kind}), not a real check`, run: RUN, index: i });
+  JSON.stringify({ test: true, note: `Cost and speed test memory (${kind}), not a real check`, run: RUN, index: i });
 
 const before = { work: await balance(cfg.SUI_WALLET_ADDRESS), owner: await balance(cfg.SUI_ADDRESS) };
 console.error('balances before (MIST): work', String(before.work), 'owner', String(before.owner));

@@ -1,4 +1,4 @@
-// Step 1.6 proof: one real write and one exact recall. Default namespace is k2-test (labelled test, not counted).
+// Smoke test: one real write and one exact recall. Default namespace is k2-test (labelled test, not counted).
 // Usage: node --env-file=.env scripts/memory-smoke.js [namespace]
 import { createMemory } from '../src/memory/index.js';
 
