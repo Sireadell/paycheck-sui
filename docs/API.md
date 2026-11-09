@@ -13,7 +13,18 @@ All answers are JSON. The web layer only calls these endpoints.
 
 ## Addresses
 
-Any Sui address of 1 to 64 hex characters is accepted, in any letter case. It is padded to 64 hex characters, lowercase, with the 0x prefix before it is looked up or compared, so `0x1` becomes `0x` plus 63 zeros and a 1. The answer's `address` field echoes what was sent.
+An address is read in one place (`src/address.js`). Surrounding spaces are ignored. A Sui address of 1 to 64 hex characters after `0x` (or `0X`) is accepted in any letter case and is padded to 64 hex characters, lowercase, before it is looked up or compared, so `0x1` becomes `0x` plus 63 zeros and a 1. The answer's `address` field echoes what was sent.
+
+Anything else is refused with HTTP 400, `verdict: "caution"`, `code: "INVALID_INPUT"`, `retryable: false`, a plain `reason`, and an `inputCode`. No chain read or memory read is made for it, and nothing is saved.
+
+| inputCode | Sent |
+|---|---|
+| EMPTY_ADDRESS | Nothing, spaces only, or just `0x` |
+| MISSING_0X | Hex without the leading `0x` |
+| NOT_HEX | Anything with characters other than 0 to 9 and a to f after `0x`, including unicode and other chains' text |
+| TOO_LONG | More than 64 hex characters |
+| ETHEREUM_ADDRESS | Exactly 40 hex characters (the Ethereum shape, a likely wrong-chain mistake) |
+| NAME_NOT_SUPPORTED | A SuiNS name such as `alice.sui` or `@alice`. Names are not looked up |
 
 ## Limits
 

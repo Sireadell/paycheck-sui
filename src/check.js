@@ -16,7 +16,7 @@ import { buildVerdict } from './engine/verdict.js';
 import { compareTx } from './providers/crosscheck.js';
 import { callLog } from './providers/index.js';
 import { listHistory, clampMaxTx } from './providers/tatum.js';
-import { isSuiAddress, padAddress } from './address.js';
+import { parseAddress, isSuiAddress, padAddress } from './address.js';
 
 const SUI_SUFFIX = '::sui::SUI';
 const isSui = (b) => typeof b.coin === 'string' && b.coin.endsWith(SUI_SUFFIX);
@@ -170,10 +170,11 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
   async function runCheck(address, { memoryOn = true, deferWrite = false, originOverride = null, extraBody = null } = {}, own) {
     const t0 = now();
     const base = { address, memoryOn, test, namespace: ns.verdict };
-    if (!isSuiAddress(address)) {
-      return { ...base, ...buildVerdict({ wallet: address }), memory: { used: 0, recalled: 0, recallOk: true }, write: { count: 0, state: 'none' }, tookMs: now() - t0 };
+    const parsed = parseAddress(address);
+    if (!parsed.ok) {
+      return { ...base, ...buildVerdict({ wallet: address, inputError: parsed }), inputCode: parsed.inputCode, memory: { used: 0, recalled: 0, recallOk: true }, write: { count: 0, state: 'none' }, tookMs: now() - t0 };
     }
-    const wallet = padAddress(address);
+    const wallet = parsed.address;
     let g = null;
     let chainError = null;
     try { g = await gather(wallet); } catch (e) { chainError = String(e.message || e).slice(0, 160); }

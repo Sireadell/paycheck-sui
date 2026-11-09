@@ -178,10 +178,10 @@ export function memorySavedCalls({ wallet, memories, now = Date.now(), maxAgeMs 
  * memoryOn false (memory switch off): recalled memories are ignored, memoryIds is empty.
  */
 export function buildVerdict(input = {}) {
-  const { wallet, analysis, groupId = null, hubs = {}, memoryOn = true, memoryDegraded = false, now = Date.now() } = input;
+  const { wallet, analysis, groupId = null, hubs = {}, memoryOn = true, memoryDegraded = false, inputError = null, now = Date.now() } = input;
   const base = { label: 'caution', evidence: [], memoryIds: [], changedByMemory: false, changedByIds: [], warnedBy: [], withoutMemory: { verdict: VERDICTS.CAUTION, code: null, label: 'caution' }, memorySavedCalls: 0, memorySavedFrom: null };
-  if (!isAddress(wallet)) {
-    return { ...base, verdict: VERDICTS.CAUTION, code: 'INVALID_INPUT', reason: 'That is not a Sui address (expected 0x followed by hex).', retryable: false, nextAction: 'Send a valid Sui address.' };
+  if (inputError || !isAddress(wallet)) {
+    return { ...base, verdict: VERDICTS.CAUTION, code: 'INVALID_INPUT', reason: inputError?.reason ?? 'That is not a Sui address (expected 0x followed by hex).', retryable: false, nextAction: 'Send a valid Sui address.' };
   }
   const memories = memoryOn ? input.memories : [];
   const noData = !analysis || typeof analysis !== 'object';

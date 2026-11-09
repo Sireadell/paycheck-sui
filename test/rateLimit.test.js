@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createApp } from '../server.js';
 
-const checker = { check: async (address) => ({ verdict: 'caution', code: 'INVALID_INPUT', address }), state: {}, mode: 'test', reportOutcome: async () => ({}) };
+const checker = { check: async (address) => ({ verdict: 'caution', code: 'NO_LINKS_NO_BAD_HISTORY', address }), state: {}, mode: 'test', reportOutcome: async () => ({}) };
 const memory = { health: async () => true, failed: () => [], pending: () => [], counter: () => ({ stored: 0, prescan: 0, test: 0, changed: 0 }) };
 
 async function serve(extra = {}) {

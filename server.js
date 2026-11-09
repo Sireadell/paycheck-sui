@@ -84,7 +84,9 @@ export function createApp({ checker, memory, probe = null, outcomeToken = proces
     if (wait) return tooMany(res, wait, 'checks');
     try {
       const memoryOn = String(req.query.memory ?? 'on').toLowerCase() !== 'off';
-      res.json(await checker.check(String(req.query.address ?? ''), { memoryOn }));
+      const out = await checker.check(String(req.query.address ?? ''), { memoryOn });
+      // A bad address is the caller's mistake: 400, with the same plain body (verdict caution, code INVALID_INPUT, inputCode).
+      res.status(out.code === 'INVALID_INPUT' ? 400 : 200).json(out);
     } catch (e) {
       res.status(500).json({ verdict: 'caution', code: 'DATA_UNAVAILABLE', reason: 'The check failed. Try again shortly.', retryable: true, error: String(e.message || e).slice(0, 160) });
     }
