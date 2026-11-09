@@ -43,6 +43,7 @@ export function createApp({ checker, memory, probe = null, outcomeToken = proces
   const outcomeHit = ipLimiter(outcomeLimit, now);
   const tooMany = (res, wait, what) => res.set('retry-after', String(wait)).status(429).json({ error: `Too many ${what} from your address. Try again in ${wait} seconds.`, retryable: true });
   const app = express();
+  app.set('trust proxy', 1);
   app.use(express.json());
   app.use((_req, res, next) => { res.set('access-control-allow-origin', '*'); next(); });
 
