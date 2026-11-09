@@ -1,26 +1,26 @@
 {
-  "ranAt": "2026-11-09T14:39:03.235Z",
+  "ranAt": "2026-11-09T21:55:00.774Z",
   "mode": "live",
   "sharedAccount": true,
   "sharedAccountNote": "Agent A and Agent B run as two separate programs but use one Walrus Memory account and read the same shared space.",
   "agentA": {
     "id": "agent-a",
-    "address": "0x4c0ecb5d3a7c09dffc7dd88a8598a6e53a500487206472f0393810e192591f5b",
-    "memoryId": "uVKrZAcEnPYog1x0mLDYnDZkUmVNzDskqK4XdTOUpcU",
-    "reportedAt": "2026-11-09T14:37:55.417Z",
+    "address": "0xac311b8a190d696ec5c525bcff8528175715402cd8c46f8c3edab84ea74e8061",
+    "memoryId": "V6yH0O1nbbcEp5yRz34iY0dqZpVatKV1kXbScXGdL3U",
+    "reportedAt": "2026-11-09T21:53:55.529Z",
     "payment": {
-      "digest": "DcHgePsYjQwg1yayvyJSpT3q7CDXKx4zciZe6vZ2wP1B",
+      "digest": "2D3j8SqvZFWhwTPy5i9Ru6P1VFkvUM5Kuc36PqReK8rw",
       "amountMist": "1000000",
-      "explorer": "https://suiscan.xyz/mainnet/tx/DcHgePsYjQwg1yayvyJSpT3q7CDXKx4zciZe6vZ2wP1B"
+      "explorer": "https://suiscan.xyz/mainnet/tx/2D3j8SqvZFWhwTPy5i9Ru6P1VFkvUM5Kuc36PqReK8rw"
     }
   },
   "agentB": {
     "id": "agent-b",
-    "address": "0x0f8500ea00a3171ad047e3533b42ef8c5e261b6686cf603630b3b733cec9e6f4",
+    "address": "0xee973cdbfd30f458243f919f50a1657b15454c0534478022426350980f583719",
     "givenAddresses": [
-      "0x0f8500ea00a3171ad047e3533b42ef8c5e261b6686cf603630b3b733cec9e6f4"
+      "0xee973cdbfd30f458243f919f50a1657b15454c0534478022426350980f583719"
     ],
-    "refusalMemoryId": "awSwPTvQS_U2Gn6t6FxAV3j9n5vXlTwGwZoMvZW7_KI",
+    "refusalMemoryId": "YQsds7BZ8_ipm0PDpaELg6UkIfNPKo2epJvj1Jxh6y4",
     "check": {
       "verdict": "do not pay",
       "code": "GROUP_BAD_OUTCOME",
@@ -28,15 +28,15 @@
       "reason": "This wallet has a direct on-chain link (same funder, same gas sponsor or same group) to a wallet where a payment went bad (stored report).",
       "warnedBy": [
         {
-          "memoryId": "uVKrZAcEnPYog1x0mLDYnDZkUmVNzDskqK4XdTOUpcU",
+          "memoryId": "V6yH0O1nbbcEp5yRz34iY0dqZpVatKV1kXbScXGdL3U",
           "reporter": "agent-a",
           "origin": "check",
           "namespace": "shared-outcomes",
-          "reportedAddress": "0x4c0ecb5d3a7c09dffc7dd88a8598a6e53a500487206472f0393810e192591f5b",
+          "reportedAddress": "0xac311b8a190d696ec5c525bcff8528175715402cd8c46f8c3edab84ea74e8061",
           "crossAddress": true,
           "via": {
             "type": "group",
-            "group": "g-c97e1748"
+            "group": "g-b8dae3b4"
           }
         }
       ],
@@ -46,27 +46,32 @@
         "label": "linked, no bad history"
       },
       "memoryIds": [
-        "uVKrZAcEnPYog1x0mLDYnDZkUmVNzDskqK4XdTOUpcU"
+        "V6yH0O1nbbcEp5yRz34iY0dqZpVatKV1kXbScXGdL3U"
       ]
     }
   },
   "link": {
     "type": "funder",
-    "address": "0x217a4e9c2b758739510f675156d4ca38a72ba14e30c977fc887a09141793dcd8"
+    "address": "0xa5516f223a1859e3d7dfcb658a6f9e6cfbc6a00da024af364a0998be24165db3"
   },
   "links": [
     {
       "type": "funder",
-      "address": "0x217a4e9c2b758739510f675156d4ca38a72ba14e30c977fc887a09141793dcd8"
+      "address": "0xa5516f223a1859e3d7dfcb658a6f9e6cfbc6a00da024af364a0998be24165db3"
+    },
+    {
+      "type": "gas_sponsor",
+      "address": "0xa5516f223a1859e3d7dfcb658a6f9e6cfbc6a00da024af364a0998be24165db3"
     }
   ],
   "testGroup": {
     "builtByUs": true,
-    "funder": "0x217a4e9c2b758739510f675156d4ca38a72ba14e30c977fc887a09141793dcd8",
-    "fundingDigest": "HEmdUrdiAEMa1VDxioprh1bfLgo5V7t8szSEpFJCcNrc",
-    "firstFundingDigest": "EhG75grpQnwezexs5eiHEd4gT9mFcyB83Fy9n5H1N3Ur",
+    "funder": "0xa5516f223a1859e3d7dfcb658a6f9e6cfbc6a00da024af364a0998be24165db3",
+    "fundingDigest": "Gai8937eLj559C5ZDPn2zupSWAQiqPAxmi54Nd5sLRTc",
+    "firstFundingDigest": "BAKFRxLqVjf4oZTZKqxn7dXiiWNgaQUvmQ3BTEZCPWsx",
     "sponsoredDigests": [
-      "6vKHq9zZDT5sWAp3nLAotMUtHWYWZ4HAwfXLs2dSv9dM"
+      "3DjQQxJZz5cGEURZ969jnrYgejrp5jWcc96zhBmiq3vW",
+      "B6LwxuTWvCoyyqUxNRs7zxgUVf57LeJFYapxLbVBbBHe"
     ],
     "note": "Three wallets we made for this run. Nobody else is involved."
   },
