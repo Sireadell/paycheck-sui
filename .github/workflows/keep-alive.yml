@@ -12,4 +12,4 @@ jobs:
       - name: Ping the health route until 21 Nov 2026
         run: |
           if [ "$(date -u +%Y%m%d)" -gt 20261121 ]; then echo "Past 21 Nov, nothing to do."; exit 0; fi
-          curl -fsS -m 90 --retry 2 https://paycheck-sui.onrender.com/health
+          curl -fsS -m 90 --retry 2 https://paycheck-sui-app.onrender.com/health

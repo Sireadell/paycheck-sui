@@ -4,7 +4,7 @@ PayCheck Sui stops an AI agent from paying a Sui address when another agent's ba
 
 It works on any address. The person being paid doesn't need to sign up, sign anything or know I exist.
 
-Live app: https://paycheck-sui.onrender.com · Code: https://github.com/Sireadell/paycheck-sui · Proof page: https://paycheck-sui.onrender.com/proof
+Live app: https://paycheck-sui-app.onrender.com · Code: https://github.com/Sireadell/paycheck-sui · Proof page: https://paycheck-sui-app.onrender.com/proof
 
 > **The question it answers:** my agent is about to pay this Sui address. Should it?
 
@@ -40,8 +40,8 @@ npm test
 Ask the live server about a real wallet from the real set (rs-01, a group tied by one shared first funder), with memory off and then on:
 
 ```
-curl "https://paycheck-sui.onrender.com/api/check?address=0x36684098e89e315e57b8be53513a56e595452c7106de0f5c468262ba571a2964&memory=off"
-curl "https://paycheck-sui.onrender.com/api/check?address=0x36684098e89e315e57b8be53513a56e595452c7106de0f5c468262ba571a2964&memory=on"
+curl "https://paycheck-sui-app.onrender.com/api/check?address=0x36684098e89e315e57b8be53513a56e595452c7106de0f5c468262ba571a2964&memory=off"
+curl "https://paycheck-sui-app.onrender.com/api/check?address=0x36684098e89e315e57b8be53513a56e595452c7106de0f5c468262ba571a2964&memory=on"
 ```
 
 Every answer carries `verdict`, `code`, `reason`, `evidence` (each row labelled FACT, GUESS or REPORT), `memoryIds`, `changedByMemory`, `withoutMemory` and a count of the Tatum and Ankr calls it took. If no bad report reaches the wallet, both answers say "pay, linked, no bad history". That's on purpose (see the rules below).
@@ -49,10 +49,10 @@ Every answer carries `verdict`, `code`, `reason`, `evidence` (each row labelled 
 See the measured numbers and the memory counters:
 
 ```
-curl https://paycheck-sui.onrender.com/api/proof
-curl https://paycheck-sui.onrender.com/api/failures
-curl https://paycheck-sui.onrender.com/api/stats
-curl https://paycheck-sui.onrender.com/health
+curl https://paycheck-sui-app.onrender.com/api/proof
+curl https://paycheck-sui-app.onrender.com/api/failures
+curl https://paycheck-sui-app.onrender.com/api/stats
+curl https://paycheck-sui-app.onrender.com/health
 ```
 
 ## How it works
