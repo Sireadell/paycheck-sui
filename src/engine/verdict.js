@@ -205,10 +205,11 @@ export function buildVerdict(input = {}) {
   // A memory read that failed must never look like a clean "pay": nobody could see whether a bad report exists.
   const unread = memoryOn && memoryDegraded;
   // Things a "pay" must never be said about. A stored bad report still wins (it is red); these only turn a green into a caution.
+  const notWallet = payee?.kind ? { code: 'PAYEE_NOT_A_WALLET', reason: `This address is a Sui ${payee.kind}, not a wallet. Money sent to it may be stuck.`, retry: false } : null;
   const noHistory = payee?.noHistory ? { code: 'NO_HISTORY', reason: 'This address has no transactions and no balance on Sui. Brand-new or unused wallets cannot be judged, and a mistyped address looks the same.', retry: false } : null;
   const unreadWhy = unread ? { code: 'MEMORY_UNAVAILABLE', reason: 'The shared memory could not be read fully, so reports of bad payments could not be checked. Try again.', retry: true } : null;
   const unreadNote = unreadWhy?.reason ?? '';
-  const why = full.verdict === VERDICTS.PAY ? (noHistory ?? unreadWhy) : null;
+  const why = full.verdict === VERDICTS.PAY ? (notWallet ?? noHistory ?? unreadWhy) : null;
   const demote = Boolean(why);
   const reason = noData ? `${full.reason} On-chain data could not be read, so only memory was used.` : full.reason;
   return {
@@ -219,7 +220,7 @@ export function buildVerdict(input = {}) {
     evidence: full.evidence,
     memoryIds,
     retryable: unread && full.verdict !== VERDICTS.DO_NOT_PAY,
-    nextAction: demote ? (why.code === 'MEMORY_UNAVAILABLE' ? 'Retry the check in a moment, or pay only a small amount.' : 'Check the address with the payee before paying. Send a small test amount first.') : nextAction,
+    nextAction: demote ? (why.code === 'MEMORY_UNAVAILABLE' ? 'Retry the check in a moment, or pay only a small amount.' : why.code === 'PAYEE_NOT_A_WALLET' ? 'Do not send money here unless you know it is meant for this contract. Check the address with the payee.' : 'Check the address with the payee before paying. Send a small test amount first.') : nextAction,
     changedByMemory: changed,
     changedByIds,
     warnedBy,

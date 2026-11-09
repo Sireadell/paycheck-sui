@@ -19,6 +19,9 @@ The main idea: being linked to other wallets is not unsafe. Exchanges and payrol
 | - | The address has no transactions and no SUI balance, and the answer would have been "pay" | caution | NO_HISTORY | FACT (nothing found) |
 
 A brand-new or unused wallet cannot be judged, and a mistyped address looks exactly the same, so it never gets "pay". The check reads the balance in the same moment as the first page of history, so it adds one Tatum call but no waiting. A stored bad report on the exact address still gives "do not pay". A check that ends this way is not saved as a memory.
+| - | The address is a Sui package or another object, not a wallet, and the answer would have been "pay" | caution | PAYEE_NOT_A_WALLET | FACT (read on chain) |
+
+The check asks Tatum whether an object or package exists at the address (the same call that reads the balance). Wallets have no object at their address, so this has no false alarms on wallets. If that read fails the check is skipped and a note says so. A stored bad report still wins.
 
 When the shared memory cannot be read fully, a "pay" becomes caution, because nobody could look for a report of a bad payment. A "do not pay" stays as it is. Another caution keeps its own code and gets the same note added to its reason. The "without memory" side of the answer is not changed. A check that ended this way is not saved as a new memory. The web page shows the caution with a Retry button.
 

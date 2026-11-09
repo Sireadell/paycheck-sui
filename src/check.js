@@ -68,7 +68,7 @@ function withTimeout(p, ms, label) {
 export function payeeFacts(g) {
   if (!g?.profile) return null;
   const empty = g.page.transactions.length === 0 && !g.page.hasNextPage && /^0+$/.test(g.profile.balance) && !g.profile.isObject;
-  return { noHistory: empty };
+  return { kind: g.profile.isPackage ? 'package' : g.profile.isObject ? 'object' : null, noHistory: empty };
 }
 
 export function createChecker({ tatum, ankr = null, memory, mode = 'test', recallTimeoutMs = 25000, now = () => Date.now(), maxTx = 50 } = {}) {
@@ -119,7 +119,7 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
     const groupId = sf?.groupSize > 0 && funder ? groupIdOf(funder) : (sponsor && !hubs.sponsor?.verdict?.startsWith('shared') ? groupIdOf(sponsor) : null);
     const notes = [];
     if (page.hasNextPage) notes.push(`Only the oldest ${depth} transactions of this wallet were read.`);
-    if (!profile && tatum.addressProfile) notes.push('The balance of this address could not be read, so the check for an empty address was skipped.');
+    if (!profile && tatum.addressProfile) notes.push('Whether this address is a wallet, a package or an object could not be read, so that check was skipped.');
     if (fl?.error) notes.push('The funder history could not be read, so the shared service check was skipped.');
     if (sl?.error) notes.push('The gas sponsor history could not be read.');
     return { page, profile: profile ?? null, analysis, hubs, selfHub, funder, sponsor, groupId, groupIds, notes, links: { firstDigest: first?.digest ?? null, sponsorDigest: sponsorTx?.digest ?? null } };
@@ -215,7 +215,7 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
     const tatumSummary = own('tatum');
     let write = { count: 0, state: 'none' };
     let deferred = null;
-    if (g && !['INVALID_INPUT', 'DATA_UNAVAILABLE', 'MEMORY_UNAVAILABLE', 'NO_HISTORY'].includes(verdict.code)) {
+    if (g && !['INVALID_INPUT', 'DATA_UNAVAILABLE', 'MEMORY_UNAVAILABLE', 'NO_HISTORY', 'PAYEE_NOT_A_WALLET'].includes(verdict.code)) {
       const group = g.groupIds[0] ?? null;
       const item = {
         namespace: ns.verdict, kind: 'verdict', address: wallet, group, origin: originOverride || origin,
