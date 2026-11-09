@@ -1,159 +1,305 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PayCheck Sui</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-<header class="top">
-  <div class="wrap top-row">
-    <strong class="brand" data-copy="title"></strong>
-    <span id="mode-badge" class="mode" hidden></span>
-    <a class="top-link" href="/proof" data-copy="proof.navLink"></a>
-  </div>
-</header>
-
-<main>
-  <section class="hero">
-    <div class="wrap">
-      <div class="hero-text">
-        <h1 data-copy="tagline"></h1>
-      </div>
-      <p id="test-note" class="test-note" hidden></p>
-
-      <div class="switchbar">
-        <span class="switch-label" id="switch-label" data-copy="switch.label"></span>
-        <div class="switch" role="group" aria-labelledby="switch-label">
-          <button type="button" id="sw-on" class="sw" aria-pressed="true" data-copy="switch.on"></button>
-          <button type="button" id="sw-off" class="sw" aria-pressed="false" data-copy="switch.off"></button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PayCheck Sui</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <!-- Top Bar -->
+    <header class="top-bar">
+      <div class="top-bar-inner">
+        <div class="brand">PayCheck Sui</div>
+        <div class="top-bar-right">
+          <span id="mode-badge" class="badge badge-mode">TEST MODE</span>
+          <a href="/proof" class="top-nav-link" id="proof-link">Proof</a>
         </div>
-        <span id="switch-hint" class="hint" aria-live="polite"></span>
       </div>
+    </header>
 
-      <article class="panel" id="panel" aria-labelledby="panel-h">
-        <header class="panel-head">
-          <h2 id="panel-h" data-copy="panel.heading"></h2>
-          <span id="panel-tag" class="tag"></span>
-        </header>
-        <p id="panel-note" class="panel-note"></p>
-        <div class="trio">
-          <div class="agent a">
-            <h3 data-copy="panel.agentAHeading"></h3>
-            <p id="a-tell"></p>
-            <p id="a-mem" class="mono small"></p>
+    <!-- Top Sample Data Banner: right under top bar on first screen once page loads and cannot reach server -->
+    <div id="top-sample-banner" class="top-sample-banner-wrap hidden">
+      <div class="page-container top-sample-banner-container">
+        <div class="sample-badge">SAMPLE DATA, server not reachable</div>
+      </div>
+    </div>
+
+    <!-- Main Container -->
+    <main class="page-container">
+      <!-- Above the fold: Headline & Search -->
+      <section class="hero-section">
+        <h1 class="headline" id="main-headline">One agent gets burned. Every other agent is warned.</h1>
+
+        <form id="check-form" class="check-form" onsubmit="return false;">
+          <div class="form-row">
+            <label for="address-input" class="sr-only">Sui Address</label>
+            <input
+              type="text"
+              id="address-input"
+              class="address-input"
+              placeholder="0x... (a Sui address)"
+              spellcheck="false"
+              autocomplete="off"
+            />
+            <button type="submit" id="check-button" class="btn btn-primary">Check</button>
           </div>
-          <div class="link">
-            <h3 data-copy="panel.linkHeading"></h3>
-            <p id="link-text"></p>
-            <p class="small muted" data-copy="panel.linkNote"></p>
-          </div>
-          <div class="agent b">
-            <h3 data-copy="panel.agentBHeading"></h3>
-            <p id="b-tell"></p>
-            <div class="answer" id="b-answer" aria-live="polite">
-              <span class="answer-label" data-copy="panel.verdictLabel"></span>
-              <span id="b-chip" class="chip"></span>
-              <p id="b-why" class="small"></p>
+
+          <div class="memory-switch-row">
+            <span class="memory-label" id="memory-switch-label">Shared memory</span>
+            <div class="switch-button-group" role="group" aria-labelledby="memory-switch-label">
+              <button
+                type="button"
+                id="memory-on-btn"
+                class="switch-btn active"
+                aria-pressed="true"
+              >
+                On
+              </button>
+              <button
+                type="button"
+                id="memory-off-btn"
+                class="switch-btn"
+                aria-pressed="false"
+              >
+                Off
+              </button>
             </div>
           </div>
-        </div>
-        <div class="panel-foot">
-          <button type="button" id="run-live" class="btn secondary" disabled></button>
-          <p id="run-live-note" class="small muted"></p>
-          <p id="shared-account" class="small muted"></p>
-        </div>
-      </article>
-      <p class="lead after" data-copy="intro"></p>
-    </div>
-  </section>
+          <p id="memory-hint" class="memory-hint">
+            Memory on: the agent reads what other agents reported.
+          </p>
 
-  <section class="try">
-    <div class="wrap">
-      <h2 data-copy="check.heading"></h2>
-      <p class="lead2" data-copy="check.lead"></p>
-      <form id="check-form" class="check-form" autocomplete="off">
-        <label class="sr" for="addr" data-copy="check.heading"></label>
-        <input id="addr" name="address" type="text" inputmode="text" spellcheck="false" autocapitalize="off">
-        <button type="submit" class="btn primary" id="check-btn" data-copy="check.button"></button>
-      </form>
-      <p id="prefill-note" class="small muted"></p>
-      <p id="check-status" class="status" role="status" aria-live="polite"></p>
-      <div id="check-result" class="result" hidden>
-        <div class="cols2">
-          <div class="rcol" id="col-on"><h3 data-copy="check.withMemory"></h3><div class="chip-row"><span class="chip" id="chip-on"></span></div><p class="small" id="reason-on"></p></div>
-          <div class="rcol" id="col-off"><h3 data-copy="check.withoutMemory"></h3><div class="chip-row"><span class="chip" id="chip-off"></span></div><p class="small" id="reason-off"></p></div>
+          <div
+            id="status-message"
+            class="status-message hidden"
+            role="status"
+            aria-live="polite"
+          >
+            Reading the chain and shared memory. This can take up to 30 seconds.
+          </div>
+        </form>
+      </section>
+
+      <!-- Answer / Error / Verdict Area -->
+      <section id="answer-area" aria-live="polite" class="answer-area">
+        <!-- Sample data banner (shown if server is not reachable) -->
+        <div id="sample-banner" class="sample-banner hidden">
+          <span class="sample-badge">SAMPLE DATA, server not reachable</span>
         </div>
-        <p id="retry-note" class="small" hidden data-copy="check.retryNote"></p>
-        <button type="button" class="btn secondary" id="retry-btn" hidden data-copy="check.retry"></button>
-        <p id="changed-line" class="changed"></p>
-        <h3 class="ev-h" data-copy="check.evidenceHeading"></h3>
-        <ul id="evidence" class="evidence"></ul>
+
+        <!-- Error Card -->
+        <div id="error-card" class="card error-card hidden">
+          <p id="error-text" class="error-text"></p>
+        </div>
+
+        <!-- Verdict Card -->
+        <article id="verdict-card" class="card verdict-card hidden">
+          <!-- Sample badge inside verdict card above verdict chip when check used sample data -->
+          <div id="verdict-sample-banner" class="sample-banner hidden">
+            <span class="sample-badge">SAMPLE DATA, server not reachable</span>
+          </div>
+
+          <!-- Big Verdict Header -->
+          <div class="verdict-header">
+            <div id="main-verdict-chip" class="verdict-chip verdict-chip-caution">
+              caution
+            </div>
+            <p id="main-verdict-reason" class="verdict-reason">—</p>
+          </div>
+
+          <!-- Comparison Columns -->
+          <div class="columns-comparison">
+            <div id="col-with-memory" class="compare-col outlined">
+              <div class="col-head">With memory</div>
+              <div id="col-with-memory-verdict" class="col-verdict">—</div>
+            </div>
+            <div id="col-without-memory" class="compare-col">
+              <div class="col-head">Without memory</div>
+              <div id="col-without-memory-verdict" class="col-verdict">—</div>
+            </div>
+          </div>
+
+          <!-- Memory changed banner -->
+          <div id="memory-changed-line" class="memory-changed-line">
+            —
+          </div>
+
+          <!-- What to do next -->
+          <div class="next-action-box">
+            <span class="next-action-title">What to do next:</span>
+            <span id="next-action-text" class="next-action-text">—</span>
+          </div>
+
+          <!-- Evidence List -->
+          <div class="section-block">
+            <h2 class="subhead">Evidence</h2>
+            <ul id="evidence-list" class="evidence-list">
+              <!-- populated dynamically -->
+            </ul>
+            <button type="button" id="evidence-show-all-btn" class="btn-text hidden">
+              Show all
+            </button>
+          </div>
+
+          <!-- Memory Citations (warnedBy) -->
+          <div id="warned-by-block" class="section-block hidden">
+            <h2 class="subhead">Memory Citations</h2>
+            <ul id="warned-by-list" class="citation-list">
+              <!-- populated dynamically -->
+            </ul>
+          </div>
+
+          <!-- Small Grey Footer Line -->
+          <div class="verdict-footer-meta">
+            <p id="verdict-stats-line" class="meta-line"></p>
+            <p id="verdict-degraded-line" class="meta-line amber-line hidden">
+              Shared memory could not be read fully, so this answer may miss a report.
+            </p>
+            <div id="verdict-notes-list" class="notes-list"></div>
+          </div>
+        </article>
+
+        <!-- Two-agent story card (from /api/cross-agent) -->
+        <div id="cross-agent-sample-banner" class="sample-banner hidden">
+          <span class="sample-badge">SAMPLE DATA, server not reachable</span>
+        </div>
+        <article id="two-agent-card" class="card two-agent-card hidden">
+          <h2 class="subhead-centered">Two-Agent Memory Relay</h2>
+          <div class="two-agent-grid">
+            <div class="agent-box">
+              <div class="agent-box-title">Agent A</div>
+              <div id="agent-a-details" class="agent-box-content">
+                <p>Paid <span id="agent-a-address" class="mono-address"></span></p>
+                <p class="text-danger">It went bad</p>
+                <p>Memory id: <span id="agent-a-memory-id" class="mono-id"></span></p>
+              </div>
+            </div>
+
+            <div class="agent-box tie-box">
+              <div class="agent-box-title">What ties them</div>
+              <div id="tie-details" class="agent-box-content">
+                <p id="tie-type" class="badge badge-link"></p>
+                <p id="tie-address" class="mono-address"></p>
+              </div>
+            </div>
+
+            <div class="agent-box">
+              <div class="agent-box-title">Agent B</div>
+              <div id="agent-b-details" class="agent-box-content">
+                <p>Was about to pay <span id="agent-b-address" class="mono-address"></span></p>
+                <div class="agent-b-verdict-wrap">
+                  <span id="agent-b-chip" class="verdict-chip-sm"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- Numbers band (dark) -->
+      <div id="numbers-sample-banner" class="sample-banner hidden">
+        <span class="sample-badge">SAMPLE DATA, server not reachable</span>
       </div>
-      <p id="call-line" class="mono small calls"></p>
-    </div>
-  </section>
+      <section class="dark-numbers-band">
+        <div class="numbers-inner">
+          <div class="numbers-top-row">
+            <div class="number-stat-item">
+              <div class="stat-title">Real Sui wallet groups found</div>
+              <div class="stat-value" id="stat-groups-caught">—</div>
+            </div>
+            <div class="number-stat-item">
+              <div class="stat-title">Ordinary wallets wrongly told do not pay</div>
+              <div class="stat-value" id="stat-controls-strict">—</div>
+            </div>
+            <div class="number-stat-item">
+              <div class="stat-title">Memory recall checked by exact address</div>
+              <div class="stat-value" id="stat-prescan-verified">—</div>
+            </div>
+          </div>
 
-  <section class="nums">
-    <div class="wrap">
-      <div class="nums-grid">
-        <div class="counters" id="counters">
-          <h2 data-copy="counters.heading"></h2>
-          <p class="big" id="changed-big"></p>
-          <p class="small on-dark-muted" data-copy="counters.changedNote"></p>
-          <p class="beside" id="total-line"></p>
-          <dl class="lines">
-            <div><dt id="live-line"></dt><dd data-copy="counters.liveNote"></dd></div>
-            <div><dt id="prescan-line"></dt><dd data-copy="counters.prescanNote"></dd></div>
-            <div><dt id="test-line"></dt><dd data-copy="counters.testNote"></dd></div>
-          </dl>
-          <p class="small on-dark-muted" data-copy="counters.since"></p>
-        </div>
+          <!-- 4-Column Table -->
+          <div class="benchmark-table-wrapper">
+            <table class="benchmark-table">
+              <thead>
+                <tr>
+                  <th scope="col" class="table-metric-head">Metric</th>
+                  <th scope="col">Plain AI</th>
+                  <th scope="col">Plain AI + report</th>
+                  <th scope="col">Checker</th>
+                  <th scope="col">Checker + memory</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Group wallets answered do not pay</th>
+                  <td id="table-stopped-ai">—</td>
+                  <td id="table-stopped-aiReport">—</td>
+                  <td id="table-stopped-checker">—</td>
+                  <td id="table-stopped-memory">—</td>
+                </tr>
+                <tr>
+                  <th scope="row">Group wallets where the right link was named</th>
+                  <td id="table-link-ai">—</td>
+                  <td id="table-link-aiReport">—</td>
+                  <td id="table-link-checker">—</td>
+                  <td id="table-link-memory">—</td>
+                </tr>
+                <tr>
+                  <th scope="row">Ordinary wallets wrongly told do not pay</th>
+                  <td id="table-strict-ai">—</td>
+                  <td id="table-strict-aiReport">—</td>
+                  <td id="table-strict-checker">—</td>
+                  <td id="table-strict-memory">—</td>
+                </tr>
+                <tr>
+                  <th scope="row">Ordinary wallets told do not pay or caution</th>
+                  <td id="table-incl-ai">—</td>
+                  <td id="table-incl-aiReport">—</td>
+                  <td id="table-incl-checker">—</td>
+                  <td id="table-incl-memory">—</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-        <div class="bench" id="bench">
-          <h2 data-copy="bench.heading"></h2>
-          <div class="bench-block">
-            <p class="tag-line" data-copy="bench.realTag"></p>
-            <p class="big2"><span id="real-n"></span> <span class="tail" data-copy="bench.realHeadlineTail"></span></p>
-            <p class="small" id="real-detail"></p>
-            <p class="small muted" data-copy="bench.caughtMeans"></p>
+          <!-- Live counters -->
+          <div class="live-counters-grid">
+            <div class="counter-card">
+              <span class="counter-label">Memories that changed an answer</span>
+              <span class="counter-num" id="live-changed-verdicts">—</span>
+            </div>
+            <div class="counter-card">
+              <span class="counter-label">Live memories</span>
+              <span class="counter-num" id="live-memories">—</span>
+            </div>
+            <div class="counter-card">
+              <span class="counter-label">Pre-scan memories</span>
+              <span class="counter-num" id="live-prescan">—</span>
+            </div>
+            <div class="counter-card">
+              <span class="counter-label">Tatum calls since start</span>
+              <span class="counter-num" id="live-tatum-calls">—</span>
+            </div>
           </div>
-          <div class="bench-block">
-            <h3 data-copy="bench.controlsHeading"></h3>
-            <p class="mid"><span id="ctl-strict"></span> <span class="tail" data-copy="bench.controlsStrictTail"></span></p>
-            <p class="mid"><span id="ctl-loose"></span> <span class="tail" data-copy="bench.controlsLooseTail"></span></p>
-            <p class="small muted" data-copy="bench.controlsNote"></p>
+          <div class="counter-note">Counted since this server last started.</div>
+
+          <div class="proof-link-wrap">
+            <a href="/proof" class="proof-full-link">Every number, recounted from the saved files</a>
           </div>
-          <div class="bench-block stress">
-            <p class="tag-line" data-copy="bench.stressTag"></p>
-            <p class="mid" id="stress-n"></p>
-            <p class="small muted" id="stress-note"></p>
-          </div>
-          <div class="bench-block columns">
-            <h3 data-copy="bench.columnsHeading"></h3>
-            <p class="small" id="cols-lead"></p>
-            <p class="small cols-test" data-copy="bench.columnsTest"></p>
-            <div class="table-scroll"><table class="cols-table" id="cols-table"></table></div>
-            <p class="small muted" data-copy="bench.columnsHonest"></p>
-            <h3 data-copy="bench.lossesHeading"></h3>
-            <p class="small muted" data-copy="bench.lossesLead"></p>
-            <ul class="losses" id="losses"></ul>
-          </div>
-          <p class="small muted" id="bench-ran"></p>
         </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+      <div class="footer-inner">
+        Reads Sui through Tatum. Shared memory on Walrus. Not a fraud detector: red means someone reported a bad payment that reaches this address through a real link.
       </div>
-    </div>
-  </section>
+    </footer>
 
-  <section class="limits">
-    <div class="wrap">
-      <h2 data-copy="limits.heading"></h2>
-      <ol id="limits-list" class="limits-list"></ol>
-    </div>
-  </section>
-</main>
-<footer class="foot"><div class="wrap"><p class="small" data-copy="footer"></p></div></footer>
-<script src="app.js" type="module"></script>
-</body>
+    <script type="module" src="/app.js"></script>
+    <div id="root" style="display:none"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
