@@ -10,7 +10,7 @@ Live app: https://paycheck-sui-app.onrender.com · Code: https://github.com/Sire
 
 ## The problem
 
-Two AI agents, run by two different people. Agent A pays a Sui address and the money is gone. Agent A now knows that address is bad.
+Two AI agents. Agent A pays a Sui address and the money is gone. Agent A now knows that address is bad.
 
 A day later Agent B is about to pay a different address that the same person controls. Agent B has no idea, because what Agent A learned stayed inside Agent A.
 
@@ -35,7 +35,7 @@ Run the tests (recorded mainnet answers, no network):
 npm test
 ```
 
-181 tests pass.
+185 tests pass.
 
 Ask the live server about a real wallet from the real set (rs-01, a group tied by one shared first funder), with memory off and then on:
 
@@ -118,7 +118,7 @@ I ran this for real on Sui mainnet on 9 Nov 2026, with two separate programs. Fo
 1. The shared test wallet (`0xc7f7...93ca`, which sends every payment in these runs) paid 0.001 SUI to `0x4c0ecb5d3a7c09dffc7dd88a8598a6e53a500487206472f0393810e192591f5b`, a test wallet that Agent A controls ([transaction](https://suiscan.xyz/mainnet/tx/DcHgePsYjQwg1yayvyJSpT3q7CDXKx4zciZe6vZ2wP1B)) Agent A then reported that payment as bad. The burn is staged: nobody took the money, I had Agent A report it bad on purpose. The report is memory `uVKrZAcEnPYog1x0mLDYnDZkUmVNzDskqK4XdTOUpcU`.
 2. Agent B was given only `0x0f8500ea00a3171ad047e3533b42ef8c5e261b6686cf603630b3b733cec9e6f4`, an address it had never seen. PayCheck found that both addresses got their first SUI from the same funder, found Agent A's report through that link, and answered "do not pay" (`GROUP_BAD_OUTCOME`), citing that memory id. With memory off, the same check answered "pay, linked, no bad history". Agent B saved its refusal as memory `awSwPTvQS_U2Gn6t6FxAV3j9n5vXlTwGwZoMvZW7_KI`.
 
-Two limits. Both agents use one Walrus Memory account and read the same shared space, so this is two programs sharing one memory, not two separate owners. And the link in this run is the first funder only. I built the gas sponsor version of the link too, but it didn't show up in the final run, so I don't count it here. The saved run is `data/cross-agent/latest.json`.
+Two limits. The two agents are two programs with two keys, Agent A's and Agent B's own delegate key, and one shared Walrus Memory account. They read the same shared space, so this is not two accounts and not two users. And the link in this run is the first funder only. I built the gas sponsor version of the link too, but it didn't show up in the final run, so I don't count it here. The saved run is `data/cross-agent/latest.json`.
 
 
 ## Tatum Sui RPC integration
@@ -232,7 +232,7 @@ That looks better than it is. I built these links, so they're easy: fresh wallet
 |---|---|---|
 | Every chain read from Tatum on Sui mainnet, Ankr second opinion | Benchmark bad reports are put in by me (no recorded losses exist in the real set) | x402 or MPP settlement. Paid checks are plain SUI for now |
 | Walrus Memory writes on mainnet, exact recall, memory switch | AI baseline is a small model, one run per case | A separate Walrus Memory account for each agent |
-| Real set, four-column benchmark, pre-scan of 200, `npm run reproduce` | Both agents share one Walrus Memory account and run as separate programs | The gas sponsor link in the two-agent run (built, didn't show in the final run) |
+| Real set, four-column benchmark, pre-scan of 200, `npm run reproduce` | Two agents, two keys, one shared Walrus Memory account, run as separate programs | The gas sponsor link in the two-agent run (built, didn't show in the final run) |
 | Two-agent run on mainnet (memory `uVKrZAcEnPYog1x0mLDYnDZkUmVNzDskqK4XdTOUpcU`) | Agent A's bad payment is staged, and the refused payee is a wallet I made | Published npm package. For now, run it from this repo |
 | Refuse-then-pay run and one paid check on mainnet, replay refused | Stress test wallets are built by me (65 of 65 found, synthetic) | |
 | MCP tool `check_payee`, proof page | Reads 50 transactions per wallet by default (200 is an option) | |
@@ -305,7 +305,7 @@ Seven runtime dependencies: `express`, `zod`, `@mysten-incubation/memwal`, `@mys
 | `data/prescan/` | The pre-scan pick list, verdicts and the recall check |
 | `bench/` | Benchmark prompts, saved AI answers and results |
 | `docs/` | [API](docs/API.md), [MCP](docs/MCP.md), [verdict rules](docs/VERDICT_RULES.md), [method](docs/METHOD.md), [reproduce](docs/REPRODUCE.md) |
-| `test/` | 181 tests on recorded mainnet answers, no keys needed |
+| `test/` | 185 tests on recorded mainnet answers, no keys needed |
 
 ## What I built during the event
 

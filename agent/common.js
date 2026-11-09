@@ -1,6 +1,6 @@
 // Shared setup for the agent scripts: memory, checker and (when asked) the payer, all from the environment.
 import { createChecker } from '../src/check.js';
-import { createMemory } from '../src/memory/index.js';
+import { createMemory, sdkFactoryFromConfig } from '../src/memory/index.js';
 import { getTatum, getAnkr } from '../src/providers/index.js';
 import { loadConfig } from '../src/config.js';
 import { ENDPOINT_BASE } from '../src/providers/ankr.js';
@@ -11,9 +11,9 @@ export const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 /** mode 'live' writes to the live namespaces (the public proof run); anything else uses the labelled test namespace. */
 // recallTimeoutMs counts the time a recall waits in the queue too, so agents allow far more than the 25 s web default.
-export function buildEnv({ mode = 'test', withPayer = false, reserveSui = 2, recallTimeoutMs = 150000 } = {}) {
+export function buildEnv({ mode = 'test', withPayer = false, reserveSui = 2, recallTimeoutMs = 150000, agent = 'a' } = {}) {
   const cfg = loadConfig();
-  const memory = createMemory();
+  const memory = createMemory({ sdkFactory: sdkFactoryFromConfig(cfg, { agent }) });
   const checker = createChecker({ tatum: getTatum(), ankr: cfg.ANKR_API_KEY ? getAnkr() : null, memory, mode: mode === 'live' ? 'live' : 'test', recallTimeoutMs });
   let payer = null;
   if (withPayer) {

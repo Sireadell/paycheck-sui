@@ -11,7 +11,7 @@ const live = args.includes('--live');
 if (!wallet) { console.error('Usage: node --env-file=.env agent/agent-b.js <wallet> [--live]'); process.exit(1); }
 
 const AGENT = 'agent-b';
-const { memory, checker } = buildEnv({ mode: live ? 'live' : 'test' });
+const { memory, checker } = buildEnv({ mode: live ? 'live' : 'test', agent: 'b' });
 const safePay = createSafePay({ checker, memory, agentId: AGENT, dryRun: true, refusalNamespace: live ? 'agent-b' : 'k2-test', refusalOrigin: live ? 'agent-b' : 'k2-test' });
 
 const linkOf = (evidence) => {

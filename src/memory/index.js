@@ -8,9 +8,14 @@ export * from './header.js';
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-export function sdkFactoryFromConfig(cfg = loadConfig()) {
+// agent 'b' signs with its own delegate key when one is set. Same account, different key.
+export function keyFor(cfg, agent) {
+  return agent === 'b' && cfg.MEMWAL_AGENT_B_DELEGATE_PRIVATE_KEY ? cfg.MEMWAL_AGENT_B_DELEGATE_PRIVATE_KEY : cfg.MEMWAL_DELEGATE_PRIVATE_KEY;
+}
+
+export function sdkFactoryFromConfig(cfg = loadConfig(), { agent } = {}) {
   return (namespace) => MemWal.create({
-    key: cfg.MEMWAL_DELEGATE_PRIVATE_KEY,
+    key: keyFor(cfg, agent),
     accountId: cfg.MEMWAL_ACCOUNT_ID,
     serverUrl: cfg.MEMWAL_RELAYER_URL,
     namespace,

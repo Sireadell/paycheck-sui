@@ -34,7 +34,7 @@
     "verdictLabel": "Answer",
     "runLive": "Run it again live",
     "runLiveDisabled": "Not available yet. It needs the two agent programs and a funded wallet, and those come later.",
-    "sharedAccount": "Both agents use one Walrus Memory account and read the same shared space. They run as two separate programs."
+    "sharedAccount": "Two agents, two keys, one shared Walrus Memory account. They run as two separate programs and read the same shared space."
   },
   "check": {
     "heading": "Try an address",

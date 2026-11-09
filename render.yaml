@@ -16,6 +16,8 @@ services:
         sync: false
       - key: MEMWAL_DELEGATE_PRIVATE_KEY
         sync: false
+      - key: MEMWAL_AGENT_B_DELEGATE_PRIVATE_KEY
+        sync: false
       - key: MEMWAL_ACCOUNT_ID
         sync: false
       - key: MEMWAL_AGENT_ID

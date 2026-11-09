@@ -19,6 +19,7 @@ Node 22 or newer is required (`NODE_VERSION` is set to 22 in the blueprint).
 |---|---|---|
 | `TATUM_API_KEY_MAINNET` | yes | Every chain read |
 | `MEMWAL_DELEGATE_PRIVATE_KEY` | yes | Writes and reads in Walrus Memory |
+| `MEMWAL_AGENT_B_DELEGATE_PRIVATE_KEY` | no | Agent B's own key on the same Walrus Memory account. Used by `agent/agent-b.js`, falls back to the main key |
 | `MEMWAL_ACCOUNT_ID` | yes | The Walrus Memory account |
 | `MEMWAL_AGENT_ID` | no | Agent id shown on memories |
 | `MEMWAL_PACKAGE_ID`, `MEMWAL_REGISTRY_ID` | no | Walrus Memory settings |
