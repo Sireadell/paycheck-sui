@@ -1,0 +1,19 @@
+{
+  "ranAt": "2026-11-09T14:45:12.893Z",
+  "route": "plain SUI",
+  "network": "Sui mainnet",
+  "checks": 1,
+  "digest": "5Le61QyWQtRoWz458KRWysu4VZAcu5ToBEBopb6nVE9R",
+  "explorer": "https://suiscan.xyz/mainnet/tx/5Le61QyWQtRoWz458KRWysu4VZAcu5ToBEBopb6nVE9R",
+  "payee": "0x7c666f1f64c4b1ee5e27024be2e8947692e89abfe47fd3e1c1c9d36f55613c2d",
+  "payer": "0xc7f77d7bfd15161fe350f0b030dd1f131e81798b3fa9f0a8a37334aa959693ca",
+  "amountSui": "0.001002431",
+  "gasMist": "1088000",
+  "checkedAddress": "0xe1b6e64f397d6120e4a9350209b2b835052c7aee51e78f860931ab6891133029",
+  "verdict": "pay",
+  "code": "NO_LINKS_NO_BAD_HISTORY",
+  "verifiedThrough": "Tatum GraphQL",
+  "replayStatus": 409,
+  "spentMist": "2090431",
+  "spentSui": "0.002090431"
+}

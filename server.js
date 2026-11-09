@@ -9,6 +9,7 @@ import { getTatum, getAnkr, callLog } from './src/providers/index.js';
 import { loadConfig } from './src/config.js';
 import { loadBenchmark, loadCrossAgent } from './src/api/benchmark.js';
 import { loadProof, renderProof } from './src/proof.js';
+import { createPaidCheck } from './src/paid.js';
 
 const ROOT = fileURLToPath(new URL('./', import.meta.url));
 const PROBE_EVERY_MS = 30000;
@@ -37,7 +38,7 @@ const sameToken = (given, wanted) => {
   return timingSafeEqual(a, b);
 };
 
-export function createApp({ checker, memory, probe = null, outcomeToken = process.env.OUTCOME_TOKEN, checkLimit = CHECK_LIMIT, outcomeLimit = OUTCOME_LIMIT, now = () => Date.now(), webDir = `${ROOT}web`, dataDir = `${ROOT}data`, benchDir = `${ROOT}bench`, docsDir = `${ROOT}docs` } = {}) {
+export function createApp({ checker, memory, probe = null, outcomeToken = process.env.OUTCOME_TOKEN, checkLimit = CHECK_LIMIT, outcomeLimit = OUTCOME_LIMIT, now = () => Date.now(), webDir = `${ROOT}web`, dataDir = `${ROOT}data`, paidCheck = null, benchDir = `${ROOT}bench`, docsDir = `${ROOT}docs` } = {}) {
   const checkHit = ipLimiter(checkLimit, now);
   const outcomeHit = ipLimiter(outcomeLimit, now);
   const tooMany = (res, wait, what) => res.set('retry-after', String(wait)).status(429).json({ error: `Too many ${what} from your address. Try again in ${wait} seconds.`, retryable: true });
@@ -78,6 +79,20 @@ export function createApp({ checker, memory, probe = null, outcomeToken = proces
     }
   });
 
+  // Pay per check in SUI. First request answers 402 with an amount and an id; the second carries the transaction digest.
+  app.post('/api/paid/check', async (req, res) => {
+    if (!paidCheck) return res.status(503).json({ error: 'Paid checks are not switched on for this server.' });
+    const wait = checkHit(req.ip);
+    if (wait) return tooMany(res, wait, 'checks');
+    const b = req.body ?? {};
+    try {
+      const out = await paidCheck.handle({ address: b.address, id: b.id, digest: b.digest, memoryOn: String(b.memory ?? 'on').toLowerCase() !== 'off' });
+      res.status(out.status).json(out.body);
+    } catch (e) {
+      res.status(500).json({ error: 'The paid check failed. Try again shortly.', retryable: true, detail: String(e.message || e).slice(0, 160) });
+    }
+  });
+
   app.post('/api/outcome', async (req, res) => {
     // No token set on the server means no one can report. A wrong or missing token gets 401.
     const bearer = /^Bearer (.+)$/i.exec(req.get('authorization') ?? '')?.[1];
@@ -113,6 +128,7 @@ export function createApp({ checker, memory, probe = null, outcomeToken = proces
         failedWrites: memory.failed().length,
         note: 'Counted since this server started. Test memories are never part of the live or pre-scan numbers.',
       },
+      paidChecks: { settled: paidCheck ? await paidCheck.count() : 0, route: 'plain SUI on Sui mainnet' },
       calls: { tatum: callLog.summarize(0, 'tatum'), ankr: callLog.summarize(0, 'ankr') },
     });
   });
@@ -145,6 +161,8 @@ if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) {
   const memory = createMemory();
   const checker = createChecker({ tatum: getTatum(), ankr: cfg.ANKR_API_KEY ? getAnkr() : null, memory, mode: process.env.PAYCHECK_MODE === 'live' ? 'live' : 'test' });
   const port = Number(process.env.PORT) || 3000;
-  const app = createApp({ checker, memory });
+  const payee = process.env.PAID_CHECK_PAYEE || cfg.SUI_ADDRESS;
+  const paidCheck = payee ? createPaidCheck({ tatum: getTatum(), checker, payee, usedFile: `${ROOT}data/paid-check/used.json` }) : null;
+  const app = createApp({ checker, memory, paidCheck });
   app.listen(port, () => console.log(`paycheck listening on ${port}, mode ${checker.mode}`));
 }

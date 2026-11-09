@@ -57,7 +57,7 @@ export async function loadProof({ dataDir, benchDir }) {
   const stress = await optionalRun(join(benchDir, 'results', 'stress.json'), (d) => Number.isFinite(d.caught) && Number.isFinite(d.total));
   const crossAgent = await optionalRun(join(dataDir, 'cross-agent', 'latest.json'), (d) => d.agentA?.memoryId && d.agentB?.address);
   const refuseThenPay = await optionalRun(join(dataDir, 'refuse-then-pay', 'latest.json'), (d) => d.refused?.address && !d.refused.transactionSent && d.paid?.digest);
-  const paidCheck = await optionalRun(join(dataDir, 'paid-check', 'latest.json'), (d) => typeof d === 'object');
+  const paidCheck = await optionalRun(join(dataDir, 'paid-check', 'latest.json'), (d) => d && typeof d.digest === 'string' && Number.isFinite(d.checks));
   return {
     real: { recount: recountRealSet(realRaw), recorded: realRaw?.summary ?? null, ranAt: realRaw?.ranAt ?? null },
     deep: { recount: recountRealSet(deepRaw), recorded: deepRaw?.summary ?? null },
