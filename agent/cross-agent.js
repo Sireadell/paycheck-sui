@@ -75,5 +75,5 @@ if (ok) {
   console.log('NOT WRITTEN: agent B was not warned by agent A. Result follows.');
 }
 console.log(`real SUI spent this run: ${mistToSui(spent)}`);
-console.log(`[[CROSS_AGENT_MEMORY_ID]]=${result.agentA.memoryId}\n[[CROSS_AGENT_A_ADDRESS]]=${result.agentA.address}\n[[CROSS_AGENT_B_ADDRESS]]=${result.agentB.address}\n[[CROSS_AGENT_LINK_TYPE]]=${result.link?.type}\n[[CROSS_AGENT_LINK_ADDRESS]]=${result.link?.address}`);
+console.log(`agent A memory: ${result.agentA.memoryId}\nagent A address: ${result.agentA.address}\nagent B address: ${result.agentB.address}\nlink: ${result.link?.type} ${result.link?.address}`);
 process.exit(ok ? 0 : 5);

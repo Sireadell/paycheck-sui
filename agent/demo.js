@@ -30,7 +30,7 @@ const safePay = createSafePay({
 
 const before = live ? await payer.balance() : null;
 
-// Step 0: a wallet that was reported bad. It is a fresh address built by us, so nobody else's wallet is named.
+// Setup: a wallet that was reported bad. It is a fresh address built by us, so nobody else's wallet is named.
 const badAddress = new Ed25519Keypair().toSuiAddress();
 console.log(`setup: reporting ${badAddress} (fresh wallet, built by us, no funds) as a bad payment${live ? ' in the live namespace' : ' in the test namespace'}...`);
 const report = await checker.reportOutcome(badAddress, 'bad', { reporter: 'demo-setup' });
@@ -40,7 +40,7 @@ const seen = await waitUntilRecalled(memory, { namespace: report.namespace, addr
 if (!seen) throw new Error('the report was stored but could not be searched yet; try again in a minute (nothing was paid)');
 console.log(`setup: bad report stored as memory ${written.blobId} and searchable`);
 
-// Step 1: the refusal.
+// The refusal.
 let refused = null;
 try {
   const r = await safePay(badAddress, amount);
@@ -54,7 +54,7 @@ try {
   console.log(`  refusal saved as memory ${e.refusalMemory.id ?? 'NOT SAVED'} (${e.refusalMemory.state}, namespace ${e.refusalMemory.namespace}); transaction sent: none`);
 }
 
-// Step 2: the clean payee.
+// The clean payee.
 let paid = null;
 if (refused) {
   paid = await safePay(goodAddress, amount);
@@ -100,6 +100,6 @@ if (live && refused && paid?.paid) {
   await mkdir(new URL('../data/refuse-then-pay/', import.meta.url), { recursive: true });
   await writeFile(OUT, `${JSON.stringify(result, null, 2)}\n`);
   console.log(`wrote data/refuse-then-pay/latest.json, real SUI spent ${mistToSui(spent)} (payment ${mistToSui(paid.amountMist)} plus network fee)`);
-  console.log(`[[REFUSED_ADDRESS]]=${result.refused.address}\n[[REFUSED_MEMORY_ID]]=${result.refused.memoryIds[0]}\n[[PAID_ADDRESS]]=${result.paid.address}\n[[PAID_DIGEST]]=${result.paid.digest}`);
+  console.log(`refused address: ${result.refused.address}\nrefusal memory: ${result.refused.memoryIds[0]}\npaid address: ${result.paid.address}\npayment: ${result.paid.digest}`);
 }
 process.exit(process.exitCode ?? 0);
