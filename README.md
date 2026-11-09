@@ -35,7 +35,7 @@ Run the tests (recorded mainnet answers, no network):
 npm test
 ```
 
-127 tests pass.
+147 tests pass.
 
 Ask the live server about a real wallet from the real set (rs-01, a group tied by one shared first funder), with memory off and then on:
 
@@ -112,7 +112,13 @@ About the pre-scan: before launch I ran PayCheck on 200 public Sui addresses, pi
 
 ### Two agents, one memory
 
-[[CROSS_AGENT_PARAGRAPH: fill only after the two-agent run. Agent A wrote memory [[CROSS_AGENT_MEMORY_ID]] about [[CROSS_AGENT_A_ADDRESS]]. Agent B, a separate program, checked [[CROSS_AGENT_B_ADDRESS]] and was refused, citing that memory, through the link [[CROSS_AGENT_LINK_TYPE]] [[CROSS_AGENT_LINK_ADDRESS]]. Both agents use one Walrus Memory account and run as separate programs.]]
+I ran this for real on Sui mainnet on 9 Nov 2026, with two separate programs. For the test I made three fresh wallets: one funder, `0x217a4e9c2b758739510f675156d4ca38a72ba14e30c977fc887a09141793dcd8`, that sent the first SUI to the other two.
+
+1. Agent A paid `0x4c0ecb5d3a7c09dffc7dd88a8598a6e53a500487206472f0393810e192591f5b` 0.001 SUI ([transaction](https://suiscan.xyz/mainnet/tx/DcHgePsYjQwg1yayvyJSpT3q7CDXKx4zciZe6vZ2wP1B)) and then reported the payment as bad. The burn is staged: nobody took the money, I had Agent A report it bad on purpose. The report is memory `uVKrZAcEnPYog1x0mLDYnDZkUmVNzDskqK4XdTOUpcU`.
+2. Agent B was given only `0x0f8500ea00a3171ad047e3533b42ef8c5e261b6686cf603630b3b733cec9e6f4`, an address it had never seen. PayCheck found that both addresses got their first SUI from the same funder, found Agent A's report through that link, and answered "do not pay" (`GROUP_BAD_OUTCOME`), citing that memory id. With memory off, the same check answered "pay, linked, no bad history". Agent B saved its refusal as memory `awSwPTvQS_U2Gn6t6FxAV3j9n5vXlTwGwZoMvZW7_KI`.
+
+Two limits. Both agents use one Walrus Memory account and read the same shared space, so this is two programs sharing one memory, not two separate owners. And the link in this run is the first funder only. I built the gas sponsor version of the link too, but it didn't show up in the final run, so I don't count it here. The saved run is `data/cross-agent/latest.json`.
+
 
 ## Tatum Sui RPC integration
 
@@ -151,11 +157,11 @@ Config for other clients is in [docs/MCP.md](docs/MCP.md). Walrus also ships its
 
 ## Best Use of Agent Payments: "x402 or MPP settled on Sui"
 
-This part hasn't run yet. Until it does, the proof page and `npm run reproduce` both say "not yet run" for it, and the lines below fill in from its saved results.
+Both runs below are real Sui mainnet transactions. The paid check is a plain SUI transfer. It isn't x402 or MPP: the x402 and MPP tools I found for Sui take USDC, and I couldn't confirm a facilitator that settles on Sui mainnet, so I don't claim either. Details in [docs/PAYMENTS.md](docs/PAYMENTS.md).
 
-**The check is enforced inside the payment step.** The agent refuses to sign when the answer is "do not pay". Refused: [[REFUSED_ADDRESS]] (memory [[REFUSED_MEMORY_ID]]). Paid: [[PAID_ADDRESS]], transaction [[PAID_DIGEST]].
+**The check is enforced inside the payment step.** The agent refuses to sign when the answer is "do not pay". In the saved run it refused `0xfa908e71fc537e28e04e580bb968ee22fcbd03c31fe92a4f8aad4e35fe575a84` ("do not pay", `OUTCOME_BAD_SELF`, citing memory `S9Lg93qfmbZ7_YhulweVbkigg_mBojpMqWh3Ij4qbU4`) and sent no transaction. That address is a fresh wallet I made and reported bad in a setup step, not a stranger's wallet: I didn't want to name anyone's real wallet as bad. Then it paid `0xe1b6e64f397d6120e4a9350209b2b835052c7aee51e78f860931ab6891133029`, an ordinary wallet from the real set (rc-01), 0.001 SUI in [transaction `2Wx6UC8XTAzcwfTceurmbPcyFtgDS2cUU2V4wpoEQCve`](https://suiscan.xyz/mainnet/tx/2Wx6UC8XTAzcwfTceurmbPcyFtgDS2cUU2V4wpoEQCve). Saved run: `data/refuse-then-pay/latest.json`.
 
-**A check can be bought per call.** The paid endpoint answers HTTP 402 with the price, and the server confirms the payment through Tatum before it answers. Paid checks settled on Sui mainnet: [[PAID_CHECKS]], the first one [[PAID_CHECK_DIGEST]], through [[PAID_CHECK_ROUTE]].
+**A check can be bought per call.** `POST /api/paid/check` answers HTTP 402 with a price in SUI and a one-time id, and the server reads the payment back through Tatum before it answers. I ran one paid check on Sui mainnet: 0.001002431 SUI in [transaction `5Le61QyWQtRoWz458KRWysu4VZAcu5ToBEBopb6nVE9R`](https://suiscan.xyz/mainnet/tx/5Le61QyWQtRoWz458KRWysu4VZAcu5ToBEBopb6nVE9R), and the answer came back. Sending the same transaction again was refused with HTTP 409, so one payment buys one check. Saved run: `data/paid-check/latest.json`.
 
 ## Results
 
@@ -199,7 +205,14 @@ A stronger model might beat these numbers. The stronger models on my key were ov
 
 ### Stress test (synthetic, wallets I built myself)
 
-Kept apart from the real set because I built these wallets on mainnet myself: [[STRESS_CAUGHT]] of [[STRESS_TOTAL]] found, [[STRESS_FALSE_ALARMS]] of [[STRESS_CONTROLS]] ordinary wallets wrongly flagged.
+Kept apart from the real set because I built these wallets on mainnet myself. 16 groups with 65 wallets in all (8 groups tied by a first funder, 4 by a first funder plus a shared gas sponsor, 4 that send money back to their funder), and 16 ordinary wallets, each with its own fresh funder. The answer key (`data/stress/key.json`) was saved before the check ran. Memory off, 50 transactions per wallet.
+
+| What | Result |
+|---|---|
+| Wallets found | 65 of 65 |
+| Ordinary wallets wrongly flagged | 0 of 16 |
+
+That looks better than it is. I built these links, so they're easy: fresh wallets, short histories, nothing busy in the way. It shows the link rules do what they say. It doesn't show how PayCheck does on real wallets. The real-world number is the real set above: 19 of 20 groups found reading 200 transactions per wallet (18 of 20 at the default 50). Saved results: `data/stress/results.json`.
 
 ## What this is not
 
@@ -216,10 +229,12 @@ Kept apart from the real set because I built these wallets on mainnet myself: [[
 
 | Real | Simplified | Not built yet |
 |---|---|---|
-| Every chain read from Tatum on Sui mainnet, Ankr second opinion | Benchmark bad reports are put in by me (no recorded losses exist in the real set) | Payments and the refuse-then-pay run ([[PAID_CHECKS]], [[PAID_DIGEST]]) |
-| Walrus Memory writes on mainnet, exact recall, memory switch | AI baseline is a small model, one run per case | Two-agent run ([[CROSS_AGENT_MEMORY_ID]]) |
-| Real set, four-column benchmark, pre-scan of 200, `npm run reproduce` | Both agents share one Walrus Memory account and run as separate programs | Stress test ([[STRESS_CAUGHT]] of [[STRESS_TOTAL]]) |
-| MCP tool `check_payee`, proof page | Reads 50 transactions per wallet by default (200 is an option) | Published npm package. For now, run it from this repo |
+| Every chain read from Tatum on Sui mainnet, Ankr second opinion | Benchmark bad reports are put in by me (no recorded losses exist in the real set) | x402 or MPP settlement. Paid checks are plain SUI for now |
+| Walrus Memory writes on mainnet, exact recall, memory switch | AI baseline is a small model, one run per case | A separate Walrus Memory account for each agent |
+| Real set, four-column benchmark, pre-scan of 200, `npm run reproduce` | Both agents share one Walrus Memory account and run as separate programs | The gas sponsor link in the two-agent run (built, didn't show in the final run) |
+| Two-agent run on mainnet (memory `uVKrZAcEnPYog1x0mLDYnDZkUmVNzDskqK4XdTOUpcU`) | Agent A's bad payment is staged, and the refused payee is a wallet I made | Published npm package. For now, run it from this repo |
+| Refuse-then-pay run and one paid check on mainnet, replay refused | Stress test wallets are built by me (65 of 65 found, synthetic) | |
+| MCP tool `check_payee`, proof page | Reads 50 transactions per wallet by default (200 is an option) | |
 
 ## Method and pick rules
 
@@ -288,7 +303,7 @@ Seven runtime dependencies: `express`, `zod`, `@mysten-incubation/memwal`, `@mys
 | `data/prescan/` | The pre-scan pick list, verdicts and the recall check |
 | `bench/` | Benchmark prompts, saved AI answers and results |
 | `docs/` | [API](docs/API.md), [MCP](docs/MCP.md), [verdict rules](docs/VERDICT_RULES.md), [method](docs/METHOD.md), [reproduce](docs/REPRODUCE.md) |
-| `test/` | 127 tests on recorded mainnet answers, no keys needed |
+| `test/` | 147 tests on recorded mainnet answers, no keys needed |
 
 ## What I built during the event
 
