@@ -193,7 +193,7 @@ A stronger model might beat these numbers. The stronger models on my key were ov
 | Case | What happened |
 |---|---|
 | rs-15 | No link found, answer "pay". The shared transactions aren't in the oldest 50 the checker reads. At 200 it still misses them |
-| rs-20 | The AI said "do not pay". The checker found the shared fee payer but said "pay", because the bad report didn't reach this wallet |
+| rs-20 | The AI said "do not pay". The checker found the shared fee payer and said "pay". The wallet reported as bad has a different fee payer in the checker's reading, so the report was saved under another address and memory found nothing for this wallet |
 | rc-12 | An ordinary wallet that sent money back to its funder. The checker said "caution", the AI said "pay" |
 | rs-19 | The AI named the wallet that funded this group and the checker didn't, though memory still stopped the payment. Reading 200 transactions fixes it |
 

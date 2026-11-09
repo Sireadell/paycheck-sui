@@ -114,7 +114,7 @@
     "losses": [
       {
         "id": "rs-20",
-        "text": "The AI said \"do not pay\". The checker found the shared fee payer but still said \"pay\", because the bad report didn't reach this wallet."
+        "text": "The AI said \"do not pay\". The checker found the shared fee payer and said \"pay\". The wallet reported as bad has a different fee payer in the checker's reading, so the report was saved under another address and memory found nothing for this wallet."
       },
       {
         "id": "rc-12",

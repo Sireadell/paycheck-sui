@@ -138,6 +138,8 @@ The baseline model is small (gemini-3.1-flash-lite). Stronger models were over q
 
 Where the checker with memory did not do well: rs-20, rc-12, rs-19 and rs-15. They are listed on the first screen.
 
+Why rs-20 missed, from `bench/results/real.json` and `data/real-set/results.json`: the wallet used as the bad report (0x84cc...41f7) shows a different first funder and fee payer when the checker reads it (0x2b47...5974) than the shared fee payer the group is built on (0x9218...a22f), although 0x9218...a22f did pay for one of its transactions (listed in the group proof). The checker keeps one fee payer per wallet, the first sponsored one it finds in the transactions it reads. Memory is matched by those addresses, so the held-back wallet (fee payer 0x9218...a22f) got 0 recalled reports. The plain AI given the same report text also said "pay", because the report named 0x2b47...5974 as well. So the report was stored and recalled correctly; it carried a different address.
+
 
 ## Read depth (how many transactions of a wallet are read)
 
