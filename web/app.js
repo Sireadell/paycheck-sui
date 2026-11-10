@@ -1,4 +1,4 @@
-import { renderTatumPanel } from './tatum-panel.js';
+import { renderTatumPanel, sourceTagFor } from './tatum-panel.js';
 const API_BASE = '';
 
 const COPY = {
@@ -346,6 +346,13 @@ function renderEvidenceItem(item) {
     textWrap.appendChild(txLink);
   }
 
+  const src = sourceTagFor(item);
+  if (src) {
+    const tag = document.createElement('span');
+    tag.className = 'source-tag';
+    tag.textContent = 'Source: ' + src;
+    textWrap.appendChild(tag);
+  }
   li.appendChild(textWrap);
   return li;
 }

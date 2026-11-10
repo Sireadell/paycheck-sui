@@ -60,3 +60,17 @@ test('item 1: a verdict note records which memories changed the answer, and only
   assert.equal('changedByIds' in body, false);
   for (const k of ['test', 'verdict', 'code', 'label', 'funder', 'gasSponsor', 'groupId', 'links', 'checkpoint', 'tatumCalls', 'checkedAt']) assert.ok(k in body, k);
 });
+
+test('item 2: source tags are wording on the page only, every kind of evidence has a plain source, the answer has no new fields', async () => {
+  const { sourceTagFor, SOURCE } = await import('../web/tatum-panel.js');
+  assert.equal(sourceTagFor({ kind: 'memory' }), 'from a saved report on Walrus Memory');
+  assert.equal(sourceTagFor({ kind: 'link', type: 'gas_sponsor' }), 'read from Tatum');
+  assert.equal(sourceTagFor({ kind: 'round_trip' }), 'read from Tatum');
+  assert.equal(sourceTagFor({ kind: 'weak_link' }), 'worked out by us from Tatum history');
+  assert.equal(sourceTagFor({ kind: 'something_new' }), null);
+  assert.equal(sourceTagFor(null), null);
+  for (const v of Object.values(SOURCE)) assert.ok(!/[—]/.test(v));
+  // Nothing in the answer carries a source field: the tags are drawn by the page from the kind of row.
+  const r = await createChecker({ tatum: tatumFor(), memory: stored([]), mode: 'live', chainFacts: true }).check(pick.addr);
+  assert.ok(r.evidence.every((e) => !('source' in e)));
+});

@@ -10,6 +10,11 @@ const CALL_WORDS = {
   exchangeRate: 'SUI price',
 };
 
+// Where a piece of evidence came from, in plain words. Wording only: it never changes what is shown or decided.
+export const SOURCE = { tatum: 'read from Tatum', report: 'from a saved report on Walrus Memory', worked: 'worked out by us from Tatum history', ankr: 'checked against Ankr' };
+const EVIDENCE_SOURCE = { memory: 'report', link: 'tatum', round_trip: 'tatum', weak_link: 'worked', correlated_funding: 'worked', round_trip_second_hop: 'worked' };
+export function sourceTagFor(item) { return SOURCE[EVIDENCE_SOURCE[item && item.kind]] || null; }
+
 const short = (a) => (a ? a.slice(0, 8) + '...' + a.slice(-6) : '');
 
 function suiOf(s) {
@@ -32,12 +37,18 @@ function holdingsText(s) {
   return bits.join(', ');
 }
 
-function row(label, value) {
+function row(label, value, source) {
   const li = document.createElement('li');
   const b = document.createElement('strong');
   b.textContent = label + ' ';
   li.appendChild(b);
   li.appendChild(document.createTextNode(value));
+  if (source) {
+    const tag = document.createElement('span');
+    tag.className = 'source-tag';
+    tag.textContent = 'Source: ' + SOURCE[source];
+    li.appendChild(tag);
+  }
   return li;
 }
 
@@ -54,16 +65,16 @@ function profileRows(list, data) {
   if (p && p.txsRead) {
     const more = p.capped ? ' (oldest ' + p.txsRead + ' read)' : '';
     const bits = [ageText(p.ageDays), p.received + ' received, ' + p.sent + ' sent' + more, 'active on ' + (p.capped ? 'at least ' : '') + p.activeDays + ' day' + (p.activeDays === 1 ? '' : 's')];
-    list.appendChild(row('Wallet age and activity:', bits.filter(Boolean).join(', ') + '.'));
+    list.appendChild(row('Wallet age and activity:', bits.filter(Boolean).join(', ') + '.', 'worked'));
     const pt = p.passThrough || { count: 0 };
     list.appendChild(row('Pass-through:', pt.count
       ? pt.count + ' time' + (pt.count === 1 ? '' : 's') + ' SUI came in and nearly all of it left within 30 minutes (' + pt.examples.map((e) => e.minutes + ' min').join(', ') + '). Often a relay or service wallet, not proof of anything.'
-      : 'none seen in the history read.'));
+      : 'none seen in the history read.', 'worked'));
   }
   const fo = data.funderFanOut;
   if (fo) {
     const reading = fo.reading === 'link' ? 'a direct link' : fo.reading;
-    list.appendChild(row('First funder reach:', 'paid ' + fo.countText + ' wallet' + (fo.wallets === 1 && !fo.atLeast ? '' : 's') + ' over ' + fo.hours + ' hour' + (fo.hours === 1 ? '' : 's') + ', read as ' + reading + '.'));
+    list.appendChild(row('First funder reach:', 'paid ' + fo.countText + ' wallet' + (fo.wallets === 1 && !fo.atLeast ? '' : 's') + ' over ' + fo.hours + ' hour' + (fo.hours === 1 ? '' : 's') + ', read as ' + reading + '.', 'worked'));
   }
 }
 
@@ -77,13 +88,13 @@ export function renderTatumPanel(data) {
   const counts = {};
   t.list.forEach((c) => { counts[c.type] = (counts[c.type] || 0) + 1; });
   const parts = Object.keys(counts).map((k) => counts[k] + ' x ' + (CALL_WORDS[k] || k));
-  list.appendChild(row('Tatum calls for this check: ' + t.calls + (t.failed ? ' (' + t.failed + ' failed)' : '') + '.', parts.join(', ') + '. Median ' + t.medianMs + ' ms.'));
+  list.appendChild(row('Tatum calls for this check: ' + t.calls + (t.failed ? ' (' + t.failed + ' failed)' : '') + '.', parts.join(', ') + '. Median ' + t.medianMs + ' ms.', 'tatum'));
   profileRows(list, data);
   const f = data.chainFacts;
   if (f) {
-    list.appendChild(row('This wallet holds:', holdingsText(f.wallet) + '.'));
-    if (f.funder) list.appendChild(row('Its first funder ' + short(f.funder.address) + ' holds:', holdingsText(f.funder) + '.'));
-    if (f.referenceGasPrice != null) list.appendChild(row('Sui network fee right now:', f.referenceGasPrice + ' MIST per unit of gas.'));
+    list.appendChild(row('This wallet holds:', holdingsText(f.wallet) + '.', 'tatum'));
+    if (f.funder) list.appendChild(row('Its first funder ' + short(f.funder.address) + ' holds:', holdingsText(f.funder) + '.', 'tatum'));
+    if (f.referenceGasPrice != null) list.appendChild(row('Sui network fee right now:', f.referenceGasPrice + ' MIST per unit of gas.', 'tatum'));
   }
   box.classList.remove('hidden');
 }

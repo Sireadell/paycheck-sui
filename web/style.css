@@ -794,6 +794,9 @@ a:hover {
 .tatum-panel li { font-size: 0.88rem; margin: 4px 0; overflow-wrap: anywhere; }
 .tatum-panel .tatum-note { font-size: 0.8rem; color: var(--text-muted); margin-top: 6px; }
 
+/* Where a row of evidence came from */
+.source-tag { display: block; margin-top: 2px; font-size: 0.74rem; color: var(--text-muted); overflow-wrap: anywhere; }
+
 /* Sea and ink theme: dark header band with a teal rule */
 .top-bar .brand { color: #ffffff; }
 .top-bar .top-nav-link { color: #7cc4ff; }
