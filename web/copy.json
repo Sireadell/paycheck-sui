@@ -75,7 +75,7 @@
     "prescanNote": "Checks I ran myself on public addresses before launch, so memory isn't empty on day one. They aren't user activity.",
     "testLine": "Test: {n}",
     "testNote": "Test memories. They never count toward the total and can never change an answer.",
-    "since": "Counted since this server started."
+    "since": "Memory counts are read back from Walrus after each start. Tatum calls are counted since this server last started."
   },
   "bench": {
     "heading": "Does it find real groups?",

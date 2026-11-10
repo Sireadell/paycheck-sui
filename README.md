@@ -108,7 +108,7 @@ Recall in Walrus Memory is a search by meaning, not an exact lookup. So each che
 |---|---|---|
 | Held-back benchmark cases where memory changed the answer | 18 of 30, all group wallets going to "do not pay" | `bench/results/real.json` |
 | Pre-scan memories recalled and verified by exact address | 171 of 200 | `data/prescan/verified.json` |
-| Live "memories changed an answer" counter | read it live, counted since the server last started | `GET /api/stats` |
+| Live "memories changed an answer" counter | read it live, read back from Walrus after each start | `GET /api/stats` |
 
 About the pre-scan: before launch I ran PayCheck on 200 public Sui addresses, picked by a fixed rule, and stored each verdict with `origin=prescan`, so memory isn't empty on day one. They aren't user activity and they can never count as memory changing an answer. Then I asked Walrus Memory for each one by its exact address. 171 came back with the right stored verdict. The other 29 are stored but not counted: for 23 the search ran but didn't return that verdict, and 6 hit errors or timeouts.
 
@@ -236,7 +236,7 @@ That looks better than it is. I built these links, so they're easy: fresh wallet
 - It reads the oldest 50 transactions of a wallet by default. On a busy wallet that can hide a link (rs-15).
 - The shared-service rule (15 or more wallets over 25 hours or more counts as a service, so only a weak link) uses numbers I picked. I checked them against the real data but haven't proven them.
 - It can't see before late January 2026, which is as far back as the Sui history served through Tatum goes. For a wallet funded before then, it can't tell who funded it.
-- The memory counters on `/api/stats` count since the server last started.
+- The memory counters on `/api/stats` are read back from Walrus after each start, and the server answers before that read finishes. The changed-answers counter only includes answers whose saved note records the change. Tatum call counts are since the server last started.
 
 ## Real, simplified, not built yet
 

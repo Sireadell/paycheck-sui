@@ -56,6 +56,9 @@ export function createMemory({ sdkFactory, retries = 2, retryWaitMs = 2000, writ
   // ledger: "namespace:idempotency key" -> entry. The counter is built from it.
   const ledger = new Map();
   const changedIds = new Set();
+  // Memories Walrus already holds (read back after a start): blob id -> { namespace, origin }. origin is null until a note is read.
+  const known = new Map();
+  const hydration = { state: 'idle', startedAt: null, finishedAt: null, namespaces: {}, restoredChanged: 0 };
   const queue = [];
   let running = false;
   let idleWaiters = [];
@@ -169,15 +172,70 @@ export function createMemory({ sdkFactory, retries = 2, retryWaitMs = 2000, writ
     // Mark memories cited in a verdict that came out different with memory off.
     markChanged(ids) { for (const id of [].concat(ids)) changedIds.add(id); },
 
-    // Counter (plan section 3e). Test memories never count in stored.
+    // Counter (plan section 3e). Test memories never count in stored. Memories written this session and memories read back from
+    // Walrus after a start are merged by blob id, so one memory is never counted twice.
     counter() {
-      let stored = 0, prescan = 0, test = 0;
-      for (const e of ledger.values()) {
+      let test = 0;
+      const seen = new Map();
+      for (const [id, k] of known) if (k.namespace !== 'k2-test') seen.set(id, k.origin);
+      for (const [lk, e] of ledger) {
         if (e.state !== 'stored') continue;
-        if (e.origin === 'k2-test' || e.namespace === 'k2-test') test++;
-        else { stored++; if (e.origin === 'prescan') prescan++; }
+        if (e.origin === 'k2-test' || e.namespace === 'k2-test') { test++; continue; }
+        const id = e.blobId && known.has(e.blobId) ? e.blobId : lk; // one memory counts once, even if Walrus also lists it
+        seen.set(id, e.origin ?? seen.get(id) ?? null);
       }
-      return { changed: changedIds.size, stored, prescan, test };
+      let prescan = 0;
+      for (const o of seen.values()) if (o === 'prescan') prescan++;
+      return { changed: changedIds.size, stored: seen.size, prescan, test };
+    },
+
+    // How far the read-back from Walrus has got. Plain facts for /api/stats.
+    hydration() { return { ...hydration, namespaces: { ...hydration.namespaces } }; },
+
+    // Read the counts back from Walrus after a start: every memory in the live and shared-outcomes namespaces is counted from the
+    // list, the pre-scan label is read from the newest notes (up to 100 per namespace), and changed-answer notes (verdict notes that
+    // record which memories changed their answer) are read back too. Never throws: a failed piece is marked and the rest goes on.
+    async hydrate({ namespaces = ['live', 'shared-outcomes'], probeLimit = 100 } = {}) {
+      hydration.state = 'loading';
+      hydration.startedAt = new Date().toISOString();
+      let failed = 0;
+      for (const namespace of namespaces) {
+        const info = { listed: null, notesRead: 0, ok: true };
+        hydration.namespaces[namespace] = info;
+        try {
+          const client = clientFor(namespace);
+          let cursor;
+          let n = 0;
+          do {
+            const p = await client.listMemories({ cursor, limit: 500, namespace });
+            for (const m of p.memories || []) {
+              const id = m.blob_id || m.memory_id;
+              if (id && !known.has(id)) known.set(id, { namespace, origin: null });
+              n++;
+            }
+            cursor = p.has_more ? p.next_cursor : null;
+          } while (cursor);
+          info.listed = n;
+        } catch { info.ok = false; failed++; }
+        for (const query of ['PAYCHECK v1 origin=prescan', 'PAYCHECK v1 kind=verdict changedByIds']) {
+          try {
+            const res = await limitedRecall(clientFor(namespace), { query, limit: probeLimit, namespace });
+            for (const m of res.results || []) {
+              const p = parseMemory(m.text);
+              if (!p) continue;
+              info.notesRead++;
+              const id = m.blob_id;
+              if (id) known.set(id, { namespace, origin: p.origin ?? known.get(id)?.origin ?? null });
+              for (const cid of Array.isArray(p.body?.changedByIds) ? p.body.changedByIds : []) {
+                if (typeof cid === 'string' && cid && !changedIds.has(cid)) { changedIds.add(cid); hydration.restoredChanged++; }
+              }
+            }
+          } catch { info.ok = false; failed++; }
+        }
+      }
+      hydration.state = failed === 0 ? 'done' : failed >= namespaces.length * 3 ? 'failed' : 'partial';
+      hydration.finishedAt = new Date().toISOString();
+      return this.hydration();
     },
 
     // Restore: ask Walrus to rebuild the namespace, then rebuild the local ledger from the recalled headers.

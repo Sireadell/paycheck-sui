@@ -61,7 +61,7 @@ const COPY = {
   liveMemories: 'Live memories',
   livePrescan: 'Pre-scan memories',
   liveTatumCalls: 'Tatum calls since start',
-  liveNote: 'Counted since this server last started.',
+  liveNote: 'Memory counts are read back from Walrus after each start. Tatum calls are counted since this server last started.',
   proofRecountedLink: 'Every number, recounted from the saved files',
   footerText: 'Reads Sui through Tatum. Shared memory on Walrus. Not a fraud detector: red means someone reported a bad payment that reaches this address through a real link.',
   rateLimitError: 'Too many checks from your address. Try again in {seconds} seconds.',
@@ -141,7 +141,7 @@ const SAMPLE_DATA = {
       changedVerdicts: 3,
       pendingWrites: 0,
       failedWrites: 0,
-      note: "Counted since this server started."
+      note: "Memory counts are read back from Walrus after each start."
     },
     prescanVerified: { recalledAndVerified: 171, of: 200 },
     paidChecks: { settled: 1, route: "plain SUI on Sui mainnet" },

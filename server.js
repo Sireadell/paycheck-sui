@@ -177,7 +177,8 @@ export function createApp({ checker, memory, probe = null, outcomeToken = proces
         changedVerdicts: c.changed,
         pendingWrites: memory.pending().length,
         failedWrites: memory.failed().length,
-        note: 'Counted since this server started. Test memories are never part of the live or pre-scan numbers.',
+        counting: memory.hydration ? memory.hydration() : null,
+        note: 'Live and pre-scan memories are counted from Walrus after every start (the server answers first and the numbers fill in when Walrus replies). The pre-scan label is read from the newest 100 notes per space. "Changed an answer" counts memories named in saved verdict notes that record it, so answers from before that note existed are not counted. Test memories are counted since this server started and are never part of the live or pre-scan numbers.',
       },
       paidChecks: { enabled: Boolean(paidCheck), settled: paidCheck ? await paidCheck.count() : 0, route: 'plain SUI on Sui mainnet', note: paidCheck ? 'Paid checks are switched on.' : 'Paid checks are switched off on this server: no receiving address is set, so POST /api/paid/check answers 503.' },
       x402: { enabled: Boolean(x402), settled: x402 ? await x402.count() : 0, scheme: 'exact', network: 'sui:mainnet', asset: '0x2::sui::SUI', version: 2 },
@@ -225,5 +226,7 @@ if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) {
   const paidCheck = payee ? createPaidCheck({ tatum: getTatum(), checker, payee, usedFile: `${ROOT}data/paid-check/used.json` }) : null;
   const x402 = payee ? createX402Check({ rpc: new SuiJsonRpcClient({ url: process.env.SUI_RPC_URL || (cfg.ANKR_API_KEY ? 'https://rpc.ankr.com/sui/' + cfg.ANKR_API_KEY : 'https://fullnode.mainnet.sui.io:443'), network: 'mainnet' }), checker, payee, usedFile: `${ROOT}data/x402/used.json` }) : null;
   const app = createApp({ checker, memory, paidCheck, x402 });
+  // Read the counters back from Walrus without holding up the server. A slow or failed read only leaves the numbers lower for now.
+  memory.hydrate?.().catch(() => {});
   app.listen(port, () => console.log(`paycheck listening on ${port}, mode ${checker.mode}`));
 }

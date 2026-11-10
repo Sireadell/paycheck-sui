@@ -259,6 +259,8 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
           funder: g.funder, gasSponsor: g.sponsor, groupId: g.groupId,
           links: verdict.evidence.filter((x) => x.kind === 'link').length,
           checkpoint, tatumCalls: tatumSummary.calls, checkedAt: new Date(now()).toISOString(),
+          // New field: which memories changed this answer, so the count can be read back from Walrus after a restart.
+          ...(verdict.changedByMemory ? { changedByIds: verdict.changedByIds } : {}),
         },
       };
       if (deferWrite) {
