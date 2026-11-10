@@ -19,6 +19,8 @@ import { createPayeeServer } from './mcp/server.js';
 const ROOT = fileURLToPath(new URL('./', import.meta.url));
 const PROBE_EVERY_MS = 30000;
 const PROBE_TIMEOUT_MS = 5000;
+const WARNINGS_FRESH_MS = 60 * 1000;
+const WARNINGS_FIRST_WAIT_MS = 8000;
 
 const CHECK_LIMIT = { max: 10, windowMs: 60 * 1000 };
 const OUTCOME_LIMIT = { max: 20, windowMs: 60 * 60 * 1000 };
@@ -186,6 +188,26 @@ export function createApp({ checker, memory, probe = null, outcomeToken = proces
     });
   });
 
+  // The last shared warnings, read only. Kept for a minute so the page never makes Walrus wait on every visitor; a slow or failed
+  // read leaves the last good list in place and says so.
+  const warnings = { at: null, list: [], state: 'loading', loading: null };
+  const refreshWarnings = () => {
+    if (!memory.recentOutcomes) { warnings.state = 'unavailable'; return null; }
+    if (!warnings.loading) {
+      warnings.loading = Promise.resolve().then(() => memory.recentOutcomes({ limit: 5 })).then((l) => { warnings.list = l; warnings.state = 'ok'; warnings.at = now(); }, () => { warnings.state = warnings.at !== null ? 'stale' : 'unavailable'; }).finally(() => { warnings.loading = null; });
+    }
+    return warnings.loading;
+  };
+  app.locals.warmWarnings = () => { refreshWarnings(); };
+  app.get('/api/warnings', async (_req, res) => {
+    if (warnings.at === null || now() - warnings.at > WARNINGS_FRESH_MS) {
+      const p = refreshWarnings();
+      // The first ever read gets a short wait so the page can fill in; after that the last list is answered at once.
+      if (p && warnings.at === null) await Promise.race([p, new Promise((r) => setTimeout(r, WARNINGS_FIRST_WAIT_MS))]);
+    }
+    res.json({ warnings: warnings.list, state: warnings.state, updatedAt: warnings.at !== null ? new Date(warnings.at).toISOString() : null, source: 'bad-outcome reports in the shared-outcomes space on Walrus Memory', limit: 5 });
+  });
+
   app.get('/api/benchmark', async (_req, res) => res.json(await loadBenchmark({ dataDir, benchDir })));
   app.get('/api/cross-agent', async (_req, res) => {
     const run = await loadCrossAgent(dataDir);
@@ -228,5 +250,6 @@ if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) {
   const app = createApp({ checker, memory, paidCheck, x402 });
   // Read the counters back from Walrus without holding up the server. A slow or failed read only leaves the numbers lower for now.
   memory.hydrate?.().catch(() => {});
+  app.locals.warmWarnings();
   app.listen(port, () => console.log(`paycheck listening on ${port}, mode ${checker.mode}`));
 }

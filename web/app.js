@@ -622,6 +622,57 @@ function renderProofAndStats(proof, stats, isSample = false) {
   }
 }
 
+// Latest shared warnings: who reported, when, and the memory id. Read only. Text goes in with textContent.
+function whenText(iso) {
+  const t = Date.parse(iso || '');
+  if (!Number.isFinite(t)) return 'time not recorded';
+  const mins = Math.max(0, Math.round((Date.now() - t) / 60000));
+  if (mins < 60) return mins <= 1 ? 'just now' : mins + ' minutes ago';
+  if (mins < 60 * 48) return Math.round(mins / 60) + ' hours ago';
+  return new Date(t).toISOString().slice(0, 10);
+}
+
+function renderWarnings(data) {
+  const box = document.getElementById('warnings-feed');
+  const list = document.getElementById('warnings-list');
+  if (!box || !list) return;
+  list.innerHTML = '';
+  const items = data && Array.isArray(data.warnings) ? data.warnings : [];
+  if (!items.length) {
+    const li = document.createElement('li');
+    li.className = 'warnings-empty';
+    li.textContent = data && data.state === 'ok' ? 'No bad payments reported yet.' : 'Reading shared memory...';
+    list.appendChild(li);
+    return;
+  }
+  items.forEach((w) => {
+    const li = document.createElement('li');
+    li.className = 'warnings-row';
+    const who = document.createElement('strong');
+    who.textContent = w.reporter || 'an agent';
+    li.appendChild(who);
+    li.append(' reported a bad payment' + (w.reportedAddress ? ' to ' : ''));
+    if (w.reportedAddress) li.appendChild(createAddressSpan(w.reportedAddress));
+    li.append(', ' + whenText(w.reportedAt) + '. Memory id ');
+    const id = document.createElement('span');
+    id.className = 'mono-address';
+    id.textContent = w.memoryId;
+    li.appendChild(id);
+    list.appendChild(li);
+  });
+}
+
+async function fetchWarnings() {
+  try {
+    const res = await fetch(API_BASE + '/api/warnings');
+    if (!res.ok) throw new Error('bad status');
+    renderWarnings(await res.json());
+  } catch {
+    const box = document.getElementById('warnings-feed');
+    if (box) box.classList.add('hidden');
+  }
+}
+
 async function fetchStats() {
   try {
     const res = await fetch(API_BASE + '/api/stats');
@@ -785,8 +836,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  fetchWarnings();
+
   // Refresh live counters every 15 seconds
   setInterval(() => {
     fetchStats();
+    fetchWarnings();
   }, 15000);
 });

@@ -169,6 +169,22 @@ export function createMemory({ sdkFactory, retries = 2, retryWaitMs = 2000, writ
       return out;
     },
 
+    // The newest shared warnings: bad-outcome reports in one namespace, newest first. Read only. Includes reports saved by this
+    // server since it started, so a fresh report shows at once. Test reports (origin k2-test) are never listed.
+    async recentOutcomes({ namespace = 'shared-outcomes', limit = 5 } = {}) {
+      const byId = new Map();
+      const add = (id, p, writtenAt) => {
+        if (!id || !p || p.kind !== 'outcome' || p.origin === 'k2-test') return;
+        if (String(p.body?.outcome ?? '').trim().toLowerCase() !== 'bad') return;
+        byId.set(id, { memoryId: id, reporter: p.body?.reporter ?? p.origin ?? null, reportedAt: p.body?.reportedAt ?? writtenAt ?? null, reportedAddress: p.address ?? null, origin: p.origin ?? null });
+      };
+      for (const e of ledger.values()) if (e.state === 'stored' && e.namespace === namespace) add(e.blobId || e.id, parseMemory(e.text), e.writtenAt);
+      const res = await limitedRecall(clientFor(namespace), { query: 'PAYCHECK v1 kind=outcome outcome bad', limit: 100, namespace });
+      for (const m of res.results || []) add(m.blob_id, parseMemory(m.text), m.created_at);
+      const time = (w) => { const t = Date.parse(w.reportedAt ?? ''); return Number.isFinite(t) ? t : 0; };
+      return [...byId.values()].sort((a, b) => time(b) - time(a)).slice(0, limit);
+    },
+
     // Mark memories cited in a verdict that came out different with memory off.
     markChanged(ids) { for (const id of [].concat(ids)) changedIds.add(id); },
 
