@@ -36,7 +36,7 @@ Run the tests (recorded mainnet answers, no network):
 npm test
 ```
 
-192 tests pass.
+230 tests pass.
 
 Ask the live server about a real wallet from the real set (rs-01, a group tied by one shared first funder), with memory off and then on:
 
@@ -114,13 +114,18 @@ About the pre-scan: before launch I ran PayCheck on 200 public Sui addresses, pi
 
 ### Two agents, one memory
 
-I ran this for real on Sui mainnet on 9 Nov 2026, with two separate programs. For the test I made three fresh wallets: one funder, `0x217a4e9c2b758739510f675156d4ca38a72ba14e30c977fc887a09141793dcd8`, that sent the first SUI to the other two.
+I ran this for real on Sui mainnet on 9 Nov 2026, with two separate programs. For the test I made three fresh wallets. One of them, `0xa5516f223a1859e3d7dfcb658a6f9e6cfbc6a00da024af364a0998be24165db3`, sent the first SUI to the other two and paid network fees for both, so they share a first funder and a gas sponsor.
 
-1. The shared test wallet (`0xc7f7...93ca`, which sends every payment in these runs) paid 0.001 SUI to `0x4c0ecb5d3a7c09dffc7dd88a8598a6e53a500487206472f0393810e192591f5b`, a test wallet that Agent A controls ([transaction](https://suiscan.xyz/mainnet/tx/DcHgePsYjQwg1yayvyJSpT3q7CDXKx4zciZe6vZ2wP1B)) Agent A then reported that payment as bad. The burn is staged: nobody took the money, I had Agent A report it bad on purpose. The report is memory `uVKrZAcEnPYog1x0mLDYnDZkUmVNzDskqK4XdTOUpcU`.
-2. Agent B was given only `0x0f8500ea00a3171ad047e3533b42ef8c5e261b6686cf603630b3b733cec9e6f4`, an address it had never seen. PayCheck found that both addresses got their first SUI from the same funder, found Agent A's report through that link, and answered "do not pay" (`GROUP_BAD_OUTCOME`), citing that memory id. With memory off, the same check answered "pay, linked, no bad history". Agent B saved its refusal as memory `awSwPTvQS_U2Gn6t6FxAV3j9n5vXlTwGwZoMvZW7_KI`.
+1. The shared test wallet (`0xc7f7...93ca`, which sends every payment in these runs) paid 0.001 SUI to `0xac311b8a190d696ec5c525bcff8528175715402cd8c46f8c3edab84ea74e8061`, a test wallet that Agent A controls ([transaction](https://suiscan.xyz/mainnet/tx/2D3j8SqvZFWhwTPy5i9Ru6P1VFkvUM5Kuc36PqReK8rw)). Agent A then reported that payment as bad. The burn is staged: nobody took the money, I had Agent A report it bad on purpose. The report is memory `V6yH0O1nbbcEp5yRz34iY0dqZpVatKV1kXbScXGdL3U`.
+2. Agent B was given only `0xee973cdbfd30f458243f919f50a1657b15454c0534478022426350980f583719`, an address it had never seen. PayCheck found the shared funder and fee payer, followed them to Agent A's report, and answered "do not pay" (`GROUP_BAD_OUTCOME`), citing that memory id. With memory off, the same check answered "pay, linked, no bad history". Agent B saved its refusal as memory `YQsds7BZ8_ipm0PDpaELg6UkIfNPKo2epJvj1Jxh6y4`.
 
-Two limits. The two agents are two programs with two keys, Agent A's and Agent B's own delegate key, and one shared Walrus Memory account. They read the same shared space, so this is not two accounts and not two users. And the link in this run is the first funder only. I built the gas sponsor version of the link too, but it didn't show up in the final run, so I don't count it here. The saved run is `data/cross-agent/latest.json`.
+You can rerun Agent B's check yourself: the "Try the wallet Agent B was about to pay" button on the live page fills in that address with memory on.
 
+One limit. The two agents are two programs, each signing with its own delegate key, on one shared Walrus Memory account. They read the same shared space, so this is not two accounts and not two users. The saved run is `data/cross-agent/latest.json`.
+
+### What the next agent sees
+
+The first screen lists the last five shared warnings (`GET /api/warnings`): who reported, when, and the memory id. A bad-outcome report also saves a short profile note of the wallet (first funder, fee payer, age, transactions read), so the next agent recalls more than a yes or no. Neither of these changes a verdict.
 
 ## Tatum Sui RPC integration
 
@@ -244,8 +249,8 @@ That looks better than it is. I built these links, so they're easy: fresh wallet
 |---|---|---|
 | Every chain read from Tatum on Sui mainnet, Ankr second opinion | Benchmark bad reports are put in by me (no recorded losses exist in the real set) | MPP. The x402 mainnet payments (one local, one on the live server, [25tg8Mv...9TYt](https://suiscan.xyz/mainnet/tx/25tg8MvEfVs4V1GMa8JfbtTK4iEofAYwn4bSCnaJ9TYt)) were made by my own client script, not by an outside x402 client |
 | Walrus Memory writes on mainnet, exact recall, memory switch | AI baseline is a small model, one run per case | A separate Walrus Memory account for each agent |
-| Real set, four-column benchmark, pre-scan of 200, `npm run reproduce` | Two agents, two keys, one shared Walrus Memory account, run as separate programs | The gas sponsor link in the two-agent run (built, didn't show in the final run) |
-| Two-agent run on mainnet (memory `uVKrZAcEnPYog1x0mLDYnDZkUmVNzDskqK4XdTOUpcU`) | Agent A's bad payment is staged, and the refused payee is a wallet I made | Published npm package. For now, run it from this repo |
+| Real set, four-column benchmark, pre-scan of 200, `npm run reproduce` | Two agents, two keys, one shared Walrus Memory account, run as separate programs | |
+| Two-agent run on mainnet (memory `V6yH0O1nbbcEp5yRz34iY0dqZpVatKV1kXbScXGdL3U`) | Agent A's bad payment is staged, and the refused payee is a wallet I made | Published npm package. For now, run it from this repo |
 | Refuse-then-pay run and one paid check on mainnet, replay refused | Stress test wallets are built by me (65 of 65 found, synthetic) | |
 | MCP tool `check_payee`, proof page | Reads 50 transactions per wallet by default (200 is an option) | |
 
@@ -303,7 +308,7 @@ Seven runtime dependencies: `express`, `zod`, `@mysten-incubation/memwal`, `@mys
 
 | Path | What it does |
 |---|---|
-| `server.js` | The API: `/api/check`, `/api/outcome`, `/api/stats`, `/api/proof`, `/proof`, `/failures`, `/health` |
+| `server.js` | The API: `/api/check`, `/api/outcome`, `/api/paid/check`, `/api/x402/check`, `/api/warnings`, `/api/stats`, `/api/proof`, `/mcp`, `/proof`, `/failures`, `/health` |
 | `src/check.js` | One full check: read, link, recall, verdict, write |
 | `src/providers/` | Tatum and Ankr clients, the shared rate limit, the call log, the cross-check |
 | `src/engine/` | The link rules (first funder, shared funder, gas sponsor, round trip, timing) and the verdict rules |
@@ -311,16 +316,16 @@ Seven runtime dependencies: `express`, `zod`, `@mysten-incubation/memwal`, `@mys
 | `src/proof.js` | The proof page, recounted from saved rows on every load |
 | `src/failures.js` | The failures page: every miss, false alarm and failed recall, recounted the same way |
 | `mcp/server.js` | The `check_payee` MCP tool |
-| `web/` | The first screen. Every visible word is in `web/copy.json` |
+| `web/` | The first screen. Its first version came from Tatum AI Builder and I then edited it by hand. Its words are in `web/app.js`. The proof and failures pages read `web/copy.json` |
 | `scripts/` | Command line tools, the real-set builder and scorer, the benchmark, the pre-scan, reproduce |
 | `data/real-set/` | The 20 groups, 20 controls, results, and the 90 raw proof transactions |
 | `data/prescan/` | The pre-scan pick list, verdicts and the recall check |
 | `bench/` | Benchmark prompts, saved AI answers and results |
 | `docs/` | [API](docs/API.md), [MCP](docs/MCP.md), [verdict rules](docs/VERDICT_RULES.md), [method](docs/METHOD.md), [reproduce](docs/REPRODUCE.md) |
-| `test/` | 192 tests on recorded mainnet answers, no keys needed |
+| `test/` | 230 tests on recorded mainnet answers, no keys needed |
 
 ## What I built during the event
 
-The tracing rules (first funder, shared funder, gas sponsor, round trips, shared services) started in an earlier project of mine, PulseVerify, and were ported to Sui. Everything else was built for this hackathon: reading Sui through Tatum and Ankr, reading Sui's fee payer field, the Walrus Memory layer and memory switch, the verdict rules, the real set, the benchmark, the pre-scan, the proof page and the MCP tool.
+The tracing rules (first funder, shared funder, gas sponsor, round trips, shared services) started in an earlier project of mine, PulseVerify, and were ported to Sui. Everything else was built for this hackathon: reading Sui through Tatum and Ankr, reading Sui's fee payer field, the Walrus Memory layer and memory switch, the verdict rules, the real set, the benchmark, the pre-scan, the proof page, the x402 route and the MCP tool. The first version of the web page was made in Tatum AI Builder, which saved it to a GitHub repo of mine. I then wired it to this server and edited it by hand.
 
 > My agent is about to pay this Sui address. Should it? Ask PayCheck, and get the answer every other agent already learned.
