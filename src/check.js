@@ -13,6 +13,7 @@ import { classifyHub } from './engine/exchanges.js';
 import { funderTouches } from './engine/sharedFunder.js';
 import { sponsoredSenders } from './engine/gasSponsor.js';
 import { buildVerdict } from './engine/verdict.js';
+import { walletProfile, fanOutFacts } from './engine/profile.js';
 import { compareTx } from './providers/crosscheck.js';
 import { callLog } from './providers/index.js';
 import { listHistory, clampMaxTx } from './providers/tatum.js';
@@ -122,7 +123,7 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
     if (!profile && tatum.addressProfile) notes.push('Whether this address is a wallet, a package or an object could not be read, so that check was skipped.');
     if (fl?.error) notes.push('The funder history could not be read, so the shared service check was skipped.');
     if (sl?.error) notes.push('The gas sponsor history could not be read.');
-    return { page, profile: profile ?? null, analysis, hubs, selfHub, funder, sponsor, groupId, groupIds, notes, links: { firstDigest: first?.digest ?? null, sponsorDigest: sponsorTx?.digest ?? null } };
+    return { page, profile: profile ?? null, analysis, hubs, walletProfile: walletProfile(wallet, page, now()), selfHub, funder, sponsor, groupId, groupIds, notes, links: { firstDigest: first?.digest ?? null, sponsorDigest: sponsorTx?.digest ?? null } };
   }
 
   // Ankr cross-check of the links that matter (first funding and first sponsored transaction), by digest.
@@ -276,6 +277,9 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
       memory: { used: verdict.memoryIds.length, recalled: recalled.memories.length, recallOk: recalled.ok, recallError: recalled.error, degraded: !recalled.ok },
       write,
       walletHub: g?.selfHub?.verdict ?? null,
+      // Evidence only, never read by the verdict rules.
+      walletProfile: g?.walletProfile ?? null,
+      funderFanOut: fanOutFacts(g?.hubs?.funder),
       ...(deferred ? { memoryItem: deferred } : {}),
       dataAsOfCheckpoint: checkpoint,
       crossCheck: cross,
