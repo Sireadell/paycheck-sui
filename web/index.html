@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PayCheck Sui</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -31,8 +34,8 @@
     <main class="page-container">
       <!-- Above the fold: Headline & Search -->
       <section class="hero-section">
-        <h1 class="headline" id="main-headline">One agent gets burned.<br />Every other agent is warned.</h1>
-        <p class="hero-sub">Before an AI agent pays a Sui address, PayCheck reads its history through Tatum and checks what other agents saved to Walrus Memory. Then it answers pay, caution or do not pay.</p>
+        <h1 class="headline" id="main-headline">One agent gets <span class="hl-burned">burned.</span><br />Every other agent is <span class="hl-warned">warned.</span></h1>
+        <p class="hero-sub">Before an AI agent pays a Sui address, PayCheck reads its history through <span class="hl-tatum">Tatum</span> and checks what other agents saved to <span class="hl-walrus">Walrus Memory</span>. Then it answers pay, caution or do not pay.</p>
 
         <form id="check-form" class="check-form" onsubmit="return false;">
           <div class="form-row">
@@ -153,55 +156,62 @@
       <!-- Stage: Walrus Memory in the middle, four cards wired to it -->
       <section id="stage" class="stage" aria-label="How the two agents share one memory">
         <svg class="stage-wires" viewBox="0 0 1120 560" width="1120" height="560" aria-hidden="true">
-          <defs><filter id="wire-glow"><feGaussianBlur stdDeviation="3" result="b" /><feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge></filter></defs>
-          <g fill="none" stroke="#3d8bff" stroke-width="2" filter="url(#wire-glow)" opacity="0.9">
-            <path d="M340 120 H370 Q395 120 395 150 V250 Q395 280 418 280" />
-            <path d="M340 420 H370 Q395 420 395 390 V310 Q395 280 418 280" />
-            <path d="M780 120 H750 Q725 120 725 150 V250 Q725 280 702 280" />
-            <path d="M780 420 H750 Q725 420 725 390 V310 Q725 280 702 280" />
+          <defs>
+            <filter id="wire-glow"><feGaussianBlur stdDeviation="3" result="b" /><feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
+            <linearGradient id="w-a" gradientUnits="userSpaceOnUse" x1="340" y1="120" x2="418" y2="280"><stop offset="0" stop-color="#d946ef" /><stop offset="1" stop-color="#3d8bff" /></linearGradient>
+            <linearGradient id="w-warn" gradientUnits="userSpaceOnUse" x1="340" y1="420" x2="418" y2="280"><stop offset="0" stop-color="#93c5fd" /><stop offset="1" stop-color="#3d8bff" /></linearGradient>
+            <linearGradient id="w-b" gradientUnits="userSpaceOnUse" x1="780" y1="120" x2="702" y2="280"><stop offset="0" stop-color="#06b6d4" /><stop offset="1" stop-color="#3d8bff" /></linearGradient>
+            <linearGradient id="w-tie" gradientUnits="userSpaceOnUse" x1="780" y1="420" x2="702" y2="280"><stop offset="0" stop-color="#8b5cf6" /><stop offset="1" stop-color="#3d8bff" /></linearGradient>
+          </defs>
+          <g fill="none" stroke-width="2.5" filter="url(#wire-glow)" opacity="0.95">
+            <path stroke="url(#w-a)" d="M340 120 H370 Q395 120 395 150 V250 Q395 280 418 280" />
+            <path stroke="url(#w-warn)" d="M340 420 H370 Q395 420 395 390 V310 Q395 280 418 280" />
+            <path stroke="url(#w-b)" d="M780 120 H750 Q725 120 725 150 V250 Q725 280 702 280" />
+            <path stroke="url(#w-tie)" d="M780 420 H750 Q725 420 725 390 V310 Q725 280 702 280" />
           </g>
-          <g fill="#7fd8ff" filter="url(#wire-glow)"><circle cx="340" cy="120" r="5" /><circle cx="340" cy="420" r="5" /><circle cx="780" cy="120" r="5" /><circle cx="780" cy="420" r="5" /></g>
+          <g filter="url(#wire-glow)"><circle cx="340" cy="120" r="5" fill="#f0abfc" /><circle cx="340" cy="420" r="5" fill="#93c5fd" /><circle cx="780" cy="120" r="5" fill="#67e8f9" /><circle cx="780" cy="420" r="5" fill="#c4b5fd" /></g>
         </svg>
-        <div class="orb"><div class="orb-label"><b>Walrus Memory</b><small>one shared space, every agent reads it</small></div></div>
+        <div class="orb"><div class="orb-label"><b>Walrus Memory</b><small>Shared by every agent</small></div></div>
 
         <div id="cross-agent-sample-banner" class="sample-banner stage-banner hidden">
           <span class="sample-badge">SAMPLE DATA, server not reachable</span>
         </div>
 
         <div id="two-agent-card" class="two-agent-card hidden">
-          <div class="stage-card pos-a">
+          <div class="stage-card role-a pos-a">
             <span class="step">1</span>
-            <h3>Agent A <span class="chip chip-red">Paid, went bad</span></h3>
+            <div class="card-head"><h2 class="card-title"><span class="icon-tile"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="3"/><path d="M3 10h18"/><path d="M12 12v5m-2.5-2.5L12 17l2.5-2.5"/></svg></span>Agent A</h2><span class="chip chip-red">&#10005; Paid, went bad</span></div>
             <div class="k">Paid this wallet</div>
             <div id="agent-a-address" class="mono-address"></div>
             <div class="k">Saved its report as</div>
             <span id="agent-a-memory-id" class="pill mono-id"></span>
           </div>
 
-          <div class="stage-card pos-tie">
+          <div class="stage-card role-tie pos-tie">
             <span class="step">2</span>
-            <h3>What ties them <span class="chip chip-blue">via Tatum</span></h3>
+            <div class="card-head"><h2 class="card-title"><span class="icon-tile"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></span>What ties them</h2><span class="chip chip-tie">via Tatum</span></div>
             <div class="k">One wallet sits behind both</div>
             <div id="tie-address" class="mono-address"></div>
             <div id="tie-type" class="pill-row"></div>
           </div>
 
-          <div class="stage-card pos-b">
+          <div class="stage-card role-b pos-b">
             <span class="step">3</span>
-            <h3>Agent B <span id="agent-b-chip" class="verdict-chip-sm"></span></h3>
+            <div class="card-head"><h2 class="card-title"><span class="icon-tile"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 8V5"/><circle cx="12" cy="4" r="1"/><path d="M9.5 13v1m5-1v1"/><path d="M9.5 17h5"/></svg></span>Agent B</h2><span id="agent-b-chip" class="verdict-chip-sm"></span></div>
             <div class="k">Was about to pay a new address</div>
             <div id="agent-b-address" class="mono-address"></div>
             <div id="agent-b-refusal" class="hidden">
-              <div class="k">Recalled Agent A's report and saved its answer as</div>
+              <div class="k">Saved its answer as</div>
               <span id="agent-b-memory-id" class="pill mono-id"></span>
             </div>
           </div>
         </div>
 
         <!-- Latest shared warnings (read only) -->
-        <div id="warnings-feed" class="stage-card pos-warn" aria-label="Latest shared warnings">
+        <div id="warnings-feed" class="stage-card role-warn pos-warn" aria-label="Latest shared warnings">
           <span class="step">4</span>
-          <h3 class="warnings-title">Latest shared warnings</h3>
+          <div class="card-head"><h2 class="card-title warnings-title"><span class="icon-tile"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 21a2 2 0 0 0 4 0"/></svg></span>Latest shared warnings</h2></div>
+          <p class="card-sub">Reports agents saved after a payment went bad</p>
           <ul id="warnings-list" class="warnings-list"></ul>
         </div>
       </section>
@@ -219,7 +229,7 @@
               <div class="stat-value" id="stat-groups-caught">...</div>
             </div>
             <div class="number-stat-item">
-              <div class="stat-title">Ordinary wallets wrongly told do not pay</div>
+              <div class="stat-title">Real-set ordinary wallets wrongly told do not pay</div>
               <div class="stat-value" id="stat-controls-strict">...</div>
             </div>
             <div class="number-stat-item">
@@ -237,7 +247,7 @@
                   <th scope="col">Plain AI</th>
                   <th scope="col">Plain AI + report</th>
                   <th scope="col">Checker</th>
-                  <th scope="col">Checker + memory</th>
+                  <th scope="col" class="best-col">Checker + memory <span class="best-tag">Best</span></th>
                 </tr>
               </thead>
               <tbody>

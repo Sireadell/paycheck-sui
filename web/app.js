@@ -580,7 +580,7 @@ function renderCrossAgentCard(data, isSample = false) {
     }
   }
 
-  chipB.textContent = verdictB;
+  chipB.textContent = verdictB.charAt(0).toUpperCase() + verdictB.slice(1);
   chipB.className = 'verdict-chip-sm ' + getVerdictClass(verdictB);
 }
 
@@ -598,14 +598,14 @@ function renderProofAndStats(proof, stats, isSample = false) {
 
   if (proof && proof.real && proof.real.recount) {
     const rc = proof.real.recount;
-    document.getElementById('stat-groups-caught').textContent = rc.groupsCaught + ' of ' + rc.groups;
-    document.getElementById('stat-controls-strict').textContent = rc.controlsStrict + ' of ' + rc.controls;
+    setFigure('stat-groups-caught', rc.groupsCaught + ' of ' + rc.groups);
+    setFigure('stat-controls-strict', rc.controlsStrict + ' of ' + rc.controls);
   }
 
   if (proof && proof.prescan) {
-    document.getElementById('stat-prescan-verified').textContent = proof.prescan.recalledAndVerified + ' of ' + proof.prescan.of;
+    setFigure('stat-prescan-verified', proof.prescan.recalledAndVerified + ' of ' + proof.prescan.of);
   } else if (stats && stats.prescanVerified) {
-    document.getElementById('stat-prescan-verified').textContent = stats.prescanVerified.recalledAndVerified + ' of ' + stats.prescanVerified.of;
+    setFigure('stat-prescan-verified', stats.prescanVerified.recalledAndVerified + ' of ' + stats.prescanVerified.of);
   }
 
   if (proof && proof.benchmark && proof.benchmark.recount && proof.benchmark.recount.columns) {
@@ -666,6 +666,19 @@ function whenText(iso) {
   if (mins < 60) return mins <= 1 ? 'just now' : mins + ' minutes ago';
   if (mins < 60 * 48) { const h = Math.round(mins / 60); return h + (h === 1 ? ' hour ago' : ' hours ago'); }
   return new Date(t).toISOString().slice(0, 10);
+}
+
+function setFigure(id, text) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const m = /^(\d+)( of .+)$/.exec(String(text));
+  el.textContent = '';
+  if (!m) { el.textContent = text; return; }
+  el.appendChild(document.createTextNode(m[1]));
+  const of = document.createElement('span');
+  of.className = 'fig-of';
+  of.textContent = m[2];
+  el.appendChild(of);
 }
 
 function reporterName(r) {
