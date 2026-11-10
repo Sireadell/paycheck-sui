@@ -2,7 +2,7 @@
 // Answers are cached under data/real-set/raw/cache (not committed). Delete that folder to force every call to go out again.
 import { createChecker } from '../../src/check.js';
 import { makeClients } from './realSetCommon.js';
-import { liveCompare } from '../reproduce.js';
+import { liveCompare } from './liveCompare.js';
 
 const noMemory = { recall: async () => [], enqueue: () => ({ state: 'none', key: null }), write: async () => ({ state: 'none' }), markChanged() {}, flush: async () => {}, destroy() {} };
 

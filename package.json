@@ -13,7 +13,7 @@
     "check": "node --env-file=.env scripts/check.js",
     "outcome": "node --env-file=.env scripts/outcome.js",
     "mcp": "node --env-file-if-exists=.env mcp/server.js",
-    "reproduce": "node scripts/reproduce.js"
+    "reproduce": "node --env-file-if-exists=.env scripts/reproduce.js"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.32.2",
