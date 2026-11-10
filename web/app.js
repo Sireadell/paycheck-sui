@@ -631,15 +631,6 @@ function renderProofAndStats(proof, stats, isSample = false) {
   }
 
   if (stats) {
-    const modeBadge = document.getElementById('mode-badge');
-    if (stats.mode === 'live') {
-      modeBadge.textContent = COPY.modeLive;
-      modeBadge.classList.add('live');
-    } else {
-      modeBadge.textContent = COPY.modeTest;
-      modeBadge.classList.remove('live');
-    }
-
     if (stats.memories) {
       document.getElementById('live-changed-verdicts').textContent = stats.memories.changedVerdicts != null ? stats.memories.changedVerdicts : '...';
       document.getElementById('live-memories').textContent = stats.memories.live != null ? stats.memories.live : '...';

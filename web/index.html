@@ -13,13 +13,13 @@
     <!-- Top Bar -->
     <header class="top-bar">
       <div class="top-bar-inner">
-        <div class="brand"><span class="logo-orb" aria-hidden="true"></span>PayCheck Sui</div>
+        <a href="#" class="brand"><span class="logo-orb" aria-hidden="true"></span><span class="brand-text">PayCheck Sui<small>Check before you pay</small></span></a>
         <nav class="top-nav" aria-label="Pages">
           <a href="#stage" class="top-nav-link">How it works</a>
           <a href="/proof" class="top-nav-link" id="proof-link">Proof</a>
           <a href="/failures" class="top-nav-link">Where it lost</a>
         </nav>
-        <span id="mode-badge" class="badge badge-mode">TEST MODE</span>
+        <a href="#address-input" class="top-cta">Check an address</a>
       </div>
     </header>
 
@@ -314,7 +314,16 @@
     <!-- Footer -->
     <footer class="page-footer">
       <div class="footer-inner">
-        Reads Sui through Tatum. Shared memory on Walrus. Not a fraud detector: red means someone reported a bad payment that reaches this address through a real link.
+        <div class="footer-row">
+          <a href="#" class="brand brand-sm"><span class="logo-orb" aria-hidden="true"></span>PayCheck Sui</a>
+          <p class="footer-line">Built so an agent never pays a wallet that already burned another.</p>
+          <nav class="footer-links" aria-label="Footer">
+            <a href="/proof">Proof</a>
+            <a href="/failures">Where it lost</a>
+            <a href="https://github.com/Sireadell/paycheck-sui" rel="noopener">GitHub</a>
+          </nav>
+        </div>
+        <p class="footer-note">Reads Sui through Tatum. Shared memory on Walrus. Not a fraud detector: red means someone reported a bad payment that reaches this address through a real link.</p>
       </div>
     </footer>
 
