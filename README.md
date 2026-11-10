@@ -17,7 +17,19 @@ A day later Agent B is about to pay a different address that the same person con
 
 PayCheck puts that lesson in shared Walrus Memory, and finds the link between the two addresses on the chain. So Agent B gets stopped on an address it has never seen.
 
-## Check it in one minute
+## Try it in one minute, in your browser
+
+No install and no wallet.
+
+1. Open https://paycheck-sui-app.onrender.com
+2. Press **Try the wallet Agent B was about to pay**. It fills in an address no agent has seen. Wait about 25 seconds.
+3. The answer is **do not pay**. Open the evidence rows: the shared first funder, the shared fee payer, and Agent A's report with its Walrus Memory id.
+4. Flip the memory switch off and press check again. The same wallet now says **pay**. That is the whole point: the link was always there, and only the stored report turns it red.
+5. Open **What Tatum read for this check** to see every Tatum call that check made.
+
+AI agents can call the same check with no setup: `claude mcp add --transport http paycheck-sui https://paycheck-sui-app.onrender.com/mcp`.
+
+## Check the numbers in one minute (terminal)
 
 No keys and no signup for the first two commands. You need Node 22.
 
@@ -64,6 +76,19 @@ curl https://paycheck-sui-app.onrender.com/health
 4. It asks Walrus Memory for any report of a bad payment, to this address or to any wallet tied to it by one of those links.
 5. It answers **pay**, **caution** or **do not pay**, with every reason labelled and every report shown with its memory id and who wrote it.
 6. After paying, the agent can report "went fine" or "went bad". That report goes into Walrus Memory, and every agent reads it on its next check.
+
+### One check, drawn out
+
+```mermaid
+flowchart LR
+  A[Agent about to pay] -- "is this address safe?" --> P[PayCheck Sui]
+  P -- "history, first funder, fee payer, holdings" --> T[Tatum Sui GraphQL]
+  P -- "same transactions, second opinion" --> K[Ankr Sui RPC]
+  P -- "any bad report for this address or its group?" --> W[(Walrus Memory)]
+  P -- "pay, caution or do not pay, with reasons" --> A
+  A -- "went fine or went bad" --> W
+  A -. "do not pay: refuses to sign" .-> X[No money leaves]
+```
 
 ### The rule that keeps it honest
 
@@ -181,6 +206,22 @@ There are two ways to pay for a check, both in SUI on Sui mainnet. The plain rou
 
 **A check can be bought per call.** `POST /api/paid/check` answers HTTP 402 with a price in SUI and a one-time id, and the server reads the payment back through Tatum before it answers. I ran one paid check on Sui mainnet: 0.001002431 SUI in [transaction `5Le61QyWQtRoWz458KRWysu4VZAcu5ToBEBopb6nVE9R`](https://suiscan.xyz/mainnet/tx/5Le61QyWQtRoWz458KRWysu4VZAcu5ToBEBopb6nVE9R), and the answer came back. Sending the same transaction again was refused with HTTP 409, so one payment buys one check. Saved run: `data/paid-check/latest.json`.
 
+## Sui mainnet record
+
+Everything below happened on Sui mainnet. The paying wallet in these runs is `0xc7f7...93ca`.
+
+| What | Value |
+|---|---|
+| Receiving address for paid checks | `0x7c666f1f64c4b1ee5e27024be2e8947692e89abfe47fd3e1c1c9d36f55613c2d` |
+| Two-agent run, Agent A's staged bad payment | [2D3j8SqvZFWhwTPy5i9Ru6P1VFkvUM5Kuc36PqReK8rw](https://suiscan.xyz/mainnet/tx/2D3j8SqvZFWhwTPy5i9Ru6P1VFkvUM5Kuc36PqReK8rw) |
+| Agent A's report in Walrus Memory | `V6yH0O1nbbcEp5yRz34iY0dqZpVatKV1kXbScXGdL3U` |
+| Agent B's refusal in Walrus Memory | `YQsds7BZ8_ipm0PDpaELg6UkIfNPKo2epJvj1Jxh6y4` |
+| Refuse-then-pay run, the payment to an ordinary wallet | [2Wx6UC8XTAzcwfTceurmbPcyFtgDS2cUU2V4wpoEQCve](https://suiscan.xyz/mainnet/tx/2Wx6UC8XTAzcwfTceurmbPcyFtgDS2cUU2V4wpoEQCve) |
+| Plain paid check, 0.001002431 SUI, replay refused | [5Le61QyWQtRoWz458KRWysu4VZAcu5ToBEBopb6nVE9R](https://suiscan.xyz/mainnet/tx/5Le61QyWQtRoWz458KRWysu4VZAcu5ToBEBopb6nVE9R) |
+| x402 check, run on my machine, replay refused | [2AzVXWV2Jnntsk5zSijwGBWaxAMPCXRpcFNS4z5qUaL6](https://suiscan.xyz/mainnet/tx/2AzVXWV2Jnntsk5zSijwGBWaxAMPCXRpcFNS4z5qUaL6) |
+| x402 check, run on the live server | [25tg8MvEfVs4V1GMa8JfbtTK4iEofAYwn4bSCnaJ9TYt](https://suiscan.xyz/mainnet/tx/25tg8MvEfVs4V1GMa8JfbtTK4iEofAYwn4bSCnaJ9TYt) |
+| Saved runs | `data/cross-agent/latest.json`, `data/refuse-then-pay/latest.json`, `data/paid-check/latest.json`, `data/x402/latest.json` |
+
 ## Results
 
 ### Does it find real groups?
@@ -242,6 +283,28 @@ That looks better than it is. I built these links, so they're easy: fresh wallet
 - The shared-service rule (15 or more wallets over 25 hours or more counts as a service, so only a weak link) uses numbers I picked. I checked them against the real data but haven't proven them.
 - It can't see before late January 2026, which is as far back as the Sui history served through Tatum goes. For a wallet funded before then, it can't tell who funded it.
 - The memory counters on `/api/stats` are read back from Walrus after each start, and the server answers before that read finishes. Every note Walrus lists is counted. A note's label (pre-scan or not) is read from the note, with repeated searches because one search returns at most 100 notes. A note whose label could not be read is shown as unlabelled and is in neither the live nor the pre-scan number. The changed-answers counter only includes answers whose saved note records the change. Tatum call counts are since the server last started.
+
+## What you have to trust
+
+| You trust | Why it matters |
+|---|---|
+| Tatum and Ankr for what the chain says | Every link comes from their reads. Ankr is checked against Tatum on the 90 proof transactions (90 of 90 agree), but on a live check you are still trusting their answers |
+| The shared Walrus Memory account | Agent A and Agent B sign with their own delegate keys, but both write into one account. A report is only as good as whoever can write to it. Every answer shows who reported and the memory id so you can judge it |
+| This server for the live answer | The server holds the Walrus Memory delegate key and accepts "went fine" or "went bad" reports on `POST /api/outcome` only with a token. You can rerun any saved answer yourself with `npm run reproduce` |
+| Me for the bad reports in the benchmark | The real set has no recorded losses, so I put the reports in (see "What this is not") |
+
+## Why I built it this way
+
+- **A link alone never turns red.** An exchange funds thousands of honest wallets. If a link alone said "do not pay", PayCheck would block honest payees all day and nobody would trust it.
+- **No outside payment service for x402.** The x402 package for Sui (`@x402/sui`) was still an open pull request when I built this, so I wrote the route from the foundation's Sui spec and let the server settle the payment itself. The cost is that no one else's x402 client has tried it yet.
+- **One shared Walrus Memory account, two keys.** Separate accounts per agent would be closer to real life, but they add setup before any agent can be warned. Two keys on one account already shows the part that matters: a report written by one program is read by another. A separate account for each agent is listed as not built.
+- **Memory off is a switch, not a setting.** I wanted anyone to see the same wallet answer "pay" and then "do not pay", so the proof doesn't depend on trusting my numbers.
+
+## Reasons to come back
+
+- **The shared warnings feed.** The first screen lists the last five shared warnings, who reported them and when, so you can see what other agents have already learned.
+- **The hosted tool address.** Any agent with MCP can add `https://paycheck-sui-app.onrender.com/mcp` and call `check_payee` before its next payment, with no keys.
+- **Memory that grows.** Every check leaves a verdict note and every bad outcome leaves a wallet profile, so the next check for the same group starts with more than a yes or no.
 
 ## Real, simplified, not built yet
 
@@ -323,6 +386,14 @@ Seven runtime dependencies: `express`, `zod`, `@mysten-incubation/memwal`, `@mys
 | `bench/` | Benchmark prompts, saved AI answers and results |
 | `docs/` | [API](docs/API.md), [MCP](docs/MCP.md), [verdict rules](docs/VERDICT_RULES.md), [method](docs/METHOD.md), [reproduce](docs/REPRODUCE.md) |
 | `test/` | 230 tests on recorded mainnet answers, no keys needed |
+
+## Development log
+
+| Day | What changed |
+|---|---|
+| 7 Nov 2026 | Tatum and Ankr readers, the link rules ported to Sui, the Walrus Memory layer and memory switch, the verdict rules, the real set of 20 groups, the four-column benchmark, the pre-scan of 200 wallets, the proof page, `npm run reproduce` and the `check_payee` tool |
+| 9 Nov 2026 | The two-agent run on mainnet with Agent B on its own delegate key, the first screen from Tatum AI Builder wired to this server, faster checks, the live hosting address |
+| 10 Nov 2026 | The Tatum panel (call list, holdings, wallet age, activity, pass-through, who funded the first funder), source tags on every evidence row, the shared warnings feed, wallet profile notes, memory counters read back from Walrus after a restart, the hosted `/mcp` address, the x402 route and both mainnet x402 payments |
 
 ## What I built during the event
 
