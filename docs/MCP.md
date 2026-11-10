@@ -11,6 +11,20 @@ One tool, `check_payee(address)`. An AI agent calls it before paying a Sui addre
 
 Do not sign the payment on `do not pay`.
 
+## Hosted address (no setup)
+
+The live server runs the same tool at `https://paycheck-sui-app.onrender.com/mcp` (MCP over HTTP, no session). No keys, nothing to install.
+
+| Client | How |
+|---|---|
+| Claude Code | `claude mcp add --transport http paycheck-sui https://paycheck-sui-app.onrender.com/mcp` |
+| Clients that take a URL (Cursor, others) | Add a server of type `http` with that URL |
+| Clients that only run local tools | `npx mcp-remote https://paycheck-sui-app.onrender.com/mcp` |
+
+Limits: 10 calls a minute per visitor, shared with `/api/check`. `GET` and `DELETE` on `/mcp` answer 405.
+
+## Run it yourself
+
 ## Setup
 
 1. Clone the repo and run `npm install`.

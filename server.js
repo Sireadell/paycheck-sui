@@ -11,6 +11,8 @@ import { loadBenchmark, loadCrossAgent } from './src/api/benchmark.js';
 import { loadProof, renderProof } from './src/proof.js';
 import { loadFailures, renderFailures } from './src/failures.js';
 import { createPaidCheck } from './src/paid.js';
+import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
+import { createPayeeServer } from './mcp/server.js';
 
 const ROOT = fileURLToPath(new URL('./', import.meta.url));
 const PROBE_EVERY_MS = 30000;
@@ -105,6 +107,25 @@ export function createApp({ checker, memory, probe = null, outcomeToken = proces
       res.status(500).json({ error: 'The paid check failed. Try again shortly.', retryable: true, detail: String(e.message || e).slice(0, 160) });
     }
   });
+
+  // Hosted agent tool (MCP over HTTP, no session kept). Any MCP client can add https://<this server>/mcp and call check_payee.
+  // Each request gets its own small server, so nothing is shared between callers. Same per-visitor limit as /api/check.
+  app.post('/mcp', async (req, res) => {
+    const wait = checkHit(visitorKey(req));
+    if (wait) return tooMany(res, wait, 'checks');
+    const server = createPayeeServer({ check: (address) => checker.check(address) });
+    const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined });
+    res.on('close', () => { transport.close(); server.close(); });
+    try {
+      await server.connect(transport);
+      await transport.handleRequest(req, res, req.body);
+    } catch (e) {
+      if (!res.headersSent) res.status(500).json({ jsonrpc: '2.0', error: { code: -32603, message: 'The tool server failed. Try again shortly.' }, id: null });
+    }
+  });
+  const noStream = (_req, res) => res.set('allow', 'POST').status(405).json({ jsonrpc: '2.0', error: { code: -32000, message: 'Use POST. This tool server keeps no session.' }, id: null });
+  app.get('/mcp', noStream);
+  app.delete('/mcp', noStream);
 
   app.post('/api/outcome', async (req, res) => {
     // No token set on the server means no one can report. A wrong or missing token gets 401.

@@ -154,6 +154,14 @@ Ankr's Sui JSON-RPC re-reads the same transactions. All 90 proof transactions in
 
 AI agents can call PayCheck as an MCP tool (the plug-in format assistants like Claude, Cursor and others use to call outside tools). One tool, `check_payee(address)`, runs the same check as the website and returns the same answer. Don't sign the payment on `do not pay`.
 
+Add the hosted address, no keys and nothing to install:
+
+```
+claude mcp add --transport http paycheck-sui https://paycheck-sui-app.onrender.com/mcp
+```
+
+Clients that only run local tools can use the `mcp-remote` bridge: `npx mcp-remote https://paycheck-sui-app.onrender.com/mcp`. The hosted address keeps no session and shares the same per-visitor limit as `/api/check` (10 a minute). To run the tool from your own copy instead (your own keys, the live or test memory space):
+
 ```
 claude mcp add paycheck-sui -- node --env-file=/path/to/total-recall/.env /path/to/total-recall/mcp/server.js
 ```
