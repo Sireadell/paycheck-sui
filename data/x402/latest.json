@@ -1,0 +1,17 @@
+{
+  "ranAt": "2026-11-10T07:45:23.416Z",
+  "route": "x402 v2, scheme exact",
+  "network": "sui:mainnet",
+  "asset": "0x2::sui::SUI",
+  "digest": "2AzVXWV2Jnntsk5zSijwGBWaxAMPCXRpcFNS4z5qUaL6",
+  "explorer": "https://suiscan.xyz/mainnet/tx/2AzVXWV2Jnntsk5zSijwGBWaxAMPCXRpcFNS4z5qUaL6",
+  "payee": "0x7c666f1f64c4b1ee5e27024be2e8947692e89abfe47fd3e1c1c9d36f55613c2d",
+  "payer": "0xc7f77d7bfd15161fe350f0b030dd1f131e81798b3fa9f0a8a37334aa959693ca",
+  "amountSui": "0.001",
+  "checkedAddress": "0xe1b6e64f397d6120e4a9350209b2b835052c7aee51e78f860931ab6891133029",
+  "verdict": "pay",
+  "code": "NO_LINKS_NO_BAD_HISTORY",
+  "settledBy": "this server (its own facilitator)",
+  "replayStatus": 409,
+  "spentSui": "0.002088"
+}
