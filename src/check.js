@@ -20,6 +20,7 @@ import { listHistory, clampMaxTx } from './providers/tatum.js';
 import { parseAddress, isSuiAddress, padAddress } from './address.js';
 
 const SUI_SUFFIX = '::sui::SUI';
+export const SECOND_HOP_CALLS = 2; // most extra Tatum reads one check may spend on the second hop
 const isSui = (b) => typeof b.coin === 'string' && b.coin.endsWith(SUI_SUFFIX);
 const tsMs = (t) => Date.parse(t.timestamp ?? '');
 
@@ -123,7 +124,7 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
     if (!profile && tatum.addressProfile) notes.push('Whether this address is a wallet, a package or an object could not be read, so that check was skipped.');
     if (fl?.error) notes.push('The funder history could not be read, so the shared service check was skipped.');
     if (sl?.error) notes.push('The gas sponsor history could not be read.');
-    return { page, profile: profile ?? null, analysis, hubs, walletProfile: walletProfile(wallet, page, now()), selfHub, funder, sponsor, groupId, groupIds, notes, links: { firstDigest: first?.digest ?? null, sponsorDigest: sponsorTx?.digest ?? null } };
+    return { page, profile: profile ?? null, analysis, hubs, walletProfile: walletProfile(wallet, page, now()), funderPage: fl && !fl.error ? fl : null, selfHub, funder, sponsor, groupId, groupIds, notes, links: { firstDigest: first?.digest ?? null, sponsorDigest: sponsorTx?.digest ?? null } };
   }
 
   // Ankr cross-check of the links that matter (first funding and first sponsored transaction), by digest.
@@ -196,6 +197,27 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
     return { wallet: w, funder: f ? { address: funder, ...f } : null, referenceGasPrice, note: 'Evidence only. These reads never change the verdict.' };
   }
 
+  // Second hop: who funded the first funder. Found in the funder history that is already read (no call). Then at most
+  // SECOND_HOP_CALLS more Tatum reads about that wallet: its first page of history (how many wallets it paid) and its address type
+  // and balance. Evidence only: never passed to the verdict rules. Any failure drops only the part that failed.
+  async function readSecondHop(wallet, g) {
+    try {
+      if (!g?.funder || !g.funderPage) return null;
+      const first = engineInputs(g.funder, g.funderPage.transactions).incoming.slice().sort((a, b) => a.timestampMs - b.timestampMs)[0];
+      const base = { of: g.funder, limit: SECOND_HOP_CALLS };
+      if (!first) return { ...base, found: false, callsUsed: 0, note: 'The first funder has no incoming SUI in the history read.' };
+      const second = first.sender;
+      const hop = { ...base, found: true, address: second, digest: first.digest, fundedAt: Number.isFinite(first.timestampMs) ? new Date(first.timestampMs).toISOString() : null };
+      if (second === wallet) return { ...hop, circular: true, callsUsed: 0, note: 'The wallet being checked funded its own first funder.' };
+      const [hist, prof] = await Promise.all([
+        Promise.resolve().then(() => listHistory(tatum, second, { maxTx: 50 })).catch(() => null),
+        Promise.resolve().then(() => tatum.addressProfile?.(second)).catch(() => null),
+      ]);
+      const reach = hist ? fanOutFacts(classifyHub(funderTouches(payoutsOf(second, hist.transactions)), { capped: hist.hasNextPage })) : null;
+      return { ...hop, circular: false, callsUsed: SECOND_HOP_CALLS, reach, profile: prof ? { balance: prof.balance, isObject: prof.isObject, isPackage: prof.isPackage } : null, note: hist || prof ? 'Evidence only. These reads never change the verdict.' : 'Both extra reads failed, so only the address is shown.' };
+    } catch { return null; }
+  }
+
   // The checkpoint is only a "data as of" label, so one read is shared for 10 seconds.
   let cp = { at: 0, value: null };
   const checkpointNow = () => {
@@ -228,9 +250,10 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
     try { g = await gather(wallet); } catch (e) { chainError = String(e.message || e).slice(0, 160); }
 
     // Recall runs for the wallet even if the chain read failed (a stored bad report still counts).
+    const secondHopP = chainFacts && g ? readSecondHop(wallet, g) : null;
     const restRecall = memoryOn && g ? readAsks(asksFor({ funder: g.funder, sponsor: g.sponsor, groupIds: g.groupIds })) : null;
     const recalled = memoryOn ? collect([...(await walletRecall), ...(restRecall ? await restRecall : [])]) : { memories: [], ok: true, error: null };
-    const [cross, checkpoint, facts] = g ? await Promise.all([crossCheck(wallet, g.page, g.links), checkpointP, chainFacts ? readChainFacts(wallet, g.funder) : null]) : [null, null, null];
+    const [cross, checkpoint, facts, secondHop] = g ? await Promise.all([crossCheck(wallet, g.page, g.links), checkpointP, chainFacts ? readChainFacts(wallet, g.funder) : null, secondHopP]) : [null, null, null, null];
 
     const verdict = buildVerdict({
       wallet,
@@ -258,7 +281,7 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
           test, verdict: verdict.verdict, code: verdict.code, label: verdict.label,
           funder: g.funder, gasSponsor: g.sponsor, groupId: g.groupId,
           links: verdict.evidence.filter((x) => x.kind === 'link').length,
-          checkpoint, tatumCalls: tatumSummary.calls, checkedAt: new Date(now()).toISOString(),
+          checkpoint, tatumCalls: tatumSummary.calls - (secondHop?.callsUsed ?? 0), checkedAt: new Date(now()).toISOString(),
           // New field: which memories changed this answer, so the count can be read back from Walrus after a restart.
           ...(verdict.changedByMemory ? { changedByIds: verdict.changedByIds } : {}),
         },
@@ -287,6 +310,7 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
       crossCheck: cross,
       notes: [...(g?.notes ?? []), ...(chainError ? [`Chain data could not be read (${chainError}).`] : [])],
       ...(facts ? { chainFacts: facts } : {}),
+      ...(secondHop ? { secondHopFunder: secondHop } : {}),
       callLog: { tatum: { ...own('tatum'), list: own.list('tatum') }, ankr: own('ankr') },
       tookMs: now() - t0,
     };

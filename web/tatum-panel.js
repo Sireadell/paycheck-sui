@@ -78,6 +78,24 @@ function profileRows(list, data) {
   }
 }
 
+// Who funded the first funder, with the extra Tatum calls it cost. Evidence only; the row is simply left out when there is none.
+function secondHopRow(list, data) {
+  const h = data.secondHopFunder;
+  if (!h) return;
+  const calls = h.callsUsed + ' extra Tatum call' + (h.callsUsed === 1 ? '' : 's');
+  let text;
+  if (!h.found) text = h.note + ' (' + calls + ').';
+  else if (h.circular) text = 'the wallet being checked funded its own first funder, so the money went in a circle (' + calls + ').';
+  else {
+    const bits = [short(h.address) + ' paid its first funder' + (h.fundedAt ? ' on ' + h.fundedAt.slice(0, 10) : '')];
+    if (h.reach) bits.push('it has paid ' + h.reach.countText + ' wallet' + (h.reach.wallets === 1 && !h.reach.atLeast ? '' : 's') + ' over ' + h.reach.hours + ' hour' + (h.reach.hours === 1 ? '' : 's') + ', read as ' + (h.reach.reading === 'link' ? 'a direct link' : h.reach.reading));
+    if (h.profile) bits.push(h.profile.isPackage ? 'it is a package, not a wallet' : h.profile.isObject ? 'it is an object, not a wallet' : 'it holds ' + (Number(h.profile.balance) / 1e9 >= 100 ? (Number(h.profile.balance) / 1e9).toFixed(0) : (Number(h.profile.balance) / 1e9).toFixed(3)) + ' SUI');
+    if (!h.reach && !h.profile) bits.push('its own history and balance could not be read');
+    text = bits.join(', ') + ' (' + calls + ').';
+  }
+  list.appendChild(row('Who funded its first funder:', text, 'worked'));
+}
+
 export function renderTatumPanel(data) {
   const box = document.getElementById('tatum-panel');
   if (!box) return;
@@ -90,6 +108,7 @@ export function renderTatumPanel(data) {
   const parts = Object.keys(counts).map((k) => counts[k] + ' x ' + (CALL_WORDS[k] || k));
   list.appendChild(row('Tatum calls for this check: ' + t.calls + (t.failed ? ' (' + t.failed + ' failed)' : '') + '.', parts.join(', ') + '. Median ' + t.medianMs + ' ms.', 'tatum'));
   profileRows(list, data);
+  secondHopRow(list, data);
   const f = data.chainFacts;
   if (f) {
     list.appendChild(row('This wallet holds:', holdingsText(f.wallet) + '.', 'tatum'));
