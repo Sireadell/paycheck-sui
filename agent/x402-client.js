@@ -52,7 +52,8 @@ async function buy(url, address) {
 }
 
 if (flag('url')) {
-  const r = await buy(flag('url'), flag('address'));
+  const controls = JSON.parse(await readFile(new URL('../data/real-set/controls.json', import.meta.url), 'utf8'));
+  const r = await buy(flag('url'), flag('address') ?? controls.controls[0].address);
   console.log(r.paid.status, r.body.verdict ?? r.body.error, r.receipt ? EXPLORER_TX(r.receipt.transaction) : '');
   process.exit(r.paid.status === 200 ? 0 : 1);
 }

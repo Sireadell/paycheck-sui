@@ -223,7 +223,7 @@ if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) {
   const port = Number(process.env.PORT) || 3000;
   const payee = process.env.PAID_CHECK_PAYEE || cfg.SUI_ADDRESS;
   const paidCheck = payee ? createPaidCheck({ tatum: getTatum(), checker, payee, usedFile: `${ROOT}data/paid-check/used.json` }) : null;
-  const x402 = payee ? createX402Check({ rpc: new SuiJsonRpcClient({ url: process.env.SUI_RPC_URL || 'https://fullnode.mainnet.sui.io:443', network: 'mainnet' }), checker, payee, usedFile: `${ROOT}data/x402/used.json` }) : null;
+  const x402 = payee ? createX402Check({ rpc: new SuiJsonRpcClient({ url: process.env.SUI_RPC_URL || (cfg.ANKR_API_KEY ? 'https://rpc.ankr.com/sui/' + cfg.ANKR_API_KEY : 'https://fullnode.mainnet.sui.io:443'), network: 'mainnet' }), checker, payee, usedFile: `${ROOT}data/x402/used.json` }) : null;
   const app = createApp({ checker, memory, paidCheck, x402 });
   app.listen(port, () => console.log(`paycheck listening on ${port}, mode ${checker.mode}`));
 }
