@@ -74,3 +74,38 @@ test('item 2: source tags are wording on the page only, every kind of evidence h
   const r = await createChecker({ tatum: tatumFor(), memory: stored([]), mode: 'live', chainFacts: true }).check(pick.addr);
   assert.ok(r.evidence.every((e) => !('source' in e)));
 });
+
+test('item 3: a bad outcome also saves a profile note, a good one does not, and the note changes no answer', async () => {
+  const queued = [];
+  const written = [];
+  const memory = { ...stored([]), write: async (m) => { written.push(m); return { state: 'stored', blobId: 'b' }; }, enqueue: (m) => { queued.push(m); return { state: 'pending', key: 'k-' + queued.length }; } };
+  const checker = createChecker({ tatum: tatumFor(), memory, mode: 'live' });
+  const good = await checker.reportOutcome(pick.addr, 'good', { reporter: 'agent-a' });
+  assert.equal(good.profileNote, undefined);
+  assert.equal(queued.length, 0);
+  const bad = await checker.reportOutcome(pick.addr, 'bad', { reporter: 'agent-a' });
+  assert.equal(bad.profileNote.state, 'pending');
+  const n = queued[0];
+  assert.equal(n.kind, 'lesson');
+  assert.equal(n.namespace, 'shared-outcomes');
+  assert.ok(n.address);
+  const pr = n.body.profile;
+  for (const k of ['firstFunder', 'gasSponsor', 'ageDays', 'txsRead', 'historyCapped', 'received', 'sent']) assert.ok(k in pr, k);
+  assert.ok(pr.txsRead > 0);
+  // The outcome notes themselves keep their old shape.
+  assert.deepEqual(Object.keys(written[written.length - 1].body).sort(), ['funder', 'gasSponsor', 'outcome', 'reportedAt', 'reporter', 'test']);
+  // A saved profile note next to the wallet changes nothing in its answer.
+  const lessonText = buildText({ kind: n.kind, address: n.address, group: n.group, origin: n.origin }, n.body);
+  const withNote = [{ namespace: 'live', blob_id: 'L1', parsed: { kind: 'lesson', address: n.address, group: n.group, origin: 'check', body: n.body } }];
+  const a = await createChecker({ tatum: tatumFor(), memory: stored([]), mode: 'live' }).check(pick.addr);
+  const b = await createChecker({ tatum: tatumFor(), memory: stored(withNote), mode: 'live' }).check(pick.addr);
+  assert.deepEqual(core(a), core(b));
+  assert.match(lessonText, /^PAYCHECK v1 kind=lesson /);
+});
+
+test('item 3: an old outcome note with no profile still reads back and still stops a payment the same way', async () => {
+  const old = [{ namespace: 'shared-outcomes', blob_id: 'O1', parsed: { kind: 'outcome', address: pick.addr, group: null, origin: 'agent-a', body: { outcome: 'bad', reporter: 'agent-a', test: false } } }];
+  const r = await createChecker({ tatum: tatumFor(), memory: stored(old), mode: 'live' }).check(pick.addr);
+  assert.equal(r.verdict, 'do not pay');
+  assert.equal(r.code, 'OUTCOME_BAD_SELF');
+});

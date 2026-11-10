@@ -307,7 +307,24 @@ export function createChecker({ tatum, ankr = null, memory, mode = 'test', recal
       });
       written.push({ group, state: e.state, blobId: e.blobId, error: e.error });
     }
-    return { address: wallet, outcome, test, namespace: ns.outcome, written };
+    // A bad outcome also leaves a short profile note (first funder, fee payer, age, transactions read) for other agents to recall.
+    // It is saved in the background and never changes the verdict rules (they read outcome notes only). A failure to queue it is ignored.
+    let profileNote = null;
+    if (outcome === 'bad') {
+      try {
+        const p = g.walletProfile;
+        const e = memory.enqueue({
+          namespace: ns.outcome, kind: 'lesson', address: wallet, group: groups[0], origin,
+          body: {
+            test, about: 'bad outcome', reporter,
+            profile: { firstFunder: g.funder, gasSponsor: g.sponsor, ageDays: p?.ageDays ?? null, txsRead: p?.txsRead ?? 0, historyCapped: Boolean(p?.capped), received: p?.received ?? 0, sent: p?.sent ?? 0 },
+            savedAt: new Date(now()).toISOString(),
+          },
+        });
+        profileNote = { state: e.state, key: e.key };
+      } catch { /* the outcome is already saved; the profile note is extra */ }
+    }
+    return { address: wallet, outcome, test, namespace: ns.outcome, written, ...(profileNote ? { profileNote } : {}) };
   }
 
   return { check, reportOutcome, gather, mode: bench ? 'bench' : test ? 'test' : 'live', state };
