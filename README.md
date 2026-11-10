@@ -1,4 +1,12 @@
-PayCheck Sui stops an AI agent from paying a Sui address when another agent's bad payment, stored in Walrus Memory, reaches that address through a real on-chain link: on real mainnet wallet groups it stopped 18 of 20 wallets it had never seen, and wrongly stopped 0 of 10 ordinary wallets.
+# PayCheck Sui
+
+AI agents are starting to pay for things on their own. Nobody checks each payment before it goes out. On Sui, a payment to the wrong address is final: the money's gone and there's no undo button.
+
+Say Agent A pays a bad address and gets burned. Agent A now knows that address is trouble. But that lesson stays inside Agent A. The person behind the bad address just opens a new wallet, and a day later Agent B, which has never seen it, pays.
+
+This matters now because agents already hold wallets and spend from them. Every lesson that stays locked inside one agent is a loss that repeats. And nothing today stops it. An address on its own looks clean. A brand new wallet has no history to judge. There's no shared place where one agent can warn the next. Here's the catch for the scammer, though: new wallets don't come from nowhere. Someone sends the first SUI or pays the fees, and that trail sits on the chain for anyone to read.
+
+PayCheck Sui is a check an agent runs before it pays a Sui address. It reads that trail with Tatum, looks up bad-payment reports other agents have shared in Walrus Memory, and answers pay, caution or do not pay, with the reasons. On real mainnet wallet groups it stopped 18 of 20 wallets it had never seen, and wrongly stopped 0 of 10 ordinary wallets.
 
 **What one agent learns, every agent knows.**
 
@@ -8,14 +16,6 @@ It works on any address. The person being paid doesn't need to sign up, sign any
 Live app: https://paycheck-sui-app.onrender.com · Code: https://github.com/Sireadell/paycheck-sui · Proof page: https://paycheck-sui-app.onrender.com/proof
 
 > **The question it answers:** my agent is about to pay this Sui address. Should it?
-
-## The problem
-
-Two AI agents. Agent A pays a Sui address and the money is gone. Agent A now knows that address is bad.
-
-A day later Agent B is about to pay a different address that the same person controls. Agent B has no idea, because what Agent A learned stayed inside Agent A.
-
-PayCheck puts that lesson in shared Walrus Memory, and finds the link between the two addresses on the chain. So Agent B gets stopped on an address it has never seen.
 
 ## Try it in one minute, in your browser
 
