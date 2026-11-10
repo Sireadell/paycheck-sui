@@ -1,6 +1,6 @@
 # How paid checks work
 
-A check can be bought per call. The route is plain SUI on Sui mainnet. It is not x402 and it is not MPP.
+A check can be bought per call. This page covers two routes: plain SUI, and x402 v2. Neither is MPP.
 
 ## The steps
 
@@ -16,18 +16,31 @@ Because a plain transfer has no memo field, the unique amount is what ties a pay
 
 Run one yourself: `node --env-file=.env agent/paid-client.js --run`. The last saved run is `data/paid-check/latest.json`.
 
-## Why not x402
+## The x402 route
 
-I looked for an x402 route that settles on Sui (9 Nov 2026).
+`GET /api/x402/check?address=0x...` (or POST) follows x402 version 2, scheme `exact`, as the x402 foundation wrote it for Sui (`specs/schemes/exact/scheme_exact_sui.md`, read 10 Nov 2026). That spec lists native SUI (`0x2::sui::SUI`) as an allowed asset, which is what makes this route possible with a wallet that holds only SUI.
 
-| Option | What I found | Why it is not used here |
-|---|---|---|
-| `@t2000/sui-x402` 11.7.0 | x402 "exact" scheme for Sui, gasless USDC | Takes USDC. The payer wallet holds SUI only |
-| `x402-sui` 2.0.1 | x402 v2 for Sui | Not run against mainnet by us |
-| `@suimpp/mpp` 0.9.0 | MPP payment method, USDC | Takes USDC. Same reason |
-| Public x402 facilitators for Sui | One community facilitator announces testnet only; another lists Sui as coming soon | No confirmed mainnet facilitator |
+1. No payment header: the server answers 402. The terms are in the `PAYMENT-REQUIRED` header (base64 JSON) and in the body: scheme `exact`, network `sui:mainnet`, asset `0x2::sui::SUI`, amount `1000000` mist (0.001 SUI), `payTo` the receiving address.
+2. The agent builds and signs a complete SUI transfer for that amount and sends the request again with the `PAYMENT-SIGNATURE` header (base64 JSON with `accepted`, and `payload.signature` plus `payload.transaction`).
+3. The server checks that the terms match, that the signature is valid and from the transaction's sender, that nobody else pays the gas, that a simulation succeeds and credits the receiving address at least the price, and that the transaction was never used. Then it sends the transaction to Sui itself and waits for it to settle.
+4. It answers 200 with the check and a `PAYMENT-RESPONSE` header (transaction digest, network, payer).
 
-None of these was run, so nothing here claims x402 or MPP. If one is added later and settles a real mainnet payment, this page will say which.
+Each signed transaction works once, and used ones are saved to `data/x402/used.json`. If the server takes the payment but the check then fails, sending the same header again returns the check once without paying twice.
+
+What is and is not proven:
+
+| Claim | Status |
+|---|---|
+| Follows the foundation's Sui `exact` spec for headers, fields and verification steps | Yes, written from the spec text |
+| Signing, replay, wrong-price, wrong-payee, sponsored-gas and failed-simulation cases | Tested (`test/x402.test.js`) with real signatures and a stand-in network |
+| A real payment settled on Sui mainnet through this route | Not yet. `node --env-file=.env agent/x402-client.js --run` does it and records `data/x402/latest.json` |
+| Works with other people's x402 clients and facilitators | Not tested. The foundation's `@x402/sui` package is still an open pull request, so I wrote the server side from the spec instead |
+| No outside facilitator | Correct: this server verifies and settles by itself. It is not listed in any facilitator directory |
+| MPP | Not claimed |
+
+## Why the plain route stays
+
+The plain route needs no signing library on the caller's side beyond sending SUI, so it stays as the simple option. Earlier (9 Nov 2026) I looked at ready-made Sui x402 packages (`@t2000/sui-x402`, `x402-sui`) and MPP (`@suimpp/mpp`); the ones I found take USDC, and none was run.
 
 ## Is it switched on?
 

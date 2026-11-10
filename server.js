@@ -11,6 +11,8 @@ import { loadBenchmark, loadCrossAgent } from './src/api/benchmark.js';
 import { loadProof, renderProof } from './src/proof.js';
 import { loadFailures, renderFailures } from './src/failures.js';
 import { createPaidCheck } from './src/paid.js';
+import { createX402Check } from './src/x402.js';
+import { SuiJsonRpcClient } from '@mysten/sui/jsonRpc';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import { createPayeeServer } from './mcp/server.js';
 
@@ -50,14 +52,14 @@ const sameToken = (given, wanted) => {
   return timingSafeEqual(a, b);
 };
 
-export function createApp({ checker, memory, probe = null, outcomeToken = process.env.OUTCOME_TOKEN, checkLimit = CHECK_LIMIT, outcomeLimit = OUTCOME_LIMIT, now = () => Date.now(), webDir = `${ROOT}web`, dataDir = `${ROOT}data`, paidCheck = null, benchDir = `${ROOT}bench`, docsDir = `${ROOT}docs` } = {}) {
+export function createApp({ checker, memory, probe = null, outcomeToken = process.env.OUTCOME_TOKEN, checkLimit = CHECK_LIMIT, outcomeLimit = OUTCOME_LIMIT, now = () => Date.now(), webDir = `${ROOT}web`, dataDir = `${ROOT}data`, paidCheck = null, x402 = null, benchDir = `${ROOT}bench`, docsDir = `${ROOT}docs` } = {}) {
   const checkHit = ipLimiter(checkLimit, now);
   const outcomeHit = ipLimiter(outcomeLimit, now);
   const tooMany = (res, wait, what) => res.set('retry-after', String(wait)).status(429).json({ error: `Too many ${what} from your address. Try again in ${wait} seconds.`, retryable: true });
   const app = express();
   app.set('trust proxy', 1);
   app.use(express.json());
-  app.use((_req, res, next) => { res.set('access-control-allow-origin', '*'); next(); });
+  app.use((_req, res, next) => { res.set('access-control-allow-origin', '*'); res.set('access-control-expose-headers', 'PAYMENT-REQUIRED, PAYMENT-RESPONSE'); next(); });
 
   // /health never waits on memory: it reads a flag that a background probe keeps fresh.
   const health = { memoryReachable: null, checkedAt: null };
@@ -127,6 +129,21 @@ export function createApp({ checker, memory, probe = null, outcomeToken = proces
   app.get('/mcp', noStream);
   app.delete('/mcp', noStream);
 
+  // Pay per check with x402 v2 (exact, sui:mainnet, native SUI). No header: 402 with PAYMENT-REQUIRED. With PAYMENT-SIGNATURE: settle, then answer.
+  app.all('/api/x402/check', async (req, res) => {
+    if (!x402) return res.status(503).json({ error: 'x402 checks are not switched on for this server.' });
+    if (req.method !== 'GET' && req.method !== 'POST') return res.set('allow', 'GET, POST').status(405).json({ error: 'Use GET or POST.' });
+    const wait = checkHit(visitorKey(req));
+    if (wait) return tooMany(res, wait, 'checks');
+    const input = { ...req.query, ...(req.body ?? {}) };
+    try {
+      const out = await x402.handle({ address: input.address, resourceUrl: `${req.protocol}://${req.get('host')}${req.originalUrl}`, paymentHeader: req.get('payment-signature'), memoryOn: String(input.memory ?? 'on').toLowerCase() !== 'off' });
+      res.set(out.headers).status(out.status).json(out.body);
+    } catch (e) {
+      res.status(500).json({ error: 'The x402 check failed. Try again shortly.', retryable: true, detail: String(e.message || e).slice(0, 160) });
+    }
+  });
+
   app.post('/api/outcome', async (req, res) => {
     // No token set on the server means no one can report. A wrong or missing token gets 401.
     const bearer = /^Bearer (.+)$/i.exec(req.get('authorization') ?? '')?.[1];
@@ -163,6 +180,7 @@ export function createApp({ checker, memory, probe = null, outcomeToken = proces
         note: 'Counted since this server started. Test memories are never part of the live or pre-scan numbers.',
       },
       paidChecks: { enabled: Boolean(paidCheck), settled: paidCheck ? await paidCheck.count() : 0, route: 'plain SUI on Sui mainnet', note: paidCheck ? 'Paid checks are switched on.' : 'Paid checks are switched off on this server: no receiving address is set, so POST /api/paid/check answers 503.' },
+      x402: { enabled: Boolean(x402), settled: x402 ? await x402.count() : 0, scheme: 'exact', network: 'sui:mainnet', asset: '0x2::sui::SUI', version: 2 },
       calls: { tatum: callLog.summarize(0, 'tatum'), ankr: callLog.summarize(0, 'ankr') },
     });
   });
@@ -205,6 +223,7 @@ if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) {
   const port = Number(process.env.PORT) || 3000;
   const payee = process.env.PAID_CHECK_PAYEE || cfg.SUI_ADDRESS;
   const paidCheck = payee ? createPaidCheck({ tatum: getTatum(), checker, payee, usedFile: `${ROOT}data/paid-check/used.json` }) : null;
-  const app = createApp({ checker, memory, paidCheck });
+  const x402 = payee ? createX402Check({ rpc: new SuiJsonRpcClient({ url: process.env.SUI_RPC_URL || 'https://fullnode.mainnet.sui.io:443', network: 'mainnet' }), checker, payee, usedFile: `${ROOT}data/x402/used.json` }) : null;
+  const app = createApp({ checker, memory, paidCheck, x402 });
   app.listen(port, () => console.log(`paycheck listening on ${port}, mode ${checker.mode}`));
 }
