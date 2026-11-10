@@ -628,7 +628,7 @@ function whenText(iso) {
   if (!Number.isFinite(t)) return 'time not recorded';
   const mins = Math.max(0, Math.round((Date.now() - t) / 60000));
   if (mins < 60) return mins <= 1 ? 'just now' : mins + ' minutes ago';
-  if (mins < 60 * 48) return Math.round(mins / 60) + ' hours ago';
+  if (mins < 60 * 48) { const h = Math.round(mins / 60); return h + (h === 1 ? ' hour ago' : ' hours ago'); }
   return new Date(t).toISOString().slice(0, 10);
 }
 
