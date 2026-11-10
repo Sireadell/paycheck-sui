@@ -242,7 +242,7 @@ That looks better than it is. I built these links, so they're easy: fresh wallet
 
 | Real | Simplified | Not built yet |
 |---|---|---|
-| Every chain read from Tatum on Sui mainnet, Ankr second opinion | Benchmark bad reports are put in by me (no recorded losses exist in the real set) | MPP. The x402 mainnet run was done in my own process, not by an outside x402 client |
+| Every chain read from Tatum on Sui mainnet, Ankr second opinion | Benchmark bad reports are put in by me (no recorded losses exist in the real set) | MPP. The x402 mainnet payments (one local, one on the live server, [25tg8Mv...9TYt](https://suiscan.xyz/mainnet/tx/25tg8MvEfVs4V1GMa8JfbtTK4iEofAYwn4bSCnaJ9TYt)) were made by my own client script, not by an outside x402 client |
 | Walrus Memory writes on mainnet, exact recall, memory switch | AI baseline is a small model, one run per case | A separate Walrus Memory account for each agent |
 | Real set, four-column benchmark, pre-scan of 200, `npm run reproduce` | Two agents, two keys, one shared Walrus Memory account, run as separate programs | The gas sponsor link in the two-agent run (built, didn't show in the final run) |
 | Two-agent run on mainnet (memory `uVKrZAcEnPYog1x0mLDYnDZkUmVNzDskqK4XdTOUpcU`) | Agent A's bad payment is staged, and the refused payee is a wallet I made | Published npm package. For now, run it from this repo |

@@ -33,7 +33,7 @@ What is and is not proven:
 |---|---|
 | Follows the foundation's Sui `exact` spec for headers, fields and verification steps | Yes, written from the spec text |
 | Signing, replay, wrong-price, wrong-payee, sponsored-gas and failed-simulation cases | Tested (`test/x402.test.js`) with real signatures and a stand-in network |
-| A real payment settled on Sui mainnet through this route | Yes, 10 Nov 2026: 0.001 SUI, [2AzVXWV2Jnntsk5zSijwGBWaxAMPCXRpcFNS4z5qUaL6](https://suiscan.xyz/mainnet/tx/2AzVXWV2Jnntsk5zSijwGBWaxAMPCXRpcFNS4z5qUaL6). The same payment sent again was refused (HTTP 409). The run settled through this code in my own process, not the hosted server. Record: `data/x402/latest.json`. Rerun: `node --env-file=.env agent/x402-client.js --run` |
+| A real payment settled on Sui mainnet through this route | Yes, 10 Nov 2026: 0.001 SUI, [2AzVXWV2Jnntsk5zSijwGBWaxAMPCXRpcFNS4z5qUaL6](https://suiscan.xyz/mainnet/tx/2AzVXWV2Jnntsk5zSijwGBWaxAMPCXRpcFNS4z5qUaL6). The same payment sent again was refused (HTTP 409). That run used this code in my own process. A second payment settled on the live server at paycheck-sui-app.onrender.com: 0.001 SUI, [25tg8MvEfVs4V1GMa8JfbtTK4iEofAYwn4bSCnaJ9TYt](https://suiscan.xyz/mainnet/tx/25tg8MvEfVs4V1GMa8JfbtTK4iEofAYwn4bSCnaJ9TYt), check answered "pay". Record: `data/x402/latest.json`. Rerun: `node --env-file=.env agent/x402-client.js --run` |
 | Works with other people's x402 clients and facilitators | Not tested. The foundation's `@x402/sui` package is still an open pull request, so I wrote the server side from the spec instead |
 | No outside facilitator | Correct: this server verifies and settles by itself. It is not listed in any facilitator directory |
 | MPP | Not claimed |
