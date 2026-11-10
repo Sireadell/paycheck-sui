@@ -10,11 +10,13 @@
     <!-- Top Bar -->
     <header class="top-bar">
       <div class="top-bar-inner">
-        <div class="brand">PayCheck Sui</div>
-        <div class="top-bar-right">
-          <span id="mode-badge" class="badge badge-mode">TEST MODE</span>
+        <div class="brand"><span class="logo-orb" aria-hidden="true"></span>PayCheck Sui</div>
+        <nav class="top-nav" aria-label="Pages">
+          <a href="#stage" class="top-nav-link">How it works</a>
           <a href="/proof" class="top-nav-link" id="proof-link">Proof</a>
-        </div>
+          <a href="/failures" class="top-nav-link">Where it lost</a>
+        </nav>
+        <span id="mode-badge" class="badge badge-mode">TEST MODE</span>
       </div>
     </header>
 
@@ -29,7 +31,8 @@
     <main class="page-container">
       <!-- Above the fold: Headline & Search -->
       <section class="hero-section">
-        <h1 class="headline" id="main-headline">One agent gets burned. Every other agent is warned.</h1>
+        <h1 class="headline" id="main-headline">One agent gets burned.<br />Every other agent is warned.</h1>
+        <p class="hero-sub">Before an AI agent pays a Sui address, PayCheck reads its history through Tatum and checks what other agents saved to Walrus Memory. Then it answers pay, caution or do not pay.</p>
 
         <form id="check-form" class="check-form" onsubmit="return false;">
           <div class="form-row">
@@ -38,57 +41,27 @@
               type="text"
               id="address-input"
               class="address-input"
-              placeholder="0x... (a Sui address)"
+              placeholder="Paste a Sui address, 0x..."
               spellcheck="false"
               autocomplete="off"
             />
-            <button type="submit" id="check-button" class="btn btn-primary">Check</button>
+            <button type="submit" id="check-button" class="btn btn-primary">Check address</button>
+            <span class="try-example hidden" id="try-example"><button type="button" id="try-example-btn" class="btn btn-ghost">Try the wallet Agent B was about to pay</button></span>
           </div>
 
           <div class="memory-switch-row">
             <span class="memory-label" id="memory-switch-label">Shared memory</span>
             <div class="switch-button-group" role="group" aria-labelledby="memory-switch-label">
-              <button
-                type="button"
-                id="memory-on-btn"
-                class="switch-btn active"
-                aria-pressed="true"
-              >
-                On
-              </button>
-              <button
-                type="button"
-                id="memory-off-btn"
-                class="switch-btn"
-                aria-pressed="false"
-              >
-                Off
-              </button>
+              <button type="button" id="memory-on-btn" class="switch-btn active" aria-pressed="true">On</button>
+              <button type="button" id="memory-off-btn" class="switch-btn" aria-pressed="false">Off</button>
             </div>
+            <span id="memory-hint" class="memory-hint">Memory on: the agent reads what other agents reported.</span>
           </div>
-          <p id="memory-hint" class="memory-hint">
-            Memory on: the agent reads what other agents reported.
-          </p>
-          <p class="try-example hidden" id="try-example">
-            No address handy? <button type="button" id="try-example-btn">Try the wallet Agent B was about to pay</button>
-          </p>
 
-          <div
-            id="status-message"
-            class="status-message hidden"
-            role="status"
-            aria-live="polite"
-          >
+          <div id="status-message" class="status-message hidden" role="status" aria-live="polite">
             Reading the chain and shared memory. This can take up to 30 seconds.
           </div>
         </form>
-      </section>
-
-      <!-- Latest shared warnings (read only) -->
-      <section id="warnings-feed" class="warnings-feed" aria-label="Latest shared warnings">
-        <h2 class="warnings-title">Latest shared warnings</h2>
-        <p class="warnings-sub" id="warnings-sub">Reports that agents saved to shared memory. Agents using PayCheck read them before paying.</p>
-        <ul id="warnings-list" class="warnings-list"></ul>
       </section>
 
       <!-- Answer / Error / Verdict Area -->
@@ -175,42 +148,62 @@
             <div id="verdict-notes-list" class="notes-list"></div>
           </div>
         </article>
+      </section>
 
-        <!-- Two-agent story card (from /api/cross-agent) -->
-        <div id="cross-agent-sample-banner" class="sample-banner hidden">
+      <!-- Stage: Walrus Memory in the middle, four cards wired to it -->
+      <section id="stage" class="stage" aria-label="How the two agents share one memory">
+        <svg class="stage-wires" viewBox="0 0 1120 560" width="1120" height="560" aria-hidden="true">
+          <defs><filter id="wire-glow"><feGaussianBlur stdDeviation="3" result="b" /><feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge></filter></defs>
+          <g fill="none" stroke="#3d8bff" stroke-width="2" filter="url(#wire-glow)" opacity="0.9">
+            <path d="M340 120 H370 Q395 120 395 150 V250 Q395 280 418 280" />
+            <path d="M340 420 H370 Q395 420 395 390 V310 Q395 280 418 280" />
+            <path d="M780 120 H750 Q725 120 725 150 V250 Q725 280 702 280" />
+            <path d="M780 420 H750 Q725 420 725 390 V310 Q725 280 702 280" />
+          </g>
+          <g fill="#7fd8ff" filter="url(#wire-glow)"><circle cx="340" cy="120" r="5" /><circle cx="340" cy="420" r="5" /><circle cx="780" cy="120" r="5" /><circle cx="780" cy="420" r="5" /></g>
+        </svg>
+        <div class="orb"><div class="orb-label"><b>Walrus Memory</b><small>one shared space, every agent reads it</small></div></div>
+
+        <div id="cross-agent-sample-banner" class="sample-banner stage-banner hidden">
           <span class="sample-badge">SAMPLE DATA, server not reachable</span>
         </div>
-        <article id="two-agent-card" class="card two-agent-card hidden">
-          <h2 class="subhead-centered">Two-Agent Memory Relay</h2>
-          <div class="two-agent-grid">
-            <div class="agent-box">
-              <div class="agent-box-title">Agent A</div>
-              <div id="agent-a-details" class="agent-box-content">
-                <p>Paid <span id="agent-a-address" class="mono-address"></span></p>
-                <p class="text-danger">It went bad</p>
-                <p>Memory id: <span id="agent-a-memory-id" class="mono-id"></span></p>
-              </div>
-            </div>
 
-            <div class="agent-box tie-box">
-              <div class="agent-box-title">What ties them</div>
-              <div id="tie-details" class="agent-box-content">
-                <p id="tie-type" class="badge badge-link"></p>
-                <p id="tie-address" class="mono-address"></p>
-              </div>
-            </div>
+        <div id="two-agent-card" class="two-agent-card hidden">
+          <div class="stage-card pos-a">
+            <span class="step">1</span>
+            <h3>Agent A <span class="chip chip-red">Paid, went bad</span></h3>
+            <div class="k">Paid this wallet</div>
+            <div id="agent-a-address" class="mono-address"></div>
+            <div class="k">Saved its report as</div>
+            <span id="agent-a-memory-id" class="pill mono-id"></span>
+          </div>
 
-            <div class="agent-box">
-              <div class="agent-box-title">Agent B</div>
-              <div id="agent-b-details" class="agent-box-content">
-                <p>Was about to pay <span id="agent-b-address" class="mono-address"></span></p>
-                <div class="agent-b-verdict-wrap">
-                  <span id="agent-b-chip" class="verdict-chip-sm"></span>
-                </div>
-              </div>
+          <div class="stage-card pos-tie">
+            <span class="step">2</span>
+            <h3>What ties them <span class="chip chip-blue">via Tatum</span></h3>
+            <div class="k">One wallet sits behind both</div>
+            <div id="tie-address" class="mono-address"></div>
+            <div id="tie-type" class="pill-row"></div>
+          </div>
+
+          <div class="stage-card pos-b">
+            <span class="step">3</span>
+            <h3>Agent B <span id="agent-b-chip" class="verdict-chip-sm"></span></h3>
+            <div class="k">Was about to pay a new address</div>
+            <div id="agent-b-address" class="mono-address"></div>
+            <div id="agent-b-refusal" class="hidden">
+              <div class="k">Recalled Agent A's report and saved its answer as</div>
+              <span id="agent-b-memory-id" class="pill mono-id"></span>
             </div>
           </div>
-        </article>
+        </div>
+
+        <!-- Latest shared warnings (read only) -->
+        <div id="warnings-feed" class="stage-card pos-warn" aria-label="Latest shared warnings">
+          <span class="step">4</span>
+          <h3 class="warnings-title">Latest shared warnings</h3>
+          <ul id="warnings-list" class="warnings-list"></ul>
+        </div>
       </section>
 
       <!-- Numbers band (dark) -->
@@ -219,6 +212,7 @@
       </div>
       <section class="dark-numbers-band">
         <div class="numbers-inner">
+          <div class="numbers-head"><h2>Measured on real mainnet wallets</h2><p>Every number recounts from saved files with one command.</p></div>
           <div class="numbers-top-row">
             <div class="number-stat-item">
               <div class="stat-title">Real Sui wallet groups found</div>

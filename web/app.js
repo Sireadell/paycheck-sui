@@ -251,6 +251,11 @@ function formatAddress(addr) {
   return addr.substring(0, 10) + '...' + addr.substring(addr.length - 6);
 }
 
+function shortId(id) {
+  if (!id || id.length <= 14) return id || '';
+  return id.substring(0, 6) + '...' + id.substring(id.length - 4);
+}
+
 function createAddressSpan(addr) {
   const span = document.createElement('span');
   span.className = 'mono-address';
@@ -523,10 +528,23 @@ function renderCrossAgentCard(data, isSample = false) {
   addrA.title = data.agentA.address;
 
   const memA = document.getElementById('agent-a-memory-id');
-  memA.textContent = data.agentA.memoryId;
+  memA.textContent = shortId(data.agentA.memoryId);
+  memA.title = data.agentA.memoryId;
 
   const tieType = document.getElementById('tie-type');
-  tieType.textContent = (data.link && data.link.type) ? data.link.type : 'link';
+  const tieLabels = { funder: 'First funder', gas_sponsor: 'Gas sponsor' };
+  const tieKinds = [];
+  ((data.links && data.links.length) ? data.links : (data.link ? [data.link] : [])).forEach((l) => {
+    const label = tieLabels[l.type] || l.type || 'link';
+    if (tieKinds.indexOf(label) === -1) tieKinds.push(label);
+  });
+  tieType.innerHTML = '';
+  tieKinds.forEach((label) => {
+    const pill = document.createElement('span');
+    pill.className = 'pill';
+    pill.textContent = label;
+    tieType.appendChild(pill);
+  });
 
   const tieAddr = document.getElementById('tie-address');
   tieAddr.textContent = formatAddress(data.link ? data.link.address : '');
@@ -535,6 +553,18 @@ function renderCrossAgentCard(data, isSample = false) {
   const addrB = document.getElementById('agent-b-address');
   addrB.textContent = formatAddress(data.agentB.address);
   addrB.title = data.agentB.address;
+
+  const refusalBox = document.getElementById('agent-b-refusal');
+  const refusalId = document.getElementById('agent-b-memory-id');
+  if (refusalBox && refusalId) {
+    if (data.agentB.refusalMemoryId) {
+      refusalId.textContent = shortId(data.agentB.refusalMemoryId);
+      refusalId.title = data.agentB.refusalMemoryId;
+      refusalBox.classList.remove('hidden');
+    } else {
+      refusalBox.classList.add('hidden');
+    }
+  }
 
   const isMemOn = currentMemoryState === 'on';
   const chipB = document.getElementById('agent-b-chip');
@@ -638,6 +668,11 @@ function whenText(iso) {
   return new Date(t).toISOString().slice(0, 10);
 }
 
+function reporterName(r) {
+  const m = /^agent-([a-z])$/i.exec(r || '');
+  return m ? 'Agent ' + m[1].toUpperCase() : (r || 'An agent');
+}
+
 function renderWarnings(data) {
   const box = document.getElementById('warnings-feed');
   const list = document.getElementById('warnings-list');
@@ -651,19 +686,28 @@ function renderWarnings(data) {
     list.appendChild(li);
     return;
   }
+  const seen = new Set();
   items.forEach((w) => {
+    if (w.reportedAddress) {
+      if (seen.has(w.reportedAddress)) return;
+      seen.add(w.reportedAddress);
+    }
+    if (seen.size > 4) return;
     const li = document.createElement('li');
     li.className = 'warnings-row';
+    if (w.memoryId) li.title = 'Memory id ' + w.memoryId;
     const who = document.createElement('strong');
-    who.textContent = w.reporter || 'an agent';
+    who.textContent = reporterName(w.reporter);
     li.appendChild(who);
-    li.append(' reported a bad payment' + (w.reportedAddress ? ' to ' : ''));
-    if (w.reportedAddress) li.appendChild(createAddressSpan(w.reportedAddress));
-    li.append(', ' + whenText(w.reportedAt) + '. Memory id ');
-    const id = document.createElement('span');
-    id.className = 'mono-address';
-    id.textContent = w.memoryId;
-    li.appendChild(id);
+    li.append(' reported' + (w.reportedAddress ? ' ' : ' a bad payment'));
+    if (w.reportedAddress) {
+      const a = document.createElement('span');
+      a.className = 'mono-address';
+      a.title = w.reportedAddress;
+      a.textContent = w.reportedAddress.substring(0, 8) + '...' + w.reportedAddress.substring(w.reportedAddress.length - 4);
+      li.appendChild(a);
+    }
+    li.append(' · ' + whenText(w.reportedAt));
     list.appendChild(li);
   });
 }
