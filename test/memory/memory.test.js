@@ -92,7 +92,7 @@ test('counter splits live, prescan and test; test never counts as stored', async
   await m.write({ ...base, namespace: 'k2-test', address: A, origin: 'k2-test' });
   m.markChanged(['id0']);
   m.markChanged('id0');
-  assert.deepEqual(m.counter(), { changed: 1, stored: 2, prescan: 1, test: 1 });
+  assert.deepEqual(m.counter(), { changed: 1, stored: 2, prescan: 1, unlabelled: 0, test: 1 });
 });
 
 test('restore rebuilds a fresh instance from what the store holds', async () => {
@@ -101,10 +101,10 @@ test('restore rebuilds a fresh instance from what the store holds', async () => 
   await first.write({ ...base, address: A, origin: 'prescan' });
   await first.write({ ...base, address: B });
   const second = createMemory({ sdkFactory: f.factory });
-  assert.deepEqual(second.counter(), { changed: 0, stored: 0, prescan: 0, test: 0 });
+  assert.deepEqual(second.counter(), { changed: 0, stored: 0, prescan: 0, unlabelled: 0, test: 0 });
   const r = await second.restore('live');
   assert.equal(r.rebuilt, 2);
-  assert.deepEqual(second.counter(), { changed: 0, stored: 2, prescan: 1, test: 0 });
+  assert.deepEqual(second.counter(), { changed: 0, stored: 2, prescan: 1, unlabelled: 0, test: 0 });
   assert.equal(await second.listCount('live'), 2);
 });
 
@@ -128,7 +128,7 @@ test('bulkWrite stores a batch, skips what is already stored and counts prescan 
   const second = await m.bulkWrite([mk('1'), mk('3')]);
   assert.equal(second.length, 1);
   assert.equal(calls[1].n, 1);
-  assert.deepEqual(m.counter(), { changed: 0, stored: 3, prescan: 3, test: 0 });
+  assert.deepEqual(m.counter(), { changed: 0, stored: 3, prescan: 3, unlabelled: 0, test: 0 });
 });
 
 test('bulkWrite marks every item failed when the call throws, and a retry writes them', async () => {

@@ -37,10 +37,10 @@ const rows = [
 test('after a restart the counts are read back from Walrus: live, pre-scan, and answers a memory changed', async () => {
   const w = fakeWalrus(rows);
   const m = createMemory({ sdkFactory: w.sdk });
-  assert.deepEqual(m.counter(), { changed: 0, stored: 0, prescan: 0, test: 0 });
+  assert.deepEqual(m.counter(), { changed: 0, stored: 0, prescan: 0, unlabelled: 0, test: 0 });
   const h = await m.hydrate();
   assert.equal(h.state, 'done');
-  assert.deepEqual(m.counter(), { changed: 1, stored: 5, prescan: 2, test: 0 });
+  assert.deepEqual(m.counter(), { changed: 1, stored: 5, prescan: 2, unlabelled: 0, test: 0 });
   assert.equal(h.namespaces.live.listed, 4);
   assert.equal(h.restoredChanged, 1);
 });
@@ -68,7 +68,8 @@ test('old notes (no changedByIds, odd bodies, other text) read back without erro
   ];
   const m = createMemory({ sdkFactory: fakeWalrus(odd).sdk });
   await m.hydrate();
-  assert.deepEqual(m.counter(), { changed: 0, stored: 4, prescan: 0, test: 0 });
+  // 'some other text' is not a PayCheck note, so its label cannot be read: it is counted, as unlabelled.
+  assert.deepEqual(m.counter(), { changed: 0, stored: 4, prescan: 0, unlabelled: 1, test: 0 });
 });
 
 test('Walrus down: hydrate does not throw, says failed, and writes still count', async () => {
@@ -102,4 +103,69 @@ test('the server answers /api/stats before Walrus has replied, then the numbers 
     assert.deepEqual([late.memories.live, late.memories.prescan, late.memories.changedVerdicts], [3, 2, 1]);
     assert.match(late.memories.note, /counted from Walrus/);
   } finally { app.locals.stop(); srv.close(); }
+});
+
+// More than 100 notes in one namespace: a search returns at most 100, the list comes in pages, and every note is still counted and labelled.
+function bigWalrus({ prescan, checks, stray = 0 }) {
+  const rows = [];
+  for (let i = 0; i < prescan; i++) rows.push({ blob_id: 'p' + i, text: buildText({ kind: 'verdict', address: A, group: 'g-p' + (i % 15), origin: 'prescan' }, { i }) });
+  for (let i = 0; i < checks; i++) rows.push({ blob_id: 'c' + i, text: buildText({ kind: 'verdict', address: B, group: 'g-c' + (i % 10), origin: 'check' }, { i }) });
+  for (let i = 0; i < stray; i++) rows.push({ blob_id: 's' + i, text: 'not a paycheck note ' + i });
+  const calls = { recall: 0, maxReturned: 0, listPages: 0 };
+  const sdk = () => ({
+    async listMemories({ cursor, namespace }) {
+      if (namespace !== 'live') return { memories: [], next_cursor: null, has_more: false };
+      calls.listPages++;
+      const from = cursor ? Number(cursor) : 0;
+      const page = rows.slice(from, from + 100);
+      const next = from + 100;
+      return { memories: page.map((r) => ({ memory_id: 'm-' + r.blob_id, blob_id: r.blob_id })), next_cursor: String(next), has_more: next < rows.length };
+    },
+    // Nearest notes first, at most limit. A query word that matches the header narrows it. Unmatched notes are never returned.
+    async recall({ namespace, query, limit }) {
+      calls.recall++;
+      if (namespace !== 'live') return { results: [], total: 0 };
+      const words = String(query).replace('PAYCHECK v1 ', '').split(' ').filter((w) => w.includes('='));
+      const hits = rows.filter((r) => r.text.startsWith('PAYCHECK') && words.every((w) => r.text.split(String.fromCharCode(10))[0].includes(w))).slice(0, limit);
+      calls.maxReturned = Math.max(calls.maxReturned, hits.length);
+      return { results: hits, total: hits.length };
+    },
+    async rememberAndWait() { return { id: 'x', blob_id: 'x' }; },
+    destroy() {},
+  });
+  return { sdk, calls };
+}
+
+test('more than 100 notes in one space: every note is counted and labelled, and live + pre-scan add up to the total listed', async () => {
+  const w = bigWalrus({ prescan: 150, checks: 120 });
+  const m = createMemory({ sdkFactory: w.sdk });
+  const h = await m.hydrate({ namespaces: ['live'] });
+  assert.equal(h.state, 'done');
+  assert.equal(h.namespaces.live.listed, 270);
+  assert.ok(w.calls.listPages >= 3, 'the list is paged to the end');
+  assert.equal(w.calls.maxReturned, 100, 'no single search returned more than 100');
+  const c = m.counter();
+  assert.equal(c.prescan, 150);
+  assert.equal(c.unlabelled, 0);
+  assert.equal(c.stored - c.prescan - c.unlabelled, 120);
+  assert.equal(h.namespaces.live.unlabelled, 0);
+});
+
+test('a note whose label cannot be read is shown as unlabelled, not guessed', async () => {
+  const w = bigWalrus({ prescan: 110, checks: 5, stray: 3 });
+  const m = createMemory({ sdkFactory: w.sdk });
+  await m.hydrate({ namespaces: ['live'] });
+  const c = m.counter();
+  assert.equal(c.stored, 118);
+  assert.equal(c.prescan, 110);
+  assert.equal(c.unlabelled, 3);
+  assert.equal(c.stored - c.prescan - c.unlabelled, 5);
+});
+
+test('the search count is capped, so a huge space cannot make the read-back run forever', async () => {
+  const w = bigWalrus({ prescan: 300, checks: 0 });
+  const m = createMemory({ sdkFactory: w.sdk });
+  const h = await m.hydrate({ namespaces: ['live'], maxSearches: 5 });
+  assert.ok(h.namespaces.live.searches <= 5);
+  assert.equal(m.counter().stored, 300);
 });

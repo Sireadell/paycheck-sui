@@ -614,6 +614,12 @@ function renderProofAndStats(proof, stats, isSample = false) {
       document.getElementById('live-changed-verdicts').textContent = stats.memories.changedVerdicts != null ? stats.memories.changedVerdicts : '...';
       document.getElementById('live-memories').textContent = stats.memories.live != null ? stats.memories.live : '...';
       document.getElementById('live-prescan').textContent = stats.memories.prescan != null ? stats.memories.prescan : '...';
+      const note = document.getElementById('counter-note');
+      if (note) {
+        if (!note.dataset.base) note.dataset.base = note.textContent;
+        const u = stats.memories.unlabelled;
+        note.textContent = note.dataset.base + (u > 0 ? ' Right now ' + u + ' listed note' + (u === 1 ? ' is' : 's are') + ' not labelled yet.' : '');
+      }
     }
 
     if (stats.calls && stats.calls.tatum) {

@@ -1,7 +1,7 @@
 // Memory layer: one Walrus Memory client per namespace, exact-filter recall, idempotent writes,
 // a background write queue (writes take 15 to 25 s) and a restore that rebuilds state from Walrus.
 import { MemWal } from '@mysten-incubation/memwal';
-import { NAMESPACES, buildText, parseMemory, idempotencyKey } from './header.js';
+import { NAMESPACES, KINDS, ORIGINS, buildText, parseMemory, idempotencyKey } from './header.js';
 import { loadConfig } from '../config.js';
 
 export * from './header.js';
@@ -201,55 +201,86 @@ export function createMemory({ sdkFactory, retries = 2, retryWaitMs = 2000, writ
         seen.set(id, e.origin ?? seen.get(id) ?? null);
       }
       let prescan = 0;
-      for (const o of seen.values()) if (o === 'prescan') prescan++;
-      return { changed: changedIds.size, stored: seen.size, prescan, test };
+      let unlabelled = 0; // listed by Walrus, label not read (yet)
+      for (const o of seen.values()) { if (o === 'prescan') prescan++; else if (o == null) unlabelled++; }
+      return { changed: changedIds.size, stored: seen.size, prescan, unlabelled, test };
     },
 
     // How far the read-back from Walrus has got. Plain facts for /api/stats.
     hydration() { return { ...hydration, namespaces: { ...hydration.namespaces } }; },
 
-    // Read the counts back from Walrus after a start: every memory in the live and shared-outcomes namespaces is counted from the
-    // list, the pre-scan label is read from the newest notes (up to 100 per namespace), and changed-answer notes (verdict notes that
-    // record which memories changed their answer) are read back too. Never throws: a failed piece is marked and the rest goes on.
-    async hydrate({ namespaces = ['live', 'shared-outcomes'], probeLimit = 100 } = {}) {
+    // Read the counts back from Walrus after a start. Every memory in the live and shared-outcomes namespaces is counted from the
+    // list, which is paged to the end. The list holds no text, so a note's origin (pre-scan or not) is read with searches. Each search
+    // returns at most 100 notes, so the searches are repeated with different words (each origin, each kind, then each group seen so
+    // far) until every listed note has a label or a round brings nothing new. A note still without a label is counted as unlabelled,
+    // never guessed. Changed-answer notes (verdict notes that record which memories changed their answer) come from the same
+    // searches. Never throws: a failed piece is marked and the rest goes on.
+    async hydrate({ namespaces = ['live', 'shared-outcomes'], probeLimit = 100, maxSearches = 80 } = {}) {
       hydration.state = 'loading';
       hydration.startedAt = new Date().toISOString();
       let failed = 0;
+      let pieces = 0;
+      const CHANGED_QUERY = 'PAYCHECK v1 kind=verdict changedByIds';
       for (const namespace of namespaces) {
-        const info = { listed: null, notesRead: 0, ok: true };
+        const info = { listed: null, labelled: 0, unlabelled: null, searches: 0, notesRead: 0, ok: true };
         hydration.namespaces[namespace] = info;
+        const mine = new Set(); // blob ids listed in this namespace
+        pieces++;
         try {
           const client = clientFor(namespace);
           let cursor;
-          let n = 0;
           do {
             const p = await client.listMemories({ cursor, limit: 500, namespace });
             for (const m of p.memories || []) {
               const id = m.blob_id || m.memory_id;
-              if (id && !known.has(id)) known.set(id, { namespace, origin: null });
-              n++;
+              if (!id) continue;
+              mine.add(id);
+              if (!known.has(id)) known.set(id, { namespace, origin: null });
             }
+            info.listed = mine.size;
             cursor = p.has_more ? p.next_cursor : null;
           } while (cursor);
-          info.listed = n;
         } catch { info.ok = false; failed++; }
-        for (const query of ['PAYCHECK v1 origin=prescan', 'PAYCHECK v1 kind=verdict changedByIds']) {
+        const groupsSeen = new Set();
+        const asked = new Set();
+        const unlabelledNow = () => { let n = 0; for (const id of mine) if (known.get(id)?.origin == null) n++; return n; };
+        const search = async (query) => {
+          if (asked.has(query) || info.searches >= maxSearches) return 0;
+          asked.add(query);
+          info.searches++;
+          pieces++;
+          let gained = 0;
           try {
             const res = await limitedRecall(clientFor(namespace), { query, limit: probeLimit, namespace });
             for (const m of res.results || []) {
               const p = parseMemory(m.text);
               if (!p) continue;
               info.notesRead++;
+              if (p.group) groupsSeen.add(p.group);
               const id = m.blob_id;
-              if (id) known.set(id, { namespace, origin: p.origin ?? known.get(id)?.origin ?? null });
+              if (id) {
+                if (known.get(id)?.origin == null && p.origin) gained++;
+                known.set(id, { namespace, origin: p.origin ?? known.get(id)?.origin ?? null });
+              }
               for (const cid of Array.isArray(p.body?.changedByIds) ? p.body.changedByIds : []) {
                 if (typeof cid === 'string' && cid && !changedIds.has(cid)) { changedIds.add(cid); hydration.restoredChanged++; }
               }
             }
           } catch { info.ok = false; failed++; }
+          return gained;
+        };
+        // Round 1: each origin and each kind. Later rounds: each group seen so far. Stop when nothing is left or a round gains nothing.
+        let queries = [...ORIGINS.map((o) => `PAYCHECK v1 origin=${o}`), ...KINDS.map((k) => `PAYCHECK v1 kind=${k}`), CHANGED_QUERY];
+        while (queries.length) {
+          let gained = 0;
+          for (const q of queries) gained += await search(q);
+          if (!gained || (mine.size && unlabelledNow() === 0)) break;
+          queries = [...groupsSeen].map((g) => `PAYCHECK v1 group=${g}`).filter((q) => !asked.has(q));
         }
+        info.unlabelled = unlabelledNow();
+        info.labelled = mine.size - info.unlabelled;
       }
-      hydration.state = failed === 0 ? 'done' : failed >= namespaces.length * 3 ? 'failed' : 'partial';
+      hydration.state = failed === 0 ? 'done' : failed >= pieces ? 'failed' : 'partial';
       hydration.finishedAt = new Date().toISOString();
       return this.hydration();
     },

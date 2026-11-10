@@ -236,7 +236,7 @@ That looks better than it is. I built these links, so they're easy: fresh wallet
 - It reads the oldest 50 transactions of a wallet by default. On a busy wallet that can hide a link (rs-15).
 - The shared-service rule (15 or more wallets over 25 hours or more counts as a service, so only a weak link) uses numbers I picked. I checked them against the real data but haven't proven them.
 - It can't see before late January 2026, which is as far back as the Sui history served through Tatum goes. For a wallet funded before then, it can't tell who funded it.
-- The memory counters on `/api/stats` are read back from Walrus after each start, and the server answers before that read finishes. The changed-answers counter only includes answers whose saved note records the change. Tatum call counts are since the server last started.
+- The memory counters on `/api/stats` are read back from Walrus after each start, and the server answers before that read finishes. Every note Walrus lists is counted. A note's label (pre-scan or not) is read from the note, with repeated searches because one search returns at most 100 notes. A note whose label could not be read is shown as unlabelled and is in neither the live nor the pre-scan number. The changed-answers counter only includes answers whose saved note records the change. Tatum call counts are since the server last started.
 
 ## Real, simplified, not built yet
 
